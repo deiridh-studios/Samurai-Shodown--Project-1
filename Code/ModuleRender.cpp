@@ -32,7 +32,7 @@ bool ModuleRender::Init()
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	App->textures->Load("TexasEarthquake.png");
+	App->textures->Load("Sprites/TexasEarthquake.png");
 	LOG("Render created succesfully|\n\n");
 	
 	
