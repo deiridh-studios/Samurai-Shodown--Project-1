@@ -58,7 +58,7 @@ bool ModuleAudio::CleanUp(){
 
 Mix_Chunk* const ModuleAudio::LoadChunk(const char* path) {
 	Mix_Chunk *chunk;
-	chunk= Mix_LoadWAV(path);
+	chunk = Mix_LoadWAV(path);
 	if (chunk == NULL) {
 		LOG("Chunk not correct\n\n\n\n\n");
 		LOG(Mix_GetError());
