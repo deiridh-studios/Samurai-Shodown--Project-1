@@ -49,12 +49,8 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::PostUpdate()
 {
-	SDL_Rect recta;
-	recta.x = 0;
-	recta.y = 0;
-	recta.h = App->background->rectbackground.h;
-	recta.w = App->background->rectbackground.w;
-	SDL_RenderCopy(renderer, App->textures->textures[0], &App->background->rectbackground, NULL);
+	//SDL_RenderCopy(renderer, App->textures->textures[0], &App->background->rectbackground, NULL);
+	Blit(App->textures->textures[0], App->background->x1, 0, &App->background->rectbackground);
 	SDL_RenderPresent(renderer);
 	return update_status::UPDATE_CONTINUE;
 }

@@ -13,5 +13,6 @@ public:
 	SDL_Rect rectbackground;
 	int scrollleft;
 	int scrollright;
+	int x1 = 0;
 };
 #endif //
