@@ -59,11 +59,17 @@ ModulePlayer::ModulePlayer()
 	punch.PushBack({ 1194, 1649, 74, 133 });
 	punch.speed = 0.2f;
 
-	// Jump (To Do)
-	jump.PushBack({ 250, 267, 64, 98 });
-	jump.PushBack({ 329, 267, 81, 92 });
-	jump.PushBack({ 793, 267, 113, 92 });
-	jump.speed = 0.2f;
+	// Jump
+	jump.PushBack({ 816, 813, 61, 112 });
+	jump.PushBack({ 816, 813, 61, 112 });
+	jump.PushBack({ 902, 834, 71, 91 });
+	jump.PushBack({ 989, 844, 76, 81 });
+	jump.PushBack({ 989, 844, 76, 81 });
+	jump.PushBack({ 989, 844, 76, 81 });
+	jump.PushBack({ 902, 834, 71, 91 });
+	jump.PushBack({ 902, 834, 71, 91 });
+	jump.PushBack({ 902, 834, 71, 91 });
+	jump.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -75,7 +81,6 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/spritesHaohmaru.png"); // arcade version
-	graphics2 = App->textures->Load("Sprites/Haohfix1.png"); // arcade version
 	return ret;
 }
 
@@ -105,7 +110,7 @@ update_status ModulePlayer::Update()
 	{
 		if (position.x >= 20) {
 			current_animation = &backward;
-			position.x -= speed/2;
+			position.x -= speed / 2;
 		}
 	}
 
@@ -137,20 +142,21 @@ update_status ModulePlayer::Update()
 	{
 		current_animation = &kick;
 		if (kick.GetCurrentFrame().x == 1577) {
-	/*		if (count == 2) {
-				App->input->keyg = 2;
-				count = 0;
-			}
-			else count ++;
-		}*/
+			/*		if (count == 2) {
+						App->input->keyg = 2;
+						count = 0;
+					}
+					else count ++;
+				}*/
+		}
+
+
+
+		// Draw everything --------------------------------------
+		SDL_Rect r = current_animation->GetCurrentFrame();
+
+		App->render->Blit(graphics, position.x, position.y - r.h, &r);
+
+		return UPDATE_CONTINUE;
 	}
-
-
-
-	// Draw everything --------------------------------------
-	SDL_Rect r = current_animation->GetCurrentFrame();
-
-	App->render->Blit(graphics, position.x, position.y - r.h, &r);
-	
-	return UPDATE_CONTINUE;
 }
