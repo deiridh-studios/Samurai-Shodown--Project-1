@@ -51,7 +51,7 @@ update_status ModuleInput::PreUpdate()
 	if (keyboard[SDL_SCANCODE_G]) {
 		if (keyg == 0)  keyg = 1;
 	}
-	else keyg = 0;
+	else/* if(keyg!=1)*/ keyg = 0;
 	if (keyboard[SDL_SCANCODE_H]) {
 		if (keyh == 0)  keyh = 1;
 	}

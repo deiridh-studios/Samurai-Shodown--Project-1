@@ -133,9 +133,16 @@ update_status ModulePlayer::Update()
 
 	////////////////////KICK/////////////////////////
 
-	if (App->input->keyg == 0)
+	if (App->input->keyg == 1)
 	{
 		current_animation = &kick;
+		if (kick.GetCurrentFrame().x == 1577) {
+	/*		if (count == 2) {
+				App->input->keyg = 2;
+				count = 0;
+			}
+			else count ++;
+		}*/
 	}
 
 
