@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 
+// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
 {
@@ -81,11 +82,15 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/spritesHaohmaru.png"); // arcade version
+	actual = NONE;
 	return ret;
 }
 
-int mult = 1; //JUMP UP-DOWN
-int count = 0;
+//Clean Up
+bool ModulePlayer::CleanUp() {
+	App->textures->Unload(graphics);
+	return true;
+}
 
 // Update: draw background
 update_status ModulePlayer::Update()
@@ -96,28 +101,28 @@ update_status ModulePlayer::Update()
 
 	////////////////////RIGHT/////////////////////////
 
-	if (App->input->keyright == 1)
-	{
-		if (position.x <= 580) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_PUSHED) && actual == NONE){
+		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE-73)) {
 			current_animation = &forward;
 			position.x += speed;
+			
+			if(App->render->camera.x>(-SCREEN_WIDTH*SCREEN_SIZE))App->render->camera.x -= speed *2;
 		}
 	}
 
 	////////////////////LEFT/////////////////////////
 
-	if (App->input->keyleft == 1)
-	{
-		if (position.x >= 20) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_PUSHED) && actual == NONE) {
+		if (position.x >= 0) {
 			current_animation = &backward;
 			position.x -= speed / 2;
+			if(App->render->camera.x<0)	App->render->camera.x += speed;
 		}
 	}
 
 	////////////////////JUMP/////////////////////////
 
-	if (((position.y < 210) || (App->input->keyup == 1)) && (position.y >= 130))
-	{
+	if (((position.y < 210) || ((App->input->keyboardstate[SDL_SCANCODE_UP] == App->input->KEY_PUSHED|| App->input->keyboardstate[SDL_SCANCODE_UP] == App->input->KEY_REPEAT) && actual == NONE)) && (position.y >= 130)) {
 		current_animation = &jump;
 		if (position.y == 210) {
 			mult = 1;
@@ -130,34 +135,21 @@ update_status ModulePlayer::Update()
 	}
 
 	////////////////////PUNCH/////////////////////////
-
-	if (App->input->keyh == 1)
-	{
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_H] == App->input->KEY_PUSHED) || actual == PUNCH) {
 		current_animation = &punch;
+		if(current_animation->GetFinished()==0)actual = PUNCH;
+		else actual = NONE;
 	}
 
 	////////////////////KICK/////////////////////////
 
-	if (App->input->keyg == 1)
-	{
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_G] == App->input->KEY_PUSHED) || actual == KICK) {
 		current_animation = &kick;
-		if (kick.GetCurrentFrame().x == 1577) {
-			/*		if (count == 2) {
-						App->input->keyg = 2;
-						count = 0;
-					}
-					else count ++;
-				}*/
-		}
-
-
-
-		// Draw everything --------------------------------------
-		SDL_Rect r = current_animation->GetCurrentFrame();
-
-		App->render->Blit(graphics, position.x, position.y - r.h, &r);
-
-		
+		if (current_animation->GetFinished() == 0)actual = KICK;
+		else actual = NONE;
 	}
+		// Draw everything --------------------------------------
+	SDL_Rect r = current_animation->GetCurrentFrame();		
+	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 	return UPDATE_CONTINUE;
 }

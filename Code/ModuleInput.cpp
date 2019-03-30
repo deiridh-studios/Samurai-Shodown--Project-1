@@ -26,26 +26,29 @@ bool ModuleInput::Init()
 		return ret;
 	}
 	LOG("Events initialized succesfully!\n\n");
+	for (int i = 4; i < 285; i++) keyboardstate[i] = KEY_OUT;
 	return ret;
 }
 
 // Called every draw update
-update_status ModuleInput::Update()
+update_status ModuleInput::PreUpdate()
 {
 	SDL_PumpEvents();
-
 	keyboard = SDL_GetKeyboardState(NULL);
-
-	if (keyboard[SDL_SCANCODE_ESCAPE] == 1) {
+	for (int i = 4; i < 285; i++) {
+		if (keyboard[i] == 1) {
+			if (keyboardstate[i] == KEY_PUSHED || keyboardstate[i]==KEY_REPEAT) keyboardstate[i] = KEY_REPEAT;
+			else keyboardstate[i] = KEY_PUSHED;
+		}
+		else {
+			if (keyboardstate[i] == KEY_PUSHED || keyboardstate[i] ==KEY_REPEAT) keyboardstate[i] = KEY_PULLED;
+			else keyboardstate[i] = KEY_OUT;
+		}
+	}
+	if (keyboardstate[SDL_SCANCODE_ESCAPE] == KEY_PUSHED) {
 		LOG("Escape pressed, exiting the game.\n");
 		return update_status::UPDATE_STOP;
 	}
-	if (keyboard[SDL_SCANCODE_LEFT] == 1) App->background->scrollleft=1;
-	else App->background->scrollleft = 0;
-	if (keyboard[SDL_SCANCODE_RIGHT] == 1) App->background->scrollright=1;
-	else App->background->scrollright = 0;
-
-
 	return update_status::UPDATE_CONTINUE;
 }
 
