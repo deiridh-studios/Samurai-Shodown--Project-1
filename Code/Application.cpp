@@ -7,6 +7,9 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
+#include "ModuleSceneEarthquake.h"
+#include "ModuleSceneWelcome.h"
+#include "ModuleSceneCongrats.h"
 
 Application::Application()
 {
@@ -15,9 +18,12 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = render = new ModuleRender();
 	modules[4] = audio = new ModuleAudio();
-	modules[5] = background = new ModuleBackground();
-	modules[6] = player = new ModulePlayer();
-	modules[7] = fade = new ModuleFadeToBlack();
+	modules[5] = scenewelcome = new ModuleSceneWelcome();
+	modules[6] = background = new ModuleBackground();
+	modules[7] = sceneearthquake = new ModuleSceneEarthquake();
+	modules[8] = player = new ModulePlayer();
+	modules[9] = scenecongrats = new ModuleSceneCongrats();
+	modules[10] = fade = new ModuleFadeToBlack();
 
 }
 
@@ -31,10 +37,10 @@ bool Application::Init()
 {
 	bool ret = true;
 
-	// Player will be enabled on the first update of a new scene
 	player->Disable();
-	// Disable the map that you do not start with
-	//scene_honda->Disable();
+	sceneearthquake->Disable();
+	background->Disable();
+	scenecongrats->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
@@ -66,7 +72,7 @@ bool Application::CleanUp()
 	bool ret = true;
 
 	for (int i = NUM_MODULES - 1; i >= 0 && ret == true; --i)
-		ret = modules[i]->CleanUp();
+		if (modules[i]->IsEnabled() == true) ret = modules[i]->CleanUp();
 
 	return ret;
 }

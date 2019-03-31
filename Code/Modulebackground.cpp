@@ -7,6 +7,8 @@
 #include "ModuleInput.h"
 #include "Animation.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
+#include"ModuleSceneEarthquake.h"
 #include "SDL/include/SDL.h"
 
 ModuleBackground::ModuleBackground():Module(){
@@ -39,26 +41,29 @@ ModuleBackground::ModuleBackground():Module(){
 }
 ModuleBackground::~ModuleBackground(){}
 bool ModuleBackground::Start() {
-	rectbackground.x = 0;
-	rectbackground.y = 0;
-	rectbackground.w = (SCREEN_WIDTH )*SCREEN_SIZE;
-	rectbackground.h = (SCREEN_HEIGHT) *SCREEN_SIZE;
 	scrollleft = 0;
 	scrollright = 0;
 	App->audio->LoadMusic("Music/stage.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
-	App->audio->LoadChunk("Audio_FX/haohmaru.wav");
-	App->audio->PlayChunk(App->audio->chunks[0]);
+	haohmaru=App->audio->LoadChunk("Audio_FX/haohmaru.wav");
+	App->audio->PlayChunk(haohmaru);
 	graphics=App->textures->Load("Sprites/Back.png");
 	App->player->Enable();
 	return true;
 }
 update_status ModuleBackground::Update() {
 	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f);  //Background
+	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == App->input->KEY_PUSHED&&App->fade->finished == true) {
+		App->audio->StopMusic();
+		App->fade->FadeToBlack(App->background, App->sceneearthquake, 5);
+	}
 	return UPDATE_CONTINUE;
 }
 bool ModuleBackground::CleanUp()
 {
+	App->audio->StopChunk();
+	App->audio->UnLoadChunk(haohmaru);
+	App->audio->UnLoadMusic(App->audio->musics[0]);
 	App->player->Disable();
 	App->textures->Unload(graphics);
 	return true;

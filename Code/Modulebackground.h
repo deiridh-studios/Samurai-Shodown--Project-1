@@ -3,7 +3,10 @@
 #include"Module.h"
 #include "Animation.h"
 #include "ModuleTextures.h"
-#include "SDL/include/SDL.h"
+
+struct Mix_Chunk;
+struct SDL_Texture;
+
 class ModuleBackground :public Module {
 public:
 	ModuleBackground();
@@ -13,7 +16,7 @@ public:
 	bool CleanUp();
 
 public:
-	SDL_Rect rectbackground;
+	Mix_Chunk* haohmaru;
 	int scrollleft;
 	int scrollright;
 	int x1 = 0;

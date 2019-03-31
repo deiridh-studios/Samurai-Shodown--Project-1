@@ -3,8 +3,8 @@
 
 #include "Module.h"
 
-#define MAX_CHUNK 50
-#define MAX_MUSIC 20
+#define MAX_CHUNK 10
+#define MAX_MUSIC 5
 
 struct Mix_Chunk;
 struct _Mix_Music;
@@ -21,7 +21,10 @@ public:
 
 	Mix_Chunk* const LoadChunk(const char* path);
 	_Mix_Music* const LoadMusic(const char* path);
+	bool const UnLoadChunk(Mix_Chunk* chunk);
+	bool const UnLoadMusic(_Mix_Music* music);
 	void PlayChunk(Mix_Chunk*);
+	void StopChunk();
 	void PlayMusic(_Mix_Music*);
 	void StopMusic();
 

@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
-#include "Modulebackground.h"
 #include "SDL/include/SDL.h"
 
 ModuleRender::ModuleRender() : Module()

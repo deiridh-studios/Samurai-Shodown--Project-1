@@ -7,6 +7,7 @@
 #include "p2Point.h"
 
 struct SDL_Texture;
+struct Mix_Chunk;
 
 class ModulePlayer : public Module
 {
@@ -20,6 +21,9 @@ public:
 
 public:
 
+	Mix_Chunk *punchsound;
+	Mix_Chunk *jumpsound;
+	Mix_Chunk *kicksound;
 	SDL_Texture* graphics = nullptr;
 	Animation idle;
 	Animation forward;
@@ -33,8 +37,9 @@ public:
 		NONE,
 		PUNCH,
 		KICK
-	};
-	action actual;
+	}actual=action::NONE;
+	bool right;
+	bool left;
 
 };
 

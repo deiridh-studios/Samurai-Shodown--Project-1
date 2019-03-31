@@ -37,16 +37,21 @@ bool ModuleAudio::Init() {
 
 
 bool ModuleAudio::CleanUp(){
-	
+
 	LOG("Freeing chunks, music and Mixer library");
 
 	for (int i = MAX_CHUNK - 1; i >= 0; i--) {
-		if (chunks[i] != nullptr) Mix_FreeChunk(chunks[i]);
+		if (chunks[i] != nullptr) {
+			Mix_FreeChunk(chunks[i]);
+			chunks[i] = nullptr;
+		}
 	}
 	for (int i = MAX_MUSIC - 1; i >= 0; i--) {
-		if (musics[i] != nullptr) Mix_FreeMusic(musics[i]);
+		if (musics[i] != nullptr) {
+			Mix_FreeMusic(musics[i]);
+			musics[i] = nullptr;
+		}
 	}
-
 	Mix_CloseAudio();
 	while (Mix_Init(0)) {
 		Mix_Quit();
@@ -91,9 +96,42 @@ Mix_Music* const ModuleAudio::LoadMusic(const char* path) {
 	}
 	return nullptr;
 }
+bool const ModuleAudio::UnLoadChunk(Mix_Chunk* chunk) {
+	if (chunk != nullptr)
+	{
+		for (int i = 0; i < MAX_CHUNK; ++i)
+		{
+			if (chunks[i] == chunk)
+			{
+				chunks[i] = nullptr;
+				break;
+			}
+		}
+		Mix_FreeChunk(chunk);
+	}
+	return true;
+}
+bool const ModuleAudio::UnLoadMusic(_Mix_Music* music) {
+	if (music != nullptr)
+	{
+		for (int i = 0; i < MAX_MUSIC; ++i)
+		{
+			if (musics[i] == music)
+			{
+				musics[i] = nullptr;
+				break;
+			}
+		}
+		Mix_FreeMusic(music);
+	}
+	return true;
+}
 
 void ModuleAudio::PlayChunk(Mix_Chunk* chunk) {
 	Mix_PlayChannel(-1, chunk, 0);
+}
+void ModuleAudio::StopChunk() {
+	Mix_HaltChannel(-1);
 }
 
 void ModuleAudio::PlayMusic(_Mix_Music* music) {

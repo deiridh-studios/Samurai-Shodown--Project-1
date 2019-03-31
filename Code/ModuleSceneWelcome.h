@@ -1,0 +1,20 @@
+#ifndef _MODULESCENEWELCOME_H
+#define _MODULESCENEWELCOME_H
+#include"Module.h"
+#include "Animation.h"
+#include "ModuleTextures.h"
+#include "SDL/include/SDL.h"
+
+class ModuleSceneWelcome :public Module {
+public:
+	ModuleSceneWelcome();
+	~ModuleSceneWelcome();
+	bool Start();
+	update_status Update();
+	bool CleanUp();
+
+public:
+	SDL_Rect rectbackground;
+	SDL_Texture* graphics = nullptr;
+};
+#endif //
