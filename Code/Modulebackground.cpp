@@ -55,7 +55,7 @@ update_status ModuleBackground::Update() {
 	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f);  //Background
 	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == App->input->KEY_PUSHED&&App->fade->finished == true) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->background, App->sceneearthquake, 5);
+		App->fade->FadeToBlack(App->background, App->sceneearthquake, 2);
 	}
 	return UPDATE_CONTINUE;
 }

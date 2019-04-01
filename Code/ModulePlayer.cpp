@@ -6,8 +6,6 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModulePlayer::ModulePlayer()
 {
 	position.x = 100;
@@ -112,12 +110,12 @@ update_status ModulePlayer::Update()
 	////////////////////RIGHT/////////////////////////
 
 	if ((App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_PUSHED) && actual == NONE&&(position.y==210||right==true)){
-		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE-73)) {
+		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE-410)) {
 			current_animation = &forward;
 			position.x += speed;
 			right = true;
 			
-			if(App->render->camera.x>(-SCREEN_WIDTH*SCREEN_SIZE))App->render->camera.x -= speed *2;
+			if(App->render->camera.x>(-SCREEN_WIDTH*SCREEN_SIZE))App->render->camera.x -= speed * 2.75;
 		}
 	}
 	else right = false;
@@ -125,7 +123,7 @@ update_status ModulePlayer::Update()
 	////////////////////LEFT/////////////////////////
 
 	if ((App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210||left==true)) {
-		if (position.x >= 0) {
+		if (position.x >= 20) {
 			current_animation = &backward;
 			position.x -= speed / 2;
 			left = true;

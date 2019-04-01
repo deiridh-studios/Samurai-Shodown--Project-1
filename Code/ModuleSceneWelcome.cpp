@@ -28,7 +28,7 @@ update_status  ModuleSceneWelcome::Update() {
 	App->render->Blit(graphics, 0, 0, &rectbackground, 0.0f);  //Background
 	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == App->input->KEY_PUSHED&&App->fade->finished == true) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->scenewelcome, App->background, 5);
+		App->fade->FadeToBlack(App->scenewelcome, App->background, 2);
 	}
 	return UPDATE_CONTINUE;
 }
