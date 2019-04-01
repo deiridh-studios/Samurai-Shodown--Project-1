@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "Animation.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneCongrats.h"
 #include "SDL/include/SDL.h"
@@ -55,6 +56,7 @@ bool  ModuleSceneEarthquake::Start() {
 	App->audio->PlayChunk(earthquake);
 	graphics = App->textures->Load("Sprites/BackEarthquake.png");
 	App->player->Enable();
+	App->player2->Enable();
 	return true;
 }
 update_status  ModuleSceneEarthquake::Update() {
@@ -71,6 +73,7 @@ bool  ModuleSceneEarthquake::CleanUp()
 	App->audio->UnLoadChunk(earthquake);
 	App->audio->UnLoadMusic(App->audio->musics[0]);
 	App->player->Disable();
+	App->player2->Disable();
 	App->textures->Unload(graphics);
 	return true;
 }

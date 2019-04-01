@@ -4,15 +4,15 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
-#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 
-ModulePlayer::ModulePlayer()
+ModulePlayer2::ModulePlayer2()
 {
-	position.x = 50;
+	position.x = 200;
 	position.y = 210;
 
 	// Idle animation
-	idle.PushBack({ 634, 569, 73, 115 });
+	idle.PushBack({ 635, 569, 73, 115 });
 	idle.PushBack({ 716, 569, 73, 115 });
 	idle.PushBack({ 797, 569, 73, 115 });
 	idle.PushBack({ 634, 692, 73, 115 });
@@ -72,11 +72,11 @@ ModulePlayer::ModulePlayer()
 	jump.speed = 0.1f;
 }
 
-ModulePlayer::~ModulePlayer()
+ModulePlayer2::~ModulePlayer2()
 {}
 
 // Load assets
-bool ModulePlayer::Start()
+bool ModulePlayer2::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
@@ -91,7 +91,7 @@ bool ModulePlayer::Start()
 }
 
 //Clean Up
-bool ModulePlayer::CleanUp() {
+bool ModulePlayer2::CleanUp() {
 	App->textures->Unload(graphics);
 	App->audio->StopChunk();
 	App->audio->UnLoadChunk(punchsound);
@@ -101,7 +101,7 @@ bool ModulePlayer::CleanUp() {
 }
 
 // Update: draw background
-update_status ModulePlayer::Update()
+update_status ModulePlayer2::Update()
 {
 	Animation* current_animation = &idle;
 
@@ -109,31 +109,31 @@ update_status ModulePlayer::Update()
 
 	////////////////////RIGHT/////////////////////////
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_D] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_D] == App->input->KEY_PUSHED) && actual == NONE&&(position.y==210||right==true)){
-		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE-410)) {
-			current_animation = &forward;
-			position.x += speed;
+	if ((App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210 || right == true)) {
+		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE - 410)) {
+			current_animation = &backward;
+			position.x += speed / 2;
 			right = true;
-			
-			if(App->render->camera.x>(-SCREEN_WIDTH*SCREEN_SIZE))App->render->camera.x -= speed * 2.75;
+
+			if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 2.75;
 		}
 	}
 	else right = false;
 
 	////////////////////LEFT/////////////////////////
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_A] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_A] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210||left==true)) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210 || left == true)) {
 		if (position.x >= 20) {
-			current_animation = &backward;
-			position.x -= speed / 2;
+			current_animation = &forward;
+			position.x -= speed;
 			left = true;
-			if(App->render->camera.x<0)	App->render->camera.x += speed;
+			if (App->render->camera.x < 0)	App->render->camera.x += speed;
 		}
 	}
 	else (left = false);
 	////////////////////JUMP/////////////////////////
 
-	if (((position.y < 210) || ((App->input->keyboardstate[SDL_SCANCODE_W] == App->input->KEY_PUSHED|| App->input->keyboardstate[SDL_SCANCODE_W] == App->input->KEY_REPEAT) && actual == NONE)) && (position.y >= 130)) {
+	if (((position.y < 210) || ((App->input->keyboardstate[SDL_SCANCODE_UP] == App->input->KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_UP] == App->input->KEY_REPEAT) && actual == NONE)) && (position.y >= 130)) {
 		current_animation = &jump;
 
 		if (position.y == 210) {
@@ -148,23 +148,25 @@ update_status ModulePlayer::Update()
 	}
 
 	////////////////////PUNCH/////////////////////////
-	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_T] == App->input->KEY_PUSHED) || actual == PUNCH) {
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_H] == App->input->KEY_PUSHED) || actual == PUNCH) {
 		current_animation = &punch;
 		if (actual == NONE)App->audio->PlayChunk(punchsound);
-		if(current_animation->GetFinished()==0)actual = PUNCH;
+		if (current_animation->GetFinished() == 0)actual = PUNCH;
 		else actual = NONE;
 	}
 
 	////////////////////KICK/////////////////////////
 
-	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_Y] == App->input->KEY_PUSHED) || actual == KICK) {
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_G] == App->input->KEY_PUSHED) || actual == KICK) {
 		current_animation = &kick;
-		if(actual==NONE)App->audio->PlayChunk(kicksound);
+		if (actual == NONE)App->audio->PlayChunk(kicksound);
 		if (current_animation->GetFinished() == 0)actual = KICK;
 		else actual = NONE;
 	}
-		// Draw everything --------------------------------------
-	SDL_Rect r = current_animation->GetCurrentFrame();		
+
+	// Draw everything --------------------------------------
+
+	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 	return UPDATE_CONTINUE;
 }

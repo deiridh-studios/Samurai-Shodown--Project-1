@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "Modulebackground.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneEarthquake.h"
@@ -22,9 +23,9 @@ Application::Application()
 	modules[6] = background = new ModuleBackground();
 	modules[7] = sceneearthquake = new ModuleSceneEarthquake();
 	modules[8] = player = new ModulePlayer();
-	modules[9] = scenecongrats = new ModuleSceneCongrats();
-	modules[10] = fade = new ModuleFadeToBlack();
-
+	modules[9] = player2 = new ModulePlayer2();
+	modules[10] = scenecongrats = new ModuleSceneCongrats();
+	modules[11] = fade = new ModuleFadeToBlack();
 }
 
 Application::~Application()
@@ -37,6 +38,7 @@ bool Application::Init()
 {
 	bool ret = true;
 
+	player2->Disable();
 	player->Disable();
 	sceneearthquake->Disable();
 	background->Disable();
