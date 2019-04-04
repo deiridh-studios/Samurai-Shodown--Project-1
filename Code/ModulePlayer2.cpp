@@ -12,63 +12,62 @@ ModulePlayer2::ModulePlayer2()
 	position.y = 210;
 
 	// Idle animation
-	idle.PushBack({ 635, 569, 73, 115 });
-	idle.PushBack({ 716, 569, 73, 115 });
-	idle.PushBack({ 797, 569, 73, 115 });
-	idle.PushBack({ 634, 692, 73, 115 });
-	idle.PushBack({ 716, 692, 73, 115 });
-	idle.PushBack({ 797, 692, 73, 115 });
+	idle.PushBack({ 3406, 530, 79, 123 });
+	idle.PushBack({ 3324, 530, 79, 123 });
+	idle.PushBack({ 3243, 530, 79, 123 });
+	idle.PushBack({ 3406, 653, 79, 123 });
+	idle.PushBack({ 3324, 653, 79, 123 });
+	idle.PushBack({ 3243, 653, 79, 123 });
 	idle.speed = 0.2f;
 
 	// Walk forward animation (To IMPROVE)
-	forward.PushBack({ 1422, 1325, 79, 123 });
-	forward.PushBack({ 1501, 1325, 71, 123 });
-	forward.PushBack({ 1572, 1325, 61, 123 });
-	forward.PushBack({ 1633, 1325, 74, 123 });
+	forward.PushBack({ 2409 , 1298 , 75 , 118 });
+	forward.PushBack({ 2479 , 1290 , 67 , 123 });
+	forward.PushBack({ 2542 , 1293 , 75 , 129 });
+	forward.PushBack({ 2615 , 1298 , 81 , 116 });
 	forward.speed = 0.2f;
 
 	// Walk backwards animation (To Do)
-	backward.PushBack({ 1633, 1325, 74, 123 });
-	backward.PushBack({ 1572, 1325, 61, 123 });
-	backward.PushBack({ 1501, 1325, 71, 123 });
-	backward.PushBack({ 1422, 1325, 79, 123 });
+	backward.PushBack({ 2615 , 1298 , 81 , 116 });
+	backward.PushBack({ 2542 , 1293 , 75 , 129 });
+	backward.PushBack({ 2479 , 1290 , 67 , 123 });
+	backward.PushBack({ 2409 , 1298 , 75 , 118 });
 	backward.speed = 0.1f;
 
 	// Kick animation
-	kick.PushBack({ 1577, 173, 79, 94 });
-	kick.PushBack({ 1656, 175, 99, 92 });
-	kick.PushBack({ 1755, 172, 110, 92 });
-	kick.PushBack({ 1865, 173, 79, 94 });
-	kick.PushBack({ 1944, 172, 62, 95 });
-	kick.PushBack({ 1577, 173, 79, 94 });
-	kick.PushBack({ 1577, 173, 79, 94 });
+	kick.PushBack({ 2545, 133, 80, 105 });
+	kick.PushBack({ 2459, 133, 81, 102 });
+	kick.PushBack({ 2359, 133, 99, 108 });
+	kick.PushBack({ 2248, 133, 112, 98 });
+	kick.PushBack({ 2459, 133, 81, 102 });
+	kick.PushBack({ 2545, 133, 80, 105 });
+	kick.PushBack({ 2545, 133, 80, 105 });
 	kick.speed = 0.2f;
 
 
 	// Punch animation (TO IMPROVE)
-	punch.PushBack({ 676, 1410, 72, 133 });
-	punch.PushBack({ 748, 1410, 73, 133 });
-	punch.PushBack({ 821, 1410, 81, 133 });
-	punch.PushBack({ 902, 1410, 136, 133 });
-	punch.PushBack({ 1038, 1410, 136, 133 });
-	punch.PushBack({ 1175, 1410, 136, 133 });
-	punch.PushBack({ 652, 1649, 135, 133 });
-	punch.PushBack({ 787, 1649, 133, 133 }); //144
-	punch.PushBack({ 932, 1649, 125, 133 });
-	punch.PushBack({ 1057, 1649, 137, 133 });
-	punch.PushBack({ 1194, 1649, 74, 133 });
+	punch.PushBack({ 3368 , 1388 , 83 , 124 });
+	punch.PushBack({ 3296 , 1372 , 78 , 137 });
+	punch.PushBack({ 3211 , 1398 , 84 , 114 });
+	punch.PushBack({ 3075 , 1398 , 142 , 113 });
+	punch.PushBack({ 2939 , 1401 , 138 , 108 });
+	punch.PushBack({ 2801 , 1406 , 142 , 105 });
+	punch.PushBack({ 3327 , 1656 , 138 , 106 });
+	punch.PushBack({ 3186 , 1656 , 138 , 106 });
+	punch.PushBack({ 3058 , 1656 , 138 , 106 });
+	punch.PushBack({ 2920 , 1637 , 139 , 112 });
+	punch.PushBack({ 2680 , 1657 , 147 , 100 });
 	punch.speed = 0.2f;
 
 	// Jump
-	jump.PushBack({ 816, 813, 61, 112 });
-	jump.PushBack({ 816, 813, 61, 112 });
-	jump.PushBack({ 902, 834, 71, 91 });
-	jump.PushBack({ 989, 844, 76, 81 });
-	jump.PushBack({ 989, 844, 76, 81 });
-	jump.PushBack({ 989, 844, 76, 81 });
-	jump.PushBack({ 902, 834, 71, 91 });
-	jump.PushBack({ 902, 834, 71, 91 });
-	jump.PushBack({ 902, 834, 71, 91 });
+	jump.PushBack({ 3234 , 775 , 78 , 116 });
+	jump.PushBack({ 3234 , 775 , 78 , 116 });
+	jump.PushBack({ 3138 , 791 , 91 , 100 });
+	jump.PushBack({ 3046 , 804 , 84 , 88 });
+	jump.PushBack({ 3046 , 804 , 84 , 88 });
+	jump.PushBack({ 3138 , 791 , 91 , 100 });
+	jump.PushBack({ 3138 , 791 , 91 , 100 });
+	jump.PushBack({ 3138 , 791 , 91 , 100 });
 	jump.speed = 0.1f;
 }
 
