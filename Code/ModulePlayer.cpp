@@ -56,7 +56,7 @@ ModulePlayer::ModulePlayer()
 	punch.PushBack({ 649, 1614, 133, 144 }); //144
 	punch.PushBack({ 781, 1615, 133, 133 });
 	punch.PushBack({ 914, 1625, 133, 133 });
-	punch.PushBack({ 1200, 1617, 74, 133 });
+	punch.PushBack({ 1190, 1617, 74, 133 });
 	punch.speed = 0.2f;
 
 	// Jump
@@ -109,28 +109,29 @@ update_status ModulePlayer::Update()
 
 	////////////////////RIGHT/////////////////////////
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_D] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_D] == App->input->KEY_PUSHED) && actual == NONE&&(position.y==210||right==true)){
-		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE-410)) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_D] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_D] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210 || right == true)) {
+		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE - 410)) {
 			current_animation = &forward;
 			position.x += speed;
 			right = true;
-			
-			if(App->render->camera.x>(-SCREEN_WIDTH*SCREEN_SIZE))App->render->camera.x -= speed * 2.75;
+
+			if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
 		}
 	}
 	else right = false;
 
 	////////////////////LEFT/////////////////////////
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_A] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_A] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210||left==true)) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_A] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_A] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210 || left == true)) {
 		if (position.x >= 20) {
 			current_animation = &backward;
 			position.x -= speed / 2;
 			left = true;
-			if(App->render->camera.x<0)	App->render->camera.x += speed;
+			if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
 		}
 	}
 	else (left = false);
+
 	////////////////////JUMP/////////////////////////
 
 	if (((position.y < 210) || ((App->input->keyboardstate[SDL_SCANCODE_W] == App->input->KEY_PUSHED|| App->input->keyboardstate[SDL_SCANCODE_W] == App->input->KEY_REPEAT) && actual == NONE)) && (position.y >= 130)) {
