@@ -10,6 +10,8 @@
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneCongrats.h"
+#include"ModuleCollision.h"
+#include"ModuleParticles.h"
 #include "SDL/include/SDL.h"
 
 ModuleSceneEarthquake::ModuleSceneEarthquake():Module()
@@ -57,11 +59,13 @@ bool  ModuleSceneEarthquake::Start() {
 	graphics = App->textures->Load("Sprites/BackEarthquake.png");
 	App->player->Enable();
 	App->player2->Enable();
+	App->particles->Enable();
+	App->collision->Enable();
 	return true;
 }
 update_status  ModuleSceneEarthquake::Update() {
 	App->render->Blit(graphics, 0, -120, &(backearthquake.GetCurrentFrame()), 0.9f);  //Background
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == App->input->KEY_PUSHED&&App->fade->finished == true)  {
+	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED&&App->fade->finished == true)  {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->sceneearthquake, App->scenecongrats, 2);
 	}
@@ -74,6 +78,8 @@ bool  ModuleSceneEarthquake::CleanUp()
 	App->audio->UnLoadMusic(App->audio->musics[0]);
 	App->player->Disable();
 	App->player2->Disable();
+	App->particles->Disable();
+	App->collision->Disable();
 	App->textures->Unload(graphics);
 	return true;
 }

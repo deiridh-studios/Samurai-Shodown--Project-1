@@ -11,6 +11,8 @@
 #include "ModuleSceneEarthquake.h"
 #include "ModuleSceneWelcome.h"
 #include "ModuleSceneCongrats.h"
+#include "ModuleCollision.h"
+#include "ModuleParticles.h"
 
 Application::Application()
 {
@@ -25,7 +27,9 @@ Application::Application()
 	modules[8] = player = new ModulePlayer();
 	modules[9] = player2 = new ModulePlayer2();
 	modules[10] = scenecongrats = new ModuleSceneCongrats();
-	modules[11] = fade = new ModuleFadeToBlack();
+	modules[11] = particles = new ModuleParticles();
+	modules[12] = collision = new ModuleCollision();
+	modules[13] = fade = new ModuleFadeToBlack();
 }
 
 Application::~Application()
@@ -43,6 +47,8 @@ bool Application::Init()
 	sceneearthquake->Disable();
 	background->Disable();
 	scenecongrats->Disable();
+	collision->Disable();
+	particles->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

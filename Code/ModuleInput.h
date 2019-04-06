@@ -6,6 +6,12 @@
 #include "SDL\include\SDL_scancode.h"
 
 typedef unsigned char Uint8;
+enum keystate {
+	KEY_OUT = 0,
+	KEY_PUSHED,
+	KEY_PULLED,
+	KEY_REPEAT,
+};
 
 class ModuleInput : public Module
 {
@@ -21,12 +27,7 @@ public:
 public:
 	const Uint8 *keyboard = nullptr;
 	bool space;
-	enum keystate {
-		KEY_PUSHED,
-		KEY_PULLED,
-		KEY_REPEAT,
-		KEY_OUT
-	};
+
 	keystate keyboardstate[285];
 };
 

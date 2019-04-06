@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer2.h"
+#include "ModuleCollision.h"
 
 ModulePlayer2::ModulePlayer2()
 {
@@ -83,6 +84,8 @@ bool ModulePlayer2::Start()
 	punchsound = App->audio->LoadChunk("Audio_FX/Punch.wav");
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
+	hitted = App->audio->LoadChunk("Audio_FX/Hitted.wav");
+	bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_ENEMY, this);
 	actual = NONE;
 	right = false;
 	left = false;
@@ -96,6 +99,7 @@ bool ModulePlayer2::CleanUp() {
 	App->audio->UnLoadChunk(punchsound);
 	App->audio->UnLoadChunk(kicksound);
 	App->audio->UnLoadChunk(jumpsound);
+	App->audio->UnLoadChunk(hitted);
 	return true;
 }
 
@@ -108,7 +112,7 @@ update_status ModulePlayer2::Update()
 
 	////////////////////RIGHT/////////////////////////
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210 || right == true)) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_PUSHED) && actual == NONE && (position.y == 210 || right == true)) {
 		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE - 410)) {
 			current_animation = &backward;
 			position.x += speed;
@@ -121,7 +125,7 @@ update_status ModulePlayer2::Update()
 
 	////////////////////LEFT/////////////////////////
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_LEFT] == App->input->KEY_PUSHED) && actual == NONE && (position.y == 210 || left == true)) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_PUSHED) && actual == NONE && (position.y == 210 || left == true)) {
 		if (position.x >= 20) {
 			current_animation = &forward;
 			position.x -= speed/2;
@@ -134,7 +138,7 @@ update_status ModulePlayer2::Update()
 
 	////////////////////JUMP/////////////////////////
 
-	if (((position.y < 210) || ((App->input->keyboardstate[SDL_SCANCODE_UP] == App->input->KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_UP] == App->input->KEY_REPEAT) && actual == NONE)) && (position.y >= 130)) {
+	if (((position.y < 210) || ((App->input->keyboardstate[SDL_SCANCODE_UP] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_UP] == KEY_REPEAT) && actual == NONE)) && (position.y >= 130)) {
 		current_animation = &jump;
 
 		if (position.y == 210) {
@@ -149,7 +153,7 @@ update_status ModulePlayer2::Update()
 	}
 
 	////////////////////PUNCH/////////////////////////
-	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_H] == App->input->KEY_PUSHED) || actual == PUNCH) {
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_H] == KEY_PUSHED) || actual == PUNCH) {
 		current_animation = &punch;
 		if (actual == NONE)App->audio->PlayChunk(punchsound);
 		if (current_animation->GetFinished() == 0)actual = PUNCH;
@@ -158,16 +162,22 @@ update_status ModulePlayer2::Update()
 
 	////////////////////KICK/////////////////////////
 
-	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_G] == App->input->KEY_PUSHED) || actual == KICK) {
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_G] == KEY_PUSHED) || actual == KICK) {
 		current_animation = &kick;
 		if (actual == NONE)App->audio->PlayChunk(kicksound);
 		if (current_animation->GetFinished() == 0)actual = KICK;
 		else actual = NONE;
 	}
 
+	bodyenemy->SetPos(position.x, (position.y-100));
+
 	// Draw everything --------------------------------------
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer2::OnCollision(Collider* enemy, Collider* player) {
+	//
 }

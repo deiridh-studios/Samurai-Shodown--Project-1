@@ -104,10 +104,10 @@ bool const ModuleAudio::UnLoadChunk(Mix_Chunk* chunk) {
 			if (chunks[i] == chunk)
 			{
 				chunks[i] = nullptr;
+				Mix_FreeChunk(chunk);
 				break;
 			}
 		}
-		Mix_FreeChunk(chunk);
 	}
 	return true;
 }
@@ -119,10 +119,10 @@ bool const ModuleAudio::UnLoadMusic(_Mix_Music* music) {
 			if (musics[i] == music)
 			{
 				musics[i] = nullptr;
+				Mix_FreeMusic(music);
 				break;
 			}
 		}
-		Mix_FreeMusic(music);
 	}
 	return true;
 }

@@ -3,7 +3,7 @@
 #include"Module.h"
 #include "Animation.h"
 #include "ModuleTextures.h"
-#include "SDL/include/SDL.h"
+#include "Globals.h"
 
 class ModuleSceneWelcome :public Module {
 public:
