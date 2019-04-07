@@ -71,6 +71,8 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 896, 804, 71, 91 });
 	jump.PushBack({ 896, 804, 71, 91 });
 	jump.speed = 0.1f;
+
+	////////////Animation hitted;
 }
 
 ModulePlayer::~ModulePlayer()

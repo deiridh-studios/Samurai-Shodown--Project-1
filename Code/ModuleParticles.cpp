@@ -23,13 +23,15 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	graphics = App->textures->Load("rtype/particles.png");
 
-	// Explosion particle
+	// Tornado particle
 
-	tornado.anim.PushBack({ 232, 103, 16, 12 });
-	tornado.anim.PushBack({ 249, 103, 16, 12 });
-	tornado.anim.speed = 0.2f;
-	tornado.speed.x = 5;
-	tornado.life = 3000;
+	////////Tornado animation
+
+	//tornado.anim.PushBack({ 232, 103, 16, 12 });
+	//tornado.anim.PushBack({ 249, 103, 16, 12 });
+	//tornado.anim.speed = 0.2f;
+	//tornado.speed.x = 5;
+	//tornado.life = 3000;
 
 	return true;
 }
