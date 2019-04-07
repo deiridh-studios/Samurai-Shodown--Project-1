@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -72,6 +73,12 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 896, 804, 71, 91 });
 	jump.speed = 0.1f;
 
+	//Tornado
+	////////////Animation tornado;
+	tornado.PushBack({ 896, 804, 71, 91 });
+	tornado.PushBack({ 896, 804, 71, 91 });
+	tornado.speed = 0.1f;
+
 	////////////Animation hitted;
 }
 
@@ -88,6 +95,7 @@ bool ModulePlayer::Start()
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
 	hitted = App->audio->LoadChunk("Audio_FX/Hitted.wav");
+	tornadosound = App->audio->LoadChunk("Audio_FX/Tornado.wav");
 	body = App->collision->AddCollider({ position.x,(position.y-100),73,95 }, COLLIDER_PLAYER, this);
 	actual = NONE;
 	right = false;
@@ -104,6 +112,7 @@ bool ModulePlayer::CleanUp() {
 	App->audio->UnLoadChunk(kicksound);
 	App->audio->UnLoadChunk(jumpsound);
 	App->audio->UnLoadChunk(hitted);
+	App->audio->UnLoadChunk(tornadosound);
 	return true;
 }
 
@@ -169,6 +178,18 @@ update_status ModulePlayer::Update()
 		current_animation = &kick;
 		if (actual == NONE)App->audio->PlayChunk(kicksound);
 		if (current_animation->GetFinished() == 0)actual = KICK;
+		else actual = NONE;
+	}
+
+	////////////////////TORNADO/////////////////////////
+
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_R] == KEY_PUSHED) || actual == TORNADO) {
+		current_animation = &tornado;
+		if (actual == NONE) {
+			App->particles->AddParticle(App->particles->tornado, position.x, position.y-15, COLLIDER_PLAYER_SHOT, 0);
+			App->audio->PlayChunk(tornadosound);
+		}
+		if (current_animation->GetFinished() == 0)actual = TORNADO;
 		else actual = NONE;
 	}
 
