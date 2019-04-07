@@ -27,8 +27,16 @@ bool ModuleParticles::Start()
 
 	////////Tornado animation
 
-	tornado.anim.PushBack({ 232, 103, 16, 12 });
-	tornado.anim.PushBack({ 249, 103, 16, 12 });
+	tornado.anim.PushBack({ 200, 1395, 44, 64 });
+	tornado.anim.PushBack({ 484, 1348, 27, 111 });
+	tornado.anim.PushBack({ 730, 1348, 48, 111 });
+	tornado.anim.PushBack({ 1004, 1348, 27, 111 });
+	tornado.anim.PushBack({ 1316, 1220, 27, 207 });
+	tornado.anim.PushBack({ 1585, 1220, 36, 207 });
+	tornado.anim.PushBack({ 1866, 1206, 42, 204 });
+	tornado.anim.PushBack({ 235, 1466, 42, 207 });
+	tornado.anim.PushBack({ 517, 1466, 42, 207 });
+	tornado.anim.PushBack({ 787, 1466, 42, 207 });
 	tornado.anim.speed = 0.2f;
 	tornado.speed.x = 5;
 	tornado.life = 3000;
