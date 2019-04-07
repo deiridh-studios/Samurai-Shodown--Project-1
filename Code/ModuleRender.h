@@ -2,7 +2,7 @@
 #define __ModuleRenderer_H__
 
 #include "Module.h"
-#include "SDL\include\SDL_rect.h"
+#include "Globals.h"
 
 
 struct SDL_Renderer;
@@ -19,6 +19,7 @@ public:
 	update_status PreUpdate();
 	bool CleanUp();
 
+	bool DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera = true);
 	bool Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed = 1.0f);
 public:
 	SDL_Renderer* renderer = nullptr;

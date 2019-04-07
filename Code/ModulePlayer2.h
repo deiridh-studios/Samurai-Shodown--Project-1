@@ -8,6 +8,7 @@
 
 struct SDL_Texture;
 struct Mix_Chunk;
+struct Collider;
 
 class ModulePlayer2 : public Module
 {
@@ -18,12 +19,14 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void OnCollision(Collider*, Collider*);
 
 public:
 
 	Mix_Chunk *punchsound;
 	Mix_Chunk *jumpsound;
 	Mix_Chunk *kicksound;
+	Mix_Chunk *hitted;
 	SDL_Texture* graphics = nullptr;
 	Animation idle;
 	Animation forward;
@@ -32,10 +35,13 @@ public:
 	Animation kick;
 	Animation jump;
 	iPoint position;
+	Collider* bodyenemy;
+
+
 
 	int mult;
 	enum action {
-		NONE,
+		NONE = 0,
 		PUNCH,
 		KICK
 	}actual = action::NONE;

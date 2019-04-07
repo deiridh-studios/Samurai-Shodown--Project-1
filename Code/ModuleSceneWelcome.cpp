@@ -36,7 +36,7 @@ update_status  ModuleSceneWelcome::Update() {
 	SDL_Rect rect{ 0,0,rectbackground.w*SCREEN_SIZE, rectbackground.h*SCREEN_SIZE };
 	App->render->Blit(graphics, 0, 0, &rectbackground, 0.0f);  //Background
 	App->render->Blit(graphics2, 56, 174, &(Words.GetCurrentFrame()));
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == App->input->KEY_PUSHED&&App->fade->finished == true) {
+	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED&&App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->scenewelcome, App->background, 2);
 	}
