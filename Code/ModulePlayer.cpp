@@ -114,9 +114,12 @@ ModulePlayer::ModulePlayer()
 	tornado.PushBack({ 1156, 1127, 242, 65 });
 	tornado.PushBack({ 1408, 1111, 222, 65 });
 	tornado.PushBack({ 1643, 1120, 208, 65 });
-	tornado.speed = 0.05f;
+	tornado.speed = 0.1f;
 
 	////////////Animation hitted;
+	hittedan.PushBack({ 372, 8, 78, 97 });
+	hittedan.PushBack({ 257, 8, 85, 97 });
+	hittedan.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -128,10 +131,11 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/spritesHaohmaru.png"); // arcade version
+	graphics2 = App->textures->Load("sprites/Haohfix1.png");
 	punchsound = App->audio->LoadChunk("Audio_FX/Punch.wav");
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
-	hitted = App->audio->LoadChunk("Audio_FX/Hitted.wav");
+	hittedsound = App->audio->LoadChunk("Audio_FX/Hitted.wav");
 	tornadosound = App->audio->LoadChunk("Audio_FX/Tornado.wav");
 	body = App->collision->AddCollider({ position.x,(position.y-100),73,95 }, COLLIDER_PLAYER, this);
 	actual = NONE;
@@ -144,11 +148,12 @@ bool ModulePlayer::Start()
 //Clean Up
 bool ModulePlayer::CleanUp() {
 	App->textures->Unload(graphics);
+	App->textures->Unload(graphics2);
 	App->audio->StopChunk();
 	App->audio->UnLoadChunk(punchsound);
 	App->audio->UnLoadChunk(kicksound);
 	App->audio->UnLoadChunk(jumpsound);
-	App->audio->UnLoadChunk(hitted);
+	App->audio->UnLoadChunk(hittedsound);
 	App->audio->UnLoadChunk(tornadosound);
 	return true;
 }
@@ -223,7 +228,7 @@ update_status ModulePlayer::Update()
 	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_R] == KEY_PUSHED) || actual == TORNADO) {
 		current_animation = &tornado;
 		if (actual == NONE) {
-			App->particles->AddParticle(App->particles->tornado, position.x, position.y-15, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->tornado, position.x, position.y-100, COLLIDER_PLAYER_SHOT, 0);
 			App->audio->PlayChunk(tornadosound);
 		}
 		if (current_animation->GetFinished() == 0)actual = TORNADO;
@@ -235,20 +240,29 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboardstate[SDL_SCANCODE_F5] == KEY_PUSHED) {
 		godmode = !godmode;
 		if (godmode == true) body->to_delete = true;
-		else body = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_PLAYER, this);
+		else body = App->collision->AddCollider({ position.x,(position.y-100),73,95 }, COLLIDER_PLAYER, this);
 	}
 	body->SetPos(position.x, (position.y - 100));
-	if (actual == HITTED)actual = NONE;
+	
+	
+	if (actual == HITTED) {
+		current_animation = &hittedan;
+		if(current_animation->GetFinished()==1)	actual = NONE;
+	}
 		// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();		
-	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+
+	if(actual!=TORNADO)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
+
 	return UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* player, Collider* enemy) {
-	if (actual = HITTED) {
-		App->audio->PlayChunk(hitted);
+	if (actual != HITTED) {
+		App->audio->PlayChunk(hittedsound);
 		//Sprites hitted
+		position.x = position.x - 25;
 	}
 	actual = HITTED;
 }

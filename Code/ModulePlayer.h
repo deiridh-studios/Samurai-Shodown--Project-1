@@ -26,9 +26,10 @@ public:
 	Mix_Chunk *punchsound;
 	Mix_Chunk *jumpsound;
 	Mix_Chunk *kicksound;
-	Mix_Chunk *hitted;
+	Mix_Chunk *hittedsound;
 	Mix_Chunk *tornadosound;
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics2 = nullptr;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -36,6 +37,7 @@ public:
 	Animation kick;
 	Animation jump;
 	Animation tornado;
+	Animation hittedan;
 	iPoint position;
 	int mult;
 	enum action{
