@@ -75,45 +75,25 @@ ModulePlayer::ModulePlayer()
 
 	//Tornado
 	////////////Animation tornado;
-	tornado.PushBack({ 11, 856, 59, 64 });
-	tornado.PushBack({ 94, 868, 49, 64 });
-	tornado.PushBack({ 171, 868, 52, 59 });
-	tornado.PushBack({ 326, 863, 41, 64 });
-	tornado.PushBack({ 412, 857, 66, 70 });
-	tornado.PushBack({ 497, 820, 43, 106 });
-	tornado.PushBack({ 574, 857, 70, 70 });
-	tornado.PushBack({ 670, 857, 67, 70 });
-	tornado.PushBack({ 784, 857, 67, 70 });
-	tornado.PushBack({ 875, 854, 65, 64 });
-	tornado.PushBack({ 967, 854, 65, 65 });
-	tornado.PushBack({ 1066, 854, 98, 65 });
-	tornado.PushBack({ 1173, 862, 118, 65 });
-	tornado.PushBack({ 1303, 862, 69, 65 });
-	tornado.PushBack({ 1449, 862, 123, 65 });
-	tornado.PushBack({ 1574, 869, 129, 65 });
-	tornado.PushBack({ 1721, 862, 131, 65 });
-	tornado.PushBack({ 1861, 864, 134, 65 });
-	tornado.PushBack({ 7, 961, 138, 65 });
-	tornado.PushBack({ 151, 968, 143, 65 });
-	tornado.PushBack({ 304, 968, 134, 65 });
-	tornado.PushBack({ 449, 968, 135, 65 });
-	tornado.PushBack({ 595, 968, 130, 65 });
-	tornado.PushBack({ 730, 968, 133, 65 });
-	tornado.PushBack({ 890, 976, 121, 65 });
-	tornado.PushBack({ 1024, 973, 115, 65 });
-	tornado.PushBack({ 1152, 973, 118, 65 });
-	tornado.PushBack({ 1274, 973, 140, 67 });
-	tornado.PushBack({ 1428, 968, 153, 69 });
-	tornado.PushBack({ 1590, 973, 157, 65 });
-	tornado.PushBack({ 1786, 976, 161, 69 });
-	tornado.PushBack({ 9, 1092, 176, 65 });
-	tornado.PushBack({ 186, 1090, 179, 70 });
-	tornado.PushBack({382, 1090, 229, 65 });
-	tornado.PushBack({ 626, 1090, 245, 65 });
-	tornado.PushBack({ 893, 1112, 249, 65 });
-	tornado.PushBack({ 1156, 1127, 242, 65 });
-	tornado.PushBack({ 1408, 1111, 222, 65 });
-	tornado.PushBack({ 1643, 1120, 208, 65 });
+	tornado.PushBack({ 40, 1295, 88, 144});
+	tornado.PushBack({ 186, 1295, 70, 144});
+	tornado.PushBack({ 326, 1295, 74,144 });
+	tornado.PushBack({ 484, 1295, 60, 144 });
+	tornado.PushBack({ 615, 1295, 97, 144 });
+	tornado.PushBack({ 777, 1295, 59, 1446 });
+	tornado.PushBack({ 880, 1295, 100, 144 });
+	tornado.PushBack({ 1020, 1295, 100, 144});
+	tornado.PushBack({ 1158, 1295, 100, 144});
+	tornado.PushBack({ 1317, 1295, 100, 144});
+	tornado.PushBack({ 1458, 1295, 100, 144});
+	tornado.PushBack({ 1604, 1295, 100, 144 });
+	tornado.PushBack({ 1734, 1295, 100, 144 });
+	tornado.PushBack({ 1875, 1295, 100, 144});
+	tornado.PushBack({ 27, 1461, 85, 122 });
+	tornado.PushBack({ 184,1461, 72, 122 });
+	tornado.PushBack({ 327,1461, 72, 122 });
+	
+	
 	tornado.speed = 0.1f;
 
 	////////////Animation hitted;
