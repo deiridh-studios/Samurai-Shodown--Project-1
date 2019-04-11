@@ -38,11 +38,13 @@ public:
 	Animation jump;
 	Animation tornado;
 	Animation hittedan;
+	Animation crouch;
 	iPoint position;
 	int mult;
 	enum action{
 		NONE = 0,
 		PUNCH,
+		CROUCH,
 		KICK,
 		TORNADO,
 		HITTED
