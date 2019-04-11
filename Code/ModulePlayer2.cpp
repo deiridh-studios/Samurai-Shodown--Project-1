@@ -44,7 +44,11 @@ ModulePlayer2::ModulePlayer2()
 	kick.PushBack({ 2545, 133, 80, 105 });
 	kick.PushBack({ 2545, 133, 80, 105 });
 	kick.speed = 0.2f;
-
+	
+	//crouch
+	crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	crouch.speed = 0.2f;
 
 	// Punch animation (TO IMPROVE)
 	punch.PushBack({ 3368 , 1388 , 83 , 124 });
@@ -159,6 +163,12 @@ update_status ModulePlayer2::Update()
 		if (current_animation->GetFinished() == 0)actual = PUNCH;
 		else actual = NONE;
 	}
+	///////////////////////CROUCH/////////////////
+	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_S] == KEY_PUSHED) || actual == CROUCH) {
+		current_animation = &crouch;
+	}
+
+	else actual = NONE;
 
 	////////////////////KICK/////////////////////////
 

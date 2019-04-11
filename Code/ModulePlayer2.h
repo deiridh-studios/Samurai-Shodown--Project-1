@@ -33,6 +33,7 @@ public:
 	Animation backward;
 	Animation punch;
 	Animation kick;
+	Animation crouch;
 	Animation jump;
 	iPoint position;
 	Collider* bodyenemy;
@@ -43,6 +44,7 @@ public:
 	enum action {
 		NONE = 0,
 		PUNCH,
+		CROUCH,
 		KICK
 	}actual = action::NONE;
 

@@ -48,9 +48,10 @@ ModulePlayer::ModulePlayer()
 	
 	
 	//crouch
+	crouch.PushBack({ 128 , 39 , 111 , 104 });
 	
-	crouch.PushBack({ 898 , 1831 , 137 , 104 });
-	crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	//crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	//crouch.PushBack({ 898 , 1831 , 137 , 104 });
 	crouch.speed = 0.2f;
 
 
