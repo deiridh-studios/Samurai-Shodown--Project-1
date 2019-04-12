@@ -118,7 +118,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/spritesHaohmaru.png"); // arcade version
-	graphics2 = App->textures->Load("sprites/Haohfix1.png");
+	graphics2 = App->textures->Load("sprites/Haohfix1(tornado apart).png");
 	punchsound = App->audio->LoadChunk("Audio_FX/Punch.wav");
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
@@ -202,13 +202,13 @@ update_status ModulePlayer::Update()
 	}
 
 	///////////////////////CROUCH/////////////////
-	if ((actual == NONE && App->input->keyboardstate[SDL_SCANCODE_S] == KEY_PUSHED) || actual == CROUCH) {
+	if ((actual == NONE && (App->input->keyboardstate[SDL_SCANCODE_S] == KEY_PUSHED|| App->input->keyboardstate[SDL_SCANCODE_S] == KEY_REPEAT)) || actual == CROUCH) {
 		current_animation = &crouch;
+		if (current_animation->GetFinished() == 0)actual = CROUCH;
+		else actual = NONE;
 	}
 		
-		else actual = NONE;
-	
-			
+		
 		
 	
 	

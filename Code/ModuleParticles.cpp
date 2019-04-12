@@ -21,7 +21,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("sprites/Haohfix1.png");
+	graphics = App->textures->Load("sprites/Haohfix1(tornado apart).png");
 
 	// Tornado particle
 
