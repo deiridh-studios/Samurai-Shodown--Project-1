@@ -26,6 +26,7 @@ bool ModuleInput::Init()
 	}
 	LOG("Events initialized succesfully!\n\n");
 	for (int i = 4; i < 285; i++) keyboardstate[i] = KEY_OUT;
+	space = false;
 	return ret;
 }
 
@@ -48,6 +49,8 @@ update_status ModuleInput::PreUpdate()
 		LOG("Escape pressed, exiting the game.\n");
 		return update_status::UPDATE_STOP;
 	}
+	if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) space = true;
+	else if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PULLED) space = false;
 	return update_status::UPDATE_CONTINUE;
 }
 

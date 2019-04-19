@@ -12,6 +12,7 @@
 #include "ModuleSceneCongrats.h"
 #include"ModuleCollision.h"
 #include"ModuleParticles.h"
+#include "ModuleUI.h"
 #include "SDL/include/SDL.h"
 
 ModuleSceneEarthquake::ModuleSceneEarthquake():Module()
@@ -61,11 +62,12 @@ bool  ModuleSceneEarthquake::Start() {
 	App->player2->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
+	App->UI->Enable();
 	return true;
 }
 update_status  ModuleSceneEarthquake::Update() {
 	App->render->Blit(graphics, 0, -120, &(backearthquake.GetCurrentFrame()), 0.9f);  //Background
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED&&App->fade->finished == true)  {
+	if (App->input->space == true&&App->fade->finished == true)  {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->sceneearthquake, App->scenecongrats, 2);
 	}
@@ -80,6 +82,7 @@ bool  ModuleSceneEarthquake::CleanUp()
 	App->player2->Disable();
 	App->particles->Disable();
 	App->collision->Disable();
+	App->UI->Disable();
 	App->textures->Unload(graphics);
 	return true;
 }
