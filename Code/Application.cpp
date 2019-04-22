@@ -13,23 +13,27 @@
 #include "ModuleSceneCongrats.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleFonts.h"
+#include "ModuleUI.h"
 
 Application::Application()
 {
 	modules[0] = window = new ModuleWindow();
-	modules[1] = textures = new ModuleTextures();
+	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
-	modules[3] = render = new ModuleRender();
-	modules[4] = audio = new ModuleAudio();
-	modules[5] = scenewelcome = new ModuleSceneWelcome();
-	modules[6] = background = new ModuleBackground();
-	modules[7] = sceneearthquake = new ModuleSceneEarthquake();
-	modules[8] = player = new ModulePlayer();
-	modules[9] = player2 = new ModulePlayer2();
-	modules[10] = scenecongrats = new ModuleSceneCongrats();
-	modules[11] = particles = new ModuleParticles();
-	modules[12] = collision = new ModuleCollision();
-	modules[13] = fade = new ModuleFadeToBlack();
+	modules[3] = textures = new ModuleTextures();
+	modules[4] = fonts = new ModuleFonts();
+	modules[5] = audio = new ModuleAudio();
+	modules[6] = scenewelcome = new ModuleSceneWelcome();
+	modules[7] = background = new ModuleBackground();
+	modules[8] = sceneearthquake = new ModuleSceneEarthquake();
+	modules[9] = player = new ModulePlayer();
+	modules[10] = player2 = new ModulePlayer2();
+	modules[11] = scenecongrats = new ModuleSceneCongrats();
+	modules[12] = particles = new ModuleParticles();
+	modules[13] = collision = new ModuleCollision();
+	modules[14] = UI = new ModuleUI();
+	modules[15] = fade = new ModuleFadeToBlack();
 }
 
 Application::~Application()
@@ -49,6 +53,7 @@ bool Application::Init()
 	scenecongrats->Disable();
 	collision->Disable();
 	particles->Disable();
+	UI->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
