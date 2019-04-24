@@ -8,7 +8,21 @@ TODO: Describe the installation process
 
 ## Usage
 
-TODO: Write usage instructions
+To make one of the first group, we will use the control lever or joystick. You can control the character movement: go right
+or go left, jump, crouch, etc. With these movements you can also use dash using the "BAKUFU BLITZ" (shifting the joystick
+twice forward quickly) or the "FLYING RETREAT" (shifting backwards), you can also guard if you move your character back 
+when the enemy is hitting you. You can run to an enemy too if you push twice the direction of a movement an keep the button
+pushed, if you make any strike when you are running you will charge against the enemy.
+
+
+Then, when we talk about the fighting movements we have two types of them:
+
+Slash (or hit when you are unarmed): you can use a weak attack with your weapon if you push A, a strong attack pushing B 
+or a much powerful attack with your weapon if you press the two buttons at the same time.
+Kick: the kick attack will not hurt the enemy as much as a weapon attack but maybe you will want to use it if you are 
+unarmed or your adversary is out of range for your weapon. Like the slash attack you can spot differents intensities in 
+your kick, using C you make a weak attack, with D you can add a some intensity into your kick and finally if you want to 
+throw a powerful attack, you can use twice buttons at the same time.
 
 ## Contributing
 
