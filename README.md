@@ -47,7 +47,21 @@ fore he achieves to revive Ambrosia who with all his power will rule the world.
 
 ## Credits
 
-TODO: Write credits
+### Marc Ramos Gomez
+* Responsability: Code
+* Github account: Ramsubito(https://github.com/Ramsubito)
+
+### Josep Sànchez Arbona
+* Responsability: Code
+* Github account: daskza19(https://github.com/daskza19)
+
+### Arnau Falgueras Garcia de Atocha
+* Responsability: Code
+* Github account: Arnau77(https://github.com/Arnau77)
+
+### Roger Pérez Romera
+* Responsability: Design
+* Github account: Rugiacreed(https://github.com/Rugiacreed)
 
 ## License
 
