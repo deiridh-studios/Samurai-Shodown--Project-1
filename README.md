@@ -1,6 +1,14 @@
 # Samurai Shodown
 
-TODO: Write a project description
+We are Deiridh Studios, one group of forming students from CITM UPC University, in Terrassa. As our first project we are 
+recrating "Samurai Shodown", a fighting game from 1993. We are  developing this game as a main coursework in the "Project 
+Development" subject.
+
+In the next link you will find all the game information and documentation in the project's wiki:
+
+https://github.com/deiridh-studios/Samurai-Shodown--Project-1/wiki
+
+Un die'
 
 ## Installation
 
