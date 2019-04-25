@@ -4,7 +4,9 @@ TODO: Write a project description
 
 ## Installation
 
-TODO: Describe the installation process
+1. Download the last zip document in the github release page.
+2. Inside the zip search and open the exe, you will be able to play the game now.
+3. Enjoy it!
 
 ## Usage
 
@@ -60,14 +62,10 @@ fore he achieves to revive Ambrosia who with all his power will rule the world.
 * Github account: Arnau77(https://github.com/Arnau77)
 
 ### Roger Pérez Romera
-* Responsability: Design
+* Responsability: Code
 * Github account: Rugiacreed(https://github.com/Rugiacreed)
 
 ## License
 
-TODO: Write license
-TODO: Write credits
+SDL 2.0 is distributed under the zlib license. This license allows you to use SDL freely in any software.
 
-## License
-
-TODO: Write license
