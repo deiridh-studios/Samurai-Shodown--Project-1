@@ -15,60 +15,93 @@
 ModuleSceneWelcome::ModuleSceneWelcome() :Module()
 {
 	//Words
-	Words.PushBack({ 1518, 1800, 416, 16 });
-	Words.PushBack({ 1518, 1816, 416, 16 });
-	Words.speed = 0.03f;
+	Words.PushBack({ 1012, 1600, 253, 15 });
+	Words.PushBack({ 1012, 1650, 253, 15 });
+	Words.speed = 0.02f;
 	
 	//Title
-	Title.PushBack({ 0, 0, 250, 200 });
-	Title.PushBack({ 250, 0, 250, 200 });
-	Title.PushBack({ 500, 0, 250, 200 });
-	Title.PushBack({ 750, 0, 250, 200 });
-	Title.PushBack({ 1000, 0, 250, 200 });
-	Title.PushBack({ 1250, 0, 250, 200 });
-	Title.PushBack({ 1500, 0, 250, 200 });
-	Title.PushBack({ 1750, 0, 250, 200 });
-	Title.PushBack({ 0, 0, 250, 200 });
-	Title.PushBack({ 250, 200, 250, 200 });
-	Title.PushBack({ 500, 200, 250, 200 });
-	Title.PushBack({ 750, 200, 250, 200 });
-	Title.PushBack({ 1000, 200, 250, 200 });
-	Title.PushBack({ 1250, 200, 250, 200 });
-	Title.PushBack({ 1500, 200, 250, 200 });
-	Title.PushBack({ 1750, 200, 250, 200 });
-	Title.PushBack({ 0, 400, 250, 200 });
-	Title.PushBack({ 250, 400, 250, 200 });
-	Title.PushBack({ 500, 400, 250, 200 });
-	Title.PushBack({ 750, 400, 250, 200 });
-	Title.PushBack({ 1000, 400, 250, 200 });
-	Title.PushBack({ 1250, 400, 250, 200 });
-	Title.PushBack({ 1500, 400, 250, 200 });
-	Title.PushBack({ 1750, 400, 250, 200 });
-	Title.PushBack({ 0, 600, 250, 200 });
-	Title.PushBack({ 250, 600, 250, 200 });
-	Title.PushBack({ 500, 600, 250, 200 });
-	Title.PushBack({ 750, 600, 250, 200 });
-	Title.PushBack({ 1000, 600, 250, 200 });
-	Title.PushBack({ 1250, 600, 250, 200 });
-	Title.PushBack({ 1500, 600, 250, 200 });
-	Title.PushBack({ 1750, 600, 250, 200 });
-	Title.PushBack({ 0, 800, 250, 200 });
-	Title.PushBack({ 250, 800, 250, 200 });
-	Title.PushBack({ 500, 800, 250, 200 });
-	Title.PushBack({ 750, 800, 250, 200 });
-	Title.PushBack({ 1000, 800, 250, 200 });
-	Title.PushBack({ 1250, 800, 250, 200 });
-	Title.PushBack({ 1500, 800, 250, 200 });
-	Title.PushBack({ 1750, 800, 250, 200 });
-	Title.speed = 0.1;
+	Title.PushBack({ 0, 0, 253, 200 });
+	Title.PushBack({ 253, 0, 253, 200 });
+	Title.PushBack({ 506, 0, 253, 200 });
+	Title.PushBack({ 759, 0, 253, 200 });
+	Title.PushBack({ 1012, 0, 253, 200 });
+	Title.PushBack({ 1265, 0, 253, 200 });
+	Title.PushBack({ 1518, 0, 253, 200 });
+	Title.PushBack({ 1771, 0, 253, 200 });
+	Title.PushBack({ 0, 200, 253, 200 });
+	Title.PushBack({ 253, 200, 253, 200 });
+	Title.PushBack({ 506, 200, 253, 200 });
+	Title.PushBack({ 759, 200, 253, 200 });
+	Title.PushBack({ 1012, 200, 253, 200 });
+	Title.PushBack({ 1265, 200, 253, 200 });
+	Title.PushBack({ 1518, 200, 253, 200 });
+	Title.PushBack({ 1771, 200, 253, 200 });
+	Title.PushBack({ 0, 400, 253, 200 });
+	Title.PushBack({ 253, 400, 253, 200 });
+	Title.PushBack({ 506, 400, 253, 200 });
+	Title.PushBack({ 759, 400, 253, 200 });
+	Title.PushBack({ 1012, 400, 253, 200 });
+	Title.PushBack({ 1265, 400, 253, 200 });
+	Title.PushBack({ 1518, 400, 253, 200 });
+	Title.PushBack({ 1771, 400, 253, 200 });
+	Title.PushBack({ 0, 600, 253, 200 });
+	Title.PushBack({ 253, 600, 253, 200 });
+	Title.PushBack({ 506, 600, 253, 200 });
+	Title.PushBack({ 759, 600, 253, 200 });
+	Title.PushBack({ 1012, 600, 253, 200 });
+	Title.PushBack({ 1265, 600, 253, 200 });
+	Title.PushBack({ 1518, 600, 253, 200 });
+	Title.PushBack({ 1771, 600, 253, 200 });
+	Title.PushBack({ 0, 800, 253, 200 });
+	Title.PushBack({ 253, 800, 253, 200 });
+	Title.PushBack({ 506, 800, 253, 200 });
+	Title.PushBack({ 759, 800, 253, 200 });
+	Title.PushBack({ 1012, 800, 253, 200 });
+	Title.PushBack({ 1265, 800, 253, 200 });
+	Title.PushBack({ 1518, 800, 253, 200 });
+	Title.PushBack({ 1771, 800, 253, 200 });
+	Title.PushBack({ 0, 1000, 253, 200 });
+	Title.PushBack({ 253, 1000, 253, 200 });
+	Title.PushBack({ 506, 1000, 253, 200 });
+	Title.PushBack({ 759, 1000, 253, 200 });
+	Title.PushBack({ 1012, 1000, 253, 200 });
+	Title.PushBack({ 1265, 1000, 253, 200 });
+	Title.PushBack({ 1518, 1000, 253, 200 });
+	Title.PushBack({ 1771, 1000, 253, 200 });
+	Title.PushBack({ 0, 1200, 253, 200 });
+	Title.PushBack({ 253, 1200, 253, 200 });
+	Title.PushBack({ 506, 1200, 253, 200 });
+	Title.PushBack({ 759, 1200, 253, 200 });
+	Title.PushBack({ 1012, 1200, 253, 200 });
+	Title.PushBack({ 1265, 1200, 253, 200 });
+	Title.PushBack({ 1518, 1200, 253, 200 });
+	Title.PushBack({ 1771, 1200, 253, 200 });
+	Title.PushBack({ 0, 1400, 253, 200 });
+	Title.PushBack({ 253, 1400, 253, 200 });
+	Title.PushBack({ 506, 1400, 253, 200 });
+	Title.PushBack({ 759, 1400, 253, 200 });
+	Title.PushBack({ 1012, 1400, 253, 200 });
+	Title.PushBack({ 1265, 1400, 253, 200 });
+	Title.PushBack({ 1518, 1400, 253, 200 });
+	Title.PushBack({ 1771, 1400, 253, 200 });
+	Title.PushBack({ 0, 1600, 253, 200 });
+	Title.PushBack({ 253, 1600, 253, 200 });
+	Title.PushBack({ 506, 1600, 253, 200 });
+	Title.PushBack({ 759, 1600, 253, 200 });
+	Title.speed = 0.3;
+
 }
 
 ModuleSceneWelcome::~ModuleSceneWelcome() {}
 bool  ModuleSceneWelcome::Start() {
-	rectbackground.x = 0;
-	rectbackground.y = 0;
+	rectbackground.x = 1697;
+	rectbackground.y = 1776;
 	rectbackground.w = SCREEN_WIDTH;
 	rectbackground.h = SCREEN_HEIGHT;
+	recttitle.x = 759;
+	recttitle.y = 1600;
+	recttitle.w = 253;
+	recttitle.h = 200;
 	App->audio->LoadMusic("Music/start.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
 	graphics = App->textures->Load("Sprites/DEFINITIVETitle.png");
@@ -76,8 +109,16 @@ bool  ModuleSceneWelcome::Start() {
 }
 update_status  ModuleSceneWelcome::Update() {
 	SDL_Rect rect{ 0,0,rectbackground.w*SCREEN_SIZE, rectbackground.h*SCREEN_SIZE };
-	//App->render->Blit(graphics, 1665, 1720, &rectbackground, 0.0f);  //Background
-	App->render->Blit(graphics, 0, 0, &(Title.GetCurrentFrame()), 0.0f);
+	App->render->Blit(graphics, 0, 0, &rectbackground, 0.0f);  //Background
+
+	if (Title.current_frame <= 60) {
+		App->render->Blit(graphics, 30, 15, &(Title.GetCurrentFrame()), 0.0f);
+	}
+	else {
+		App->render->Blit(graphics, 30, 15, &recttitle, 0.0f);  //Background
+		App->render->Blit(graphics, 40, 170, &(Words.GetCurrentFrame()), 0.0f);
+	}
+
 	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED&&App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->scenewelcome, App->background, 2);

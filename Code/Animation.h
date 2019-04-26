@@ -2,7 +2,7 @@
 #define __ANIMATION_H__
 
 #include "SDL/include/SDL_rect.h"
-#define MAX_FRAMES 40
+#define MAX_FRAMES 400
 
 class Animation
 {
@@ -10,7 +10,7 @@ public:
 	float speed = 1.0f;
 	SDL_Rect frames[MAX_FRAMES];
 
-private:
+public:
 	float current_frame;
 	int last_frame = 0;
 	int finished = 0;
