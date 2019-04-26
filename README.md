@@ -38,11 +38,23 @@ throw a powerful attack, you can use twice buttons at the same time.
 ## History
 
 Release history: 
-- Almost done(stage background and character sprites).
-- Four scenes with Haohmaru(sprites character, presentation, first stage, second stage, end scene).
-- 2nd player(sprites character 2 flip, camera movement).
-- Tornado and collisions(normal and special attack implemented and hitted sprites for both characters).
+- Almost done, V0.99:
+    Version 0 of the game. It just shows the stage where the fighters will be interacting and allows the user move the chamera with directions left and right of the keyboard. We also added some musics but we experimented some problems with them too.
+    
+- Four scenes with Haohmaru, v0.2:
+    In this version we already put two scenes(only image) that work as a welcome page and a end page. Ingame we added a stage, you can change form the first stage to the second using a key(space). We also added the character Haohmaru from the game and allowed the user to move freely, realize jumps and use some basic movements(kick and strike). The music is fixed.
+    
+- 2nd player, v0.28:
+    The second character has been added in this version and can be played at the same time as the other, move freely and realize the same basic moves. There is no collisions between them and we experimented some problems with the camera movement to follow the two characters at the same time(zoom in and zoom out will be added in a future version). 
+    
+
+- Tornado and collisions, V0.38:
+    In this version both characters have colliders that the user can see, but these are not working with the movements of the character only if they touch each other when they move left or right. We already have the hitted animation and we added an special attack for the first character(left). We have some problems with the sprites of the special movement and with it particles they work slow and the character turns smaller than it should be.
+    
+
 - Fix animations(changes on the sprites and animations).
+
+
 - Timer(timer implemented during de battle and scene change when it ends).
 
 
