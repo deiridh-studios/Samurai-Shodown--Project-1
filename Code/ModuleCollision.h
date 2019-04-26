@@ -4,6 +4,7 @@
 #define MAX_COLLIDERS 50
 
 #include "Module.h"
+#include "SDL/include/SDL_rect.h"
 
 enum COLLIDER_TYPE
 {
