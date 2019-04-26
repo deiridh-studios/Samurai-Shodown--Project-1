@@ -34,15 +34,19 @@ unarmed or your adversary is out of range for your weapon. Like the slash attack
 your kick, using C you make a weak attack, with D you can add a some intensity into your kick and finally if you want to 
 throw a powerful attack, you can use twice buttons at the same time.
 
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
 
 ## History
+
+Release history: 
+- Almost done(stage background and character sprites).
+- Four scenes with Haohmaru(sprites character, presentation, first stage, second stage, end scene).
+- 2nd player(sprites character 2 flip, camera movement).
+- Tornado and collisions(normal and special attack implemented and hitted sprites for both characters).
+- Fix animations(changes on the sprites and animations).
+- Timer(timer implemented during de battle and scene change when it ends).
+
+
+
 
 Samurai Shodown is the first game of this series from SNK, released in 1993, becoming really popular and a total success. 
 It can be played in different platforms such as Neo Geo, Neo-Geo CD, SNES and Gameboy.
