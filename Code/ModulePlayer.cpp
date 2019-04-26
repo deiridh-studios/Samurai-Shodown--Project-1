@@ -133,7 +133,6 @@ bool ModulePlayer::Start()
 	actual = NONE;
 	//right = false;
 	//left = false;
-	godmode = false;
 	for (int i = 0; i < 60; i++) inputstate[i] = S_NONE;
 	for (int i = 0; i < 6; i++)inputstateout[i] = SO_NONE;
 	jump_timer = 0;
@@ -159,7 +158,8 @@ bool ModulePlayer::CleanUp() {
 
 update_status ModulePlayer:: PreUpdate() {
 	for (int i = 59; i > 0; i--)inputstate[i] = inputstate[i - 1];
-	for (int i = 0; i < INPUTSOUTS; i++)inputstateout[i] = SO_NONE;
+
+	for (int i = 0; i < INPUTSOUTS; i++) inputstateout[i] = SO_NONE;
 	inputsouts = 0;
 	
 	//CHECK LEFT AND RIGHT//
@@ -289,7 +289,6 @@ update_status ModulePlayer:: Update()
 {
 	Animation* current_animation = &idle;
 	int speed = 2;
-	
 	CheckState();
 	
 	switch (actual2) {
@@ -571,9 +570,9 @@ update_status ModulePlayer:: Update()
 	////////////////////GODMODE/////////////////////////
 
 	if (App->input->keyboardstate[SDL_SCANCODE_F5] == KEY_PUSHED) {
-		godmode = !godmode;
-		if (godmode == true) body->to_delete = true;
-		else body = App->collision->AddCollider({ position.x,(position.y-100),73,95 }, COLLIDER_PLAYER, this);
+		if(body->to_delete!=false)body = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_PLAYER, this);
+		else body->to_delete = true;
+		
 	}
 	body->SetPos(position.x, (position.y - 100));
 	
@@ -587,6 +586,8 @@ update_status ModulePlayer:: Update()
 
 	if(actual2!=A_TORNADO)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
+	//if (godmode == true) { LOG("TRUE\n"); }
+	//else LOG("TRUE\n");
 
 	return UPDATE_CONTINUE;
 }
