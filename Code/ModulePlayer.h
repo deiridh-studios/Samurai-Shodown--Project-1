@@ -125,6 +125,7 @@ public:
 	int kick_timer;
 	int tornado_timer;
 	int inputsouts;
+	bool victory;
 
 };
 

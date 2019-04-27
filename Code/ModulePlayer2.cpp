@@ -89,10 +89,13 @@ bool ModulePlayer2::Start()
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
 	hitted = App->audio->LoadChunk("Audio_FX/Hitted.wav");
+	position.x = 200;
+	position.y = 210;
 	bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_ENEMY, this);
 	actual = NONE;
 	right = false;
 	left = false;
+	victory = false;
 	return ret;
 }
 

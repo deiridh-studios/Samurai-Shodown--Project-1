@@ -50,5 +50,6 @@ public:
 
 	bool right;
 	bool left;
+	bool victory;
 };
 #endif

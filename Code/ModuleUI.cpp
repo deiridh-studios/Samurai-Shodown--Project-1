@@ -5,6 +5,8 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "SDL/include/SDL_timer.h"
 #include<stdio.h>
 
@@ -58,8 +60,14 @@ update_status ModuleUI::Update() {
 	App->render->Blit(textlife, (137-(player1life * 4)), 20, &lifeplayer1, 0.0f, false);
 	App->render->Blit(textlife, 182, 20, &lifeplayer2, 0.0f, false);
 	App->render->Blit(textlife, 145, 10, &komessage, 0.0f, false);
-	if (lifeplayer1.w <= 0)App->input->space = true;
-	if (lifeplayer2.w <= 0)App->input->space = true;
+	if (lifeplayer1.w <= 0) {
+		App->input->space = true;
+		App->player2->victory = true;
+	}
+	if (lifeplayer2.w <= 0) {
+		App->input->space = true;
+		App->player->victory = true;
+	}
 
 
 	//SDL_RenderCopy(renderer, textlife, NULL, &lifebarplayer1);

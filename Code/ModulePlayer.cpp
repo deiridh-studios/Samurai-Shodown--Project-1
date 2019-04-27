@@ -128,6 +128,8 @@ bool ModulePlayer::Start()
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
 	hittedsound = App->audio->LoadChunk("Audio_FX/Hitted.wav");
 	tornadosound = App->audio->LoadChunk("Audio_FX/Tornado.wav");
+	position.x = 50;
+	position.y = 210;
 	body = App->collision->AddCollider({ position.x,(position.y-100),73,95 }, COLLIDER_PLAYER, this);
 	//actual = A_IDLE;
 	actual2 = A_IDLE;
@@ -141,6 +143,8 @@ bool ModulePlayer::Start()
 	kick_timer = 0;
 	tornado_timer = 0;
 	inputsouts = 0;
+	victory = false;
+	App->render->camera.x = App->render->camera.y = 0;
 	return ret;
 }
 

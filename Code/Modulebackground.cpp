@@ -13,6 +13,7 @@
 #include"ModuleCollision.h"
 #include"ModuleParticles.h"
 #include "ModuleUI.h"
+#include "ModuleSceneCongrats.h"
 #include "SDL/include/SDL.h"
 
 ModuleBackground::ModuleBackground():Module(){
@@ -63,7 +64,7 @@ update_status ModuleBackground::Update() {
 	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f);  //Background
 	if (App->input->space == true&&App->fade->finished == true) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->background, App->sceneearthquake, 2);
+		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
 	}
 	return UPDATE_CONTINUE;
 }

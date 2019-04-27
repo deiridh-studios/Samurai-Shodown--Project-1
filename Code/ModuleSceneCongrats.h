@@ -16,5 +16,7 @@ public:
 public:
 	SDL_Rect rectbackground;
 	SDL_Texture* graphics = nullptr;
+	int font_victory;
+	char victory_text[2];
 };
 #endif //
