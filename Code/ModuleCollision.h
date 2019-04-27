@@ -31,11 +31,7 @@ struct Collider
 		callback(callback)
 	{}
 
-	void SetPos(int x, int y)
-	{
-		rect.x = x;
-		rect.y = y;
-	}
+	void SetPos(int, int);
 
 	bool CheckCollision(const SDL_Rect& r) const;
 };

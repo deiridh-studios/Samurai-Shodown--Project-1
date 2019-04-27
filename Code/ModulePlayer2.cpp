@@ -6,6 +6,8 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer2.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
+#include "SDL/include/SDL_timer.h"
 
 ModulePlayer2::ModulePlayer2()
 {
@@ -79,6 +81,7 @@ ModulePlayer2::ModulePlayer2()
 ModulePlayer2::~ModulePlayer2()
 {}
 
+
 // Load assets
 bool ModulePlayer2::Start()
 {
@@ -93,9 +96,17 @@ bool ModulePlayer2::Start()
 	position.y = 210;
 	bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_ENEMY, this);
 	actual = NONE;
+	actual3 = A_IDLE;
 	right = false;
 	left = false;
 	victory = false;
+	for (int i = 0; i < 60; i++) inputstate2[i] = S_NONE;
+	for (int i = 0; i < 6; i++)inputstateout2[i] = SO_NONE;
+	jump_timer = 0;
+	punch_timer = 0;
+	kick_timer = 0;
+	tornado_timer = 0;
+	inputsouts = 0;
 	return ret;
 }
 
@@ -110,6 +121,133 @@ bool ModulePlayer2::CleanUp() {
 	return true;
 }
 
+update_status ModulePlayer2::PreUpdate() {
+	for (int i = 59; i > 0; i--)inputstate2[i] = inputstate2[i - 1];
+
+	for (int i = 0; i < INPUTSOUTS; i++) inputstateout2[i] = SO_NONE;
+	inputsouts = 0;
+
+	//CHECK LEFT AND RIGHT//
+	bool left = false;
+	bool right = false;
+	if (App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_REPEAT)right = true;
+	if (App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_REPEAT)left = true;
+	if (right == true && left == true)inputstate2[0] = S_LEFT_AND_RIGHT;
+	else if (right == true)inputstate2[0] = S_RIGHT_DOWN;//App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PUSHED) {inputstate[0] = S_RIGHT_DOWN; LOG("RIGHT_DOWN\n");}
+	else if (App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_PULLED) {
+		inputstateout2[inputsouts] = SO_RIGHT_UP;
+		if (inputstate2[0] == S_RIGHT_DOWN)inputstate2[0] = S_NONE;
+		inputsouts++;
+	}
+	else if (left == true)/*(App->input->keyboardstate[SDL_SCANCODE_A] == KEY_PUSHED)*/ inputstate2[0] = S_LEFT_DOWN;
+	else if (App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_PULLED) {
+		inputstateout2[inputsouts] = SO_LEFT_UP;
+		if (inputstate2[0] == S_LEFT_DOWN)inputstate2[0] = S_NONE;
+		inputsouts++;
+	}
+
+	//CHECK JUMP AND JUMP WITH DIRECTION//
+	bool jump = false;
+	if (App->input->keyboardstate[SDL_SCANCODE_UP] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_UP] == KEY_REPEAT)jump = true;
+	if (jump == true) {
+		if (inputstate2[0] == S_RIGHT_DOWN)inputstate2[0] = S_JUMP_RIGHT;
+		else if (inputstate2[0] == S_LEFT_DOWN)inputstate2[0] = S_JUMP_LEFT;
+		else inputstate2[0] = S_JUMP;
+	}
+
+	//CHECK CROUCH AND CROUCH WITH DIRECTION//
+	bool crouch = false;
+	if (App->input->keyboardstate[SDL_SCANCODE_DOWN] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_DOWN] == KEY_REPEAT)crouch = true;
+	if (crouch == true) {
+		if (inputstate2[0] == S_JUMP) inputstate2[0] = S_JUMP_AND_CROUCH;
+		else if (inputstate2[0] == S_RIGHT_DOWN) { inputstate2[0] = S_CROUCH_RIGHT; LOG("CROUCH_RIGHT"); }
+		//CROUCH LEFT
+		else inputstate2[0] = S_CROUCH_DOWN;
+	}
+	else if (App->input->keyboardstate[SDL_SCANCODE_DOWN] == KEY_PULLED) {
+		inputstateout2[inputsouts] = SO_CROUCH_UP;
+		if (inputstate2[0] == S_CROUCH_DOWN)inputstate2[0] = S_NONE;
+		inputsouts++;
+	}
+
+	//CHECK PUNCH AND VARIATIONS OF IT//
+	if (App->input->keyboardstate[SDL_SCANCODE_H] == KEY_PUSHED) {
+		if (inputstate2[0] == S_RIGHT_DOWN)inputstate2[0] = S_T_RIGHT;
+		else if (inputstate2[0] == S_LEFT_DOWN)inputstate2[0] = S_T_LEFT;
+		/*if (inputstate[0] == S_RIGHT_DOWN) {
+			inputstate[0] = S_PUNCH_RIGHT;
+			for (int i = 0; i < 60; i++) {
+				if (inputstate[i] == S_CROUCH_RIGHT) {
+					for (int j = i; j < 60; j++) {
+						i = j;
+						if (inputstate[j] == S_CROUCH_DOWN) {
+							tornadoactivate = true;
+							//inputstate[0] = S_T;
+						}
+						else if (inputstate[j] != S_CROUCH_RIGHT)continue;
+					}
+				}
+				else if (inputstate[i] != S_PUNCH_RIGHT)continue;
+			}
+		}*/
+		else inputstate2[0] = S_T;
+	}
+
+	//CHECK KICK AND VARIATIONS OF IT//
+
+	if (App->input->keyboardstate[SDL_SCANCODE_G] == KEY_PUSHED) inputstate2[0] = S_Y;
+	//ADD VARIATIONS OF Y IN GAME ALPHA
+
+
+	//CHECK TIMERS//
+	if (jump_timer > 0) {
+		//if (SDL_GetTicks() - jump_timer > JUMP_TIME){
+		if (position.y == 210) {
+			inputstateout2[inputsouts] = SO_JUMP_FINISH;
+			if (inputstate2[0] == S_JUMP)inputstate2[0] = S_NONE;
+			else if (inputstate2[0] == S_JUMP_LEFT)inputstate2[0] = S_NONE;
+			else if (inputstate2[0] == S_JUMP_RIGHT)inputstate2[0] = S_NONE;
+			inputsouts++;
+			jump_timer = 0;
+		}
+	}
+	if (punch_timer == 3) {
+		inputstateout2[inputsouts] = SO_PUNCH_FINISH;
+		if (inputstate2[0] == S_T)inputstate2[0] = S_NONE;
+		else if (inputstate2[0] == S_T_LEFT)inputstate2[0] = S_NONE;
+		else if (inputstate2[0] == S_T_RIGHT)inputstate2[0] = S_NONE;
+		inputsouts++;
+		punch_timer = 0;
+	}
+	if (kick_timer == 3) {
+		inputstateout2[inputsouts] = SO_KICK_FINISH;
+		if (inputstate2[0] == S_Y)inputstate2[0] = S_NONE;
+		inputsouts++;
+		kick_timer = 0;
+	}
+	if (tornado_timer == 3) {
+		inputstateout2[inputsouts] = SO_TORNADO_FINISH;
+		if (inputstate2[0] == S_TORNADO)inputstate2[0] = S_NONE;
+		inputsouts++;
+		tornado_timer = 0;
+	}
+	/*if (punch_timer > 0) {
+		if (SDL_GetTicks() - punch_timer > PUNCH_TIME) {
+			inputstate[0] = S_PUNCH_FINISH;
+			punch_timer = 0;
+		}
+	}
+	if (kick_timer > 0) {
+		if (SDL_GetTicks() - kick_timer > KICK_TIME) {
+			inputstate[0] = S_KICK_FINISH;
+			kick_timer = 0;
+		}
+	}*/
+
+	CheckSpecialAttacks();
+	return UPDATE_CONTINUE;
+}
+
 // Update: draw background
 update_status ModulePlayer2::Update()
 {
@@ -117,6 +255,201 @@ update_status ModulePlayer2::Update()
 
 	int speed = 2;
 
+	CheckState();
+
+	switch (actual3) {
+	case A_IDLE:
+		current_animation = &idle;
+		break;
+	case A_WALK_FORWARD:
+		current_animation = &forward;
+		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE - 410)) position.x += speed;
+		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
+		break;
+	case A_WALK_BACKWARD:
+		current_animation = &backward;
+		if (position.x > 20) position.x -= speed / 2;
+		if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
+		break;
+	case A_JUMP_NEUTRAL:
+		current_animation = &jump;
+		if (position.y == 210) {
+			App->audio->PlayChunk(jumpsound);
+			mult = 1;
+		}
+		if (position.y == 130) {
+			mult = -1;
+		}
+		position.y -= speed * mult;
+		break;
+	case A_JUMP_FORWARD:
+		current_animation = &jump;
+		if (position.y == 210) {
+			App->audio->PlayChunk(jumpsound);
+			mult = 1;
+		}
+		if (position.y == 130) mult = -1;
+		position.y -= speed * mult;
+		position.x += speed;
+		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
+		break;
+	case A_JUMP_BACKWARD:
+		current_animation = &jump;
+		if (position.y == 210) {
+			App->audio->PlayChunk(jumpsound);
+			mult = 1;
+		}
+		if (position.y == 130) mult = -1;
+		position.y -= speed * mult;
+		position.x -= speed / 2;
+		if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
+		break;
+	case A_CROUCH:
+		current_animation = &crouch;
+		break;
+	case A_PUNCH_STANDING:
+
+		/*if (tornadoactivate == true) {
+			current_animation = &tornado;
+			if (punch_timer == 1) {
+				App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
+				App->audio->PlayChunk(tornadosound);
+				punch_timer = 2;
+			}
+			if (current_animation->GetFinished() == 1)tornadoactivate = false; punch_timer = 3;
+		}
+		else {*/
+		current_animation = &punch;
+		if (punch_timer == 1) {
+			App->audio->PlayChunk(punchsound);
+			punch_timer = 2;
+		}
+		if (current_animation->GetFinished() == 1) punch_timer = 3;
+		//	}
+		break;
+		/*case A_PUNCH_NEUTRAL_JUMP:
+			if (position.y == 210) {
+				App->audio->PlayChunk(jumpsound);
+				mult = 1;
+			}
+			if (position.y == 130) {
+				mult = -1;
+			}
+			position.y -= speed * mult;
+			current_animation = &punch;
+			if (punch_timer == 1) {
+				App->audio->PlayChunk(punchsound);
+				punch_timer = 2;
+			}
+			if (current_animation->GetFinished() == 1)punch_timer = 3;
+			break;
+		case A_PUNCH_FORWARD_JUMP:
+			if (position.y == 210) {
+				App->audio->PlayChunk(jumpsound);
+				mult = 1;
+			}
+			if (position.y == 130) mult = -1;
+			position.y -= speed * mult;
+			position.x += speed;
+			if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
+			current_animation = &punch;
+			if (punch_timer == 1) {
+				App->audio->PlayChunk(punchsound);
+				punch_timer = 2;
+			}
+			if (current_animation->GetFinished() == 1)punch_timer = 3;
+			break;
+		case A_PUNCH_BACKWARD_JUMP:
+			if (position.y == 210) {
+				App->audio->PlayChunk(jumpsound);
+				mult = 1;
+			}
+			if (position.y == 130) mult = -1;
+			position.y -= speed * mult;
+			position.x -= speed / 2;
+			if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
+			current_animation = &punch;
+			if (punch_timer == 1) {
+				App->audio->PlayChunk(punchsound);
+				punch_timer = 2;
+			}
+			if (current_animation->GetFinished() == 1)punch_timer = 3;
+			break;
+		case A_PUNCH_CROUCH:
+			punch_timer = 3;
+			break;
+			//*/
+	case A_KICK_STANDING:
+		current_animation = &kick;
+		if (kick_timer == 1) {
+			App->audio->PlayChunk(kicksound);
+			kick_timer = 2;
+		}
+		if (current_animation->GetFinished() == 1)kick_timer = 3;
+		break;
+		/*case A_KICK_NEUTRAL_JUMP:
+			if (position.y == 210) {
+				App->audio->PlayChunk(jumpsound);
+				mult = 1;
+			}
+			if (position.y == 130) {
+				mult = -1;
+			}
+			position.y -= speed * mult;
+			current_animation = &kick;
+			if (kick_timer == 1) {
+				App->audio->PlayChunk(kicksound);
+				kick_timer = 2;
+			}
+			if (current_animation->GetFinished() == 1)kick_timer = 3;
+			break;
+		case A_KICK_FORWARD_JUMP:
+			if (position.y == 210) {
+				App->audio->PlayChunk(jumpsound);
+				mult = 1;
+			}
+			if (position.y == 130) mult = -1;
+			position.y -= speed * mult;
+			position.x += speed;
+			if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
+			current_animation = &kick;
+			if (kick_timer == 1) {
+				App->audio->PlayChunk(kicksound);
+				kick_timer = 2;
+			}
+			if (current_animation->GetFinished() == 1)kick_timer = 3;
+			break;
+		case A_KICK_BACKWARD_JUMP:
+			if (position.y == 210) {
+				App->audio->PlayChunk(jumpsound);
+				mult = 1;
+			}
+			if (position.y == 130) mult = -1;
+			position.y -= speed * mult;
+			position.x -= speed / 2;
+			if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
+			current_animation = &kick;
+			if (kick_timer == 1) {
+				App->audio->PlayChunk(kicksound);
+				kick_timer = 2;
+			}
+			if (current_animation->GetFinished() == 1)kick_timer = 3;
+			break;
+		case A_KICK_CROUCH:
+			kick_timer = 3;
+			break;
+			//*/
+	case A_TORNADO:
+		current_animation = &tornado;
+		if (tornado_timer == 1) {
+			App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
+			App->audio->PlayChunk(tornadosound);
+			tornado_timer = 2;
+		}
+		if (current_animation->GetFinished() == 1)tornado_timer = 3;
+		break;
+	}
+	/*
 	////////////////////RIGHT/////////////////////////
 
 	if ((App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_REPEAT || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_PUSHED) && actual == NONE && (position.y == 210 || right == true)) {
@@ -181,7 +514,14 @@ update_status ModulePlayer2::Update()
 		if (current_animation->GetFinished() == 0)actual = KICK;
 		else actual = NONE;
 	}
+	*/
+	////////////////////GODMODE/////////////////////////
 
+	if (App->input->keyboardstate[SDL_SCANCODE_F6] == KEY_PUSHED) {
+		if (bodyenemy->to_delete != false)bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_ENEMY, this);
+		else bodyenemy->to_delete = true;
+
+	}
 	bodyenemy->SetPos(position.x, (position.y-100));
 
 	// Draw everything --------------------------------------
@@ -189,6 +529,188 @@ update_status ModulePlayer2::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer2::CheckSpecialAttacks() {
+	bool out = false;
+	int done = 0;
+	int i = 1;
+	if (inputstate2[0] == S_T_RIGHT) {
+		do {
+			switch (inputstate2[i]) {
+			case S_T_RIGHT:	i++; break;
+			case S_CROUCH_RIGHT:
+				i++;
+				if (done == 0)done++;
+				break;
+			case S_CROUCH_DOWN:
+				if (done == 1) done = 2;
+				else out = true;
+				break;
+			case S_RIGHT_DOWN:
+				if (i > 6) out = true;
+				else i++;
+				break;
+			default:
+				out = true;
+				break;
+			}
+		} while (out == false && done < 2 && i < 60);
+		if (done == 2) inputstate2[0] = S_TORNADO;
+	}
+}
+void ModulePlayer2::CheckState() {
+	switch (actual3) {
+	case A_IDLE:
+		switch (inputstate2[0]) {
+		case S_RIGHT_DOWN: actual3 = A_WALK_FORWARD; break;
+		case S_LEFT_DOWN: actual3 = A_WALK_BACKWARD; break;
+		case S_JUMP: actual3 = A_JUMP_NEUTRAL; jump_timer = SDL_GetTicks();  break;
+		case S_JUMP_RIGHT:actual3 = A_JUMP_FORWARD; jump_timer = SDL_GetTicks(); break;
+		case S_JUMP_LEFT:actual3 = A_JUMP_BACKWARD; jump_timer = SDL_GetTicks(); break;
+		case S_CROUCH_DOWN: actual3 = A_CROUCH; break;
+		case S_CROUCH_RIGHT: actual3 = A_CROUCH; break;
+		case S_T: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_T_LEFT: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_T_RIGHT: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_Y: actual3 = A_KICK_STANDING; kick_timer = 1;  break;
+		case S_TORNADO: actual3 = A_TORNADO; tornado_timer = 1; break;
+		}
+		break;
+	case A_WALK_FORWARD:
+		switch (inputstate2[0]) {
+			//case S_RIGHT_UP: actual2 = A_IDLE; break;
+		case S_LEFT_AND_RIGHT: actual3 = A_IDLE; break;
+		case S_JUMP: actual3 = A_JUMP_FORWARD; jump_timer = SDL_GetTicks();  break;
+		case S_JUMP_RIGHT:actual3 = A_JUMP_FORWARD; jump_timer = SDL_GetTicks(); break;
+		case S_JUMP_LEFT:actual3 = A_JUMP_BACKWARD; jump_timer = SDL_GetTicks(); break;
+		case S_CROUCH_DOWN: actual3 = A_CROUCH; break;
+		case S_CROUCH_RIGHT: actual3 = A_CROUCH; break;
+		case S_T: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_T_LEFT: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_T_RIGHT: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_Y: actual3 = A_KICK_STANDING; kick_timer = 1;  break;
+		case S_TORNADO: actual3 = A_TORNADO; tornado_timer = 1; break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_RIGHT_UP)actual3 = A_IDLE;
+		//if ((position.x > (SCREEN_WIDTH*SCREEN_SIZE - 410)) && actual2 == A_WALK_FORWARD) actual2 = A_IDLE;
+		break;
+	case A_WALK_BACKWARD:
+		switch (inputstate2[0]) {
+			//case S_LEFT_UP: actual2 = A_IDLE; break;
+		case S_LEFT_AND_RIGHT: actual3 = A_IDLE; break;
+		case S_JUMP: actual3 = A_JUMP_BACKWARD; jump_timer = SDL_GetTicks();  break;
+		case S_JUMP_RIGHT:actual3 = A_JUMP_FORWARD; jump_timer = SDL_GetTicks(); break;
+		case S_JUMP_LEFT:actual3 = A_JUMP_BACKWARD; jump_timer = SDL_GetTicks(); break;
+		case S_CROUCH_DOWN: actual3 = A_CROUCH; break;
+		case S_CROUCH_RIGHT: actual3 = A_CROUCH; break;
+		case S_T: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_T_LEFT: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_T_RIGHT: actual3 = A_PUNCH_STANDING; punch_timer = 1;  break;
+		case S_Y: actual3 = A_KICK_STANDING; kick_timer = 1;  break;
+		case S_TORNADO: actual3 = A_TORNADO; tornado_timer = 1; break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_LEFT_UP)actual3 = A_IDLE;
+		//if ((position.x <= 20) && actual2 == A_WALK_BACKWARD) actual2 = A_IDLE;
+		break;
+	case A_JUMP_NEUTRAL:
+		switch (inputstate2[0]) {
+			//case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			//case S_T: actual2 = A_PUNCH_NEUTRAL_JUMP; punch_timer = 1;  break;
+			//case S_PUNCH_RIGHT: actual2 = A_PUNCH_STANDING; punch_timer = 1;  break;
+			//case S_Y: actual2 = A_KICK_NEUTRAL_JUMP; kick_timer = 1;  break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_JUMP_FINISH)actual3 = A_IDLE;
+		break;
+	case A_JUMP_FORWARD:
+		switch (inputstate2[0]) {
+			//case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			//case S_T: actual2 = A_PUNCH_FORWARD_JUMP; punch_timer = 1;  break;
+			//case S_PUNCH_RIGHT: actual2 = A_PUNCH_STANDING; punch_timer = 1;  break;
+			//case S_Y: actual2 = A_KICK_FORWARD_JUMP; kick_timer = 1;  break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_JUMP_FINISH)actual3 = A_IDLE;
+		break;
+	case A_JUMP_BACKWARD:
+		switch (inputstate2[0]) {
+			//case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			//case S_T: actual2 = A_PUNCH_BACKWARD_JUMP; punch_timer = 1;  break;
+			//case S_PUNCH_RIGHT: actual2 = A_PUNCH_STANDING; punch_timer = 1;  break;
+			//case S_Y: actual2 = A_KICK_BACKWARD_JUMP; kick_timer = 1;  break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_JUMP_FINISH)actual3 = A_IDLE;
+		break;
+	case A_PUNCH_STANDING:
+		switch (inputstate2[0]) {
+			//case S_PUNCH_FINISH: actual2 = A_IDLE; break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_PUNCH_FINISH)actual3 = A_IDLE;
+		break;
+		/*case A_PUNCH_NEUTRAL_JUMP:
+			switch (inputstate[0]) {
+			case S_PUNCH_FINISH: actual2 = A_JUMP_NEUTRAL; break;
+			case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			}
+			break;
+		case A_PUNCH_FORWARD_JUMP:
+			switch (inputstate[0]) {
+			case S_PUNCH_FINISH: actual2 = A_JUMP_FORWARD; break;
+			case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			}
+			break;
+		case A_PUNCH_BACKWARD_JUMP:
+			switch (inputstate[0]) {
+			case S_PUNCH_FINISH: actual2 = A_JUMP_BACKWARD; break;
+			case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			}
+			break;*/
+	case A_KICK_STANDING:
+		switch (inputstate2[0]) {
+			//case S_KICK_FINISH: actual2 = A_IDLE; break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_KICK_FINISH)actual3 = A_IDLE;
+		break;
+		/*case A_KICK_NEUTRAL_JUMP:
+			switch (inputstate[0]) {
+			case S_KICK_FINISH: actual2 = A_JUMP_NEUTRAL; break;
+			case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			}
+			break;
+		case A_KICK_FORWARD_JUMP:
+			switch (inputstate[0]) {
+			case S_KICK_FINISH: actual2 = A_JUMP_FORWARD; break;
+			case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			}
+			break;
+		case A_KICK_BACKWARD_JUMP:
+			switch (inputstate[0]) {
+			case S_KICK_FINISH: actual2 = A_JUMP_BACKWARD; break;
+			case S_JUMP_FINISH: actual2 = A_IDLE; break;
+			}
+			break;*/
+	case A_CROUCH:
+		switch (inputstate2[0]) {
+			//case S_CROUCH_UP: actual2 = A_IDLE; break;
+			//case S_T: actual2 = A_PUNCH_CROUCH; break;
+			//case S_Y: actual2 = A_KICK_CROUCH; break;
+		case S_TORNADO: actual3 = A_TORNADO; tornado_timer = 1; break;
+		}
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_CROUCH_UP)actual3 = A_IDLE;
+		break;
+		/*case A_PUNCH_CROUCH:
+			switch (inputstate[0]) {
+			case S_PUNCH_FINISH: actual2 = A_CROUCH; break;
+			}
+			break;
+		case A_KICK_CROUCH:
+			switch (inputstate[0]) {
+			case S_KICK_FINISH: actual2 = A_CROUCH; break;
+			}
+			break;*/
+	case A_TORNADO:
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_TORNADO_FINISH)actual3 = A_IDLE;
+		break;
+	}
 }
 
 void ModulePlayer2::OnCollision(Collider* enemy, Collider* player) {

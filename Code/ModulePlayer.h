@@ -10,7 +10,7 @@ struct SDL_Texture;
 struct Mix_Chunk;
 struct Collider;
 
-#define INPUTSOUTS 7
+#define INPUTSOUTS 8
 
 enum action {
 	NONE = 0,
@@ -33,15 +33,15 @@ enum state {
 	A_JUMP_BACKWARD,
 	A_CROUCH,
 	A_PUNCH_STANDING,
-	/*A_PUNCH_NEUTRAL_JUMP,
+	A_PUNCH_NEUTRAL_JUMP,
 	A_PUNCH_FORWARD_JUMP,
 	A_PUNCH_BACKWARD_JUMP,
-	A_PUNCH_CROUCH,*/
+	A_PUNCH_CROUCH,
 	A_KICK_STANDING,
-/*	A_KICK_NEUTRAL_JUMP,
+	A_KICK_NEUTRAL_JUMP,
 	A_KICK_FORWARD_JUMP,
 	A_KICK_BACKWARD_JUMP,
-	A_KICK_CROUCH,*/
+	A_KICK_CROUCH,
 	A_TORNADO,
 	A_HITTED
 };
@@ -62,12 +62,18 @@ enum inputin {
 //	S_T_Y,
 	S_T_LEFT,
 	S_T_RIGHT,
-/*	S_T_JUMP,
+	S_T_JUMP,
+	S_T_JUMP_RIGHT,
+	S_T_JUMP_LEFT,
 	S_T_CROUCH,
+	S_T_CROUCH_RIGHT,
 	S_Y_LEFT,
 	S_Y_RIGHT,
 	S_Y_JUMP,
-	S_Y_CROUCH,*/
+	S_Y_JUMP_RIGHT,
+	S_Y_JUMP_LEFT,
+	S_Y_CROUCH,
+	S_Y_CROUCH_RIGHT,
 	S_TORNADO
 };
 enum inputout {
@@ -78,7 +84,8 @@ enum inputout {
 	SO_JUMP_FINISH,
 	SO_PUNCH_FINISH,
 	SO_KICK_FINISH,
-	SO_TORNADO_FINISH
+	SO_TORNADO_FINISH,
+	SO_HITTED_FINISH
 };
 
 class ModulePlayer : public Module
@@ -122,15 +129,16 @@ public:
 	action actual;
 	state actual2;
 	inputin inputstate[60];
-	inputout inputstateout[6];
+	inputout inputstateout[INPUTSOUTS];
 //	bool right;
 //	bool left;
-	bool godmode;
+//	bool godmode;
 	Collider* body;
 	Uint32 jump_timer;
 	int punch_timer;
 	int kick_timer;
 	int tornado_timer;
+	int hitted_timer;
 	int inputsouts;
 	bool victory;
 
