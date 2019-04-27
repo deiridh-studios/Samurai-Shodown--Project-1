@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleUI.h"
 #include "SDL/include/SDL_timer.h"
 
 
@@ -780,6 +781,7 @@ void ModulePlayer::OnCollision(Collider* player, Collider* enemy) {
 		App->audio->PlayChunk(hittedsound);
 		//Sprites hitted
 		position.x = position.x - 25;
+		App->UI->DamageTaken(1, 5);
 	}
 	actual = HITTED;
 }

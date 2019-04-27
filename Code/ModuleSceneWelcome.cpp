@@ -105,21 +105,22 @@ bool  ModuleSceneWelcome::Start() {
 	App->audio->LoadMusic("Music/start.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
 	graphics = App->textures->Load("Sprites/DEFINITIVETitle.png");
+	Title.current_frame = 0;
 	return true;
 }
 update_status  ModuleSceneWelcome::Update() {
 	SDL_Rect rect{ 0,0,rectbackground.w*SCREEN_SIZE, rectbackground.h*SCREEN_SIZE };
 	App->render->Blit(graphics, 0, 0, &rectbackground, 0.0f);  //Background
-
-	if (Title.current_frame <= 60) {
-		App->render->Blit(graphics, 30, 15, &(Title.GetCurrentFrame()), 0.0f);
+	if (App->fade->finished == true) {
+		if (Title.current_frame <= 67) {
+			App->render->Blit(graphics, 30, 15, &(Title.GetCurrentFrame()), 0.0f);
+		}
+		else {
+			App->render->Blit(graphics, 30, 15, &recttitle, 0.0f);  //Background
+			App->render->Blit(graphics, 40, 170, &(Words.GetCurrentFrame()), 0.0f);
+		}
 	}
-	else {
-		App->render->Blit(graphics, 30, 15, &recttitle, 0.0f);  //Background
-		App->render->Blit(graphics, 40, 170, &(Words.GetCurrentFrame()), 0.0f);
-	}
-
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED&&App->fade->finished == true) {
+	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED && App->fade->finished == true && Title.current_frame > 67) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->scenewelcome, App->background, 2);
 	}

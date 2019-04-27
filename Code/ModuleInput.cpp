@@ -49,7 +49,7 @@ update_status ModuleInput::PreUpdate()
 		LOG("Escape pressed, exiting the game.\n");
 		return update_status::UPDATE_STOP;
 	}
-	if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) space = true;
+	if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED || keyboardstate[SDL_SCANCODE_SPACE] == KEY_REPEAT) space = true;
 	else if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PULLED) space = false;
 	return update_status::UPDATE_CONTINUE;
 }

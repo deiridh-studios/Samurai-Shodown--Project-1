@@ -2,6 +2,9 @@
 #define __ModuleUI_H__
 
 #include "Module.h"
+#include "Globals.h"
+
+struct SDL_Texture;
 
 class ModuleUI :public Module {
 public:
@@ -10,16 +13,22 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-	SDL_Rect lifebarplayer1;
-	SDL_Rect lifebarplayer2;
-	int player1life;
-	int player2life;
+	void DamageTaken(int, int);
+
 
 private:
 	int font_score;
 	char time_text[10];
 	uint time;
 	uint initialtime;
+	SDL_Rect lifeplayer1;
+	SDL_Rect lifeplayer2;
+	SDL_Rect lifebarplayer1;
+	SDL_Rect lifebarplayer2;
+	SDL_Rect komessage;
+	int player1life;
+	int player2life;
+	SDL_Texture *textlife;
 
 };
 #endif
