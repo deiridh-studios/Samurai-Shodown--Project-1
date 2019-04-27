@@ -17,21 +17,24 @@ ModulePlayer::ModulePlayer()
 	position.y = 210;
 
 	// Idle animation
-	idle.PushBack({ 628, 539, 73, 115 });
-	idle.PushBack({ 710, 539, 73, 115 });
-	idle.PushBack({ 791, 539, 73, 115 });
-	idle.PushBack({ 628, 662, 73, 115 });
-	idle.PushBack({ 710, 662, 73, 115 });
-	idle.PushBack({ 791, 662, 73, 115 });
+	idle.PushBack({ 330, 2088, 86, 122 });
+	idle.PushBack({ 436, 2088, 80, 122 });
+	idle.PushBack({ 536, 2092, 84, 118 });
+	idle.PushBack({ 650, 2078, 76, 122 });
+	idle.PushBack({ 760, 2084, 62, 126 });
+	idle.PushBack({ 842, 2092, 80, 118 });
 	idle.speed = 0.2f;
 
 	// Walk forward animation (To IMPROVE)
-	forward.PushBack({ 1416, 1295, 79, 123 });
-	forward.PushBack({ 1497, 1295, 71, 123 });
-	forward.PushBack({ 1566, 1295, 61, 123 });
-	forward.PushBack({ 1627, 1295, 74, 123 });
-	forward.speed = 0.2f;
+	forward.PushBack({ 330, 2088, 86, 122 });
+	forward.PushBack({ 436, 2088, 80, 122 });
+	forward.PushBack({ 536, 2092, 84, 118 });
+	forward.PushBack({ 650, 2078, 76, 122 });
+	forward.PushBack({ 760, 2084, 62, 1262 });
+	forward.PushBack({ 842, 2092, 80, 118 });
 
+	forward.speed = 0.2f;
+	
 	// Walk backwards animation (To Do)
 	backward.PushBack({ 1627, 1295, 74, 123 });
 	backward.PushBack({ 1566, 1295, 61, 123 });
@@ -52,9 +55,8 @@ ModulePlayer::ModulePlayer()
 	
 	//crouch
 	crouch.PushBack({ 128 , 39 , 111 , 104 });
-	
-	//crouch.PushBack({ 898 , 1831 , 137 , 104 });
-	//crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	crouch.PushBack({ 898 , 1831 , 137 , 104 });
 	crouch.speed = 0.2f;
 
 
@@ -86,31 +88,57 @@ ModulePlayer::ModulePlayer()
 
 	//Tornado
 	////////////Animation tornado;
-	tornado.PushBack({ 40, 1295, 88, 144});
-	tornado.PushBack({ 186, 1295, 70, 144});
-	tornado.PushBack({ 326, 1295, 74,144 });
-	tornado.PushBack({ 484, 1295, 60, 144 });
-	tornado.PushBack({ 615, 1295, 97, 144 });
-	tornado.PushBack({ 777, 1295, 59, 1446 });
-	tornado.PushBack({ 880, 1295, 100, 144 });
-	tornado.PushBack({ 1020, 1295, 100, 144});
-	tornado.PushBack({ 1158, 1295, 100, 144});
-	tornado.PushBack({ 1317, 1295, 100, 144});
-	tornado.PushBack({ 1458, 1295, 100, 144});
-	tornado.PushBack({ 1604, 1295, 100, 144 });
-	tornado.PushBack({ 1734, 1295, 100, 144 });
-	tornado.PushBack({ 1875, 1295, 100, 144});
-	tornado.PushBack({ 27, 1461, 85, 122 });
-	tornado.PushBack({ 184,1461, 72, 122 });
-	tornado.PushBack({ 327,1461, 72, 122 });
-	
-	
+	tornado.PushBack({ 0, 2384, 106, 96 });
+	tornado.PushBack({ 158, 2384, 72, 96});
+	tornado.PushBack({ 298, 2384, 80, 96});
+	tornado.PushBack({ 454, 2384, 66, 96});
+	tornado.PushBack({ 586, 2376, 100, 104});
+	tornado.PushBack({ 746, 2350, 60, 132});
+	tornado.PushBack({ 851, 2376, 103,  104});
+	tornado.PushBack({ 994, 2380, 104, 100});
+	tornado.PushBack({ 1132, 2380, 102, 100});
+	tornado.PushBack({ 1288, 2380, 102, 100});
+	tornado.PushBack({ 1432, 2380, 104, 100});
+	tornado.PushBack({ 1576, 2380, 104, 100});
+	tornado.PushBack({ 1706, 2380, 110, 100});
+	tornado.PushBack({ 1848, 2380, 106, 100});
+	tornado.PushBack({ 0, 2526, 90, 96});
+	tornado.PushBack({ 154, 2498, 90, 126});
+	tornado.PushBack({ 300, 2514, 90, 110});
 	tornado.speed = 0.1f;
 
 	////////////Animation hitted;
 	hittedan.PushBack({ 372, 8, 78, 97 });
 	hittedan.PushBack({ 257, 8, 85, 97 });
 	hittedan.speed = 0.1f;
+
+	////////////Punch jumping;
+	punchair.PushBack({1116 , 522 , 142 , 111});
+	punchair.PushBack({1248 , 532 , 111 , 103});
+	punchair.PushBack({1350 , 527 , 122 , 108});
+	punchair.PushBack({1466 , 521 , 113 , 140});
+	punchair.PushBack({1610 , 526 , 113 , 140});
+	punchair.PushBack({1755 , 533 , 113 , 140});
+	punchair.speed = 0.2f;
+
+	////////////Punch crouch;
+	punchcrouch.PushBack({1146 , 396 , 93 , 70});
+	punchcrouch.PushBack({1244 , 401 , 119 , 70});
+	punchcrouch.PushBack({1358 , 399 , 125 , 75});
+	punchcrouch.PushBack({1482 , 410 , 130 , 74});
+	punchcrouch.PushBack({1617 , 412 , 130 , 74});
+	punchcrouch.PushBack({1748 , 414 , 97 , 72});
+	punchcrouch.PushBack({1838 , 419 , 82 , 64});
+	punchcrouch.speed = 0.2f;
+
+	////////////Kick jumping;
+	kickair.PushBack({117 , 863 , 91 , 108});
+	kickair.PushBack({207 , 863 , 107 , 91});
+	kickair.PushBack({333 , 863 , 112 , 93});
+	kickair.speed = 0.2f;
+
+	///////////Kick crouch;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -121,7 +149,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Sprites/spritesHaohmaru.png"); // arcade version
+	graphics = App->textures->Load("Sprites/spritesHaohmaruFIXED.png"); // arcade version
 	graphics2 = App->textures->Load("sprites/Haohfix1(tornado apart).png");
 	punchsound = App->audio->LoadChunk("Audio_FX/Punch.wav");
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");

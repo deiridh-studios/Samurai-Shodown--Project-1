@@ -18,7 +18,10 @@ enum action {
 	KICK,
 	TORNADO,
 	HITTED,
-	CROUCH
+	CROUCH,
+	PUNCHAIR,
+	PUNCHCROUCH,
+	KICKAIR
 };
 enum state {
 	A_NONE = 0,
@@ -110,6 +113,10 @@ public:
 	Animation tornado;
 	Animation hittedan;
 	Animation crouch;
+	Animation punchair;
+	Animation punchcrouch;
+	Animation kickair;
+
 	iPoint position;
 	int mult;
 	action actual;
