@@ -78,6 +78,7 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 1590, 36, 84, 96 });
 	jump.PushBack({ 1692, 36, 80, 96 });
 	jump.PushBack({ 1794, 16, 68, 122 });
+	jump.speed = 0.1f;
 
 
 	// Jump Forward
