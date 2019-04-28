@@ -21,41 +21,43 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("sprites/Haohfix1(tornado apart).png");
+	graphics = App->textures->Load("sprites/spritesHaohmaruFIXED.png");
 
 	// Tornado particle
 
 	////////Tornado animation
 
-	tornado.anim.PushBack({ 204, 773, 86, 90 });
-	tornado.anim.PushBack({ 346, 773, 86, 90 });
-	tornado.anim.PushBack({ 485, 773, 86, 90 });
-	tornado.anim.PushBack({ 633, 773, 86, 90 });
-	tornado.anim.PushBack({ 770, 773, 86, 90 });
-	tornado.anim.PushBack({ 897, 773, 86, 90 });
-	tornado.anim.PushBack({ 1050, 773, 86, 90 });
-	tornado.anim.PushBack({ 1185, 773, 86, 90 });
-	tornado.anim.PushBack({ 1329, 773, 86, 90 });
-	tornado.anim.PushBack({ 1469, 773, 86, 90 });
-	tornado.anim.PushBack({ 1619, 773, 86, 90 });
-	tornado.anim.PushBack({ 1769, 773, 86, 90 });
-	tornado.anim.PushBack({ 44, 874, 71, 203 });
-	tornado.anim.PushBack({ 188, 874, 71, 203 });
-	tornado.anim.PushBack({ 338, 874, 71, 203 });
-	tornado.anim.PushBack({ 484, 874, 71, 203 });
-	tornado.anim.PushBack({ 616, 874, 71, 203 });
-	tornado.anim.PushBack({ 765, 874, 71, 203 });
-	tornado.anim.PushBack({ 907, 874, 71, 203 });
-	tornado.anim.PushBack({ 1061, 874, 71, 203 });
-	tornado.anim.PushBack({ 1344, 874, 71, 203 });
-	tornado.anim.PushBack({ 1489, 874, 71, 203 });
-	tornado.anim.PushBack({ 1625, 874, 71, 203 });
-	tornado.anim.PushBack({ 46, 1083, 46, 213});
-	tornado.anim.PushBack({ 196, 1083, 46, 213 });
-	tornado.anim.PushBack({ 337, 1083, 46, 213 });
-	tornado.anim.PushBack({ 468, 1083, 46, 213 });
-	tornado.anim.PushBack({ 562, 1083, 46, 213 });
-	tornado.anim.PushBack({ 706, 1083, 46, 213 });
+	tornado.anim.PushBack({ 172, 2660, 28, 100 });
+	tornado.anim.PushBack({ 316, 2660, 34, 100 });
+	tornado.anim.PushBack({ 458, 2660, 44, 100 });
+	tornado.anim.PushBack({ 602, 2660, 34, 100 });
+	tornado.anim.PushBack({ 738, 2660, 48, 100 });
+	tornado.anim.PushBack({ 864, 2660, 80, 100 });
+	tornado.anim.PushBack({ 1008, 2660, 98, 100 });
+	tornado.anim.PushBack({ 1154, 2660, 102, 100 });
+	tornado.anim.PushBack({ 1296, 2660, 94, 100 });
+	tornado.anim.PushBack({ 1436, 2660, 98, 100 });
+	tornado.anim.PushBack({ 1580, 2660, 92, 100 });
+	tornado.anim.PushBack({ 1730, 2660, 86, 100 });
+	tornado.anim.PushBack({ 1872, 874, 82, 100 });
+	tornado.anim.PushBack({ 16, 2756, 71, 220 });
+	tornado.anim.PushBack({ 154, 2756, 71, 220 });
+	tornado.anim.PushBack({ 308, 2756, 71, 220});
+	tornado.anim.PushBack({ 452, 2756, 71, 220});
+	tornado.anim.PushBack({ 584, 2756, 71, 220});
+	tornado.anim.PushBack({ 730, 2756, 71, 220});
+	tornado.anim.PushBack({ 874, 2756, 71, 220});
+	tornado.anim.PushBack({ 1028, 2756, 71, 220 });
+	tornado.anim.PushBack({ 1168, 2756, 71, 220 });
+	tornado.anim.PushBack({ 1310, 2756, 71, 220 });
+	tornado.anim.PushBack({ 1454, 2756, 71, 220 });
+	tornado.anim.PushBack({ 1590, 2756, 46, 220});
+	tornado.anim.PushBack({ 18, 2970, 46, 216 });
+	tornado.anim.PushBack({ 164, 2970, 46, 216 });
+	tornado.anim.PushBack({ 300, 2970, 46, 216 });
+	tornado.anim.PushBack({ 436, 2970, 46, 216 });
+	tornado.anim.PushBack({ 532, 2970, 46, 216 });
+	tornado.anim.PushBack({ 674, 2970, 46, 216 });
 	tornado.anim.speed = 0.2f;
 	tornado.speed.x = 5;
 	tornado.life = 3000;
