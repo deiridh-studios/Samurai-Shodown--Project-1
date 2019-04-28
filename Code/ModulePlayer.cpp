@@ -165,12 +165,14 @@ ModulePlayer::ModulePlayer()
 	kickair.speed = 0.2f;
 
 	///////////Kick crouch;
-	kickcrouch.PushBack({ 27 , 847 , 72 , 121});
-	kickcrouch.PushBack({ 128 , 847 , 81 ,121 });
-	kickcrouch.PushBack({ 210 , 847 , 102 ,121 });
-	kickcrouch.PushBack({ 340 , 847 , 102 ,121 });
-	kickcrouch.PushBack({ 482 , 847 , 79 ,121 });
+	kickcrouch.PushBack({ 26 , 849, 72, 113});
+	kickcrouch.PushBack({ 128 ,849 , 81,  113});
+	kickcrouch.PushBack({ 211 ,849 , 102, 113});
+	kickcrouch.PushBack({ 341 ,849 , 100,  113});
+	kickcrouch.PushBack({ 482 ,849 , 80, 113});
 	kickcrouch.speed = 0.2f;
+
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -316,7 +318,7 @@ update_status ModulePlayer::PreUpdate() {
 			else if (inputstate[0] == S_CROUCH_DOWN) inputstate[0] = S_Y_CROUCH;
 			else if (inputstate[0] == S_CROUCH_RIGHT) inputstate[0] = S_Y_CROUCH_RIGHT;
 			else if (inputstate[0] == S_NONE)inputstate[0] = S_Y;
-			else inputstate[0] = S_NONE;
+			//else inputstate[0] = S_NONE;
 		}
 
 	}
