@@ -111,7 +111,7 @@ bool  ModuleSceneWelcome::Start() {
 update_status  ModuleSceneWelcome::Update() {
 	SDL_Rect rect{ 0,0,rectbackground.w*SCREEN_SIZE, rectbackground.h*SCREEN_SIZE };
 	App->render->Blit(graphics, 0, 0, &rectbackground, 0.0f);  //Background
-	if (App->fade->finished == true) {
+	if (App->fade->finished == true&&SDL_GetTicks()>3500) {
 		if (Title.current_frame <= 67) {
 			App->render->Blit(graphics, 30, 15, &(Title.GetCurrentFrame()), 0.0f);
 		}

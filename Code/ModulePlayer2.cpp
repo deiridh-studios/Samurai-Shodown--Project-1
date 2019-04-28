@@ -307,8 +307,8 @@ update_status ModulePlayer2::Update()
 		}
 		if (position.y == 130) mult = -1;
 		position.y -= speed * mult;
-		position.x += speed;
-		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
+		if ((position.x) > (App->player->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+		if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		break;
 	case A_JUMP_BACKWARD:
 		current_animation = &jump;
@@ -321,8 +321,8 @@ update_status ModulePlayer2::Update()
 		}
 		if (position.y == 130) mult = -1;
 		position.y -= speed * mult;
-		position.x -= speed / 2;
-		if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
+		if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+		if ((App->background->cameraleft.x < App->player->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
 		break;
 	case A_CROUCH:
 		current_animation = &crouch;
@@ -755,6 +755,10 @@ void ModulePlayer2::CheckState() {
 	}
 }
 
-void ModulePlayer2::OnCollision(Collider* enemy, Collider* player) {
+void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 	//
+	if (other->type == COLLIDER_PLAYER_SHOT) {
+		actual3 = A_HITTED;
+		//if (hitted_timer == 0)hitted_timer = 1;
+	}
 }
