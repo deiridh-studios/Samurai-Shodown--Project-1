@@ -48,7 +48,7 @@ ModulePlayer2::ModulePlayer2()
 	kick.speed = 0.2f;
 	
 	//crouch
-	crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	//crouch.PushBack({ 898 , 1831 , 137 , 104 });
 	crouch.PushBack({ 898 , 1831 , 137 , 104 });
 	crouch.speed = 0.2f;
 
@@ -94,7 +94,9 @@ bool ModulePlayer2::Start()
 	hitted = App->audio->LoadChunk("Audio_FX/Hitted.wav");
 	position.x = 200;
 	position.y = 210;
-	bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_ENEMY, this);
+	bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_ENEMY, this);
+	bodyenemy2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_ENEMY, this);
+	bodyenemy3 = App->collision->AddCollider({ position.x,(position.y - 20),45,35 }, COLLIDER_ENEMY, this);
 	actual = NONE;
 	actual3 = A_IDLE;
 	right = false;
@@ -260,19 +262,31 @@ update_status ModulePlayer2::Update()
 	switch (actual3) {
 	case A_IDLE:
 		current_animation = &idle;
+		bodyenemy->SetPos(position.x + 20, (position.y - 80));
+		bodyenemy2->SetPos(position.x + 30, (position.y - 57));
+		bodyenemy3->SetPos(position.x + 20, (position.y - 40));
 		break;
 	case A_WALK_FORWARD:
 		current_animation = &forward;
+		bodyenemy->SetPos(position.x + 12, (position.y - 80));
+		bodyenemy2->SetPos(position.x + 25, (position.y - 57));
+		bodyenemy3->SetPos(position.x + 10, (position.y - 40));
 		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE - 410)) position.x += speed;
 		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
 		break;
 	case A_WALK_BACKWARD:
 		current_animation = &backward;
+		bodyenemy->SetPos(position.x + 15, (position.y - 80));
+		bodyenemy2->SetPos(position.x + 20, (position.y - 57));
+		bodyenemy3->SetPos(position.x + 10, (position.y - 40));
 		if (position.x > 20) position.x -= speed / 2;
 		if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
 		break;
 	case A_JUMP_NEUTRAL:
 		current_animation = &jump;
+		bodyenemy->SetPos(position.x + 35, (position.y - 90));
+		bodyenemy2->SetPos(position.x + 42, (position.y - 69));
+		bodyenemy3->SetPos(position.x + 30, (position.y - 55));
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -284,6 +298,9 @@ update_status ModulePlayer2::Update()
 		break;
 	case A_JUMP_FORWARD:
 		current_animation = &jump;
+		bodyenemy->SetPos(position.x + 35, (position.y - 90));
+		bodyenemy2->SetPos(position.x + 42, (position.y - 69));
+		bodyenemy3->SetPos(position.x + 30, (position.y - 55));
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -295,6 +312,9 @@ update_status ModulePlayer2::Update()
 		break;
 	case A_JUMP_BACKWARD:
 		current_animation = &jump;
+		bodyenemy->SetPos(position.x + 35, (position.y - 90));
+		bodyenemy2->SetPos(position.x + 42, (position.y - 69));
+		bodyenemy3->SetPos(position.x + 30, (position.y - 55));
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -306,6 +326,9 @@ update_status ModulePlayer2::Update()
 		break;
 	case A_CROUCH:
 		current_animation = &crouch;
+		bodyenemy->SetPos(position.x + 50, (position.y - 70));
+		bodyenemy2->SetPos(position.x + 67, (position.y - 54));
+		bodyenemy3->SetPos(position.x + 47, (position.y - 40));
 		break;
 	case A_PUNCH_STANDING:
 
@@ -322,9 +345,15 @@ update_status ModulePlayer2::Update()
 		current_animation = &punch;
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
+			position.x = position.x - 40;
+			enemyattack = App->collision->AddCollider({ position.x,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, this);
 			punch_timer = 2;
 		}
-		if (current_animation->GetFinished() == 1) punch_timer = 3;
+		if (current_animation->GetFinished() == 1) {
+			punch_timer = 3;
+			enemyattack->to_delete = true;
+			position.x = position.x + 40;
+		}
 		//	}
 		break;
 		/*case A_PUNCH_NEUTRAL_JUMP:
@@ -381,11 +410,18 @@ update_status ModulePlayer2::Update()
 			//*/
 	case A_KICK_STANDING:
 		current_animation = &kick;
+
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
+			position.x = position.x - 20;
+			enemyattack = App->collision->AddCollider({ position.x,(position.y - 90),65,20 }, COLLIDER_PLAYER_SHOT, this);
 			kick_timer = 2;
 		}
-		if (current_animation->GetFinished() == 1)kick_timer = 3;
+		if (current_animation->GetFinished() == 1) {
+			kick_timer = 3;
+			enemyattack->to_delete = true;
+			position.x = position.x + 20;
+		}
 		break;
 		/*case A_KICK_NEUTRAL_JUMP:
 			if (position.y == 210) {
@@ -518,11 +554,17 @@ update_status ModulePlayer2::Update()
 	////////////////////GODMODE/////////////////////////
 
 	if (App->input->keyboardstate[SDL_SCANCODE_F6] == KEY_PUSHED) {
-		if (bodyenemy->to_delete != false)bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),73,95 }, COLLIDER_ENEMY, this);
-		else bodyenemy->to_delete = true;
-
+		if (bodyenemy->to_delete != false) {
+			bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_ENEMY, this);
+			bodyenemy2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_ENEMY, this);
+			bodyenemy3 = App->collision->AddCollider({ position.x,(position.y - 20),45,35 }, COLLIDER_ENEMY, this);
+		}
+		else {
+			bodyenemy->to_delete = true;
+			bodyenemy2->to_delete = true;
+			bodyenemy3->to_delete = true;
+		}
 	}
-	bodyenemy->SetPos(position.x, (position.y-100));
 
 	// Draw everything --------------------------------------
 

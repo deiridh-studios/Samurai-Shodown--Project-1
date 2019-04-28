@@ -46,6 +46,9 @@ public:
 
 	iPoint position;
 	Collider* bodyenemy;
+	Collider* bodyenemy2;
+	Collider* bodyenemy3;
+	Collider* enemyattack;
 	int mult;
 	state actual3;
 	inputin inputstate2[60];
