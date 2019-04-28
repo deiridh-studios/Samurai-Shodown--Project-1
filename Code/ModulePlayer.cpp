@@ -35,57 +35,51 @@ ModulePlayer::ModulePlayer()
 	forward.speed = 0.2f;
 	
 	// Walk backwards animation (To Do)
-	backward.PushBack({ 330, 2088, 86, 122 });
+	//backward.PushBack({ 330, 2088, 86, 122 });
 	backward.PushBack({ 436, 2088, 80, 122 });
 	backward.PushBack({ 536, 2092, 84, 118 });
 	backward.PushBack({ 650, 2078, 76, 122 });
 	backward.PushBack({ 760, 2084, 62, 126 });
 	backward.PushBack({ 842, 2092, 80, 118 });
 	backward.speed = 0.2f;
-	//
-	//842, 2092, 80, 118
+	
 	// Kick animation
-	kick.PushBack({ 1571, 143, 79, 94 });
-	kick.PushBack({ 1650, 145, 99, 92 });
-	kick.PushBack({ 1749, 142, 110, 92 });
-	kick.PushBack({ 1859, 143, 79, 94 });
-	kick.PushBack({ 1938, 142, 62, 95 });
-	kick.PushBack({ 1571, 143, 79, 94 });
-	kick.PushBack({ 1571, 143, 79, 94 });
+	kick.PushBack({ 1496, 158, 70, 102});
+	kick.PushBack({ 1568, 158, 80, 102});
+	kick.PushBack({ 1648, 158, 102, 102 });
+	kick.PushBack({ 1748, 158, 112, 102});
+	kick.PushBack({ 1856, 158, 84, 102});
+	kick.PushBack({ 1938, 158, 66, 102});
 	kick.speed = 0.2f;
 	
 	
 	//crouch
-	crouch.PushBack({ 128 , 39 , 111 , 104 });
-	crouch.PushBack({ 898 , 1831 , 137 , 104 });
-	crouch.PushBack({ 898 , 1831 , 137 , 104 });
+	crouch.PushBack({ 654 , 1880 , 80 , 132 });
+	crouch.PushBack({ 740 , 1926 , 100 , 86 });
 	crouch.speed = 0.2f;
 
 
 	// Punch animation (TO IMPROVE)
-	punch.PushBack({ 670, 1381, 72, 133 });
-	punch.PushBack({ 742, 1381, 73, 133 });
-	punch.PushBack({ 815, 1381, 81, 133 });
-	punch.PushBack({ 896, 1381, 136, 133 });
-	punch.PushBack({ 1032, 1381, 136, 133 });
-	punch.PushBack({ 1169, 1381, 136, 133 });
-	punch.PushBack({ 1296, 1638, 96, 130 });
-	punch.PushBack({ 649, 1614, 133, 144 }); //144
-	punch.PushBack({ 781, 1615, 133, 133 });
-	punch.PushBack({ 914, 1625, 133, 133 });
-	punch.PushBack({ 1190, 1617, 74, 133 });
+	punch.PushBack({ 1284, 1996, 70, 136 });
+	punch.PushBack({ 13522,2022, 78, 112 });
+	punch.PushBack({ 1430, 2022, 140, 112 });
+	punch.PushBack({ 1570, 2026, 138, 108 });
+	punch.PushBack({ 1708, 2034, 140, 100 });
+	punch.PushBack({ 1178, 2158, 140, 108 });
+	punch.PushBack({ 1318, 2158, 139, 108 });
+	punch.PushBack({ 1458, 2158, 124, 108 }); 
+	punch.PushBack({ 1588, 2164, 135, 98 });
+	punch.PushBack({ 1724, 2142, 76, 120 });
 	punch.speed = 0.2f;
 
 	// Jump
-	jump.PushBack({ 810, 783, 61, 112 });
-	jump.PushBack({ 810, 783, 61, 112 });
-	jump.PushBack({ 896, 804, 71, 91 });
-	jump.PushBack({ 983, 814, 76, 81 });
-	jump.PushBack({ 983, 814, 76, 81 });
-	jump.PushBack({ 983, 814, 76, 81 });
-	jump.PushBack({ 896, 804, 71, 91 });
-	jump.PushBack({ 896, 804, 71, 91 });
-	jump.PushBack({ 896, 804, 71, 91 });
+	jump.PushBack({ 1446, 16, 66, 122 });
+	jump.PushBack({ 1510, 16, 66, 122 });
+	jump.PushBack({ 1590, 36, 84, 96 });
+	jump.PushBack({ 1692, 36, 80, 96 });
+	jump.PushBack({ 1794, 16, 68, 122 });
+	
+
 	jump.speed = 0.1f;
 
 	//Tornado
@@ -110,8 +104,8 @@ ModulePlayer::ModulePlayer()
 	tornado.speed = 0.1f;
 
 	////////////Animation hitted;
-	hittedan.PushBack({ 372, 8, 78, 97 });
-	hittedan.PushBack({ 257, 8, 85, 97 });
+	hittedan.PushBack({ 254, 30, 90, 102 });
+	hittedan.PushBack({ 368, 30, 84, 102 });
 	hittedan.speed = 0.1f;
 
 	////////////Punch jumping;
