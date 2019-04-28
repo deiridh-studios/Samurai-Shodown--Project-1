@@ -43,6 +43,7 @@ ModuleBackground::ModuleBackground():Module(){
 	back.PushBack({ 1280, 1664, 640, 416 });
 	back.PushBack({ 1920, 1664, 640, 416 });
 	back.speed = 0.08f;
+
 }
 ModuleBackground::~ModuleBackground(){}
 bool ModuleBackground::Start() {
@@ -58,14 +59,22 @@ bool ModuleBackground::Start() {
 	App->particles->Enable();
 	App->collision->Enable();
 	App->UI->Enable();
+	cameraleftcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL, App->background);
+	camerarightcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL, App->background);
 	return true;
 }
 update_status ModuleBackground::Update() {
-	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f);  //Background
+	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f, true);  //Background
 	if (App->input->space == true&&App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
 	}
+	cameraleft.x = (-App->render->camera.x) / SCREEN_SIZE;
+	cameraleft.y = 0;
+	cameraright.x = ((-App->render->camera.x) / SCREEN_SIZE) + (App->render->camera.w / SCREEN_SIZE) - 1;
+	cameraright.y = 0;
+	cameraleftcol->SetPos(cameraleft.x, cameraleft.y);
+	camerarightcol->SetPos(cameraright.x, cameraright.y);
 	return UPDATE_CONTINUE;
 }
 bool ModuleBackground::CleanUp()
@@ -80,4 +89,11 @@ bool ModuleBackground::CleanUp()
 	App->UI->Disable();
 	App->textures->Unload(graphics);
 	return true;
+}
+void ModuleBackground::OnCollision(Collider* wall, Collider* enemy) {
+	/*if (actual != HITTED) {
+
+	}
+	actual = HITTED;*/
+	LOG("ENEMY HITTED\n\n");
 }

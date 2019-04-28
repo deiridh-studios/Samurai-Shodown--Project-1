@@ -7,6 +7,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "Modulebackground.h"
 #include "SDL/include/SDL_timer.h"
 
 ModulePlayer2::ModulePlayer2()
@@ -134,16 +135,16 @@ update_status ModulePlayer2::PreUpdate() {
 	if (App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_REPEAT)right = true;
 	if (App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_REPEAT)left = true;
 	if (right == true && left == true)inputstate2[0] = S_LEFT_AND_RIGHT;
-	else if (right == true)inputstate2[0] = S_RIGHT_DOWN;//App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PUSHED) {inputstate[0] = S_RIGHT_DOWN; LOG("RIGHT_DOWN\n");}
+	else if (right == true)inputstate2[0] = S_LEFT_DOWN;//App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PUSHED) {inputstate[0] = S_RIGHT_DOWN; LOG("RIGHT_DOWN\n");}
 	else if (App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_PULLED) {
-		inputstateout2[inputsouts] = SO_RIGHT_UP;
-		if (inputstate2[0] == S_RIGHT_DOWN)inputstate2[0] = S_NONE;
-		inputsouts++;
-	}
-	else if (left == true)/*(App->input->keyboardstate[SDL_SCANCODE_A] == KEY_PUSHED)*/ inputstate2[0] = S_LEFT_DOWN;
-	else if (App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_PULLED) {
 		inputstateout2[inputsouts] = SO_LEFT_UP;
 		if (inputstate2[0] == S_LEFT_DOWN)inputstate2[0] = S_NONE;
+		inputsouts++;
+	}
+	else if (left == true)/*(App->input->keyboardstate[SDL_SCANCODE_A] == KEY_PUSHED)*/ inputstate2[0] = S_RIGHT_DOWN;
+	else if (App->input->keyboardstate[SDL_SCANCODE_LEFT] == KEY_PULLED) {
+		inputstateout2[inputsouts] = SO_RIGHT_UP;
+		if (inputstate2[0] == S_RIGHT_DOWN)inputstate2[0] = S_NONE;
 		inputsouts++;
 	}
 
@@ -270,16 +271,16 @@ update_status ModulePlayer2::Update()
 		bodyenemy->SetPos(position.x + 12, (position.y - 80));
 		bodyenemy2->SetPos(position.x + 25, (position.y - 57));
 		bodyenemy3->SetPos(position.x + 10, (position.y - 40));
-		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE - 410)) position.x += speed;
-		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
+		if ((position.x) > (App->player->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+		if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		break;
 	case A_WALK_BACKWARD:
 		current_animation = &backward;
 		bodyenemy->SetPos(position.x + 15, (position.y - 80));
 		bodyenemy2->SetPos(position.x + 20, (position.y - 57));
 		bodyenemy3->SetPos(position.x + 10, (position.y - 40));
-		if (position.x > 20) position.x -= speed / 2;
-		if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
+		if (position.x+ 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+		if ((App->background->cameraleft.x < App->player->position.x)&&(App->background->cameraright.x <670)) App->render->camera.x -= speed;// *1.25;
 		break;
 	case A_JUMP_NEUTRAL:
 		current_animation = &jump;
