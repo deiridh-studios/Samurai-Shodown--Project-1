@@ -419,13 +419,13 @@ update_status ModulePlayer:: Update()
 			/*if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
 			else if(position.y>App->player2->position.y) position.x += speed;*/
 			if(stopright==false)position.x += speed;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670)&&(App->background->cameraright.x+1>App->player2->position.x-23*SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			/*if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
 			else if (position.y > App->player2->position.y) position.x -= speed;*/
 			if (stopleft == false)position.x -= speed;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0)&&(App->background->cameraleft.x>App->player2->position.x+(23*SCREEN_SIZE)*2))App->render->camera.x += speed;// *1.25;
 		}
 		break;
 	case A_WALK_BACKWARD:
@@ -445,13 +445,13 @@ update_status ModulePlayer:: Update()
 			//if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
 			//else if (position.y > App->player2->position.y) position.x -= speed/2;
 			if (stopleft == false)position.x -= speed/2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->player2->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			//if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
 			//else if (position.y > App->player2->position.y) position.x += speed/2;
 			if (stopright == false)position.x += speed/2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670)&&(App->background->cameraleft.x+1<App->player2->position.x-23*SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;	
 		}
 		break;
 	case A_JUMP_NEUTRAL:
@@ -499,13 +499,13 @@ update_status ModulePlayer:: Update()
 			//if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed / 2;
 			//else if (position.y < App->player2->position.y)position.x += speed / 2;
 			if (stopright == false)position.x += speed/2;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraleft.x + 1 < App->player2->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			//if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed / 2;
 		//	else if (position.y < App->player2->position.y)position.x -= speed / 2;
 			if (stopleft == false)position.x -= speed/2;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->player2->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 		break;
 	case A_JUMP_BACKWARD:
@@ -532,13 +532,13 @@ update_status ModulePlayer:: Update()
 			//if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
 			//else if (position.y < App->player2->position.y)position.x -= speed/2;
 			if (stopleft == false)position.x -= speed/2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->player2->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			//if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
 			//else if (position.y < App->player2->position.y)position.x += speed/2;
 			if (stopright == false)position.x += speed/2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraleft.x + 1 < App->player2->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		break;
 	case A_CROUCH:
@@ -641,13 +641,13 @@ update_status ModulePlayer:: Update()
 			//if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed / 2;
 			//else if (position.y < App->player2->position.y)position.x += speed / 2;
 			if (stopright == false)position.x += speed/2;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraleft.x + 1 < App->player2->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			//if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed / 2;
 			//else if (position.y < App->player2->position.y)position.x -= speed / 2;
 			if (stopleft == false)position.x -= speed/2;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->player2->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
@@ -682,13 +682,13 @@ update_status ModulePlayer:: Update()
 			//if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
 			//else if (position.y < App->player2->position.y)position.x -= speed/2;
 			if (stopleft == false)position.x -= speed/2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->player2->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			//if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
 			//else if (position.y < App->player2->position.y)position.x += speed/2;
 			if (stopright == false)position.x += speed/2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraleft.x + 1 < App->player2->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
@@ -798,12 +798,12 @@ update_status ModulePlayer:: Update()
 		if (flip == false) {
 			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed / 2;
 			else if (position.y < App->player2->position.y)position.x += speed / 2;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraleft.x + 1 < App->player2->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed/2;
 			else if (position.y < App->player2->position.y)position.x -= speed / 2;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->player2->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
@@ -837,12 +837,12 @@ update_status ModulePlayer:: Update()
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
 			else if (position.y < App->player2->position.y)position.x -= speed/2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->player2->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
 			else if (position.y < App->player2->position.y)position.x += speed/2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraleft.x + 1 < App->player2->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
@@ -1320,27 +1320,34 @@ void ModulePlayer::CheckState() {
 
 void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 
-	if (other->type == COLLIDER_ENEMY_SHOT) {
-		actual = A_HITTED;
-		if (hitted_timer == 0)hitted_timer = 1;
-	}
-	if (other->type == COLLIDER_WALL) {
-		if (position.x > 0) position.x = 670 - 23 * SCREEN_SIZE;
-		else position.x = 0;
-	}
-	if (other->type == COLLIDER_ENEMY) {
-		//if (position.x + 11 * SCREEN_SIZE > App->player2->position.x + 11 * SCREEN_SIZE) {
-			//position.x = App->player2->position.x + 23 * SCREEN_SIZE;
-		
-		if (flip == false) {
-			stopright = true;
-			//if (position.x + 10 > App->player2->position.x&&position.y==210)position.x = App->player2->position.x - 15 * SCREEN_SIZE;
+	if (player->type == COLLIDER_PLAYER) {
+		if (other->type == COLLIDER_ENEMY_SHOT) {
+			actual = A_HITTED;
+			if (hitted_timer == 0)hitted_timer = 1;
 		}
-		//}
-		else {
-			stopleft = true;//position.x = App->player2->position.x - 23 * SCREEN_SIZE;
-
-			//if (position.x - 10 < App->player2->position.x+23*SCREEN_SIZE&&position.y == 210)position.x = App->player2->position.x + 20 * SCREEN_SIZE;
+		if (other->type == COLLIDER_WALL) {
+			if (position.x > 0) position.x = other->rect.x - 23 * SCREEN_SIZE;
+			else position.x = other->rect.x + 1;
+		}
+		if (other->type == COLLIDER_ENEMY) {
+			//if (position.x + 11 * SCREEN_SIZE > App->player2->position.x + 11 * SCREEN_SIZE) {
+				//position.x = App->player2->position.x + 23 * SCREEN_SIZE;
+			//int difference = position.x - player->rect.x;
+			if (flip == false) {
+				stopright = true;
+				//position.x = difference+other->rect.x - player->rect.w;
+				position.x -= 1;
+				//position.x = other->rect.x-23*SCREEN_SIZE;
+				//if (position.x + 10 > App->player2->position.x&&position.y==210)position.x = App->player2->position.x - 15 * SCREEN_SIZE;
+			}
+			//}
+			else {
+				stopleft = true;//position.x = App->player2->position.x - 23 * SCREEN_SIZE;
+				//player.rect.x = other->rect.x + 23 * SCREEN_SIZE;
+				//position.x = difference+ other->rect.x + other->rect.w;
+				position.x += 1;
+				//if (position.x - 10 < App->player2->position.x+23*SCREEN_SIZE&&position.y == 210)position.x = App->player2->position.x + 20 * SCREEN_SIZE;
+			}
 		}
 	}
 }
