@@ -608,14 +608,14 @@ update_status ModulePlayer:: Update()
 			App->audio->PlayChunk(punchsound);
 			position.x = position.x - 40;
 			punch_timer = 2;
-		
+
 			if (flip == false) {
 				attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, this);
 			}
 			else {
 				attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, this);
 			}
-			
+		}
 		if (current_animation->GetFinished() == 1) {
 			punch_timer = 3;
 			position.x = position.x + 40;
@@ -728,8 +728,10 @@ update_status ModulePlayer:: Update()
 			punch_timer = 2;
 			if (flip == false) {
 				attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
-			}else{
+			}
+			else {
 				attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
+			}
 		}
 		if (current_animation->GetFinished() == 1) {
 			punch_timer = 3;
@@ -793,8 +795,10 @@ update_status ModulePlayer:: Update()
 			kick_timer = 2;
 			if (flip == false) {
 				attack = App->collision->AddCollider({ position.x + 40,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
-			}else{
+			}
+			else {
 				attack = App->collision->AddCollider({ position.x + 4,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
+			}
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
@@ -835,9 +839,10 @@ update_status ModulePlayer:: Update()
 			kick_timer = 2;
 			if (flip == false) {
 				attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
-			}else{
-				attack = App->collision->AddCollider({ position.x  + 1,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
-			
+			}
+			else {
+				attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
+			}
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
