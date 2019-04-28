@@ -879,7 +879,8 @@ update_status ModulePlayer2::Update()
 			App->UI->DamageTaken(2, 5);
 			hitted_timer = 2;
 		}
-		position.x -= 1;
+		if(flip==false)position.x -= 1;
+		else position.x += 1;
 		if (position.y == 130) {
 			mult = -1;
 		}
@@ -1345,5 +1346,8 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 				//if (position.x - 10 < App->player2->position.x+23*SCREEN_SIZE&&position.y == 210)position.x = App->player2->position.x + 20 * SCREEN_SIZE;
 			}
 		}
+	}
+	else {
+		if (other->type == COLLIDER_PLAYER) enemy->to_delete = true;
 	}
 }

@@ -929,7 +929,8 @@ update_status ModulePlayer:: Update()
 			App->UI->DamageTaken(1, 5);
 			hitted_timer = 2;
 		}
-		position.x -= 1;
+		if (flip == false)position.x -= 1;
+		else position.x += 1;
 		if (position.y == 130) {
 			mult = -1;
 		}
@@ -1365,27 +1366,34 @@ void ModulePlayer::CheckState() {
 
 void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 
-	if (other->type == COLLIDER_ENEMY_SHOT) {
-		actual = A_HITTED;
-		if (hitted_timer == 0)hitted_timer = 1;
-	}
-	if (other->type == COLLIDER_WALL) {
-		if (position.x > 0) position.x = 670 - 23 * SCREEN_SIZE;
-		else position.x = 0;
-	}
-	if (other->type == COLLIDER_ENEMY) {
-		//if (position.x + 11 * SCREEN_SIZE > App->player2->position.x + 11 * SCREEN_SIZE) {
-			//position.x = App->player2->position.x + 23 * SCREEN_SIZE;
-		
-		if (flip == false) {
-			stopright = true;
-			//if (position.x + 10 > App->player2->position.x&&position.y==210)position.x = App->player2->position.x - 15 * SCREEN_SIZE;
+	if (player->type == COLLIDER_PLAYER) {
+		if (other->type == COLLIDER_ENEMY_SHOT) {
+			actual = A_HITTED;
+			if (hitted_timer == 0)hitted_timer = 1;
 		}
-		//}
-		else {
-			stopleft = true;//position.x = App->player2->position.x - 23 * SCREEN_SIZE;
+		if (other->type == COLLIDER_WALL) {
+			if (position.x > 0) position.x = 670 - 23 * SCREEN_SIZE;
+			else position.x = 0;
+		}
+		if (other->type == COLLIDER_ENEMY) {
+			//if (position.x + 11 * SCREEN_SIZE > App->player2->position.x + 11 * SCREEN_SIZE) {
+				//position.x = App->player2->position.x + 23 * SCREEN_SIZE;
 
-			//if (position.x - 10 < App->player2->position.x+23*SCREEN_SIZE&&position.y == 210)position.x = App->player2->position.x + 20 * SCREEN_SIZE;
+			if (flip == false) {
+				stopright = true;
+				//if (position.x + 10 > App->player2->position.x&&position.y==210)position.x = App->player2->position.x - 15 * SCREEN_SIZE;
+			}
+			//}
+			else {
+				stopleft = true;//position.x = App->player2->position.x - 23 * SCREEN_SIZE;
+
+				//if (position.x - 10 < App->player2->position.x+23*SCREEN_SIZE&&position.y == 210)position.x = App->player2->position.x + 20 * SCREEN_SIZE;
+			}
+		}
+	}
+	else {
+		if (other->type == COLLIDER_ENEMY) {
+			player->to_delete = true;
 		}
 	}
 }
