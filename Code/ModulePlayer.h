@@ -117,12 +117,15 @@ public:
 	Animation punch;
 	Animation kick;
 	Animation jump;
+	Animation jumpforward;
+	Animation jumpbackward;
 	Animation tornado;
 	Animation hittedan;
 	Animation crouch;
 	Animation punchair;
 	Animation punchcrouch;
 	Animation kickair;
+	Animation kickcrouch;
 
 	iPoint position;
 	int mult;

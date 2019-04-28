@@ -46,13 +46,14 @@ ModulePlayer::ModulePlayer()
 	backward.speed = 0.2f;
 	
 	// Kick animation
-	kick.PushBack({ 1496, 158, 70, 102});
-	kick.PushBack({ 1568, 158, 80, 102});
-	kick.PushBack({ 1648, 158, 102, 102 });
-	kick.PushBack({ 1748, 158, 112, 102});
-	kick.PushBack({ 1856, 158, 84, 102});
-	kick.PushBack({ 1938, 158, 66, 102});
+	kick.PushBack({ 1506, 158, 70, 102});
+	kick.PushBack({ 1588, 158, 80, 102});
+	kick.PushBack({ 1674, 158, 104, 1 });
+	kick.PushBack({ 1799, 162, 122, 93});
+	kick.PushBack({ 1908, 15, 82, 97});
+	kick.PushBack({ 1996, 157, 66, 101});
 	kick.speed = 0.2f;
+
 	
 	
 	//crouch
@@ -80,9 +81,34 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 1590, 36, 84, 96 });
 	jump.PushBack({ 1692, 36, 80, 96 });
 	jump.PushBack({ 1794, 16, 68, 122 });
+	jump.speed = 0.1f;
+
+
+	// Jump Forward
+	jumpforward.PushBack({ 1788 , 23 , 71 , 113});
+	jumpforward.PushBack({ 1788 , 23 , 71 , 113 });
+	jumpforward.PushBack({ 1680 , 36 , 92 , 95 });
+	jumpforward.PushBack({2063 , 58 , 86 , 70  });
+	jumpforward.PushBack({2167 , 71 , 84 , 68  });
+	jumpforward.PushBack({2270 , 65 , 76 , 83  });
+	jumpforward.PushBack({2388 , 68 , 86 , 64  });
+
+	jumpforward.PushBack({ 1680 , 36 , 92 , 95 });
+	jumpforward.speed = 0.1f;
+
+
+	// Jump backwards
+	jumpbackward.PushBack({ 1512 , 18 , 62 , 113 });
+	jumpbackward.PushBack({ 1512 , 18 , 62 , 113 });
+	jumpbackward.PushBack({ 1680 , 36 , 92 , 95 });
+	jumpbackward.PushBack({ 2388 , 68 , 86 , 64 });
+	jumpbackward.PushBack({ 2270 , 65 , 76 , 83 });
+	jumpbackward.PushBack({ 2167 , 71 , 84 , 68 });
+	jumpbackward.PushBack({ 2063 , 58 , 86 , 70 });
+	jumpbackward.PushBack({ 1680 , 36 , 92 , 95 });
 	
 
-	jump.speed = 0.1f;
+	jumpbackward.speed = 0.1f;
 
 	//Tornado
 	////////////Animation tornado;
@@ -136,7 +162,12 @@ ModulePlayer::ModulePlayer()
 	kickair.speed = 0.2f;
 
 	///////////Kick crouch;
-
+	kickcrouch.PushBack({ 27 , 847 , 72 , 121});
+	kickcrouch.PushBack({ 128 , 847 , 81 ,121 });
+	kickcrouch.PushBack({ 210 , 847 , 102 ,121 });
+	kickcrouch.PushBack({ 340 , 847 , 102 ,121 });
+	kickcrouch.PushBack({ 482 , 847 , 79 ,121 });
+	kickcrouch.speed = 0.2f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -372,7 +403,7 @@ update_status ModulePlayer:: Update()
 		position.y -= speed * mult;
 		break;
 	case A_JUMP_FORWARD:
-		current_animation = &jump;
+		current_animation = &jumpforward;
 		body->SetPos(position.x + 10, (position.y - 90));
 		body2->SetPos(position.x + 12, (position.y - 69));
 		body3->SetPos(position.x + 5, (position.y - 55));
@@ -386,7 +417,7 @@ update_status ModulePlayer:: Update()
 		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
 		break;
 	case A_JUMP_BACKWARD:
-		current_animation = &jump;
+		current_animation = &jumpbackward;
 		body->SetPos(position.x + 10, (position.y - 90));
 		body2->SetPos(position.x + 12, (position.y - 69));
 		body3->SetPos(position.x + 5, (position.y - 55));
