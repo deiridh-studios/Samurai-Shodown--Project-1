@@ -836,7 +836,7 @@ update_status ModulePlayer:: Update()
 		}
 		break;
 	case A_KICK_CROUCH:
-		//current_animation = &kickcrouch;
+		current_animation = &kickcrouch;
 		if (flip == false) {
 			body->SetPos(position.x + 50, (position.y - 65));
 			body2->SetPos(position.x + 67, (position.y - 50));
