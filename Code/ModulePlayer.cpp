@@ -929,7 +929,12 @@ update_status ModulePlayer:: Update()
 			App->UI->DamageTaken(1, 5);
 			hitted_timer = 2;
 		}
-		position.x -= 1;
+		if (flip == false) {
+			position.x -= 1;
+		}
+		else if (flip == true) {
+			position.x += 1;
+		}
 		if (position.y == 130) {
 			mult = -1;
 		}
