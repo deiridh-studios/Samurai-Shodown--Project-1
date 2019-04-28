@@ -125,6 +125,7 @@ public:
 	Animation punchair;
 	Animation punchcrouch;
 	Animation kickair;
+	Animation kickcrouch;
 
 	iPoint position;
 	int mult;
