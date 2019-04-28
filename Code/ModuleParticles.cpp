@@ -100,8 +100,11 @@ update_status ModuleParticles::Update()
 
 		if (p == nullptr)
 			continue;
-
-		if (p->Update() == false)
+		if (p->speed.x==0&&p->anim.GetFinished() == 1) {
+			delete p;
+			active[i] = nullptr;
+		}
+		else if (p->Update() == false)
 		{
 			delete p;
 			active[i] = nullptr;
@@ -129,7 +132,12 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->born = (int)SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
-			if (App->player->flip == true)p->speed.x = 0 - p->speed.x;
+			if (collider_type == COLLIDER_PLAYER_SHOT) {
+				if (App->player->flip == true)p->speed.x = 0 - p->speed.x;
+			}
+			else if (collider_type == COLLIDER_ENEMY_SHOT) {
+				if (App->player2->flip == true)p->speed.x = 0 - p->speed.x;
+			}
 			if (collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
@@ -157,7 +165,14 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			}*/
 		}
 		else if (c2->type == COLLIDER_PLAYER){
-
+			if (active[i] != nullptr && active[i]->collider == c1)
+			{
+				delete active[i];
+				active[i] = nullptr;
+				AddParticle(tornado2, App->player->position.x + 10, 0, COLLIDER_NONE, 0);
+				//active[i]->speed.x = 0;
+				break;
+			}
 			}
 	}
 }
