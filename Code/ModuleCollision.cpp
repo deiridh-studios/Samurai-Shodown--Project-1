@@ -95,7 +95,6 @@ update_status ModuleCollision::Update()
 {
 
 	DebugDraw();
-
 	return UPDATE_CONTINUE;
 }
 

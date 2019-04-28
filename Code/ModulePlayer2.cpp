@@ -414,7 +414,7 @@ update_status ModulePlayer2::Update()
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
 			position.x = position.x - 20;
-			enemyattack = App->collision->AddCollider({ position.x,(position.y - 90),65,20 }, COLLIDER_PLAYER_SHOT, this);
+			enemyattack = App->collision->AddCollider({ position.x,(position.y - 90),65,20 }, COLLIDER_ENEMY_SHOT, this);
 			kick_timer = 2;
 		}
 		if (current_animation->GetFinished() == 1) {

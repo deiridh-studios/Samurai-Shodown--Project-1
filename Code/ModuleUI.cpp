@@ -68,8 +68,6 @@ update_status ModuleUI::Update() {
 		App->input->space = true;
 		App->player->victory = true;
 	}
-
-
 	//SDL_RenderCopy(renderer, textlife, NULL, &lifebarplayer1);
 	return UPDATE_CONTINUE;
 }

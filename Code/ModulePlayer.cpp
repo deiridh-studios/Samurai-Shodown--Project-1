@@ -573,14 +573,17 @@ update_status ModulePlayer:: Update()
 				attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
 			else {
-				attack = App->collision->AddCollider({ position.x - 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
+				position.x = position.x - 20;
+				attack = App->collision->AddCollider({ position.x,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
 		}
+
 		if (current_animation->GetFinished() == 1) {
 			punch_timer = 3;
 			attack->to_delete = true;
 		}
 		break;
+
 	case A_PUNCH_NEUTRAL_JUMP:
 
 		current_animation = &punchair;
