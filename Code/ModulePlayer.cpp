@@ -573,7 +573,7 @@ update_status ModulePlayer:: Update()
 				attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
 			else {
-				attack = App->collision->AddCollider({ position.x - 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
+				attack = App->collision->AddCollider({ position.x +1,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
 		}
 		if (current_animation->GetFinished() == 1) {
