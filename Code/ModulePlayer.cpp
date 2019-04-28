@@ -702,8 +702,15 @@ update_status ModulePlayer:: Update()
 		}
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
-			attack = App->collision->AddCollider({ position.x + 40,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, this);
 			punch_timer = 2;
+			if (flip == false) {
+
+				attack = App->collision->AddCollider({ position.x + 40,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, this);
+			}
+			else{
+				attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, this);
+
+			
 		}
 		if (current_animation->GetFinished() == 1) {
 			attack->to_delete = true;
@@ -885,7 +892,7 @@ update_status ModulePlayer:: Update()
 				attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
 			}
 			else {
-				attack = App->collision->AddCollider({ position.x + 3,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
+				attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
 
 			}
 		}
@@ -913,7 +920,7 @@ update_status ModulePlayer:: Update()
 			if (flip == false) {
 				attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
 			}
-			else {
+			if(flip == true) {
 				attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
 			}
 		}
