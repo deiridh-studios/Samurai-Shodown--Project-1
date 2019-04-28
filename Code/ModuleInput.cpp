@@ -14,6 +14,7 @@ ModuleInput::~ModuleInput()
 // Called before render is available
 bool ModuleInput::Init()
 {
+	
 	LOG("Init SDL input event system");
 	bool ret = true;
 	SDL_Init(0);
@@ -33,7 +34,12 @@ bool ModuleInput::Init()
 // Called every draw update
 update_status ModuleInput::PreUpdate()
 {
+	SDL_Event quitevent;
+	SDL_PollEvent(&quitevent);
+	if(quitevent.type==SDL_QUIT)return update_status::UPDATE_STOP;
 	SDL_PumpEvents();
+	//quitevent = SDL_GetEventState(SDL_QUIT);
+	//if (quitevent != SDL_ENABLE) return update_status::UPDATE_STOP;
 	keyboard = SDL_GetKeyboardState(NULL);
 	for (int i = 4; i < 285; i++) {
 		if (keyboard[i] == 1) {
