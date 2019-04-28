@@ -79,7 +79,8 @@ ModulePlayer::ModulePlayer()
 	punch.speed = 0.2f;
 
 	// Jump
-	jump.PushBack({ 1446, 16, 66, 122 });
+	//jump.PushBack({ 1446, 16, 66, 122 });
+	jump.PushBack({ 1510, 16, 66, 122 });
 	jump.PushBack({ 1510, 16, 66, 122 });
 	jump.PushBack({ 1590, 36, 84, 96 });
 	jump.PushBack({ 1692, 36, 80, 96 });
