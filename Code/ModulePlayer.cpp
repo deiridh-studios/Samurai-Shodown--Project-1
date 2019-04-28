@@ -46,12 +46,12 @@ ModulePlayer::ModulePlayer()
 	backward.speed = 0.2f;
 	
 	// Kick animation(TO IMPROVE)
-	kick.PushBack({ 1496, 158, 70, 102});
-	kick.PushBack({ 1578, 158, 80, 102});
-	kick.PushBack({ 1664, 158, 104, 1 });
-	kick.PushBack({ 1789, 162, 122, 93});
-	kick.PushBack({ 1887, 158, 82, 97});
-	kick.PushBack({ 1969, 157, 70, 101});
+	kick.PushBack({ 1497, 159, 67, 100});
+	kick.PushBack({ 1569, 159, 83, 100});
+	kick.PushBack({ 1659, 159, 102, 100});
+	kick.PushBack({ 1764, 159, 113, 100});
+	kick.PushBack({ 1887, 159, 84, 100});
+	kick.PushBack({ 1975, 159, 67, 100});
 	kick.speed = 0.2f;
 
 	
