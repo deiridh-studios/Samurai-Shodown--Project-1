@@ -129,7 +129,7 @@ ModulePlayer::ModulePlayer()
 	tornado.PushBack({ 0, 2526, 90, 96});
 	tornado.PushBack({ 154, 2498, 90, 126});
 	tornado.PushBack({ 300, 2514, 90, 110});
-	tornado.speed = 0.1f;
+	tornado.speed = 0.2f;
 
 	////////////Animation hitted;
 	hittedan.PushBack({ 254, 30, 90, 102 });
@@ -179,7 +179,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/spritesHaohmaruFIXED.png"); // arcade version
-	graphics2 = App->textures->Load("sprites/Haohfix1(tornado apart).png");
+	graphics2 = App->textures->Load("sprites/spritesHaohmaruFIXED.png");
 	punchsound = App->audio->LoadChunk("Audio_FX/Punch.wav");
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
