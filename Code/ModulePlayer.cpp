@@ -147,7 +147,7 @@ ModulePlayer::ModulePlayer()
 	punchair.PushBack({1476 , 530 , 132 , 115});
 	punchair.PushBack({1611 , 530 , 126 , 115});
 	punchair.PushBack({1767 , 530 , 93 ,  115});
-	punchair.speed = 0.2f;
+	punchair.speed = 0.25f;
 
 	////////////Punch crouch;
 	punchcrouch.PushBack({1146 , 396 , 93 , 70});
@@ -157,13 +157,13 @@ ModulePlayer::ModulePlayer()
 	punchcrouch.PushBack({1617 , 412 , 130 , 74});
 	punchcrouch.PushBack({1748 , 414 , 97 , 72});
 	punchcrouch.PushBack({1838 , 419 , 82 , 64});
-	punchcrouch.speed = 0.2f;
+	punchcrouch.speed = 0.3f;
 
 	////////////Kick jumping;
 	kickair.PushBack({117 , 863 , 91 , 108});
 	kickair.PushBack({207 , 863 , 107 , 91});
 	kickair.PushBack({333 , 863 , 112 , 93});
-	kickair.speed = 0.2f;
+	kickair.speed = 0.25f;
 
 	///////////Kick crouch;
 	kickcrouch.PushBack({ 26 , 849, 72, 113});
@@ -171,7 +171,7 @@ ModulePlayer::ModulePlayer()
 	kickcrouch.PushBack({ 211 ,849 , 102, 113});
 	kickcrouch.PushBack({ 341 ,849 , 100,  113});
 	kickcrouch.PushBack({ 482 ,849 , 80, 113});
-	kickcrouch.speed = 0.2f;
+	kickcrouch.speed = 0.3f;
 
 	
 }
