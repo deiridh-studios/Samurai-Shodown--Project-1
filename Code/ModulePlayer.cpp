@@ -461,10 +461,10 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) {
-			mult = -1;
+		if (position.y <= 80) {
+			mult = -2;
 		}
 		position.y -= speed * mult;
 		break;
@@ -483,18 +483,18 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) mult = -1;
+		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
-			else if (position.y < App->player2->position.y)position.x += speed;
+			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed / 2;
+			else if (position.y < App->player2->position.y)position.x += speed / 2;
 			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
-			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
-			else if (position.y < App->player2->position.y)position.x -= speed;
+			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed / 2;
+			else if (position.y < App->player2->position.y)position.x -= speed / 2;
 			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		break;
@@ -514,9 +514,9 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) mult = -1;
+		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
@@ -585,10 +585,10 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) {
-			mult = -1;
+		if (position.y <= 80) {
+			mult = -2;
 		}
 		position.y -= speed * mult;
 		if (punch_timer == 1) {
@@ -618,18 +618,18 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) mult = -1;
+		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
-			else if (position.y < App->player2->position.y)position.x += speed;
+			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed / 2;
+			else if (position.y < App->player2->position.y)position.x += speed / 2;
 			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
-			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
-			else if (position.y < App->player2->position.y)position.x -= speed;
+			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed / 2;
+			else if (position.y < App->player2->position.y)position.x -= speed / 2;
 			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		if (punch_timer == 1) {
@@ -657,9 +657,9 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) mult = -1;
+		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
@@ -741,10 +741,10 @@ update_status ModulePlayer:: Update()
 		}
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) {
-			mult = -1;
+		if (position.y <= 80) {
+			mult = -2;
 		}
 		position.y -= speed * mult;
 		if (kick_timer == 1) {
@@ -772,18 +772,18 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) mult = -1;
+		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
-			else if (position.y < App->player2->position.y)position.x += speed;
+			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed / 2;
+			else if (position.y < App->player2->position.y)position.x += speed / 2;
 			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
-			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
-			else if (position.y < App->player2->position.y)position.x -= speed;
+			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed/2;
+			else if (position.y < App->player2->position.y)position.x -= speed / 2;
 			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		if (kick_timer == 1) {
@@ -811,9 +811,9 @@ update_status ModulePlayer:: Update()
 
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
-			mult = 1;
+			mult = 2;
 		}
-		if (position.y == 80) mult = -1;
+		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
