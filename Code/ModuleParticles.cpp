@@ -60,7 +60,7 @@ bool ModuleParticles::Start()
 	tornado.anim.PushBack({ 674, 2970, 46, 216 });
 	tornado.anim.speed = 0.2f;
 	tornado.speed.x = 5;
-	tornado.life = 3000;
+	tornado.life = 2300;
 
 	return true;
 }
@@ -136,11 +136,14 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			delete active[i];
-			active[i] = nullptr;
+			active[i]->speed.x=0;
+			
 			break;
 		}
-		
+		/*if (active[i]->anim.current_frame == active[i]->anim.last_frame) {
+			delete active[i];
+			active[i] = nullptr;
+		}*/
 	}
 }
 
