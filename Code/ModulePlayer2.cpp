@@ -8,7 +8,6 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "Modulebackground.h"
-#include "ModuleUI.h"
 #include "SDL/include/SDL_timer.h"
 
 ModulePlayer2::ModulePlayer2()
@@ -760,7 +759,6 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 	//
 	if (other->type == COLLIDER_PLAYER_SHOT) {
 		actual3 = A_HITTED;
-		App->UI->DamageTaken(2, 5);
 		//if (hitted_timer == 0)hitted_timer = 1;
 	}
 }
