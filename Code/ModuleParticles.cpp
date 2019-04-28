@@ -39,11 +39,13 @@ bool ModuleParticles::Start()
 	tornado.anim.PushBack({ 1436, 2660, 98, 100 });
 	tornado.anim.PushBack({ 1580, 2660, 92, 100 });
 	tornado.anim.PushBack({ 1730, 2660, 86, 100 });
-	tornado.anim.PushBack({ 1872, 874, 82, 100 });
+	tornado.anim.PushBack({ 1872, 2660, 82, 100 });
 	tornado.anim.PushBack({ 16, 2756, 71, 220 });
 	tornado.anim.PushBack({ 154, 2756, 71, 220 });
 	tornado.anim.PushBack({ 308, 2756, 71, 220});
 	tornado.anim.PushBack({ 452, 2756, 71, 220});
+
+
 	tornado.anim.PushBack({ 584, 2756, 71, 220});
 	tornado.anim.PushBack({ 730, 2756, 71, 220});
 	tornado.anim.PushBack({ 874, 2756, 71, 220});
