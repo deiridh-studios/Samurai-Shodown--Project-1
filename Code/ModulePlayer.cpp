@@ -52,7 +52,7 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 1764, 159, 113, 100});
 	kick.PushBack({ 1887, 159, 84, 100});
 	kick.PushBack({ 1975, 159, 67, 100});
-	kick.speed = 0.2f;
+	kick.speed = 0.3f;
 
 	
 	
@@ -76,7 +76,7 @@ ModulePlayer::ModulePlayer()
 	punch.PushBack({ 1457, 2165, 127, 103 }); 
 	punch.PushBack({ 1583, 2160, 141, 97 });
 	punch.PushBack({ 1721, 2137, 79, 120 });
-	punch.speed = 0.2f;
+	punch.speed = 0.4f;
 
 	// Jump
 	//jump.PushBack({ 1446, 16, 66, 122 });
@@ -141,13 +141,13 @@ ModulePlayer::ModulePlayer()
 	hittedan.speed = 0.1f;
 
 	////////////Punch jumping;
-	punchair.PushBack({1116 , 522 , 142 , 111});
-	punchair.PushBack({1248 , 532 , 111 , 103});
-	punchair.PushBack({1350 , 527 , 122 , 108});
-	punchair.PushBack({1466 , 521 , 113 , 140});
-	punchair.PushBack({1610 , 526 , 113 , 140});
-	punchair.PushBack({1755 , 533 , 113 , 140});
-	punchair.speed = 0.2f;
+	punchair.PushBack({1125 , 530 , 102 , 115});
+	punchair.PushBack({1272 , 530 , 69 ,  115});
+	punchair.PushBack({1374 , 530 , 102 , 115});
+	punchair.PushBack({1476 , 530 , 132 , 115});
+	punchair.PushBack({1611 , 530 , 126 , 115});
+	punchair.PushBack({1767 , 530 , 93 ,  115});
+	punchair.speed = 0.25f;
 
 	////////////Punch crouch;
 	punchcrouch.PushBack({1146 , 396 , 93 , 70});
@@ -157,13 +157,13 @@ ModulePlayer::ModulePlayer()
 	punchcrouch.PushBack({1617 , 412 , 130 , 74});
 	punchcrouch.PushBack({1748 , 414 , 97 , 72});
 	punchcrouch.PushBack({1838 , 419 , 82 , 64});
-	punchcrouch.speed = 0.2f;
+	punchcrouch.speed = 0.3f;
 
 	////////////Kick jumping;
 	kickair.PushBack({117 , 863 , 91 , 108});
 	kickair.PushBack({207 , 863 , 107 , 91});
 	kickair.PushBack({333 , 863 , 112 , 93});
-	kickair.speed = 0.2f;
+	kickair.speed = 0.25f;
 
 	///////////Kick crouch;
 	kickcrouch.PushBack({ 26 , 849, 72, 113});
@@ -171,7 +171,7 @@ ModulePlayer::ModulePlayer()
 	kickcrouch.PushBack({ 211 ,849 , 102, 113});
 	kickcrouch.PushBack({ 341 ,849 , 100,  113});
 	kickcrouch.PushBack({ 482 ,849 , 80, 113});
-	kickcrouch.speed = 0.2f;
+	kickcrouch.speed = 0.3f;
 
 	
 }
