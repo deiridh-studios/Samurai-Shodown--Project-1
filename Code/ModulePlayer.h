@@ -147,6 +147,7 @@ public:
 	int hitted_timer;
 	int inputsouts;
 	bool victory;
+	bool flip;
 
 };
 

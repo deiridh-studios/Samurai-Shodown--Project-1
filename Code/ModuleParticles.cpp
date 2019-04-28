@@ -137,7 +137,6 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 			active[i]->speed.x=0;
-			
 			break;
 		}
 		/*if (active[i]->anim.current_frame == active[i]->anim.last_frame) {

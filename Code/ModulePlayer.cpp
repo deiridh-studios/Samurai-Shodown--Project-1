@@ -204,6 +204,7 @@ bool ModulePlayer::Start()
 	tornado_timer = 0;
 	inputsouts = 0;
 	victory = false;
+	flip = false;
 	App->render->camera.x = App->render->camera.y = 0;
 	return ret;
 }
@@ -222,6 +223,8 @@ bool ModulePlayer::CleanUp() {
 }
 
 update_status ModulePlayer::PreUpdate() {
+	if (position.x > App->player2->position.x&&position.y == 210)flip = true;
+	else if (position.x < App->player2->position.x&&position.y == 210)flip = false;
 	for (int i = 59; i > 0; i--)inputstate[i] = inputstate[i - 1];
 	inputstate[0] = S_NONE;
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout[i] = SO_NONE;
@@ -230,19 +233,29 @@ update_status ModulePlayer::PreUpdate() {
 		//CHECK LEFT AND RIGHT//
 		bool left = false;
 		bool right = false;
-		if (App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_D] == KEY_REPEAT)right = true;
-		if (App->input->keyboardstate[SDL_SCANCODE_A] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_A] == KEY_REPEAT)left = true;
+		if (App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_D] == KEY_REPEAT) {
+			if (flip == true) left = true;
+			else right = true;
+		}
+		if (App->input->keyboardstate[SDL_SCANCODE_A] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_A] == KEY_REPEAT) {
+			if (flip == true) right = true;
+			else left = true;
+		}
 		if (right == true && left == true)inputstate[0] = S_LEFT_AND_RIGHT;
 		else if (right == true)inputstate[0] = S_RIGHT_DOWN;//App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PUSHED) {inputstate[0] = S_RIGHT_DOWN; LOG("RIGHT_DOWN\n");}
 		else if (App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PULLED) {
-			inputstateout[inputsouts] = SO_RIGHT_UP;
-			if (inputstate[0] == S_RIGHT_DOWN)inputstate[0] = S_NONE;
+			if(flip==true)inputstateout[inputsouts] = SO_LEFT_UP;
+			else inputstateout[inputsouts] = SO_RIGHT_UP;
+			if (inputstate[0] == S_RIGHT_DOWN&&flip==false)inputstate[0] = S_NONE;
+			else if(inputstate[0] == S_LEFT_DOWN && flip == true)inputstate[0] = S_NONE;
 			inputsouts++;
 		}
 		else if (left == true)/*(App->input->keyboardstate[SDL_SCANCODE_A] == KEY_PUSHED)*/ inputstate[0] = S_LEFT_DOWN;
 		else if (App->input->keyboardstate[SDL_SCANCODE_A] == KEY_PULLED) {
-			inputstateout[inputsouts] = SO_LEFT_UP;
-			if (inputstate[0] == S_LEFT_DOWN)inputstate[0] = S_NONE;
+			if (flip == true)inputstateout[inputsouts] = SO_RIGHT_UP;
+			else inputstateout[inputsouts] = SO_LEFT_UP;
+			if (inputstate[0] == S_LEFT_DOWN&&flip==false)inputstate[0] = S_NONE;
+			else if (inputstate[0] == S_RIGHT_DOWN && flip == true)inputstate[0] = S_NONE;
 			inputsouts++;
 		}
 
@@ -377,16 +390,28 @@ update_status ModulePlayer:: Update()
 		body->SetPos(position.x + 18, (position.y - 80));
 		body2->SetPos(position.x + 20, (position.y - 57));
 		body3->SetPos(position.x + 10, (position.y - 40)); 
-		if ((position.x+23*SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
-		if ((App->background->cameraleft.x < position.x)&&(App->background->cameraright.x<670))App->render->camera.x -= speed;// *1.25;
+		if (flip == false) {
+			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+		}
+		else {
+			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+		}
 		break;
 	case A_WALK_BACKWARD:
 		current_animation = &backward;
 		body->SetPos(position.x + 18, (position.y - 80));
 		body2->SetPos(position.x + 20, (position.y - 57));
 		body3->SetPos(position.x + 10, (position.y - 40));
-		if (position.x >App->background->cameraleft.x) position.x -= speed / 2;
-		if ((App->background->cameraleft.x > 0)&&(App->background->cameraright.x>(App->player2->position.x+(23*SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		if (flip == false) {
+			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		}
+		else {
+			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+		}
 		break;
 	case A_JUMP_NEUTRAL:
 		current_animation = &jump;
@@ -413,9 +438,15 @@ update_status ModulePlayer:: Update()
 		}
 		if (position.y == 80) mult = -1;
 		position.y -= speed * mult;
-		if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
-		else if (position.y > App->player2->position.y - 50)position.x += speed;
-		if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+		if (flip == false) {
+			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+			else if (position.y < App->player2->position.y)position.x += speed;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+		}
+		else {
+			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+		}
 		break;
 	case A_JUMP_BACKWARD:
 		current_animation = &jumpbackward;
@@ -428,8 +459,14 @@ update_status ModulePlayer:: Update()
 		}
 		if (position.y == 80) mult = -1;
 		position.y -= speed * mult;
-		if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
-		if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		if (flip == false) {
+			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		}
+		else {
+			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+		}
 		break;
 	case A_CROUCH:
 		current_animation = &crouch;
@@ -495,8 +532,14 @@ update_status ModulePlayer:: Update()
 		}
 		if (position.y == 80) mult = -1;
 		position.y -= speed * mult;
-		if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
-		if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+		if (flip == false) {
+			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+		}
+		else {
+			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+		}
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
 			attack = App->collision->AddCollider({ position.x + 70,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, this);
@@ -518,8 +561,14 @@ update_status ModulePlayer:: Update()
 		}
 		if (position.y == 80) mult = -1;
 		position.y -= speed * mult;
-		if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
-		if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		if (flip == false) {
+			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		}
+		else {
+			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+		}
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
 			attack = App->collision->AddCollider({ position.x + 40,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, this);
@@ -594,8 +643,14 @@ update_status ModulePlayer:: Update()
 		}
 		if (position.y == 80) mult = -1;
 		position.y -= speed * mult;
-		if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
-		if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+		if (flip == false) {
+			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+		}
+		else {
+			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+		}
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
 			attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
@@ -617,8 +672,14 @@ update_status ModulePlayer:: Update()
 		}
 		if (position.y == 80) mult = -1;
 		position.y -= speed * mult;
-		if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
-		if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		if (flip == false) {
+			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+		}
+		else {
+			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+		}
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
 			attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, this);
@@ -777,7 +838,10 @@ update_status ModulePlayer:: Update()
 		// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();		
 
-	if(actual!=A_TORNADO)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	if (actual != A_TORNADO) {
+		if(flip==false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+		else App->render->Blit(graphics, position.x, position.y - r.h, &r,1.0F,true,true);
+	}
 	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
 	//if (godmode == true) { LOG("TRUE\n"); }
 	//else LOG("TRUE\n");
