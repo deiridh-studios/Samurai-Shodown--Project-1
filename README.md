@@ -8,7 +8,6 @@ In the next link you will find all the game information and documentation in the
 
 https://github.com/deiridh-studios/Samurai-Shodown--Project-1/wiki
 
-Un die'
 
 ## Installation
 
@@ -52,24 +51,12 @@ Release history:
     In this version both characters have colliders that the user can see, but these are not working with the movements of the character only if they touch each other when they move left or right. We already have the hitted animation and we added an special attack for the first character(left). We have some problems with the sprites of the special movement and with it particles they work slow and the character turns smaller than it should be.
     
 
-- Fix animations(changes on the sprites and animations).
+- Fix animations, V0.39:
+    This was a improvements with the sprites and movements of both characters, fixing times and sprites order.
+	
 
-
-- Timer(timer implemented during de battle and scene change when it ends).
-
-
-
-
-Samurai Shodown is the first game of this series from SNK, released in 1993, becoming really popular and a total success. 
-It can be played in different platforms such as Neo Geo, Neo-Geo CD, SNES and Gameboy.
-
-It is a versus fighting game set in the late 18th century. Considered to be the first 2D weapons fighter, with a big 
-variety of characters from around the world and with different stories behind them.
-
-The story of the game goes around Ambrosia, the god of darkness, who wants to spread chaos and revives Amakusa as a demon.
-Amakusa, then steals the “Palenque” stone from Green Hell to bring Ambrosia to the living world. So the objective of the 
-game is, through a tournament, defeat the most powerful fighters in the world in order to arrive to Amakusa and stop him be
-fore he achieves to revive Ambrosia who with all his power will rule the world. 
+- Timer, V0.42:
+    Now with the timer added you will have tu hurry up if you want to end the life's oponent before the time ends, when it does the battle will be ended and the final scene will appear to congratulate the players. 
 
 ## Credits
 
@@ -91,5 +78,10 @@ fore he achieves to revive Ambrosia who with all his power will rule the world.
 
 ## License
 
-SDL 2.0 is distributed under the zlib license. This license allows you to use SDL freely in any software.
+SDL 2.0 is distributed under the zlib license. This license allows you to use SDL freely in any software. 
+Along the SDL 2.0 license you will be ablo to use de SDL_mixer 2.0 library and the SDL_image.
+
+Here is the documentation of the following libraries:
+-SDL_mixer 2.0: https://www.libsdl.org/projects/SDL_mixer/
+-SDL_image: https://www.libsdl.org/projects/SDL_image/docs/index.html
 
