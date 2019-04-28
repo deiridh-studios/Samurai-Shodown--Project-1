@@ -29,6 +29,7 @@ Player 2:
 
 You can combine differents keys to make differents movements as crouch-kick or crouch-slash, jumping-kick or jumping-slash and any action during the movement of the character.
 
+Finally your character has an extra ablity that will throw an special attack: this can be used with the combo crouch, crouch+move forward and move forward+punch.
 
 
 ## History
