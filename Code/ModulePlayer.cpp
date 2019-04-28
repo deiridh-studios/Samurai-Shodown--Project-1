@@ -414,6 +414,7 @@ update_status ModulePlayer:: Update()
 		if (position.y == 80) mult = -1;
 		position.y -= speed * mult;
 		if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+		else if (position.y > App->player2->position.y - 50)position.x += speed;
 		if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
 		break;
 	case A_JUMP_BACKWARD:
