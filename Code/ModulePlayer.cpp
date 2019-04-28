@@ -46,12 +46,12 @@ ModulePlayer::ModulePlayer()
 	backward.speed = 0.2f;
 	
 	// Kick animation(TO IMPROVE)
-	kick.PushBack({ 1496, 158, 70, 102});
-	kick.PushBack({ 1578, 158, 80, 102});
-	kick.PushBack({ 1664, 158, 104, 1 });
-	kick.PushBack({ 1789, 162, 122, 93});
-	kick.PushBack({ 1887, 158, 82, 97});
-	kick.PushBack({ 1969, 157, 70, 101});
+	kick.PushBack({ 1498, 155, 64, 103});
+	kick.PushBack({ 1570, 161, 82, 96});
+	kick.PushBack({ 1660, 163, 100,93  });
+	kick.PushBack({ 1765, 169, 114, 95});
+	kick.PushBack({ 1889, 161, 80, 95});
+	kick.PushBack({ 1976, 161, 65, 96});
 	kick.speed = 0.2f;
 
 	
@@ -97,7 +97,7 @@ ModulePlayer::ModulePlayer()
 	jumpforward.PushBack({2388 , 68 , 86 , 64  });
 
 	jumpforward.PushBack({ 1680 , 36 , 92 , 95 });
-	jumpforward.speed = 0.1f;
+	jumpforward.speed = 0.11f;
 
 
 	// Jump backwards
@@ -111,7 +111,7 @@ ModulePlayer::ModulePlayer()
 	jumpbackward.PushBack({ 1680 , 36 , 92 , 95 });
 	
 
-	jumpbackward.speed = 0.1f;
+	jumpbackward.speed = 0.11f;
 
 	//Tornado
 	////////////Animation tornado;
@@ -694,7 +694,7 @@ update_status ModulePlayer:: Update()
 		}
 		break;
 	case A_KICK_CROUCH:
-		//current_animation = &kickcrouch;
+		 current_animation = &kickcrouch;
 		body->SetPos(position.x + 50, (position.y - 65));
 		body2->SetPos(position.x + 67, (position.y - 50));
 		body3->SetPos(position.x + 47, (position.y - 35));
