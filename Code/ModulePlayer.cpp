@@ -79,7 +79,8 @@ ModulePlayer::ModulePlayer()
 	punch.speed = 0.2f;
 
 	// Jump
-	jump.PushBack({ 1446, 16, 66, 122 });
+	//jump.PushBack({ 1446, 16, 66, 122 });
+	jump.PushBack({ 1510, 16, 66, 122 });
 	jump.PushBack({ 1510, 16, 66, 122 });
 	jump.PushBack({ 1590, 36, 84, 96 });
 	jump.PushBack({ 1692, 36, 80, 96 });
@@ -572,14 +573,17 @@ update_status ModulePlayer:: Update()
 				attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
 			else {
-				attack = App->collision->AddCollider({ position.x - 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
+				position.x = position.x - 20;
+				attack = App->collision->AddCollider({ position.x,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
 		}
+
 		if (current_animation->GetFinished() == 1) {
 			punch_timer = 3;
 			attack->to_delete = true;
 		}
 		break;
+
 	case A_PUNCH_NEUTRAL_JUMP:
 
 		current_animation = &punchair;
@@ -699,9 +703,9 @@ update_status ModulePlayer:: Update()
 	case A_PUNCH_CROUCH:
 		current_animation = &punchcrouch;
 		if (flip == false) {
-			body->SetPos(position.x + 50, (position.y - 65));
-			body2->SetPos(position.x + 67, (position.y - 50));
-			body3->SetPos(position.x + 47, (position.y - 35));
+			body->SetPos(position.x + 35, (position.y - 65));
+			body2->SetPos(position.x + 52, (position.y - 50));
+			body3->SetPos(position.x + 32, (position.y - 35));
 		}
 		else {
 			body->SetPos(position.x + 50, (position.y - 65));
