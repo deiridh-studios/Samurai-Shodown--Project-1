@@ -133,10 +133,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2, int x)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		tornado.speed.x = 0;
+		
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			
+			tornado.speed.x = 0;
 			/*delete active[i];
 			active[i] = nullptr;*/
 			break;
