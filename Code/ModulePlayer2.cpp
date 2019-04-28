@@ -755,6 +755,10 @@ void ModulePlayer2::CheckState() {
 	}
 }
 
-void ModulePlayer2::OnCollision(Collider* enemy, Collider* player) {
+void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 	//
+	if (other->type == COLLIDER_PLAYER_SHOT) {
+		actual3 = A_HITTED;
+		//if (hitted_timer == 0)hitted_timer = 1;
+	}
 }
