@@ -129,16 +129,15 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	}
 }
 
-void ModuleParticles::OnCollision(Collider* c1, Collider* c2, int x)
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		tornado.speed.x = 0;
+		
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			
-			/*delete active[i];
-			active[i] = nullptr;*/
+			delete active[i];
+			active[i] = nullptr;
 			break;
 		}
 		
