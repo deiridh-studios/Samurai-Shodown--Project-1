@@ -48,7 +48,7 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 1568, 158, 80, 102});
 	kick.PushBack({ 1648, 158, 102, 102 });
 	kick.PushBack({ 1748, 158, 112, 102});
-	kick.PushBack({ 1856, 158, 84, 102});
+	kick.PushBack({ 1862, 158, 79, 99});
 	kick.PushBack({ 1938, 158, 66, 102});
 	kick.speed = 0.2f;
 	
