@@ -838,9 +838,9 @@ update_status ModulePlayer:: Update()
 	case A_KICK_CROUCH:
 		current_animation = &kickcrouch;
 		if (flip == false) {
-			body->SetPos(position.x + 50, (position.y - 65));
-			body2->SetPos(position.x + 67, (position.y - 50));
-			body3->SetPos(position.x + 47, (position.y - 35));
+			body->SetPos(position.x + 15, (position.y - 65));
+			body2->SetPos(position.x + 25, (position.y - 50));
+			body3->SetPos(position.x + 12, (position.y - 35));
 		}
 		else {
 			body->SetPos(position.x + 50, (position.y - 65));
@@ -850,7 +850,7 @@ update_status ModulePlayer:: Update()
 
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
-			attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
+			attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
 			kick_timer = 2;
 		}
 		if (current_animation->GetFinished() == 1) {
