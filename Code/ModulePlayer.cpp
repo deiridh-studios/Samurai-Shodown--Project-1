@@ -390,9 +390,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 10, (position.y - 40));
 		}
 		else {
-			body->SetPos(position.x - 18, (position.y - 80));
-			body2->SetPos(position.x - 20, (position.y - 57));
-			body3->SetPos(position.x - 10, (position.y - 40));
+			body->SetPos(position.x +18, (position.y - 80));
+			body2->SetPos(position.x+26, (position.y - 57));
+			body3->SetPos(position.x +16, (position.y - 40));
 		}
 
 		break;
@@ -404,9 +404,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 10, (position.y - 40));
 		}
 		else {
-			body->SetPos(position.x - 18, (position.y - 80));
-			body2->SetPos(position.x - 20, (position.y - 57));
-			body3->SetPos(position.x - 10, (position.y - 40));
+			body->SetPos(position.x + 18, (position.y - 80));
+			body2->SetPos(position.x + 26, (position.y - 57));
+			body3->SetPos(position.x + 16, (position.y - 40));
 		}
 
 		if (flip == false) {
@@ -428,9 +428,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 10, (position.y - 40));
 		}
 		else {
-			body->SetPos(position.x - 18, (position.y - 80));
-			body2->SetPos(position.x - 20, (position.y - 57));
-			body3->SetPos(position.x - 10, (position.y - 40));
+			body->SetPos(position.x + 18, (position.y - 80));
+			body2->SetPos(position.x + 26, (position.y - 57));
+			body3->SetPos(position.x + 16, (position.y - 40));
 		}
 
 		if (flip == false) {
@@ -452,9 +452,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 5, (position.y - 55));
 		}
 		else {
-			body->SetPos(position.x - 10, (position.y - 90));
-			body2->SetPos(position.x - 12, (position.y - 69));
-			body3->SetPos(position.x - 5, (position.y - 55));
+			body->SetPos(position.x + 35, (position.y - 90));
+			body2->SetPos(position.x + 42, (position.y - 69));
+			body3->SetPos(position.x + 30, (position.y - 55));
 		}
 
 		if (position.y == 210) {
@@ -474,9 +474,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 5, (position.y - 55));
 		}
 		else {
-			body->SetPos(position.x - 10, (position.y - 90));
-			body2->SetPos(position.x - 12, (position.y - 69));
-			body3->SetPos(position.x - 5, (position.y - 55));
+			body->SetPos(position.x + 35, (position.y - 90));
+			body2->SetPos(position.x + 42, (position.y - 69));
+			body3->SetPos(position.x + 30, (position.y - 55));
 		}
 
 		if (position.y == 210) {
@@ -505,9 +505,9 @@ update_status ModulePlayer:: Update()
 		}
 		else {
 
-			body->SetPos(position.x - 10, (position.y - 90));
-			body2->SetPos(position.x - 12, (position.y - 69));
-			body3->SetPos(position.x - 5, (position.y - 55));
+			body->SetPos(position.x + 35, (position.y - 90));
+			body2->SetPos(position.x + 42, (position.y - 69));
+			body3->SetPos(position.x + 30, (position.y - 55));
 		}
 
 		if (position.y == 210) {
@@ -535,9 +535,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 47, (position.y - 40));
 		}
 		else {
-			body->SetPos(position.x - 50, (position.y - 70));
-			body2->SetPos(position.x - 67, (position.y - 54));
-			body3->SetPos(position.x - 47, (position.y - 40));
+			body->SetPos(position.x+15, (position.y - 70));
+			body2->SetPos(position.x+8, (position.y - 54));
+			body3->SetPos(position.x+8, (position.y - 40));
 		}
 		break;
 	case A_PUNCH_STANDING:
@@ -555,7 +555,7 @@ update_status ModulePlayer:: Update()
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
 			punch_timer = 2;
-			if (flip = false) {
+			if (flip == false) {
 				attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
 			else {
@@ -576,9 +576,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 45, (position.y - 85));
 		}
 		else {
-			body->SetPos(position.x - 50, (position.y - 120));
-			body2->SetPos(position.x - 52, (position.y - 99));
-			body3->SetPos(position.x - 45, (position.y - 85));
+			body->SetPos(position.x + 50, (position.y - 120));
+			body2->SetPos(position.x + 52, (position.y - 99));
+			body3->SetPos(position.x + 45, (position.y - 85));
 		}
 
 		if (position.y == 210) {
@@ -609,9 +609,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 45, (position.y - 85));
 		}
 		else {
-			body->SetPos(position.x - 50, (position.y - 120));
-			body2->SetPos(position.x - 52, (position.y - 99));
-			body3->SetPos(position.x - 45, (position.y - 85));
+			body->SetPos(position.x, (position.y - 120));
+			body2->SetPos(position.x, (position.y - 99));
+			body3->SetPos(position.x, (position.y - 85));
 		}
 
 		if (position.y == 210) {
@@ -648,9 +648,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 45, (position.y - 85));
 		}
 		else {
-			body->SetPos(position.x - 50, (position.y - 120));
-			body2->SetPos(position.x - 52, (position.y - 99));
-			body3->SetPos(position.x - 45, (position.y - 85));
+			body->SetPos(position.x + 50, (position.y - 120));
+			body2->SetPos(position.x + 52, (position.y - 99));
+			body3->SetPos(position.x + 45, (position.y - 85));
 		}
 
 		if (position.y == 210) {
@@ -687,9 +687,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 47, (position.y - 35));
 		}
 		else {
-			body->SetPos(position.x - 50, (position.y - 65));
-			body2->SetPos(position.x - 67, (position.y - 50));
-			body3->SetPos(position.x - 47, (position.y - 35));
+			body->SetPos(position.x + 50, (position.y - 65));
+			body2->SetPos(position.x + 67, (position.y - 50));
+			body3->SetPos(position.x + 47, (position.y - 35));
 		}
 
 		if (punch_timer == 1) {
@@ -710,9 +710,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 20, (position.y - 40));
 		}
 		else {
-			body->SetPos(position.x - 18, (position.y - 80));
-			body2->SetPos(position.x - 20, (position.y - 57));
-			body3->SetPos(position.x - 20, (position.y - 40));
+			body->SetPos(position.x + 18, (position.y - 80));
+			body2->SetPos(position.x + 20, (position.y - 57));
+			body3->SetPos(position.x + 20, (position.y - 40));
 		}
 
 		if (kick_timer == 1) {
@@ -733,9 +733,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 15, (position.y - 35));
 		}
 		else {
-			body->SetPos(position.x - 10, (position.y - 60));
-			body2->SetPos(position.x - 12, (position.y - 49));
-			body3->SetPos(position.x - 15, (position.y - 35));
+			body->SetPos(position.x + 35, (position.y - 60));
+			body2->SetPos(position.x + 42, (position.y - 49));
+			body3->SetPos(position.x + 45, (position.y - 35));
 		}
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
@@ -763,9 +763,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 15, (position.y - 35));
 		}
 		else {
-			body->SetPos(position.x - 10, (position.y - 60));
-			body2->SetPos(position.x - 12, (position.y - 49));
-			body3->SetPos(position.x - 15, (position.y - 35));
+			body->SetPos(position.x + 35, (position.y - 60));
+			body2->SetPos(position.x + 42, (position.y - 49));
+			body3->SetPos(position.x + 45, (position.y - 35));
 		}
 
 		if (position.y == 210) {
@@ -802,9 +802,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 15, (position.y - 35));
 		}
 		else {
-			body->SetPos(position.x - 10, (position.y - 60));
-			body2->SetPos(position.x - 12, (position.y - 49));
-			body3->SetPos(position.x - 15, (position.y - 35));
+			body->SetPos(position.x +35, (position.y - 60));
+			body2->SetPos(position.x + 42, (position.y - 49));
+			body3->SetPos(position.x + 45, (position.y - 35));
 		}
 
 		if (position.y == 210) {
@@ -841,9 +841,9 @@ update_status ModulePlayer:: Update()
 			body3->SetPos(position.x + 47, (position.y - 35));
 		}
 		else {
-			body->SetPos(position.x - 50, (position.y - 65));
-			body2->SetPos(position.x - 67, (position.y - 50));
-			body3->SetPos(position.x - 47, (position.y - 35));
+			body->SetPos(position.x + 50, (position.y - 65));
+			body2->SetPos(position.x + 67, (position.y - 50));
+			body3->SetPos(position.x + 47, (position.y - 35));
 		}
 
 		if (kick_timer == 1) {
