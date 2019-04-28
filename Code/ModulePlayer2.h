@@ -32,17 +32,25 @@ public:
 	Mix_Chunk *punchsound;
 	Mix_Chunk *jumpsound;
 	Mix_Chunk *kicksound;
-	Mix_Chunk *hitted;
+	Mix_Chunk *hittedsound;
 	Mix_Chunk *tornadosound;
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics2 = nullptr;
 	Animation idle;
 	Animation forward;
 	Animation backward;
 	Animation punch;
 	Animation kick;
-	Animation crouch;
 	Animation jump;
+	Animation jumpforward;
+	Animation jumpbackward;
 	Animation tornado;
+	Animation hittedan;
+	Animation crouch;
+	Animation punchair;
+	Animation punchcrouch;
+	Animation kickair;
+	Animation kickcrouch;
 
 	iPoint position;
 	Collider* bodyenemy;
@@ -53,19 +61,23 @@ public:
 	state actual3;
 	inputin inputstate2[60];
 	inputout inputstateout2[6];
-	enum action {
+	/*enum action {
 		NONE = 0,
 		PUNCH,
 		CROUCH,
 		KICK
-	}actual = action::NONE;
+	}actual = action::NONE;*/
 	int inputsouts;
 	Uint32 jump_timer;
 	int punch_timer;
 	int kick_timer;
 	int tornado_timer;
-	bool right;
-	bool left;
+	int hitted_timer;
+	//bool right;
+	//bool left;
 	bool victory;
+	bool stopleft;
+	bool flip;
+	bool stopright;
 };
 #endif
