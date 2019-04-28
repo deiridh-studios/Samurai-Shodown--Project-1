@@ -5,6 +5,9 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -44,25 +47,28 @@ bool ModuleParticles::Start()
 	tornado.anim.PushBack({ 154, 2756, 71, 220 });
 	tornado.anim.PushBack({ 308, 2756, 71, 220});
 	tornado.anim.PushBack({ 452, 2756, 71, 220});
-
-
-	tornado.anim.PushBack({ 584, 2756, 71, 220});
-	tornado.anim.PushBack({ 730, 2756, 71, 220});
-	tornado.anim.PushBack({ 874, 2756, 71, 220});
-	tornado.anim.PushBack({ 1028, 2756, 71, 220 });
-	tornado.anim.PushBack({ 1168, 2756, 71, 220 });
-	tornado.anim.PushBack({ 1310, 2756, 71, 220 });
-	tornado.anim.PushBack({ 1454, 2756, 71, 220 });
-	tornado.anim.PushBack({ 1590, 2756, 46, 220});
-	tornado.anim.PushBack({ 18, 2970, 46, 216 });
-	tornado.anim.PushBack({ 164, 2970, 46, 216 });
-	tornado.anim.PushBack({ 300, 2970, 46, 216 });
-	tornado.anim.PushBack({ 436, 2970, 46, 216 });
-	tornado.anim.PushBack({ 532, 2970, 46, 216 });
-	tornado.anim.PushBack({ 674, 2970, 46, 216 });
 	tornado.anim.speed = 0.2f;
 	tornado.speed.x = 5;
 	tornado.life = 2300;
+
+	tornado2.anim.PushBack({ 584, 2756, 71, 220});
+	tornado2.anim.PushBack({ 730, 2756, 71, 220});
+	tornado2.anim.PushBack({ 874, 2756, 71, 220});
+	tornado2.anim.PushBack({ 1028, 2756, 71, 220 });
+	tornado2.anim.PushBack({ 1168, 2756, 71, 220 });
+	tornado2.anim.PushBack({ 1310, 2756, 71, 220 });
+	tornado2.anim.PushBack({ 1454, 2756, 71, 220 });
+	tornado2.anim.PushBack({ 1590, 2756, 46, 220});
+	tornado2.anim.PushBack({ 18, 2970, 46, 216 });
+	tornado2.anim.PushBack({ 164, 2970, 46, 216 });
+	tornado2.anim.PushBack({ 300, 2970, 46, 216 });
+	tornado2.anim.PushBack({ 436, 2970, 46, 216 });
+	tornado2.anim.PushBack({ 532, 2970, 46, 216 });
+	tornado2.anim.PushBack({ 674, 2970, 46, 216 });
+	tornado2.anim.speed = 0.2f;
+	tornado2.speed.x = 0;
+	tornado2.life = 2300;
+
 
 	return true;
 }
@@ -123,6 +129,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->born = (int)SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
+			if (App->player->flip == true)p->speed.x = 0 - p->speed.x;
 			if (collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
@@ -135,16 +142,23 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		
-		if (active[i] != nullptr && active[i]->collider == c1)
-		{
-			active[i]->speed.x=0;
-			break;
+		if (c2->type == COLLIDER_ENEMY) {
+			if (active[i] != nullptr && active[i]->collider == c1)
+			{
+				delete active[i];
+				active[i] = nullptr;
+				AddParticle(tornado2, App->player2->position.x + 10, 0, COLLIDER_NONE, 0);
+				//active[i]->speed.x = 0;
+				break;
+			}
+			/*if (active[i]->anim.current_frame == active[i]->anim.last_frame) {
+				delete active[i];
+				active[i] = nullptr;
+			}*/
 		}
-		/*if (active[i]->anim.current_frame == active[i]->anim.last_frame) {
-			delete active[i];
-			active[i] = nullptr;
-		}*/
+		else if (c2->type == COLLIDER_PLAYER){
+
+			}
 	}
 }
 

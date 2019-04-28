@@ -291,7 +291,7 @@ update_status ModulePlayer2::Update()
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
 		}
-		if (position.y == 130) {
+		if (position.y == 30) {
 			mult = -1;
 		}
 		position.y -= speed * mult;
@@ -751,6 +751,9 @@ void ModulePlayer2::CheckState() {
 			break;*/
 	case A_TORNADO:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_TORNADO_FINISH)actual3 = A_IDLE;
+		break;
+	case A_HITTED:
+		actual3 = A_IDLE;
 		break;
 	}
 }
