@@ -381,15 +381,31 @@ update_status ModulePlayer:: Update()
 	switch (actual) {
 	case A_IDLE:
 		current_animation = &idle;
-		body->SetPos(position.x+18, (position.y - 80));
-		body2->SetPos(position.x+20, (position.y - 57));
-		body3->SetPos(position.x+10, (position.y - 40));
+		if (flip == false) {
+			body->SetPos(position.x + 18, (position.y - 80));
+			body2->SetPos(position.x + 20, (position.y - 57));
+			body3->SetPos(position.x + 10, (position.y - 40));
+		}
+		else {
+			body->SetPos(position.x - 18, (position.y - 80));
+			body2->SetPos(position.x - 20, (position.y - 57));
+			body3->SetPos(position.x - 10, (position.y - 40));
+		}
+
 		break;
 	case A_WALK_FORWARD:
 		current_animation = &forward;
-		body->SetPos(position.x + 18, (position.y - 80));
-		body2->SetPos(position.x + 20, (position.y - 57));
-		body3->SetPos(position.x + 10, (position.y - 40)); 
+		if (flip == false) {
+			body->SetPos(position.x + 18, (position.y - 80));
+			body2->SetPos(position.x + 20, (position.y - 57));
+			body3->SetPos(position.x + 10, (position.y - 40));
+		}
+		else {
+			body->SetPos(position.x - 18, (position.y - 80));
+			body2->SetPos(position.x - 20, (position.y - 57));
+			body3->SetPos(position.x - 10, (position.y - 40));
+		}
+
 		if (flip == false) {
 			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
 			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
@@ -401,9 +417,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_WALK_BACKWARD:
 		current_animation = &backward;
-		body->SetPos(position.x + 18, (position.y - 80));
-		body2->SetPos(position.x + 20, (position.y - 57));
-		body3->SetPos(position.x + 10, (position.y - 40));
+		if (flip == false) {
+			body->SetPos(position.x + 18, (position.y - 80));
+			body2->SetPos(position.x + 20, (position.y - 57));
+			body3->SetPos(position.x + 10, (position.y - 40));
+		}
+		else {
+			body->SetPos(position.x - 18, (position.y - 80));
+			body2->SetPos(position.x - 20, (position.y - 57));
+			body3->SetPos(position.x - 10, (position.y - 40));
+		}
+
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
 			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
@@ -415,9 +439,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_JUMP_NEUTRAL:
 		current_animation = &jump;
-		body->SetPos(position.x + 10, (position.y - 90));
-		body2->SetPos(position.x + 12, (position.y - 69));
-		body3->SetPos(position.x + 5, (position.y - 55));
+		if (flip == false) {
+			body->SetPos(position.x + 10, (position.y - 90));
+			body2->SetPos(position.x + 12, (position.y - 69));
+			body3->SetPos(position.x + 5, (position.y - 55));
+		}
+		else {
+			body->SetPos(position.x - 10, (position.y - 90));
+			body2->SetPos(position.x - 12, (position.y - 69));
+			body3->SetPos(position.x - 5, (position.y - 55));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -429,9 +461,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_JUMP_FORWARD:
 		current_animation = &jumpforward;
-		body->SetPos(position.x + 10, (position.y - 90));
-		body2->SetPos(position.x + 12, (position.y - 69));
-		body3->SetPos(position.x + 5, (position.y - 55));
+		if (flip == false) {
+			body->SetPos(position.x + 10, (position.y - 90));
+			body2->SetPos(position.x + 12, (position.y - 69));
+			body3->SetPos(position.x + 5, (position.y - 55));
+		}
+		else {
+			body->SetPos(position.x - 10, (position.y - 90));
+			body2->SetPos(position.x - 12, (position.y - 69));
+			body3->SetPos(position.x - 5, (position.y - 55));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -450,9 +490,18 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_JUMP_BACKWARD:
 		current_animation = &jumpbackward;
-		body->SetPos(position.x + 10, (position.y - 90));
-		body2->SetPos(position.x + 12, (position.y - 69));
-		body3->SetPos(position.x + 5, (position.y - 55));
+		if (flip == false) {
+			body->SetPos(position.x + 10, (position.y - 90));
+			body2->SetPos(position.x + 12, (position.y - 69));
+			body3->SetPos(position.x + 5, (position.y - 55));
+		}
+		else {
+
+			body->SetPos(position.x - 10, (position.y - 90));
+			body2->SetPos(position.x - 12, (position.y - 69));
+			body3->SetPos(position.x - 5, (position.y - 55));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -470,9 +519,16 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_CROUCH:
 		current_animation = &crouch;
-		body->SetPos(position.x + 50, (position.y - 70));
-		body2->SetPos(position.x + 67, (position.y - 54));
-		body3->SetPos(position.x + 47, (position.y - 40));
+		if (flip == false) {
+			body->SetPos(position.x + 50, (position.y - 70));
+			body2->SetPos(position.x + 67, (position.y - 54));
+			body3->SetPos(position.x + 47, (position.y - 40));
+		}
+		else {
+			body->SetPos(position.x - 50, (position.y - 70));
+			body2->SetPos(position.x - 67, (position.y - 54));
+			body3->SetPos(position.x - 47, (position.y - 40));
+		}
 		break;
 	case A_PUNCH_STANDING:
 		/*if (tornadoactivate == true) {
@@ -485,22 +541,36 @@ update_status ModulePlayer:: Update()
 			if (current_animation->GetFinished() == 1)tornadoactivate = false; punch_timer = 3;
 		}
 		else {*/
-			current_animation = &punch;
-			if (punch_timer == 1) {
-				App->audio->PlayChunk(punchsound);
-				punch_timer = 2;
-				attack = App->collision->AddCollider({ position.x+60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
+		current_animation = &punch;
+		if (punch_timer == 1) {
+			App->audio->PlayChunk(punchsound);
+			punch_timer = 2;
+			if (flip = false) {
+				attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
-			if (current_animation->GetFinished() == 1) {
-				punch_timer = 3;
-				attack->to_delete = true;
+			else {
+				attack = App->collision->AddCollider({ position.x - 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, this);
 			}
+		}
+		if (current_animation->GetFinished() == 1) {
+			punch_timer = 3;
+			attack->to_delete = true;
+		}
 		break;
 	case A_PUNCH_NEUTRAL_JUMP:
+
 		current_animation = &punchair;
-		body->SetPos(position.x + 50, (position.y - 120));
-		body2->SetPos(position.x + 52, (position.y - 99));
-		body3->SetPos(position.x + 45, (position.y - 85));
+		if (flip == false) {
+			body->SetPos(position.x + 50, (position.y - 120));
+			body2->SetPos(position.x + 52, (position.y - 99));
+			body3->SetPos(position.x + 45, (position.y - 85));
+		}
+		else {
+			body->SetPos(position.x - 50, (position.y - 120));
+			body2->SetPos(position.x - 52, (position.y - 99));
+			body3->SetPos(position.x - 45, (position.y - 85));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -523,9 +593,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_PUNCH_FORWARD_JUMP:
 		current_animation = &punchair;
-		body->SetPos(position.x + 50, (position.y - 120));
-		body2->SetPos(position.x + 52, (position.y - 99));
-		body3->SetPos(position.x + 45, (position.y - 85));
+		if (flip == false) {
+			body->SetPos(position.x + 50, (position.y - 120));
+			body2->SetPos(position.x + 52, (position.y - 99));
+			body3->SetPos(position.x + 45, (position.y - 85));
+		}
+		else {
+			body->SetPos(position.x - 50, (position.y - 120));
+			body2->SetPos(position.x - 52, (position.y - 99));
+			body3->SetPos(position.x - 45, (position.y - 85));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -552,9 +630,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_PUNCH_BACKWARD_JUMP:
 		current_animation = &punchair;
-		body->SetPos(position.x + 50, (position.y - 120));
-		body2->SetPos(position.x + 52, (position.y - 99));
-		body3->SetPos(position.x + 45, (position.y - 85));
+		if (flip == false) {
+			body->SetPos(position.x + 50, (position.y - 120));
+			body2->SetPos(position.x + 52, (position.y - 99));
+			body3->SetPos(position.x + 45, (position.y - 85));
+		}
+		else {
+			body->SetPos(position.x - 50, (position.y - 120));
+			body2->SetPos(position.x - 52, (position.y - 99));
+			body3->SetPos(position.x - 45, (position.y - 85));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -581,9 +667,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_PUNCH_CROUCH:
 		current_animation = &punchcrouch;
-		body->SetPos(position.x + 50, (position.y - 65));
-		body2->SetPos(position.x + 67, (position.y - 50));
-		body3->SetPos(position.x + 47, (position.y - 35));
+		if (flip == false) {
+			body->SetPos(position.x + 50, (position.y - 65));
+			body2->SetPos(position.x + 67, (position.y - 50));
+			body3->SetPos(position.x + 47, (position.y - 35));
+		}
+		else {
+			body->SetPos(position.x - 50, (position.y - 65));
+			body2->SetPos(position.x - 67, (position.y - 50));
+			body3->SetPos(position.x - 47, (position.y - 35));
+		}
+
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(punchsound);
 			attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
@@ -596,9 +690,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_KICK_STANDING:
 		current_animation = &kick;
-		body->SetPos(position.x + 18, (position.y - 80));
-		body2->SetPos(position.x + 20, (position.y - 57));
-		body3->SetPos(position.x + 20, (position.y - 40));
+		if (flip == false) {
+			body->SetPos(position.x + 18, (position.y - 80));
+			body2->SetPos(position.x + 20, (position.y - 57));
+			body3->SetPos(position.x + 20, (position.y - 40));
+		}
+		else {
+			body->SetPos(position.x - 18, (position.y - 80));
+			body2->SetPos(position.x - 20, (position.y - 57));
+			body3->SetPos(position.x - 20, (position.y - 40));
+		}
+
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
 			attack = App->collision->AddCollider({ position.x + 40,(position.y - 90),65,20 }, COLLIDER_PLAYER_SHOT, this);
@@ -611,9 +713,16 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_KICK_NEUTRAL_JUMP:
 		current_animation = &kickair;
-		body->SetPos(position.x + 10, (position.y - 60));
-		body2->SetPos(position.x + 12, (position.y - 49));
-		body3->SetPos(position.x + 15, (position.y - 35));
+		if (flip == false) {
+			body->SetPos(position.x + 10, (position.y - 60));
+			body2->SetPos(position.x + 12, (position.y - 49));
+			body3->SetPos(position.x + 15, (position.y - 35));
+		}
+		else {
+			body->SetPos(position.x - 10, (position.y - 60));
+			body2->SetPos(position.x - 12, (position.y - 49));
+			body3->SetPos(position.x - 15, (position.y - 35));
+		}
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -634,9 +743,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_KICK_FORWARD_JUMP:
 		current_animation = &kickair;
-		body->SetPos(position.x + 10, (position.y - 60));
-		body2->SetPos(position.x + 12, (position.y - 49));
-		body3->SetPos(position.x + 15, (position.y - 35));
+		if (flip == false) {
+			body->SetPos(position.x + 10, (position.y - 60));
+			body2->SetPos(position.x + 12, (position.y - 49));
+			body3->SetPos(position.x + 15, (position.y - 35));
+		}
+		else {
+			body->SetPos(position.x - 10, (position.y - 60));
+			body2->SetPos(position.x - 12, (position.y - 49));
+			body3->SetPos(position.x - 15, (position.y - 35));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -663,9 +780,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_KICK_BACKWARD_JUMP:
 		current_animation = &kickair;
-		body->SetPos(position.x + 10, (position.y - 60));
-		body2->SetPos(position.x + 12, (position.y - 49));
-		body3->SetPos(position.x + 15, (position.y - 35));
+		if (flip == false) {
+			body->SetPos(position.x + 10, (position.y - 60));
+			body2->SetPos(position.x + 12, (position.y - 49));
+			body3->SetPos(position.x + 15, (position.y - 35));
+		}
+		else {
+			body->SetPos(position.x - 10, (position.y - 60));
+			body2->SetPos(position.x - 12, (position.y - 49));
+			body3->SetPos(position.x - 15, (position.y - 35));
+		}
+
 		if (position.y == 210) {
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
@@ -692,9 +817,17 @@ update_status ModulePlayer:: Update()
 		break;
 	case A_KICK_CROUCH:
 		//current_animation = &kickcrouch;
-		body->SetPos(position.x + 50, (position.y - 65));
-		body2->SetPos(position.x + 67, (position.y - 50));
-		body3->SetPos(position.x + 47, (position.y - 35));
+		if (flip == false) {
+			body->SetPos(position.x + 50, (position.y - 65));
+			body2->SetPos(position.x + 67, (position.y - 50));
+			body3->SetPos(position.x + 47, (position.y - 35));
+		}
+		else {
+			body->SetPos(position.x - 50, (position.y - 65));
+			body2->SetPos(position.x - 67, (position.y - 50));
+			body3->SetPos(position.x - 47, (position.y - 35));
+		}
+
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
 			attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
