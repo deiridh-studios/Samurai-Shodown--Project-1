@@ -165,12 +165,14 @@ ModulePlayer::ModulePlayer()
 	kickair.speed = 0.2f;
 
 	///////////Kick crouch;
-	kickcrouch.PushBack({ 27 , 847 , 72 , 121});
-	kickcrouch.PushBack({ 128 , 847 , 81 ,121 });
-	kickcrouch.PushBack({ 210 , 847 , 102 ,121 });
-	kickcrouch.PushBack({ 340 , 847 , 102 ,121 });
-	kickcrouch.PushBack({ 482 , 847 , 79 ,121 });
+	kickcrouch.PushBack({ 26 , 849, 72, 113});
+	kickcrouch.PushBack({ 128 ,849 , 81,  113});
+	kickcrouch.PushBack({ 211 ,849 , 102, 113});
+	kickcrouch.PushBack({ 341 ,849 , 100,  113});
+	kickcrouch.PushBack({ 482 ,849 , 80, 113});
 	kickcrouch.speed = 0.2f;
+
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -319,7 +321,7 @@ update_status ModulePlayer::PreUpdate() {
 			else if (inputstate[0] == S_CROUCH_DOWN) inputstate[0] = S_Y_CROUCH;
 			else if (inputstate[0] == S_CROUCH_RIGHT) inputstate[0] = S_Y_CROUCH_RIGHT;
 			else if (inputstate[0] == S_NONE)inputstate[0] = S_Y;
-			else inputstate[0] = S_NONE;
+			//else inputstate[0] = S_NONE;
 		}
 
 	}
@@ -849,11 +851,11 @@ update_status ModulePlayer:: Update()
 		}
 		break;
 	case A_KICK_CROUCH:
-		//current_animation = &kickcrouch;
+		current_animation = &kickcrouch;
 		if (flip == false) {
-			body->SetPos(position.x + 50, (position.y - 65));
-			body2->SetPos(position.x + 67, (position.y - 50));
-			body3->SetPos(position.x + 47, (position.y - 35));
+			body->SetPos(position.x + 15, (position.y - 65));
+			body2->SetPos(position.x + 25, (position.y - 50));
+			body3->SetPos(position.x + 12, (position.y - 35));
 		}
 		else {
 			body->SetPos(position.x + 50, (position.y - 65));
@@ -863,7 +865,7 @@ update_status ModulePlayer:: Update()
 
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(kicksound);
-			attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
+			attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, this);
 			kick_timer = 2;
 		}
 		if (current_animation->GetFinished() == 1) {
