@@ -1025,13 +1025,19 @@ void ModulePlayer::CheckState() {
 		/*switch (inputstate[0]) {
 		//case S_PUNCH_FINISH: actual2 = A_CROUCH; break;
 		}*/
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_PUNCH_FINISH)actual2 = A_CROUCH;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_PUNCH_FINISH) {
+			if(inputstate[0]==S_CROUCH_DOWN||inputstate[0]==S_CROUCH_RIGHT)actual2 = A_CROUCH;
+			else actual2 = A_IDLE;
+		}
 		break;
 	case A_KICK_CROUCH:
 		/*switch (inputstate[0]) {
 		//case S_KICK_FINISH: actual2 = A_CROUCH; break;
 		}*/
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_KICK_FINISH)actual2 = A_CROUCH;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_KICK_FINISH) {
+			if (inputstate[0] == S_CROUCH_DOWN || inputstate[0] == S_CROUCH_RIGHT)actual2 = A_CROUCH;
+			else actual2 = A_IDLE;
+		}
 		break;
 	case A_TORNADO:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_TORNADO_FINISH)actual2 = A_IDLE;
