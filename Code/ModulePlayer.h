@@ -134,6 +134,9 @@ public:
 //	bool left;
 //	bool godmode;
 	Collider* body;
+	Collider* body2;
+	Collider* body3;
+	Collider* attack;
 	Uint32 jump_timer;
 	int punch_timer;
 	int kick_timer;
