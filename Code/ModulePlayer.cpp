@@ -392,10 +392,12 @@ update_status ModulePlayer:: Update()
 		body3->SetPos(position.x + 10, (position.y - 40)); 
 		if (flip == false) {
 			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+			else if(position.y>App->player2->position.y) position.x += speed;
 			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			else if (position.y > App->player2->position.y) position.x -= speed;
 			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		break;
@@ -406,10 +408,12 @@ update_status ModulePlayer:: Update()
 		body3->SetPos(position.x + 10, (position.y - 40));
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			else if (position.y > App->player2->position.y) position.x -= speed/2;
 			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			else if (position.y > App->player2->position.y) position.x += speed/2;
 			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
 		}
 		break;
@@ -445,6 +449,7 @@ update_status ModulePlayer:: Update()
 		}
 		else {
 			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			else if (position.y < App->player2->position.y)position.x -= speed;
 			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		break;
@@ -461,10 +466,12 @@ update_status ModulePlayer:: Update()
 		position.y -= speed * mult;
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			else if (position.y < App->player2->position.y)position.x -= speed/2;
 			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			else if (position.y < App->player2->position.y)position.x += speed/2;
 			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
 		}
 		break;
@@ -534,10 +541,12 @@ update_status ModulePlayer:: Update()
 		position.y -= speed * mult;
 		if (flip == false) {
 			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+			else if (position.y < App->player2->position.y)position.x += speed;
 			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			else if (position.y < App->player2->position.y)position.x -= speed;
 			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		if (punch_timer == 1) {
@@ -563,10 +572,12 @@ update_status ModulePlayer:: Update()
 		position.y -= speed * mult;
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			else if (position.y < App->player2->position.y)position.x -= speed/2;
 			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			else if (position.y < App->player2->position.y)position.x += speed/2;
 			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
 		}
 		if (punch_timer == 1) {
@@ -645,10 +656,12 @@ update_status ModulePlayer:: Update()
 		position.y -= speed * mult;
 		if (flip == false) {
 			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+			else if (position.y < App->player2->position.y)position.x += speed;
 			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
+			else if (position.y < App->player2->position.y)position.x -= speed;
 			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		if (kick_timer == 1) {
@@ -674,10 +687,12 @@ update_status ModulePlayer:: Update()
 		position.y -= speed * mult;
 		if (flip == false) {
 			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
+			else if (position.y < App->player2->position.y)position.x -= speed/2;
 			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
 		}
 		else {
 			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
+			else if (position.y < App->player2->position.y)position.x += speed/2;
 			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
 		}
 		if (kick_timer == 1) {

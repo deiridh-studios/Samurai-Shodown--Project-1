@@ -752,6 +752,9 @@ void ModulePlayer2::CheckState() {
 	case A_TORNADO:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout2[i] == SO_TORNADO_FINISH)actual3 = A_IDLE;
 		break;
+	case A_HITTED:
+		actual3 = A_IDLE;
+		break;
 	}
 }
 
