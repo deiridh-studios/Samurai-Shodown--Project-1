@@ -117,6 +117,8 @@ public:
 	Animation punch;
 	Animation kick;
 	Animation jump;
+	Animation jumpforward;
+	Animation jumpbackward;
 	Animation tornado;
 	Animation hittedan;
 	Animation crouch;

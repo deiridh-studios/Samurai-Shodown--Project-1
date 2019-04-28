@@ -78,9 +78,33 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 1590, 36, 84, 96 });
 	jump.PushBack({ 1692, 36, 80, 96 });
 	jump.PushBack({ 1794, 16, 68, 122 });
+
+
+	// Jump Forward
+	jumpforward.PushBack({ 1788 , 23 , 71 , 113});
+	jumpforward.PushBack({ 1788 , 23 , 71 , 113 });
+	jumpforward.PushBack({ 1680 , 36 , 92 , 95 });
+	jumpforward.PushBack({2063 , 58 , 86 , 70  });
+	jumpforward.PushBack({2167 , 71 , 84 , 68  });
+	jumpforward.PushBack({2270 , 65 , 76 , 83  });
+	jumpforward.PushBack({2388 , 68 , 86 , 64  });
+
+	jumpforward.PushBack({ 1680 , 36 , 92 , 95 });
+	jumpforward.speed = 0.1f;
+
+
+	// Jump backwards
+	jumpbackward.PushBack({ 1512 , 18 , 62 , 113 });
+	jumpbackward.PushBack({ 1512 , 18 , 62 , 113 });
+	jumpbackward.PushBack({ 1680 , 36 , 92 , 95 });
+	jumpbackward.PushBack({ 2388 , 68 , 86 , 64 });
+	jumpbackward.PushBack({ 2270 , 65 , 76 , 83 });
+	jumpbackward.PushBack({ 2167 , 71 , 84 , 68 });
+	jumpbackward.PushBack({ 2063 , 58 , 86 , 70 });
+	jumpbackward.PushBack({ 1680 , 36 , 92 , 95 });
 	
 
-	jump.speed = 0.1f;
+	jumpbackward.speed = 0.1f;
 
 	//Tornado
 	////////////Animation tornado;
@@ -370,7 +394,7 @@ update_status ModulePlayer:: Update()
 		position.y -= speed * mult;
 		break;
 	case A_JUMP_FORWARD:
-		current_animation = &jump;
+		current_animation = &jumpforward;
 		body->SetPos(position.x + 10, (position.y - 90));
 		body2->SetPos(position.x + 12, (position.y - 69));
 		body3->SetPos(position.x + 5, (position.y - 55));
@@ -384,7 +408,7 @@ update_status ModulePlayer:: Update()
 		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
 		break;
 	case A_JUMP_BACKWARD:
-		current_animation = &jump;
+		current_animation = &jumpbackward;
 		body->SetPos(position.x + 10, (position.y - 90));
 		body2->SetPos(position.x + 12, (position.y - 69));
 		body3->SetPos(position.x + 5, (position.y - 55));
