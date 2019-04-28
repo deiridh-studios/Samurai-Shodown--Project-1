@@ -291,7 +291,7 @@ update_status ModulePlayer2::Update()
 			App->audio->PlayChunk(jumpsound);
 			mult = 1;
 		}
-		if (position.y == 130) {
+		if (position.y == 30) {
 			mult = -1;
 		}
 		position.y -= speed * mult;

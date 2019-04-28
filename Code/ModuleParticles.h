@@ -51,6 +51,7 @@ private:
 public:
 
 	Particle tornado;
+	Particle tornado2;
 };
 
 #endif // __MODULEPARTICLES_H__
