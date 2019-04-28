@@ -162,10 +162,7 @@ ModulePlayer::ModulePlayer()
 	kickair.PushBack({117 , 863 , 91 , 108});
 	kickair.PushBack({207 , 863 , 107 , 91});
 	kickair.PushBack({333 , 863 , 112 , 93});
-	kickair.PushBack({ 333 , 863 , 112 , 93 });
-	kickair.PushBack({ 117 , 863 , 91 , 108 });
 	kickair.speed = 0.2f;
-
 
 	///////////Kick crouch;
 	kickcrouch.PushBack({ 27 , 847 , 72 , 121});
