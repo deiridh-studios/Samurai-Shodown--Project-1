@@ -148,6 +148,8 @@ public:
 	int inputsouts;
 	bool victory;
 	bool flip;
+	bool stopleft;
+	bool stopright;
 
 };
 
