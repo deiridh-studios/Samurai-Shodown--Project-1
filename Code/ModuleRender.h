@@ -8,6 +8,7 @@
 struct SDL_Renderer;
 struct SDL_Texture;
 
+
 class ModuleRender : public Module
 {
 public:
@@ -25,6 +26,9 @@ public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Texture* tex;
 	SDL_Rect camera;
+	SDL_Rect cameraleft;
+	SDL_Rect cameraright;
+
 
 };
 

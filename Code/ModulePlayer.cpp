@@ -8,6 +8,8 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleUI.h"
+#include "ModulePlayer2.h"
+#include "Modulebackground.h"
 #include "SDL/include/SDL_timer.h"
 
 
@@ -344,16 +346,16 @@ update_status ModulePlayer:: Update()
 		body->SetPos(position.x + 18, (position.y - 80));
 		body2->SetPos(position.x + 20, (position.y - 57));
 		body3->SetPos(position.x + 10, (position.y - 40)); 
-		if (position.x <= (SCREEN_WIDTH*SCREEN_SIZE - 410)) position.x += speed;
-		if (App->render->camera.x > (-SCREEN_WIDTH * SCREEN_SIZE))App->render->camera.x -= speed * 1.25;
+		if ((position.x+23*SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
+		if ((App->background->cameraleft.x < position.x)&&(App->background->cameraright.x<670))App->render->camera.x -= speed;// *1.25;
 		break;
 	case A_WALK_BACKWARD:
 		current_animation = &backward;
 		body->SetPos(position.x + 18, (position.y - 80));
 		body2->SetPos(position.x + 20, (position.y - 57));
 		body3->SetPos(position.x + 10, (position.y - 40));
-		if (position.x > 20) position.x -= speed / 2;
-		if (App->render->camera.x < 0)	App->render->camera.x += speed * 1.25;
+		if (position.x >App->background->cameraleft.x) position.x -= speed / 2;
+		if ((App->background->cameraleft.x > 0)&&(App->background->cameraright.x>(App->player2->position.x+(23*SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
 		break;
 	case A_JUMP_NEUTRAL:
 		current_animation = &jump;
