@@ -22,26 +22,10 @@ ModuleBackground::ModuleBackground():Module(){
 	back.PushBack({ 640, 0, 640, 416 });
 	back.PushBack({ 1280, 0, 640, 416 });
 	back.PushBack({ 1920, 0, 640, 416 });
-	back.PushBack({ 2560, 0, 640, 416 });
 	back.PushBack({ 0, 416, 640, 416 });
 	back.PushBack({ 640, 416, 640, 416 });
 	back.PushBack({ 1280, 416, 640, 416 });
 	back.PushBack({ 1920, 416, 640, 416 });
-	back.PushBack({ 2560, 416, 640, 416 });
-	back.PushBack({ 0, 832, 640, 416 });
-	back.PushBack({ 640, 832, 640, 416 });
-	back.PushBack({ 1280, 832, 640, 416 });
-	back.PushBack({ 1920, 832, 640, 416 });
-	back.PushBack({ 2560, 832, 640, 416 });
-	back.PushBack({ 0, 1248, 640, 416 });
-	back.PushBack({ 640, 1248, 640, 416 });
-	back.PushBack({ 1280, 1248, 640, 416 });
-	back.PushBack({ 1920, 1248, 640, 416 });
-	back.PushBack({ 2560, 1248, 640, 416 });
-	back.PushBack({ 0, 1664, 640, 416 });
-	back.PushBack({ 640, 1664, 640, 416 });
-	back.PushBack({ 1280, 1664, 640, 416 });
-	back.PushBack({ 1920, 1664, 640, 416 });
 	back.speed = 0.08f;
 
 }
@@ -53,7 +37,7 @@ bool ModuleBackground::Start() {
 	App->audio->PlayMusic(App->audio->musics[0]);
 	haohmaru=App->audio->LoadChunk("Audio_FX/haohmaru.wav");
 	App->audio->PlayChunk(haohmaru);
-	graphics=App->textures->Load("Sprites/Back.png");
+	graphics=App->textures->Load("Sprites/UkyoBackground.png");
 	App->player->Enable();
 	App->player2->Enable();
 	App->particles->Enable();
