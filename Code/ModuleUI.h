@@ -24,6 +24,8 @@ private:
 	SDL_Rect lifeplayer1;
 	SDL_Rect lifeplayer2;
 	SDL_Rect lifebarplayer1;
+	SDL_Rect ukyoplayer1rect;
+	SDL_Rect ukyoplayer2rect;
 	SDL_Rect lifebarplayer2;
 	SDL_Rect komessage;
 	int player1life;

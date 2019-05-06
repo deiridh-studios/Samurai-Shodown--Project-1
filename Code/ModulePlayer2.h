@@ -7,7 +7,7 @@
 #include "Globals.h"
 #include "p2Point.h"
 
-#define INPUTSOUTS 7
+#define INPUTSOUTS 8
 
 struct SDL_Texture;
 struct Mix_Chunk;
