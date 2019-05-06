@@ -37,7 +37,7 @@ bool ModuleBackground::Start() {
 	App->audio->PlayMusic(App->audio->musics[0]);
 	haohmaru=App->audio->LoadChunk("Audio_FX/haohmaru.wav");
 	App->audio->PlayChunk(haohmaru);
-	graphics=App->textures->Load("Sprites/UkyoBackground.png");
+	graphics=App->textures->Load("Sprites/Back.png");
 	App->player->Enable();
 	App->player2->Enable();
 	App->particles->Enable();

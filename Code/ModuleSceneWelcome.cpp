@@ -94,7 +94,7 @@ ModuleSceneWelcome::ModuleSceneWelcome() :Module()
 
 ModuleSceneWelcome::~ModuleSceneWelcome() {}
 bool  ModuleSceneWelcome::Start() {
-	rectbackground.x = 1697;
+	rectbackground.x = 1065;
 	rectbackground.y = 1776;
 	rectbackground.w = SCREEN_WIDTH;
 	rectbackground.h = SCREEN_HEIGHT;
@@ -117,7 +117,7 @@ update_status  ModuleSceneWelcome::Update() {
 		}
 		else {
 			App->render->Blit(graphics, 30, 15, &recttitle, 0.0f);  //Background
-			App->render->Blit(graphics, 40, 170, &(Words.GetCurrentFrame()), 0.0f);
+			App->render->Blit(graphics, 65, 165, &(Words.GetCurrentFrame()), 0.0f);
 		}
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED && App->fade->finished == true && Title.current_frame > 67) {
