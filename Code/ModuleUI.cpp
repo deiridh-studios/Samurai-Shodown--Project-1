@@ -22,6 +22,16 @@ bool ModuleUI::Start() {
 	lifebarplayer1.y = 421;
 	lifebarplayer1.w = 134;
 	lifebarplayer1.h = 15;
+	/*
+	ukyoplayer1rect.x = 0;
+	ukyoplayer1rect.y = 0;
+	ukyoplayer1rect.w = 0;
+	ukyoplayer1rect.h = 0;
+	ukyoplayer2rect.x = 0;
+	ukyoplayer2rect.y = 0;
+	ukyoplayer2rect.w = 0;
+	ukyoplayer2rect.h = 0;
+	*/
 	lifebarplayer2.x = 273;
 	lifebarplayer2.y = 405;
 	lifebarplayer2.w = 134;

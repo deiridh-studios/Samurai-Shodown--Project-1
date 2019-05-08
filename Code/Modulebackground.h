@@ -19,7 +19,7 @@ public:
 	void OnCollision(Collider*, Collider*);
 
 public:
-	Mix_Chunk* haohmaru;
+	Mix_Chunk* Ukyo;
 	int scrollleft;
 	int scrollright;
 	int x1 = 0;

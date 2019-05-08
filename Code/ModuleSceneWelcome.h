@@ -16,6 +16,7 @@ public:
 public:
 	SDL_Rect rectbackground;
 	SDL_Rect recttitle;
+	SDL_Rect snkrect;
 	SDL_Texture* graphics = nullptr;
 	Animation Words;
 	Animation Title;

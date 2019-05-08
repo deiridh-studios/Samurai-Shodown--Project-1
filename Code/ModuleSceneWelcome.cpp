@@ -8,6 +8,8 @@
 #include "Animation.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModuleUkyoPlayer1.h"
+#include "ModuleUkyoPlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneWelcome.h"
 #include "SDL/include/SDL.h"
@@ -94,7 +96,7 @@ ModuleSceneWelcome::ModuleSceneWelcome() :Module()
 
 ModuleSceneWelcome::~ModuleSceneWelcome() {}
 bool  ModuleSceneWelcome::Start() {
-	rectbackground.x = 1697;
+	rectbackground.x = 1065;
 	rectbackground.y = 1776;
 	rectbackground.w = SCREEN_WIDTH;
 	rectbackground.h = SCREEN_HEIGHT;
@@ -102,6 +104,10 @@ bool  ModuleSceneWelcome::Start() {
 	recttitle.y = 1600;
 	recttitle.w = 253;
 	recttitle.h = 200;
+	snkrect.x = 0;
+	snkrect.y = 1800;
+	snkrect.w = 276;
+	snkrect.h = 30;
 	App->audio->LoadMusic("Music/start.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
 	graphics = App->textures->Load("Sprites/DEFINITIVETitle.png");
@@ -117,7 +123,8 @@ update_status  ModuleSceneWelcome::Update() {
 		}
 		else {
 			App->render->Blit(graphics, 30, 15, &recttitle, 0.0f);  //Background
-			App->render->Blit(graphics, 40, 170, &(Words.GetCurrentFrame()), 0.0f);
+			App->render->Blit(graphics, 65, 165, &(Words.GetCurrentFrame()), 0.0f);
+			App->render->Blit(graphics, 23, 190, &snkrect, 0.0f);
 		}
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED && App->fade->finished == true && Title.current_frame > 67) {

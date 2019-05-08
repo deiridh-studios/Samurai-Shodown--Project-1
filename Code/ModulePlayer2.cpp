@@ -879,8 +879,10 @@ update_status ModulePlayer2::Update()
 			App->UI->DamageTaken(2, 5);
 			hitted_timer = 2;
 		}
+
 		if(flip==false)position.x -= 1;
 		else position.x += 1;
+
 		if (position.y == 130) {
 			mult = -1;
 		}
