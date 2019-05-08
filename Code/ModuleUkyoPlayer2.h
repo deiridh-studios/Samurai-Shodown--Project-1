@@ -58,9 +58,9 @@ public:
 	Collider* bodyenemy3;
 	Collider* enemyattack;
 	int mult;
-	state actual3;
-	inputin inputstate2[60];
-	inputout inputstateout2[6];
+	state actualukyo3;
+	inputin inputstateukyo2[60];
+	inputout inputstateoutukyo2[6];
 	/*enum action {
 		NONE = 0,
 		PUNCH,

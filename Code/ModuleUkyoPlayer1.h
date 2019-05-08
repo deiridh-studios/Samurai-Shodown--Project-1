@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "ModulePlayer.h"
 #include "p2Point.h"
 
 struct SDL_Texture;
@@ -12,25 +13,12 @@ struct Collider;
 
 #define INPUTSOUTS 8
 
-enum action {
-	NONE = 0,
-	PUNCH,
-	KICK,
-	TORNADO,
-	HITTED,
-	CROUCH,
-	PUNCHAIR,
-	PUNCHCROUCH,
-	KICKAIR
-};
-
-enum state {
+/*enum state {
 	A_NONE = 0,
 	A_IDLE,
 	A_WALK_FORWARD,
 	A_WALK_BACKWARD,
 	A_JUMP_NEUTRAL,
-	/*
 	A_JUMP_FORWARD,
 	A_JUMP_BACKWARD,
 	A_CROUCH,
@@ -46,9 +34,7 @@ enum state {
 	A_KICK_CROUCH,
 	A_TORNADO,
 	A_HITTED
-	*/
 };
-
 enum inputin {
 	S_NONE = 0,
 	S_LEFT_DOWN,
@@ -59,9 +45,11 @@ enum inputin {
 	S_JUMP_LEFT,
 	S_CROUCH_DOWN,
 	S_CROUCH_RIGHT,
+	//S_CROUCH_LEFT,
 	S_JUMP_AND_CROUCH, //delete with gamepad
 	S_T,
 	S_Y,
+	//	S_T_Y,
 	S_T_LEFT,
 	S_T_RIGHT,
 	S_T_JUMP,
@@ -78,7 +66,6 @@ enum inputin {
 	S_Y_CROUCH_RIGHT,
 	S_TORNADO
 };
-
 enum inputout {
 	SO_NONE = 0,
 	SO_LEFT_UP,
@@ -89,7 +76,7 @@ enum inputout {
 	SO_KICK_FINISH,
 	SO_TORNADO_FINISH,
 	SO_HITTED_FINISH
-};
+};*/
 
 class ModuleUkyoPlayer1 : public Module
 {
@@ -136,9 +123,9 @@ public:
 
 	iPoint position;
 	int mult;
-	state actual;
-	inputin inputstate[60];
-	inputout inputstateout[INPUTSOUTS];
+	state actualukyo;
+	inputin inputstateukyo[60];
+	inputout inputstateoutukyo[INPUTSOUTS];
 	Collider* body;
 	Collider* body2;
 	Collider* body3;
