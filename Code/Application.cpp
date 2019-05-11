@@ -17,27 +17,31 @@
 #include "ModuleParticles.h"
 #include "ModuleFonts.h"
 #include "ModuleUI.h"
+#include "ModuleController.h"
 
 Application::Application()
 {
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = fonts = new ModuleFonts();
-	modules[5] = audio = new ModuleAudio();
-	modules[6] = scenewelcome = new ModuleSceneWelcome();
-	modules[7] = background = new ModuleBackground();
-	modules[8] = sceneearthquake = new ModuleSceneEarthquake();
-	modules[9] = player = new ModulePlayer();
-	modules[10] = player2 = new ModulePlayer2();
-	modules[11] = scenecongrats = new ModuleSceneCongrats();
-	modules[12] = particles = new ModuleParticles();
-	modules[13] = collision = new ModuleCollision();
-	modules[14] = UI = new ModuleUI();
-	modules[15] = fade = new ModuleFadeToBlack();
-	modules[16] = ukyoplayer1 = new ModuleUkyoPlayer1();
-	modules[17] = ukyoplayer2 = new ModuleUkyoPlayer2();
+	int i = 0;
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = controller = new ModuleController();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = fonts = new ModuleFonts();
+	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = scenewelcome = new ModuleSceneWelcome();
+	modules[i++] = background = new ModuleBackground();
+	modules[i++] = sceneearthquake = new ModuleSceneEarthquake();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
+	modules[i++] = ukyoplayer1 = new ModuleUkyoPlayer1();
+	modules[i++] = ukyoplayer2 = new ModuleUkyoPlayer2();
+	modules[i++] = scenecongrats = new ModuleSceneCongrats();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = UI = new ModuleUI();
+	modules[i++] = fade = new ModuleFadeToBlack();
+
 
 }
 
