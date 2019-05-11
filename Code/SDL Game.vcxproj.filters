@@ -86,6 +86,9 @@
     <ClInclude Include="ModuleUkyoPlayer2.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleController.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -149,6 +152,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleUkyoPlayer2.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleController.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
