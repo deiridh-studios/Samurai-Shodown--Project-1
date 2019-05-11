@@ -12,17 +12,6 @@ struct Collider;
 
 #define INPUTSOUTS 8
 
-/*enum action {
-	NONE = 0,
-	PUNCH,
-	KICK,
-	TORNADO,
-	HITTED,
-	CROUCH,
-	PUNCHAIR,
-	PUNCHCROUCH,
-	KICKAIR
-};*/
 enum state {
 	A_NONE = 0,
 	A_IDLE,
@@ -129,13 +118,9 @@ public:
 
 	iPoint position;
 	int mult;
-	//action actual;
 	state actual;
 	inputin inputstate[60];
 	inputout inputstateout[INPUTSOUTS];
-//	bool right;
-//	bool left;
-//	bool godmode;
 	Collider* body;
 	Collider* body2;
 	Collider* body3;
