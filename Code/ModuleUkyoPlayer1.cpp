@@ -286,13 +286,13 @@ update_status ModuleUkyoPlayer1::Update()
 			/*if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed;
 			else if(position.y>App->player2->position.y) position.x += speed;*/
 			if (stopright == false)position.x += speed;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 223))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			/*if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed;
 			else if (position.y > App->player2->position.y) position.x -= speed;*/
 			if (stopleft == false)position.x -= speed;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 23) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
 		}
 		break;
 
@@ -319,7 +319,7 @@ update_status ModuleUkyoPlayer1::Update()
 			//if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
 			//else if (position.y > App->player2->position.y) position.x += speed/2;
 			if (stopright == false)position.x += speed / 2;
-			if ((App->background->cameraleft.x < App->ukyoplayer2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < App->ukyoplayer2->position.x) && (App->background->cameraright.x < 233)) App->render->camera.x -= speed;// *1.25;
 		}
 		break;
 

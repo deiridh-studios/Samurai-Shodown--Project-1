@@ -282,14 +282,14 @@ update_status ModuleUkyoPlayer2::Update()
 			bodyenemy2->SetPos(position.x + 20, (position.y - 57));
 			bodyenemy3->SetPos(position.x + 10, (position.y - 40)); 
 			if (stopright == false)position.x += speed;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraright.x + 1 > App->ukyoplayer1->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 233) && (App->background->cameraright.x + 1 > App->ukyoplayer1->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;
 		}
 		else {
 			bodyenemy->SetPos(position.x + 18, (position.y - 80));
 			bodyenemy2->SetPos(position.x + 26, (position.y - 57));
 			bodyenemy3->SetPos(position.x + 16, (position.y - 40));
 			if (stopleft == false)position.x -= speed;
-			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->ukyoplayer1->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 23) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->ukyoplayer1->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 		}
 
 		break;
@@ -300,7 +300,7 @@ update_status ModuleUkyoPlayer2::Update()
 			bodyenemy2->SetPos(position.x + 20, (position.y - 57));
 			bodyenemy3->SetPos(position.x + 10, (position.y - 40));
 			if (stopleft == false)position.x -= speed / 2;
-			if ((App->background->cameraright.x > position.x + 70) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->ukyoplayer1->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
+			if ((App->background->cameraright.x > position.x + 23) && (App->background->cameraleft.x > 0) && (App->background->cameraleft.x > App->ukyoplayer1->position.x + (23 * SCREEN_SIZE) * 2))App->render->camera.x += speed;// *1.25;
 
 		}
 		else {
@@ -308,7 +308,7 @@ update_status ModuleUkyoPlayer2::Update()
 			bodyenemy2->SetPos(position.x + 26, (position.y - 57));
 			bodyenemy3->SetPos(position.x + 16, (position.y - 40));
 			if (stopright == false)position.x += speed / 2;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670) && (App->background->cameraleft.x + 1 < App->ukyoplayer1->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;	
+			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 233) && (App->background->cameraleft.x + 1 < App->ukyoplayer1->position.x - 23 * SCREEN_SIZE))App->render->camera.x -= speed;// *1.25;	
 		}
 
 		break;
@@ -1120,7 +1120,7 @@ void ModuleUkyoPlayer2::OnCollision(Collider* enemy, Collider* other) {
 			if (hitted_timer == 0)hitted_timer = 1;
 		}
 		if (other->type == COLLIDER_WALL) {
-			if (position.x > 0) position.x = other->rect.x - 23 * SCREEN_SIZE;
+			if (position.x > 0) position.x = other->rect.x - 70 * SCREEN_SIZE;
 			else position.x = other->rect.x + 1;
 		}
 		if (other->type == COLLIDER_PLAYER) {
