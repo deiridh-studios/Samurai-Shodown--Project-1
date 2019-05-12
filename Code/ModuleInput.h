@@ -28,6 +28,7 @@ public:
 	const Uint8 *keyboard = nullptr;
 	bool space;
 
+	bool keyboard2[285];
 	keystate keyboardstate[285];
 };
 
