@@ -38,8 +38,6 @@ update_status ModuleInput::PreUpdate()
 	SDL_PollEvent(&quitevent);
 	if(quitevent.type==SDL_QUIT)return update_status::UPDATE_STOP;
 	SDL_PumpEvents();
-	//quitevent = SDL_GetEventState(SDL_QUIT);
-	//if (quitevent != SDL_ENABLE) return update_status::UPDATE_STOP;
 	keyboard = SDL_GetKeyboardState(NULL);
 	for (int i = 4; i < 285; i++) {
 		if (keyboard[i] == 1) {

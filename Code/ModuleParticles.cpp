@@ -156,13 +156,8 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				delete active[i];
 				active[i] = nullptr;
 				AddParticle(tornado2, App->player2->position.x + 10, 0, COLLIDER_NONE, 0);
-				//active[i]->speed.x = 0;
 				break;
 			}
-			/*if (active[i]->anim.current_frame == active[i]->anim.last_frame) {
-				delete active[i];
-				active[i] = nullptr;
-			}*/
 		}
 		else if (c2->type == COLLIDER_PLAYER){
 			if (active[i] != nullptr && active[i]->collider == c1)

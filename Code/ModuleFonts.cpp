@@ -47,11 +47,7 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 	fonts[id].graphic = tex; // graphic: pointer to the texture
 	fonts[id].rows = rows; // rows: rows of characters in the texture
 	fonts[id].len = strlen(characters); // len: length of the table
-	strcpy_s(fonts[id].table, characters);
-	/*for (; fonts[id].len < MAX_FONT_CHARS; fonts[id].len++) {
-		if (characters[fonts[id].len] != '\0') fonts[id].table[fonts[id].len] = characters[fonts[id].len]; // table: array of chars to have the list of characters
-		else break;
-	}*/
+	strcpy_s(fonts[id].table, characters); // table: array of chars to have the list of characters
 	fonts[id].row_chars = fonts[id].len / rows; // row_chars: amount of chars per row of the texture
 	App->textures->GetSize(tex, fonts[id].char_w, fonts[id].char_h);
 	fonts[id].char_w /= fonts[id].row_chars;//(fonts[id].len/fonts[id].rows); // char_w: width of each character
@@ -94,7 +90,6 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 
 	for (uint i = 0; i < len; ++i)
 	{
-		// TODO 2: Find the character in the table and its position in the texture, then Blit
 		for (uint j = 0; j < font->len; j++) {
 			if (font->table[j] == text[i]) {
 				rect.x = j * font->char_w;

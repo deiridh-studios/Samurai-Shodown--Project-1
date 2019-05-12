@@ -61,20 +61,12 @@ public:
 	state actual3;
 	inputin inputstate2[60];
 	inputout inputstateout2[6];
-	/*enum action {
-		NONE = 0,
-		PUNCH,
-		CROUCH,
-		KICK
-	}actual = action::NONE;*/
 	int inputsouts;
 	Uint32 jump_timer;
 	int punch_timer;
 	int kick_timer;
 	int tornado_timer;
 	int hitted_timer;
-	//bool right;
-	//bool left;
 	bool victory;
 	bool stopleft;
 	bool flip;
