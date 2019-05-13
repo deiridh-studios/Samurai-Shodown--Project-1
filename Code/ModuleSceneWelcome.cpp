@@ -10,6 +10,8 @@
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneWelcome.h"
+#include "ModuleSNKMenu.h"
+#include "ModuleCharacterSelection.h"
 #include "SDL/include/SDL.h"
 
 ModuleSceneWelcome::ModuleSceneWelcome() :Module()
@@ -93,6 +95,7 @@ ModuleSceneWelcome::ModuleSceneWelcome() :Module()
 }
 
 ModuleSceneWelcome::~ModuleSceneWelcome() {}
+
 bool  ModuleSceneWelcome::Start() {
 	rectbackground.x = 1065;
 	rectbackground.y = 1776;
@@ -112,6 +115,7 @@ bool  ModuleSceneWelcome::Start() {
 	Title.current_frame = 0;
 	return true;
 }
+
 update_status  ModuleSceneWelcome::Update() {
 	SDL_Rect rect{ 0,0,rectbackground.w*SCREEN_SIZE, rectbackground.h*SCREEN_SIZE };
 	App->render->Blit(graphics, 0, 0, &rectbackground, 0.0f);  //Background
@@ -131,6 +135,7 @@ update_status  ModuleSceneWelcome::Update() {
 	}
 	return UPDATE_CONTINUE;
 }
+
 bool  ModuleSceneWelcome::CleanUp()
 {
 	App->audio->UnLoadMusic(App->audio->musics[0]);

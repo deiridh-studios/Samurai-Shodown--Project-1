@@ -11,6 +11,8 @@
 #include "ModuleSceneEarthquake.h"
 #include "ModuleSceneWelcome.h"
 #include "ModuleSceneCongrats.h"
+#include "ModuleSNKMenu.h"
+#include "ModuleCharacterSelection.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleFonts.h"
@@ -28,6 +30,8 @@ Application::Application()
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = scenewelcome = new ModuleSceneWelcome();
+	modules[i++] = SNKMenu = new ModuleSNKMenu();
+	modules[i++] = characterselection = new ModuleCharacterSelection();
 	modules[i++] = background = new ModuleBackground();
 	modules[i++] = sceneearthquake = new ModuleSceneEarthquake();
 	modules[i++] = player = new ModulePlayer();
@@ -37,7 +41,6 @@ Application::Application()
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = UI = new ModuleUI();
 	modules[i++] = fade = new ModuleFadeToBlack();
-
 
 }
 
@@ -54,6 +57,8 @@ bool Application::Init()
 	player2->Disable();
 	player->Disable();
 	sceneearthquake->Disable();
+	scenewelcome->Disable();
+	characterselection->Disable();
 	background->Disable();
 	scenecongrats->Disable();
 	collision->Disable();

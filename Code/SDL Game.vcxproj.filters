@@ -12,6 +12,9 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{7e951eb7-4e45-443d-883f-3e4c0c4a99b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\MENUS">
+      <UniqueIdentifier>{e3430de7-a220-4c57-a96e-29661cccf523}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -59,9 +62,6 @@
     <ClInclude Include="ModuleSceneEarthquake.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneWelcome.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleSceneCongrats.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -82,6 +82,15 @@
     </ClInclude>
     <ClInclude Include="ModuleController.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneWelcome.h">
+      <Filter>Modules\MENUS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSNKMenu.h">
+      <Filter>Modules\MENUS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCharacterSelection.h">
+      <Filter>Modules\MENUS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +130,6 @@
     <ClCompile Include="ModuleSceneEarthquake.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneWelcome.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleSceneCongrats.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -144,6 +150,15 @@
     </ClCompile>
     <ClCompile Include="ModuleController.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneWelcome.cpp">
+      <Filter>Modules\MENUS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSNKMenu.cpp">
+      <Filter>Modules\MENUS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCharacterSelection.cpp">
+      <Filter>Modules\MENUS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

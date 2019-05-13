@@ -180,7 +180,6 @@ ModulePlayer2::ModulePlayer2()
 ModulePlayer2::~ModulePlayer2()
 {}
 
-
 // Load assets
 bool ModulePlayer2::Start()
 {
