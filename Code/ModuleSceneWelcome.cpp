@@ -8,8 +8,6 @@
 #include "Animation.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
-#include "ModuleUkyoPlayer1.h"
-#include "ModuleUkyoPlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneWelcome.h"
 #include "SDL/include/SDL.h"

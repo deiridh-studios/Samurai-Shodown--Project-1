@@ -6,8 +6,6 @@
 #include "Modulebackground.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
-#include "ModuleUkyoPlayer1.h"
-#include "ModuleUkyoPlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneEarthquake.h"
@@ -34,8 +32,6 @@ Application::Application()
 	modules[i++] = sceneearthquake = new ModuleSceneEarthquake();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
-	modules[i++] = ukyoplayer1 = new ModuleUkyoPlayer1();
-	modules[i++] = ukyoplayer2 = new ModuleUkyoPlayer2();
 	modules[i++] = scenecongrats = new ModuleSceneCongrats();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
@@ -57,8 +53,6 @@ bool Application::Init()
 
 	player2->Disable();
 	player->Disable();
-	ukyoplayer2->Disable();
-	ukyoplayer1->Disable();
 	sceneearthquake->Disable();
 	background->Disable();
 	scenecongrats->Disable();

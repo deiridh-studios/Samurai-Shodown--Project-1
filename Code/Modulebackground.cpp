@@ -8,8 +8,6 @@
 #include "Animation.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
-#include "ModuleUkyoPlayer1.h"
-#include "ModuleUkyoPlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include"ModuleSceneEarthquake.h"
 #include"ModuleCollision.h"
@@ -42,8 +40,8 @@ bool ModuleBackground::Start() {
 	Ukyo =App->audio->LoadChunk("Audio_FX/Ukyo.wav");
 	App->audio->PlayChunk(Ukyo);
 	graphics=App->textures->Load("Sprites/UkyoBackground.png");
-	App->ukyoplayer1->Enable();
-	App->ukyoplayer2->Enable();
+	App->player->Enable();
+	App->player2->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
 	App->UI->Enable();
@@ -70,8 +68,8 @@ bool ModuleBackground::CleanUp()
 	App->audio->StopChunk();
 	App->audio->UnLoadChunk(Ukyo);
 	App->audio->UnLoadMusic(App->audio->musics[0]);
-	App->ukyoplayer1->Disable();
-	App->ukyoplayer2->Disable();
+	App->player->Disable();
+	App->player2->Disable();
 	App->particles->Disable();
 	App->collision->Disable();
 	App->UI->Disable();

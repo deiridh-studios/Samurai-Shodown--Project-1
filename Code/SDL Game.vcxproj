@@ -91,8 +91,6 @@
     <ClInclude Include="ModuleSceneWelcome.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleUI.h" />
-    <ClInclude Include="ModuleUkyoPlayer1.h" />
-    <ClInclude Include="ModuleUkyoPlayer2.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
   </ItemGroup>
@@ -116,8 +114,6 @@
     <ClCompile Include="ModuleSceneWelcome.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
-    <ClCompile Include="ModuleUkyoPlayer1.cpp" />
-    <ClCompile Include="ModuleUkyoPlayer2.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

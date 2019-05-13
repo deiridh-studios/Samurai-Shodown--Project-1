@@ -19,31 +19,33 @@ ModulePlayer::ModulePlayer()
 	position.y = 210;
 
 	// Idle animation
-	idle.PushBack({ 628, 560, 74, 116 });
-	idle.PushBack({ 710, 558, 72, 118 });
-	idle.PushBack({ 790, 558, 70, 118 });
-	idle.PushBack({ 628, 680, 74, 118 });
-	idle.PushBack({ 710, 680, 72, 118 });
-	idle.PushBack({ 790, 680, 70, 118 });
-	idle.speed = 0.2f;
+	idle.PushBack({ 0, 0, 75, 137 });
+	idle.PushBack({ 75, 0, 75, 137 });
+	idle.speed = 0.02f;
+
 
 	// Walk forward animation (To IMPROVE)
-	forward.PushBack({ 898, 1530, 80, 120 });
-	forward.PushBack({ 978, 1524, 74, 126 });
-	forward.PushBack({ 1052, 1522, 60, 128 });
-	forward.PushBack({ 1112, 1530, 76, 120 });
-
-
+	forward.PushBack({ 185, 0, 75, 137 });
+	forward.PushBack({ 260, 0, 72, 137 });
+	forward.PushBack({ 332, 0, 81, 137 });
+	forward.PushBack({ 413, 0, 87, 137 });
+	forward.PushBack({ 500, 0, 81, 137 });
+	forward.PushBack({ 581, 0, 72, 137 });
+	forward.PushBack({ 653, 0, 75, 137 });
 	forward.speed = 0.2f;
 
 	// Walk backwards animation (To Do)
 	//backward.PushBack({ 330, 2088, 86, 122 });
-	backward.PushBack({ 436, 2088, 80, 122 });
-	backward.PushBack({ 536, 2092, 84, 118 });
-	backward.PushBack({ 650, 2078, 76, 122 });
-	backward.PushBack({ 760, 2084, 62, 126 });
-	backward.PushBack({ 842, 2092, 80, 118 });
+	backward.PushBack({ 653, 0, 75, 137 });
+	backward.PushBack({ 581, 0, 72, 137 });
+	backward.PushBack({ 500, 0, 81, 137 });
+	backward.PushBack({ 413, 0, 87, 137 });
+	backward.PushBack({ 332, 0, 81, 137 });
+	backward.PushBack({ 260, 0, 72, 137 });
+	backward.PushBack({ 185, 0, 75, 137 });
 	backward.speed = 0.2f;
+
+
 
 	// Kick animation(TO IMPROVE)
 	kick.PushBack({ 1497, 159, 67, 100 });
@@ -80,11 +82,16 @@ ModulePlayer::ModulePlayer()
 
 	// Jump
 	//jump.PushBack({ 1446, 16, 66, 122 });
-	jump.PushBack({ 1510, 16, 66, 122 });
-	jump.PushBack({ 1510, 16, 66, 122 });
-	jump.PushBack({ 1590, 36, 84, 96 });
-	jump.PushBack({ 1692, 36, 80, 96 });
-	jump.PushBack({ 1794, 16, 68, 122 });
+	jump.PushBack({ 761, 0, 75, 137 });
+	jump.PushBack({ 836, 0, 68, 137 });
+	jump.PushBack({ 904, 0, 75, 137 });
+	jump.PushBack({ 979, 0, 61, 137 });
+	jump.PushBack({ 1040, 0, 66, 137 });
+	jump.PushBack({ 1106, 0, 63, 137 });
+	jump.PushBack({ 1169, 0, 61, 137 });
+	jump.PushBack({ 1230, 0, 66, 137 });
+	jump.PushBack({ 1296, 0, 61, 137 });
+	jump.PushBack({ 1357, 0, 75, 137 });
 	jump.speed = 0.1f;
 
 
@@ -184,8 +191,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Sprites/spritesHaohmaruFIXED.png"); // arcade version
-	graphics2 = App->textures->Load("sprites/spritesHaohmaruFIXED.png");
+	graphics = App->textures->Load("Sprites/UkyoPlayer1SpriteSheet.png");
 	punchsound = App->audio->LoadChunk("Audio_FX/Punch.wav");
 	kicksound = App->audio->LoadChunk("Audio_FX/Kick.wav");
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
