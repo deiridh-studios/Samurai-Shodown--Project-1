@@ -17,6 +17,7 @@
 #include "ModuleParticles.h"
 #include "ModuleFonts.h"
 #include "ModuleUI.h"
+#include "ModuleSNKComplete.h"
 #include "ModuleController.h"
 
 Application::Application()
@@ -40,6 +41,7 @@ Application::Application()
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = UI = new ModuleUI();
+	modules[i++] = SNKComplete = new ModuleSNKComplete();
 	modules[i++] = fade = new ModuleFadeToBlack();
 
 }

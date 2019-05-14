@@ -11,6 +11,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneWelcome.h"
 #include "ModuleSNKMenu.h"
+#include "ModuleSNKComplete.h"
 #include "ModuleCharacterSelection.h"
 #include "SDL/include/SDL.h"
 
@@ -198,7 +199,7 @@ update_status  ModuleSNKMenu::Update() {
 	
 	if (SNKMenu.current_frame > 140) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->SNKMenu, App->scenewelcome, 2);
+		App->fade->FadeToBlack(App->SNKMenu, App->SNKComplete, 2);
 	}
 	return UPDATE_CONTINUE;
 }

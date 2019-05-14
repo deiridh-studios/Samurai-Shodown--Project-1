@@ -12,6 +12,7 @@
 #include "ModuleSceneWelcome.h"
 #include "ModuleSNKMenu.h"
 #include "ModuleCharacterSelection.h"
+#include "ModuleSNKComplete.h"
 #include "SDL/include/SDL.h"
 
 ModuleSceneWelcome::ModuleSceneWelcome() :Module()
@@ -131,7 +132,7 @@ update_status  ModuleSceneWelcome::Update() {
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED && App->fade->finished == true && Title.current_frame > 67) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->scenewelcome, App->background, 2);
+		App->fade->FadeToBlack(App->scenewelcome, App->characterselection, 2);
 	}
 	return UPDATE_CONTINUE;
 }

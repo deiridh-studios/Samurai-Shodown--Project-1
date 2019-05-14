@@ -14,7 +14,11 @@ public:
 	bool CleanUp();
 
 public:
-	Animation CharacterSelection;
+	SDL_Rect background;
+	SDL_Rect ukyoletters;
+	SDL_Rect charactersrect;
+	Animation UkyoIdle;
+	Animation SelectionAnimation;
 	SDL_Texture* graphics = nullptr;
 };
 #endif //

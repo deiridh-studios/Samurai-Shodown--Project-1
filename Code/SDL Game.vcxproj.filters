@@ -92,6 +92,9 @@
     <ClInclude Include="ModuleCharacterSelection.h">
       <Filter>Modules\MENUS</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSNKComplete.h">
+      <Filter>Modules\MENUS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -158,6 +161,9 @@
       <Filter>Modules\MENUS</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCharacterSelection.cpp">
+      <Filter>Modules\MENUS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSNKComplete.cpp">
       <Filter>Modules\MENUS</Filter>
     </ClCompile>
   </ItemGroup>
