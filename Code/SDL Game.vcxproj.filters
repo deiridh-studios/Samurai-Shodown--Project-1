@@ -95,9 +95,6 @@
     <ClInclude Include="ModuleSNKComplete.h">
       <Filter>Modules\MENUS</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -168,9 +165,6 @@
     </ClCompile>
     <ClCompile Include="ModuleSNKComplete.cpp">
       <Filter>Modules\MENUS</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

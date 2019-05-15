@@ -88,6 +88,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider*, Collider*);
+	void CheckState();
+	void CheckSpecialAttacks();
 
 public:
 
@@ -123,7 +125,7 @@ public:
 	Collider* body2;
 	Collider* body3;
 	Collider* attack;
-	int jump_timer;
+	Uint32 jump_timer;
 	int punch_timer;
 	int kick_timer;
 	int tornado_timer;
