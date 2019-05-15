@@ -15,9 +15,13 @@
     <RootNamespace>SDLGame</RootNamespace>
     <ProjectName>SDL3 Handout</ProjectName>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
 >>>>>>> a22f3a576fc568c98986d2b2b043c2a8fd737656
+=======
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+>>>>>>> parent of 6ad63fe... A lot of changes in P2 SpriteSheet PSD
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
