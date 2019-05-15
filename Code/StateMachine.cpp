@@ -184,10 +184,11 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		hitted_timer = 0;
 	}
 }
-/*void ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, Animation& current_animation, Collider& body, Collider& body2, Collider& body3, Collider *attack, iPoint& position, Module* Player) {
+Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player) {
+	Animation* current_animation=&App->player->idle;
 	switch (actual) {
 	case A_IDLE:
-		current_animation = App->player->idle;
+		current_animation = &App->player->idle;
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
@@ -200,7 +201,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		}
 		break;
 	case A_WALK_FORWARD:
-		current_animation = App->player->forward;
+		current_animation = &App->player->forward;
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
@@ -221,7 +222,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		}
 		break;
 	case A_WALK_BACKWARD:
-		current_animation = App->player->backward;
+		current_animation = &App->player->backward;
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
@@ -242,7 +243,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		}
 		break;
 	case A_JUMP_NEUTRAL:
-		current_animation = App->player->jump;
+		current_animation = &App->player->jump;
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 90));
 			body2.SetPos(position.x + 12, (position.y - 69));
@@ -263,7 +264,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		position.y -= speed * mult;
 		break;
 	case A_JUMP_FORWARD:
-		current_animation = App->player->jumpforward;
+		current_animation = &App->player->jumpforward;
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 90));
 			body2.SetPos(position.x + 12, (position.y - 69));
@@ -290,7 +291,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		}
 		break;
 	case A_JUMP_BACKWARD:
-		current_animation = App->player->jumpbackward;
+		current_animation = &App->player->jumpbackward;
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 90));
 			body2.SetPos(position.x + 12, (position.y - 69));
@@ -318,7 +319,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		}
 		break;
 	case A_CROUCH:
-		current_animation = App->player->crouch;
+		current_animation = &App->player->crouch;
 		if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 70));
 			body2.SetPos(position.x + 67, (position.y - 54));
@@ -331,26 +332,26 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		}
 		break;
 	case A_PUNCH_STANDING:
-		current_animation = App->player->punch;
+		current_animation = &App->player->punch;
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			punch_timer = 3;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCH_NEUTRAL_JUMP:
-		current_animation = App->player->punchair;
+		current_animation = &App->player->punchair;
 		if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -375,22 +376,22 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			punch_timer = 2;
 
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			punch_timer = 3;
 			position.x = position.x + 40;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCH_FORWARD_JUMP:
-		current_animation = App->player->punchair;
+		current_animation = &App->player->punchair;
 		if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -420,21 +421,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			punch_timer = 2;
 			App->audio->PlayChunk(App->player->punchsound);
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 70,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 70,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 70,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 70,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
-			attack->to_delete = true;
+		if (current_animation->GetFinished() == 1) {
+			(*attack)->to_delete = true;
 			punch_timer = 3;
 		}
 		break;
 	case A_PUNCH_BACKWARD_JUMP:
-		current_animation = App->player->punchair;
+		current_animation = &App->player->punchair;
 		if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -463,21 +464,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 40,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 40,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 40,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 40,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
-			attack->to_delete = true;
+		if (current_animation->GetFinished() == 1) {
+			(*attack)->to_delete = true;
 			punch_timer = 3;
 		}
 		break;
 	case A_PUNCH_CROUCH:
-		current_animation = App->player->punchcrouch;
+		current_animation = &App->player->punchcrouch;
 		if (flip == false) {
 			body.SetPos(position.x + 35, (position.y - 65));
 			body2.SetPos(position.x + 52, (position.y - 50));
@@ -492,21 +493,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			punch_timer = 3;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_STANDING:
-		current_animation = App->player->kick;
+		current_animation = &App->player->kick;
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
@@ -521,21 +522,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 40,(position.y - 90),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 40,(position.y - 90),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 40,(position.y - 90),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 40,(position.y - 90),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 90),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 90),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 90),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 90),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_NEUTRAL_JUMP:
-		current_animation = App->player->kickair;
+		current_animation = &App->player->kickair;
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 60));
 			body2.SetPos(position.x + 12, (position.y - 49));
@@ -558,21 +559,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 40,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 40,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 40,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 40,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 4,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 4,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 4,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 4,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_FORWARD_JUMP:
-		current_animation = App->player->kickair;
+		current_animation = &App->player->kickair;
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 60));
 			body2.SetPos(position.x + 12, (position.y - 49));
@@ -603,21 +604,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_BACKWARD_JUMP:
-		current_animation = App->player->kickair;
+		current_animation = &App->player->kickair;
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 60));
 			body2.SetPos(position.x + 12, (position.y - 49));
@@ -648,21 +649,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),65,20 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_CROUCH:
-		current_animation = App->player->kickcrouch;
+		current_animation = &App->player->kickcrouch;
 		if (flip == false) {
 			body.SetPos(position.x + 15, (position.y - 65));
 			body2.SetPos(position.x + 25, (position.y - 50));
@@ -678,21 +679,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if(Player== App->player) attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if(Player==App->player2) attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if(Player== App->player) *attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if(Player==App->player2) *attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			if (flip == true) {
-				if (Player == App->player) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
-		if (current_animation.GetFinished() == 1) {
+		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			attack->to_delete = true;
+			(*attack)->to_delete = true;
 		}
 		break;
 	case A_HITTED:
-		current_animation = App->player->hittedan;
+		current_animation = &App->player->hittedan;
 		if (hitted_timer == 1 && position.y == 210) {
 			App->audio->PlayChunk(App->player->hittedsound);
 			App->UI->DamageTaken(1, 5);
@@ -704,20 +705,21 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			mult = -1;
 		}
 		if (position.y < 210)position.y -= speed * mult;
-		if (current_animation.GetFinished() == 1 && hitted_timer == 2)hitted_timer = 3;
+		if (current_animation->GetFinished() == 1 && hitted_timer == 2)hitted_timer = 3;
 		break;
 	case A_TORNADO:
-		current_animation = App->player->tornado;
+		current_animation = &App->player->tornado;
 		if (tornado_timer == 1) {
-			App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
+			if(Player == App->player) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
+			else if(Player == App->player2) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 0);
 			App->audio->PlayChunk(App->player->tornadosound);
 			tornado_timer = 2;
 		}
-		if (current_animation.GetFinished() == 1)tornado_timer = 3;
+		if (current_animation->GetFinished() == 1)tornado_timer = 3;
 		break;
 	}
+	return current_animation;
 }
-*/
 void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado_timer, int &inputsouts, state& actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS]) {
 	switch (actual) {
 	case A_IDLE:

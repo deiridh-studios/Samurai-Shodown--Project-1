@@ -39,7 +39,7 @@ public:
 	int mult;
 	state actual3;
 	inputin inputstate2[60];
-	inputout inputstateout2[6];
+	inputout inputstateout2[INPUTSOUTS];
 	int inputsouts;
 	int jump_timer;
 	int punch_timer;
