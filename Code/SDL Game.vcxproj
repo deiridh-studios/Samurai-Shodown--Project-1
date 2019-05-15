@@ -17,6 +17,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
 >>>>>>> a22f3a576fc568c98986d2b2b043c2a8fd737656
@@ -26,6 +27,8 @@
 =======
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
 >>>>>>> parent of a22f3a5... State Machine out of player (in progress)
+=======
+>>>>>>> parent of c365c70... Conflict with Arnau State Machine
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
