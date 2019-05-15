@@ -24,33 +24,12 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider*, Collider*);
-	void CheckState();
-	void CheckSpecialAttacks();
 
 public:
 
-	Mix_Chunk *punchsound;
-	Mix_Chunk *jumpsound;
-	Mix_Chunk *kicksound;
-	Mix_Chunk *hittedsound;
-	Mix_Chunk *tornadosound;
+
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* graphics2 = nullptr;
-	Animation idle;
-	Animation forward;
-	Animation backward;
-	Animation punch;
-	Animation kick;
-	Animation jump;
-	Animation jumpforward;
-	Animation jumpbackward;
-	Animation tornado;
-	Animation hittedan;
-	Animation crouch;
-	Animation punchair;
-	Animation punchcrouch;
-	Animation kickair;
-	Animation kickcrouch;
 
 	iPoint position;
 	Collider* bodyenemy;
@@ -62,7 +41,7 @@ public:
 	inputin inputstate2[60];
 	inputout inputstateout2[6];
 	int inputsouts;
-	Uint32 jump_timer;
+	int jump_timer;
 	int punch_timer;
 	int kick_timer;
 	int tornado_timer;
