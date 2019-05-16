@@ -48,12 +48,12 @@ ModulePlayer::ModulePlayer()
 
 
 	// Kick animation(TO IMPROVE)
-	kick.PushBack({ 0, 411, 97, 137 });
-	kick.PushBack({ 97, 411, 97, 137 });
-	kick.PushBack({ 194, 411, 97, 137 });
-	kick.PushBack({ 97, 411, 97, 137 });
-	kick.PushBack({ 0, 411, 97, 137 });
-	kick.speed = 0.3f;
+	kick.PushBack({  15, 190, 70, 86 });
+	kick.PushBack({ 114, 190, 66, 86 });
+	kick.PushBack({ 202, 190, 67, 86 });
+	kick.PushBack({ 302, 190, 82, 86 });
+	kick.PushBack({ 402, 190, 100, 86 });
+	kick.speed = 0.2f;
 
 
 
@@ -253,13 +253,14 @@ ModulePlayer::ModulePlayer()
 	kickair.PushBack({ 572 , 137 , 83 , 137 });
 	kickair.PushBack({ 655 , 137 , 111 , 137 });
 	kickair.PushBack({ 766 , 137 , 96 , 137 });
-	kickair.speed = 0.25f;
+	kickair.speed = 0.3f;
 
 	///////////Kick crouch;
-	kickcrouch.PushBack({ 1666 , 274, 68, 137 });
-	kickcrouch.PushBack({ 1734 ,274 , 67,  137 });
-	kickcrouch.PushBack({ 1801 ,274 , 81, 137 });
-	kickcrouch.PushBack({ 1882 ,274 , 100,  137 });
+	kickcrouch.PushBack({ 1665, 334, 69, 80});
+	kickcrouch.PushBack({ 1734, 334, 67, 80});
+	kickcrouch.PushBack({ 1801, 334, 81, 80});
+	kickcrouch.PushBack({ 1882, 334, 100,80});
+	kickcrouch.PushBack({ 1982, 334, 68, 80});
 	kickcrouch.speed = 0.3f;
 
 }
