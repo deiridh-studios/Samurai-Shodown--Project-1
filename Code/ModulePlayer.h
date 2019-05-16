@@ -130,6 +130,7 @@ public:
 	Animation win;
 	SDL_Rect shadowrect;
 
+
 	iPoint position;
 	int mult;
 	state actual;
