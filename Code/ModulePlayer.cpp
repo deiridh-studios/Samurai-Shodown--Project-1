@@ -25,7 +25,7 @@ ModulePlayer::ModulePlayer()
 	idle.speed = 0.02f;
 
 
-	// Walk forward animation (To IMPROVE)
+	// Walk forward animation
 	forward.PushBack({ 185, 0, 75, 137 });
 	forward.PushBack({ 260, 0, 72, 137 });
 	forward.PushBack({ 332, 0, 81, 137 });
