@@ -319,6 +319,57 @@ ModulePlayer::ModulePlayer()
 	win.PushBack({ 1359'5, 2031'5 , 65'5 , 138'5 });
 	win.PushBack({ 1425, 2031'5 , 65 , 138'5 });
 
+	///////////Fire eagle;
+	firebird.PushBack({ 0, 550, 67, 137});
+	firebird.PushBack({ 67, 550, 67, 137 });
+	firebird.PushBack({ 134, 550, 79, 137 });
+	firebird.PushBack({ 213, 550, 89, 137 });
+	firebird.PushBack({ 314, 550, 189, 137 });
+	firebird.PushBack({ 503, 550, 186, 137 });
+	firebird.PushBack({ 689, 550, 120, 137 });
+	firebird.PushBack({ 809, 550, 69, 137 });
+	firebird.PushBack({ 878, 550, 70, 137 });
+	firebird.PushBack({ 948, 550, 86, 137 });
+	firebird.PushBack({ 1034, 550, 57, 137 });
+	firebird.PushBack({ 1091, 550, 75, 137 });
+	
+	///////////Roll attack;
+	rollattack.PushBack({ 0, 756, 71,  825 });
+	rollattack.PushBack({ 190, 756, 74, 825 });
+	rollattack.PushBack({ 406, 756, 86, 825 });
+	rollattack.PushBack({ 600, 756, 96, 825 });
+	rollattack.PushBack({ 794, 756, 112, 825 });
+	rollattack.PushBack({ 985, 756, 178, 825 });
+	rollattack.PushBack({ 1180, 756, 174,  825 });
+	rollattack.PushBack({ 1370, 756, 178, 825});
+	rollattack.PushBack({ 1564, 756, 177, 825 });
+	rollattack.PushBack({ 1758, 756, 174, 825 });
+	rollattack.PushBack({ 22, 756, 172, 97 });
+	rollattack.PushBack({ 214, 756, 139, 97 });
+	rollattack.PushBack({ 400, 756, 78, 97 });
+	rollattack.PushBack({ 580, 756, 92, 97 });
+	rollattack.PushBack({ 768, 756, 93, 97 });
+	rollattack.PushBack({ 976, 756, 78, 97 });
+
+	///////////Air hitted;
+	airhitted.PushBack({ 1215,  1941, 82, 96 });
+	airhitted.PushBack({ 1297, 1941, 97, 96 });
+	airhitted.PushBack({ 1394, 1941, 126'3, 96 });
+	airhitted.PushBack({ 1520'3, 1941, 125'9, 96 });
+	airhitted.PushBack({ 1646'2, 1941, 125'8, 96 });
+	airhitted.PushBack({ 1772, 1941, 96, 96 });
+	airhitted.PushBack({ 1868, 1941, 70'6, 96 });
+	airhitted.PushBack({ 1938'6, 1941, 43'4, 96 });
+	airhitted.PushBack({ 1982, 1941, 76'5,96 });
+
+	///////////Strong slash;
+	strongerslash.PushBack({43,   2488'5, 75, 91'5});
+	strongerslash.PushBack({ 202, 2488'5, 83, 91'5});
+	strongerslash.PushBack({ 352, 2488'5, 86, 91'5});
+	strongerslash.PushBack({ 513, 2488'5, 84, 91'5});
+	strongerslash.PushBack({ 663, 2488'5, 97, 91'5});
+	strongerslash.PushBack({ 834, 2488'5, 145, 91'5 });
+
 
 }
 

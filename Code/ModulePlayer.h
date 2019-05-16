@@ -37,7 +37,12 @@ enum state {
 	A_LOSTWEAPON,
 	A_CLASHWEAPONS,
 	A_PREBATTLEPOSE,
-	A_WINNER
+	A_WINNER,
+	A_STRONGKICK,
+	A_FIREEAGLE,
+	A_ROLLATTACK,
+	A_HITTED_JUMP,
+	A_STRONGSLASH
 };
 enum inputin {
 	S_NONE = 0,
@@ -128,6 +133,10 @@ public:
 	Animation shadow;
 	Animation prebattle;
 	Animation win;
+	Animation firebird;
+	Animation rollattack;
+	Animation airhitted;
+	Animation strongerslash;
 	SDL_Rect shadowrect;
 
 
