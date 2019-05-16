@@ -330,6 +330,9 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			body2.SetPos(position.x + 8, (position.y - 54));
 			body3.SetPos(position.x + 8, (position.y - 40));
 		}
+		if (current_animation->GetFinished() == 1) {
+			current_animation = &App->player->crouchfinished;
+		}
 		break;
 	case A_PUNCH_STANDING:
 		current_animation = &App->player->punch;
@@ -341,11 +344,15 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
+				position.x = position.x - 40;
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
 		if (current_animation->GetFinished() == 1) {
+			if (flip == true) {
+				position.x = position.x + 40;
+			}
 			punch_timer = 3;
 			(*attack)->to_delete = true;
 		}
@@ -378,18 +385,27 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			if (flip == false) {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				position.x += 24;
 			}
 			else {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				position.x -= 24;
 			}
 		}
 		if (current_animation->GetFinished() == 1) {
+			if (flip == true) {
+				position.x += 24;
+			}
+			else {
+				position.x -= 24;
+			}
 			punch_timer = 3;
 			position.x = position.x + 40;
 			(*attack)->to_delete = true;
 		}
 		break;
+
 	case A_PUNCH_FORWARD_JUMP:
 		current_animation = &App->player->punchair;
 		if (flip == false) {
@@ -423,17 +439,26 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			if (flip == false) {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 70,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 70,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				position.x += 24;
 			}
 			else {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				position.x -= 24;
 			}
 		}
 		if (current_animation->GetFinished() == 1) {
+			if (flip == true) {
+				position.x += 24;
+			}
+			else {
+				position.x -= 24;
+			}
 			(*attack)->to_delete = true;
 			punch_timer = 3;
 		}
 		break;
+
 	case A_PUNCH_BACKWARD_JUMP:
 		current_animation = &App->player->punchair;
 		if (flip == false) {
@@ -499,9 +524,13 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			else {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				position.x -= 80;
 			}
 		}
 		if (current_animation->GetFinished() == 1) {
+			if (flip == true) {
+				position.x += 80;
+			}
 			punch_timer = 3;
 			(*attack)->to_delete = true;
 		}
@@ -509,11 +538,13 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 	case A_KICK_STANDING:
 		current_animation = &App->player->kick;
 		if (flip == false) {
+			position.x += 2;
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
 			body3.SetPos(position.x + 20, (position.y - 40));
 		}
 		else {
+			position.x -= 2;
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
 			body3.SetPos(position.x + 20, (position.y - 40));
@@ -685,9 +716,13 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			if (flip == true) {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				position.x -= 15;
 			}
 		}
 		if (current_animation->GetFinished() == 1) {
+			if (flip == true) {
+				position.x += 15;
+			}
 			kick_timer = 3;
 			(*attack)->to_delete = true;
 		}

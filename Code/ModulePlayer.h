@@ -32,6 +32,7 @@ enum state {
 	A_KICK_BACKWARD_JUMP,
 	A_KICK_CROUCH,
 	A_TORNADO,
+	A_APPLEATTACK,
 	A_HITTED
 };
 enum inputin {
@@ -63,7 +64,8 @@ enum inputin {
 	S_Y_JUMP_LEFT,
 	S_Y_CROUCH,
 	S_Y_CROUCH_RIGHT,
-	S_TORNADO
+	S_TORNADO,
+	S_APPLEATTACK
 };
 enum inputout {
 	SO_NONE=0,
@@ -74,6 +76,7 @@ enum inputout {
 	SO_PUNCH_FINISH,
 	SO_KICK_FINISH,
 	SO_TORNADO_FINISH,
+	SO_APPLEATTACK_FINISH,
 	SO_HITTED_FINISH
 };
 
@@ -106,9 +109,11 @@ public:
 	Animation jump;
 	Animation jumpforward;
 	Animation jumpbackward;
+	Animation appleattack;
 	Animation tornado;
 	Animation hittedan;
 	Animation crouch;
+	Animation crouchfinished;
 	Animation punchair;
 	Animation punchcrouch;
 	Animation kickair;

@@ -60,6 +60,7 @@ bool Application::Init()
 	player->Disable();
 	sceneearthquake->Disable();
 	scenewelcome->Disable();
+	SNKComplete->Disable();
 	characterselection->Disable();
 	background->Disable();
 	scenecongrats->Disable();
