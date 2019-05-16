@@ -108,6 +108,7 @@ public:
 	Animation backward;
 	Animation punch;
 	Animation kick;
+	Animation strongerkick;
 	Animation jump;
 	Animation jumpforward;
 	Animation jumpbackward;

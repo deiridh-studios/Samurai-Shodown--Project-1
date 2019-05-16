@@ -104,7 +104,9 @@ update_status ModulePlayer2::Update()
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
+	
 	App->render->Blit(graphics, App->player2->position.x + 2, 200, &shadowrect, 1.0f);
+	
 	if (actual3 != A_TORNADO) {
 		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true);
