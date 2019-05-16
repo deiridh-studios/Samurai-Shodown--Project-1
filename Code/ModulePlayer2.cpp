@@ -17,6 +17,10 @@ ModulePlayer2::ModulePlayer2()
 	position.x = 200;
 	position.y = 210;
 
+	//Shadow animation
+	shadow.PushBack({ 2005, 411, 70, 14 });
+	shadow.PushBack({ 2005, 425, 70, 14 });
+	shadow.speed = 0.4f;
 }
 
 ModulePlayer2::~ModulePlayer2()
@@ -34,10 +38,6 @@ bool ModulePlayer2::Start()
 	bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_ENEMY, this);
 	bodyenemy2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_ENEMY, this);
 	bodyenemy3 = App->collision->AddCollider({ position.x,(position.y - 20),45,35 }, COLLIDER_ENEMY, this);
-	shadowrect.x = 2005;
-	shadowrect.y = 411;
-	shadowrect.w = 70;
-	shadowrect.h = 14;
 	actual3 = A_IDLE;
 	victory = false;
 	for (int i = 0; i < 60; i++) inputstate2[i] = S_NONE;
@@ -105,7 +105,12 @@ update_status ModulePlayer2::Update()
 	// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
 	
-	App->render->Blit(graphics, App->player2->position.x + 2, 200, &shadowrect, 1.0f);
+	if (flip == false) {
+		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+	}
+	if (flip == true) {
+		App->render->Blit(graphics, App->player2->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+	}
 	
 	if (actual3 != A_TORNADO) {
 		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);

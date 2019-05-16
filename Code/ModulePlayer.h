@@ -123,7 +123,7 @@ public:
 	Animation kickcrouch;
 	Animation lostweapon;
 	Animation clashswords;
-	SDL_Rect shadowrect;
+	Animation shadow;
 
 	iPoint position;
 	int mult;

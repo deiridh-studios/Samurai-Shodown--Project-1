@@ -55,7 +55,6 @@ ModulePlayer::ModulePlayer()
 	strongerkick.PushBack({ 402, 190, 100, 86 });
 	strongerkick.speed = 0.2f;
 
-
 	// Kick animation
 	kick.PushBack({ 0, 411, 97, 137 });
 	kick.PushBack({ 97, 411, 97, 137 });
@@ -281,6 +280,11 @@ ModulePlayer::ModulePlayer()
 	clashswords.PushBack({ 980, 1920, 71'5, 113 });
 	clashswords.PushBack({ 1051'5, 1920, 97'5, 113 });
 
+
+	//Shadow animation
+	shadow.PushBack({ 2005, 411, 70, 14 });
+	shadow.PushBack({ 2005, 425, 70, 14 });
+	shadow.speed = 0.4f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -299,10 +303,6 @@ bool ModulePlayer::Start()
 	tornadosound = App->audio->LoadChunk("Audio_FX/Tornado.wav");
 	position.x = 50;
 	position.y = 210;
-	shadowrect.x = 2005;
-	shadowrect.y = 411;
-	shadowrect.w = 70;
-	shadowrect.h = 14;
 	body = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_PLAYER, this);
 	body2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_PLAYER, this);
 	body3 = App->collision->AddCollider({ position.x,(position.y - 20),45,35 }, COLLIDER_PLAYER, this);
@@ -377,8 +377,13 @@ update_status ModulePlayer::Update()
 		// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
 	
-	App->render->Blit(graphics, App->player->position.x, 210, &shadowrect, 1.0f);
-
+	if (flip == false) {
+		App->render->Blit(graphics, App->player->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+	}
+	if (flip == true) {
+		App->render->Blit(graphics, App->player->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+	}
+	
 	if (actual != A_TORNADO) {
 		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true);
