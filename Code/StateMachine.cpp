@@ -815,6 +815,7 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 	case A_WALK_FORWARD:
 		switch (inputstate[0]) {
 		case S_LEFT_AND_RIGHT: actual = A_IDLE; break;
+		case S_LEFT_DOWN:actual = A_IDLE; break;
 		case S_JUMP: actual = A_JUMP_FORWARD; jump_timer = SDL_GetTicks();  break;
 		case S_JUMP_RIGHT:actual = A_JUMP_FORWARD; jump_timer = SDL_GetTicks(); break;
 		case S_JUMP_LEFT:actual = A_JUMP_BACKWARD; jump_timer = SDL_GetTicks(); break;
@@ -843,6 +844,7 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 	case A_WALK_BACKWARD:
 		switch (inputstate[0]) {
 		case S_LEFT_AND_RIGHT: actual = A_IDLE; break;
+		case S_RIGHT_DOWN:actual = A_IDLE; break;
 		case S_JUMP: actual = A_JUMP_BACKWARD; jump_timer = SDL_GetTicks();  break;
 		case S_JUMP_RIGHT:actual = A_JUMP_FORWARD; jump_timer = SDL_GetTicks(); break;
 		case S_JUMP_LEFT:actual = A_JUMP_BACKWARD; jump_timer = SDL_GetTicks(); break;
