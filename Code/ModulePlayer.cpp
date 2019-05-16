@@ -281,6 +281,39 @@ ModulePlayer::ModulePlayer()
 	clashswords.PushBack({ 980, 1920, 71'5, 113 });
 	clashswords.PushBack({ 1051'5, 1920, 97'5, 113 });
 
+	///////////Pre  battle animation;
+	punchcrouch.PushBack({ 19, 1937 , 67 , 96 });
+	punchcrouch.PushBack({ 93 , 1937 , 66 , 96 });
+	punchcrouch.PushBack({ 173 , 1937 , 69 , 96 });
+	punchcrouch.PushBack({ 242, 1937 , 76 , 96 });
+	punchcrouch.PushBack({ 318, 1937 , 76 , 96 });
+	punchcrouch.PushBack({ 394, 1937 , 79 , 96 });
+	punchcrouch.PushBack({ 473, 1937 , 78 , 96 });
+	punchcrouch.PushBack({ 553, 1937 , 75 , 96 });
+	punchcrouch.PushBack({ 644, 1937 , 65 , 96 });
+	punchcrouch.PushBack({ 727, 1937 , 65 , 96 });
+	punchcrouch.PushBack({ 811 , 1937 , 65 , 96 });
+	
+
+	///////////Winner animation;
+	win.PushBack({ 0,  2031'5 , 62'5 , 138'5 });
+	win.PushBack({ 62'5 , 2031'5 , 69 , 138'5 });
+	win.PushBack({ 131'5, 2031'5 , 79 , 138'5 });
+	win.PushBack({ 210'5, 2031'5 , 105 , 138'5 });
+	win.PushBack({ 315'5, 2031'5 , 111 , 138'5 });
+	win.PushBack({ 426'5, 2031'5 , 98'5 , 138'5 });
+	win.PushBack({ 525, 2031'5 , 102'5 , 138'5 });
+	win.PushBack({ 627'5, 2031'5 , 104'5 , 138'5 });
+	win.PushBack({ 732, 2031'5 , 96'5 , 138'5 });
+	win.PushBack({ 828'5, 2031'5 , 129 , 138'5 });
+	win.PushBack({ 957'5, 2031'5 , 124 , 138'5 });
+	win.PushBack({ 1081'5, 2031'5 , 79 , 138'5 });
+	win.PushBack({ 1160'5, 2031'5 , 69'5 , 138'5 });
+	win.PushBack({ 1230, 2031'5 , 64'5 , 138'5 });
+	win.PushBack({ 1294'5, 2031'5 , 65 , 138'5 });
+	win.PushBack({ 1359'5, 2031'5 , 65'5 , 138'5 });
+	win.PushBack({ 1425, 2031'5 , 65 , 138'5 });
+
 }
 
 ModulePlayer::~ModulePlayer()

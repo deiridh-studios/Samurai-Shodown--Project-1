@@ -35,7 +35,9 @@ enum state {
 	A_APPLEATTACK,
 	A_HITTED,
 	A_LOSTWEAPON,
-	A_CLASHWEAPONS
+	A_CLASHWEAPONS,
+	A_PREBATTLEPOSE,
+	A_WINNER
 };
 enum inputin {
 	S_NONE = 0,
@@ -123,6 +125,8 @@ public:
 	Animation kickcrouch;
 	Animation lostweapon;
 	Animation clashswords;
+	Animation prebattle;
+	Animation win;
 	SDL_Rect shadowrect;
 
 	iPoint position;
