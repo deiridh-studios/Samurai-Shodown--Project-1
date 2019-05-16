@@ -125,13 +125,10 @@ public:
 	Animation kickcrouch;
 	Animation lostweapon;
 	Animation clashswords;
-<<<<<<< HEAD
 	Animation shadow;
-=======
 	Animation prebattle;
 	Animation win;
 	SDL_Rect shadowrect;
->>>>>>> ad0b3eb8e0ab4c53b95eed4abd158bbd83864066
 
 	iPoint position;
 	int mult;

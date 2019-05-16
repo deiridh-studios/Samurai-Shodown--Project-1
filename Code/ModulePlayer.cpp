@@ -280,13 +280,12 @@ ModulePlayer::ModulePlayer()
 	clashswords.PushBack({ 980, 1920, 71'5, 113 });
 	clashswords.PushBack({ 1051'5, 1920, 97'5, 113 });
 
-<<<<<<< HEAD
 
 	//Shadow animation
 	shadow.PushBack({ 2005, 411, 70, 14 });
 	shadow.PushBack({ 2005, 425, 70, 14 });
 	shadow.speed = 0.4f;
-=======
+
 	///////////Pre  battle animation;
 	punchcrouch.PushBack({ 19, 1937 , 67 , 96 });
 	punchcrouch.PushBack({ 93 , 1937 , 66 , 96 });
@@ -320,7 +319,7 @@ ModulePlayer::ModulePlayer()
 	win.PushBack({ 1359'5, 2031'5 , 65'5 , 138'5 });
 	win.PushBack({ 1425, 2031'5 , 65 , 138'5 });
 
->>>>>>> ad0b3eb8e0ab4c53b95eed4abd158bbd83864066
+
 }
 
 ModulePlayer::~ModulePlayer()
