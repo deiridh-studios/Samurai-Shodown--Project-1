@@ -30,23 +30,11 @@ bool ModuleParticles::Start()
 
 	////////Tornado animation
 
-	tornado.anim.PushBack({ 172, 2660, 28, 100 });
-	tornado.anim.PushBack({ 316, 2660, 34, 100 });
-	tornado.anim.PushBack({ 458, 2660, 44, 100 });
-	tornado.anim.PushBack({ 602, 2660, 34, 100 });
-	tornado.anim.PushBack({ 738, 2660, 48, 100 });
-	tornado.anim.PushBack({ 864, 2660, 80, 100 });
-	tornado.anim.PushBack({ 1008, 2660, 98, 100 });
-	tornado.anim.PushBack({ 1154, 2660, 102, 100 });
-	tornado.anim.PushBack({ 1296, 2660, 94, 100 });
-	tornado.anim.PushBack({ 1436, 2660, 98, 100 });
-	tornado.anim.PushBack({ 1580, 2660, 92, 100 });
-	tornado.anim.PushBack({ 1730, 2660, 86, 100 });
-	tornado.anim.PushBack({ 1872, 2660, 82, 100 });
-	tornado.anim.PushBack({ 16, 2756, 71, 220 });
-	tornado.anim.PushBack({ 154, 2756, 71, 220 });
-	tornado.anim.PushBack({ 308, 2756, 71, 220});
-	tornado.anim.PushBack({ 452, 2756, 71, 220});
+	tornado.anim.PushBack({ 1182, 861, 106, 70 });
+	tornado.anim.PushBack({ 1288, 861, 106, 70 });
+	tornado.anim.PushBack({ 1394, 861, 123, 70 });
+	tornado.anim.PushBack({ 1517, 861, 120'2, 70 });
+	tornado.anim.PushBack({ 1637'2, 861, 142'8, 70 });
 	tornado.anim.speed = 0.2f;
 	tornado.speed.x = 5;
 	tornado.life = 2300;
