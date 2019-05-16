@@ -44,16 +44,24 @@ update_status ModuleInput::PreUpdate()
 
 	/////////////////CONTROLLER INPUT/////////////////////////
 
-	if (App->controller->buttonstate[0][9] == true || App->controller->buttonstate[1][9] == true)keyboard2[44] = 1;
-	else keyboard2[44] = 0;
-	if (App->controller->axisstate[0][0] > 3276.7/*/ 32767 > 0.1*/) keyboard2[7] = 1;
-	else keyboard2[7] = 0;
-	if(App->controller->axisstate[0][0] <-3276.8/*/ 32768 < -0.1*/) keyboard2[4] = 1;
-	else keyboard2[4] = 0;
-	if (App->controller->axisstate[1][0] >3276.7/*/ 32767 > 0.1*/) keyboard2[79] = 1;
-	else keyboard2[79] = 0;
-	if (App->controller->axisstate[1][0] <-3276.8/*/ 32768 < -0.1*/) keyboard2[80] = 1;
-	else keyboard2[80] = 0;
+	if (App->controller->buttonstate[0][SDL_CONTROLLER_BUTTON_START] == true || App->controller->buttonstate[1][SDL_CONTROLLER_BUTTON_START] == true)keyboard2[SDL_SCANCODE_SPACE] = 1;
+	else keyboard2[SDL_SCANCODE_SPACE] = 0;
+	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTX] > 13106.8) keyboard2[SDL_SCANCODE_D] = 1;
+	else keyboard2[SDL_SCANCODE_D] = 0;
+	if(App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTX] <-13107.0) keyboard2[SDL_SCANCODE_A] = 1;
+	else keyboard2[SDL_SCANCODE_A] = 0;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTX] > 13106.8) keyboard2[SDL_SCANCODE_RIGHT] = 1;
+	else keyboard2[SDL_SCANCODE_RIGHT] = 0;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTX] <-13107.0) keyboard2[SDL_SCANCODE_LEFT] = 1;
+	else keyboard2[SDL_SCANCODE_LEFT] = 0;
+	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTY] > 13106.8/*6553.4 o +2*/) keyboard2[SDL_SCANCODE_S] = 1;
+	else keyboard2[SDL_SCANCODE_S] = 0;
+	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTY] < -13107.0) keyboard2[SDL_SCANCODE_W] = 1;
+	else keyboard2[SDL_SCANCODE_W] = 0;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTY] > 13106.8) keyboard2[SDL_SCANCODE_DOWN] = 1;
+	else keyboard2[SDL_SCANCODE_DOWN] = 0;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTY] < -13107.0) keyboard2[SDL_SCANCODE_UP] = 1;
+	else keyboard2[SDL_SCANCODE_UP] = 0;
 
 
 
