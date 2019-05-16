@@ -33,7 +33,9 @@ enum state {
 	A_KICK_CROUCH,
 	A_TORNADO,
 	A_APPLEATTACK,
-	A_HITTED
+	A_HITTED,
+	A_LOSTWEAPON,
+	A_CLASHWEAPONS
 };
 enum inputin {
 	S_NONE = 0,
@@ -118,6 +120,8 @@ public:
 	Animation punchcrouch;
 	Animation kickair;
 	Animation kickcrouch;
+	Animation lostweapon;
+	Animation clashswords;
 
 	iPoint position;
 	int mult;

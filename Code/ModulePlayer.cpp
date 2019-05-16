@@ -263,6 +263,15 @@ ModulePlayer::ModulePlayer()
 	kickcrouch.PushBack({ 1982, 334, 68, 80});
 	kickcrouch.speed = 0.3f;
 
+	///////////Lost weapon;
+	lostweapon.PushBack({ 1778, 477, 40, 72 });
+	lostweapon.PushBack({ 1818, 477, 42, 72 });
+
+	///////////Clash swords;
+	clashswords.PushBack({ 915, 1920, 65, 113 });
+	clashswords.PushBack({ 980, 1920, 71'5, 113 });
+	clashswords.PushBack({ 1051'5, 1920, 97'5, 113 });
+
 }
 
 ModulePlayer::~ModulePlayer()
