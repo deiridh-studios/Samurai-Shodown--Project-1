@@ -47,12 +47,21 @@ ModulePlayer::ModulePlayer()
 	backward.speed = 0.2f;
 
 
-	// Kick animation(TO IMPROVE)
-	kick.PushBack({  15, 190, 70, 86 });
-	kick.PushBack({ 114, 190, 66, 86 });
-	kick.PushBack({ 202, 190, 67, 86 });
-	kick.PushBack({ 302, 190, 82, 86 });
-	kick.PushBack({ 402, 190, 100, 86 });
+	// Stronger Kick animation
+	strongerkick.PushBack({  15, 190, 70, 86 });
+	strongerkick.PushBack({ 114, 190, 66, 86 });
+	strongerkick.PushBack({ 202, 190, 67, 86 });
+	strongerkick.PushBack({ 302, 190, 82, 86 });
+	strongerkick.PushBack({ 402, 190, 100, 86 });
+	strongerkick.speed = 0.2f;
+
+
+	// Kick animation
+	kick.PushBack({ 0, 411, 97, 137 });
+	kick.PushBack({ 97, 411, 97, 137 });
+	kick.PushBack({ 194, 411, 97, 137 });
+	kick.PushBack({ 97, 411, 97, 137 });
+	kick.PushBack({ 0, 411, 97, 137 });
 	kick.speed = 0.2f;
 
 
@@ -368,7 +377,7 @@ update_status ModulePlayer::Update()
 		// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
 	
-	App->render->Blit(graphics, App->player->position.x+2, 200, &shadowrect, 1.0f);
+	App->render->Blit(graphics, App->player->position.x, 210, &shadowrect, 1.0f);
 
 	if (actual != A_TORNADO) {
 		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
