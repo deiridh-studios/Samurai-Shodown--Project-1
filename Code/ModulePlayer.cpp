@@ -88,7 +88,6 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 979, 0, 61, 137 });
 	jump.PushBack({ 1040, 0, 66, 137 });
 	jump.PushBack({ 1106, 0, 63, 137 });
-	jump.PushBack({ 1169, 0, 61, 137 });
 	jump.PushBack({ 1106, 0, 63, 137 });
 	jump.PushBack({ 1040, 0, 66, 137 });
 	jump.PushBack({ 979, 0, 61, 137 });
