@@ -50,5 +50,6 @@ public:
 	bool stopleft;
 	bool flip;
 	bool stopright;
+	SDL_Rect shadowrect;
 };
 #endif

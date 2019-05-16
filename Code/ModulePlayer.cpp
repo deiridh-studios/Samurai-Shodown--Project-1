@@ -290,6 +290,10 @@ bool ModulePlayer::Start()
 	tornadosound = App->audio->LoadChunk("Audio_FX/Tornado.wav");
 	position.x = 50;
 	position.y = 210;
+	shadowrect.x = 2005;
+	shadowrect.y = 411;
+	shadowrect.w = 70;
+	shadowrect.h = 14;
 	body = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_PLAYER, this);
 	body2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_PLAYER, this);
 	body3 = App->collision->AddCollider({ position.x,(position.y - 20),45,35 }, COLLIDER_PLAYER, this);
@@ -363,10 +367,13 @@ update_status ModulePlayer::Update()
 	
 		// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
+	
+	App->render->Blit(graphics, App->player->position.x+2, 200, &shadowrect, 1.0f);
 
 	if (actual != A_TORNADO) {
 		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true);
+
 	}
 	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
 	return UPDATE_CONTINUE;
