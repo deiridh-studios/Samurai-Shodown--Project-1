@@ -45,8 +45,8 @@ bool ModuleBackground::Start() {
 	App->particles->Enable();
 	App->collision->Enable();
 	App->UI->Enable();
-	cameraleftcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL, App->background);
-	camerarightcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL, App->background);
+	cameraleftcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL_LEFT, App->background);
+	camerarightcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL_RIGHT, App->background);
 	return true;
 }
 update_status ModuleBackground::Update() {

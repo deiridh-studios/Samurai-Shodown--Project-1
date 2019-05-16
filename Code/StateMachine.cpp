@@ -214,11 +214,15 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (flip == false) {
 			if (stopright == false)	position.x += speed;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if (App->player->stopleft == false && App->player2->stopleft == false) {
+				if (App->background->cameraright.x < 670)App->render->camera.x -= speed;
+			}
 		}
 		else {
-			if (stopleft == false)position.x -= speed;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0)App->render->camera.x += speed;
+			}
 		}
 		break;
 	case A_WALK_BACKWARD:
@@ -234,12 +238,16 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			body3.SetPos(position.x + 16, (position.y - 40));
 		}
 		if (flip == false) {
-			if (stopleft == false)position.x -= speed / 2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed / 2;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0) App->render->camera.x += speed;
+			}
 		}
 		else {
 			if (stopright == false)position.x += speed / 2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if(App->player->stopleft==false&&App->player2->stopleft==false){
+				if (App->background->cameraright.x < 670) App->render->camera.x -= speed;
+			}
 		}
 		break;
 	case A_JUMP_NEUTRAL:
@@ -282,12 +290,16 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if (stopright == false)position.x += speed / 2;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if (stopright == false)	position.x += speed;
+			if (App->player->stopleft == false && App->player2->stopleft == false) {
+				if (App->background->cameraright.x < 670)App->render->camera.x -= speed;
+			}
 		}
 		else {
-			if (stopleft == false)position.x -= speed / 2;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0)App->render->camera.x += speed;
+			}
 		}
 		break;
 	case A_JUMP_BACKWARD:
@@ -310,12 +322,16 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if (stopleft == false)position.x -= speed / 2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed / 2;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0) App->render->camera.x += speed;
+			}
 		}
 		else {
 			if (stopright == false)position.x += speed / 2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if (App->player->stopleft == false && App->player2->stopleft == false) {
+				if (App->background->cameraright.x < 670) App->render->camera.x -= speed;
+			}
 		}
 		break;
 	case A_CROUCH:
@@ -381,7 +397,6 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			App->audio->PlayChunk(App->player->punchsound);
 			position.x = position.x - 40;
 			punch_timer = 2;
-
 			if (flip == false) {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
@@ -426,12 +441,16 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if (stopright == false)position.x += speed / 2;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if (stopright == false)	position.x += speed;
+			if (App->player->stopleft == false && App->player2->stopleft == false) {
+				if (App->background->cameraright.x < 670)App->render->camera.x -= speed;
+			}
 		}
 		else {
-			if (stopleft == false)position.x -= speed / 2;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0)App->render->camera.x += speed;
+			}
 		}
 		if (punch_timer == 1) {
 			punch_timer = 2;
@@ -478,12 +497,16 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if (stopleft == false)position.x -= speed / 2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed / 2;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0) App->render->camera.x += speed;
+			}
 		}
 		else {
 			if (stopright == false)position.x += speed / 2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if (App->player->stopleft == false && App->player2->stopleft == false) {
+				if (App->background->cameraright.x < 670) App->render->camera.x -= speed;
+			}
 		}
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
@@ -622,14 +645,16 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if ((position.x + 23 * SCREEN_SIZE) < (App->player2->position.x)) position.x += speed / 2;
-			else if (position.y < App->player2->position.y)position.x += speed / 2;
-			if ((App->background->cameraleft.x < position.x) && (App->background->cameraright.x < 670))App->render->camera.x -= speed;// *1.25;
+			if (stopright == false)	position.x += speed;
+			if (App->player->stopleft == false && App->player2->stopleft == false) {
+				if (App->background->cameraright.x < 670)App->render->camera.x -= speed;
+			}
 		}
 		else {
-			if ((position.x) > (App->player2->position.x + 23 * SCREEN_SIZE)) position.x -= speed / 2;
-			else if (position.y < App->player2->position.y)position.x -= speed / 2;
-			if ((App->background->cameraright.x > position.x + 70) && App->background->cameraleft.x > 0)App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0)App->render->camera.x += speed;
+			}
 		}
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(App->player->kicksound);
@@ -667,14 +692,16 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (position.y <= 80) mult = -2;
 		position.y -= speed * mult;
 		if (flip == false) {
-			if (position.x > App->background->cameraleft.x) position.x -= speed / 2;
-			else if (position.y < App->player2->position.y)position.x -= speed / 2;
-			if ((App->background->cameraleft.x > 0) && (App->background->cameraright.x > (App->player2->position.x + (23 * SCREEN_SIZE)))) App->render->camera.x += speed;// *1.25;
+			if (stopleft == false) position.x -= speed / 2;
+			if (App->player->stopright == false && App->player2->stopright == false) {
+				if (App->background->cameraleft.x > 0) App->render->camera.x += speed;
+			}
 		}
 		else {
-			if (position.x + 23 * SCREEN_SIZE < App->background->cameraright.x - 1) position.x += speed / 2;
-			else if (position.y < App->player2->position.y)position.x += speed / 2;
-			if ((App->background->cameraleft.x < App->player2->position.x) && (App->background->cameraright.x < 670)) App->render->camera.x -= speed;// *1.25;
+			if (stopright == false)position.x += speed / 2;
+			if (App->player->stopleft == false && App->player2->stopleft == false) {
+				if (App->background->cameraright.x < 670) App->render->camera.x -= speed;
+			}
 		}
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(App->player->kicksound);
