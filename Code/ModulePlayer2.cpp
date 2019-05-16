@@ -119,9 +119,11 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 			actual3 = A_HITTED;
 			if (hitted_timer == 0)hitted_timer = 1;
 		}
-		if (other->type == COLLIDER_WALL) {
-			if (position.x > 0) position.x = other->rect.x - 23 * SCREEN_SIZE;
-			else position.x = other->rect.x + 1;
+			if (other->type == COLLIDER_WALL_LEFT) {
+			stopleft = true;
+		}
+		if (other->type == COLLIDER_WALL_RIGHT) {
+			stopright = true;
 		}
 		if (other->type == COLLIDER_PLAYER) {
 			if (flip == false) {
