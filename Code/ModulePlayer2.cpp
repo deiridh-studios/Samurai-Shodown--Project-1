@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
@@ -64,7 +65,7 @@ bool ModulePlayer2::CleanUp() {
 update_status ModulePlayer2::PreUpdate() {
 	stopright = false;
 	stopleft = false;
-	if (position.x > App->player->position.x&&position.y == 210)flip = true;
+	if (position.x > App->player->position.x && position.y == 210)flip = true;
 	else if (position.x < App->player->position.x&&position.y == 210)flip = false;
 	for (int i = 59; i > 0; i--)inputstate2[i] = inputstate2[i - 1];
 	inputstate2[0] = S_NONE;
