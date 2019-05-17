@@ -495,11 +495,13 @@ void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 			stopright = true;
 		}
 		if (other->type == COLLIDER_ENEMY) {
+			if (App->player2->actual3 == A_WALK_FORWARD) {
 				if (flip == false) {
-				stopright = true;
-			}
-			else {
-				stopleft = true;
+					position.x--;
+				}
+				else {
+					position.x++;
+				}
 			}
 		}
 	}

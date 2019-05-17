@@ -138,14 +138,32 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 			stopright = true;
 		}
 		if (other->type == COLLIDER_PLAYER) {
-			if (flip == false) {
-				stopright = true;
-				position.x -= 1;
+			if (App->player->actual == A_WALK_FORWARD) {
+				if (flip == false) {
+					position.x -= 1;
+				}
+				else {
+					position.x += 1;
+				}
 			}
-			else {
-				stopleft = true;
-				position.x += 1;
+			/*if (App->player->position.y < 210&&App->player->position.y>200) {
+				if (other->rect.x > App->background->cameraleft.x + 30 || other->rect.x + other->rect.w < App->background->cameraright.x) {
+					if (flip == false) {
+						position.x -= 1;
+					}
+					else {
+						position.x += 1;
+					}
+				}
 			}
+			else if (position.y < 210 && position.y>200) {
+				if (flip == false) {
+					position.x -= 1;
+				}
+				else {
+					position.x += 1;
+				}
+			}*/
 		}
 	}
 	else {

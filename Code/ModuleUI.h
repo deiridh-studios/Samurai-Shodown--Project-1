@@ -14,6 +14,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void DamageTaken(int, int);
+	
+
 
 
 private:
@@ -28,6 +30,8 @@ private:
 	SDL_Rect ukyoplayer2rect;
 	SDL_Rect lifebarplayer2;
 	SDL_Rect komessage;
+	char axisx[10];
+	char axisy[10];
 	int player1life;
 	int player2life;
 	SDL_Texture *textlife;

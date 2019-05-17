@@ -81,7 +81,11 @@ update_status ModuleController::PreUpdate() {
 		axisstate[i][3] = SDL_GameControllerGetAxis(controller[i], SDL_CONTROLLER_AXIS_RIGHTY);
 		axisstate[i][4] = SDL_GameControllerGetAxis(controller[i], SDL_CONTROLLER_AXIS_TRIGGERLEFT);
 		axisstate[i][5] = SDL_GameControllerGetAxis(controller[i], SDL_CONTROLLER_AXIS_TRIGGERRIGHT);
+		for (int j = 0; j < 6; j++) {
+			axisstate[i][j] /= 32767;
+		}
 	}
+
 	return UPDATE_CONTINUE;
 }
 

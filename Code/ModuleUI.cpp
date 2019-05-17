@@ -7,6 +7,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModuleController.h"
 #include "SDL/include/SDL_timer.h"
 #include<stdio.h>
 
@@ -15,7 +16,7 @@ ModuleUI::ModuleUI(){}
 ModuleUI::~ModuleUI() {}
 
 bool ModuleUI::Start() {
-	font_score = App->fonts->Load("Sprites/Numbers FONT.png", "0123456789abcdefghij", 2);
+	font_score = App->fonts->Load("Sprites/Numbers FONT.png", "0123456789-bcdefghij", 2);
 	initialtime = SDL_GetTicks();
 	textlife = App->textures->Load("Sprites/Sprite_Sheet_UI_1.png");//IMG_Load("Sprites/textlife.png");
 	lifebarplayer1.x = 273;
@@ -78,6 +79,10 @@ update_status ModuleUI::Update() {
 		App->input->space = true;
 		App->player->victory = true;
 	}
+	sprintf_s(axisx, 10, "%7d", (App->controller->axisstate[0][0]));
+	sprintf_s(axisy, 10, "%7d", (App->controller->axisstate[0][1]));
+	App->fonts->BlitText(0, 0, font_score, axisx);
+	App->fonts->BlitText(0, 10, font_score, axisy);
 	//SDL_RenderCopy(renderer, textlife, NULL, &lifebarplayer1);
 	return UPDATE_CONTINUE;
 }

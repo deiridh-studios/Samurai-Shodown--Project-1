@@ -46,21 +46,21 @@ update_status ModuleInput::PreUpdate()
 
 	if (App->controller->buttonstate[0][SDL_CONTROLLER_BUTTON_START] == true || App->controller->buttonstate[1][SDL_CONTROLLER_BUTTON_START] == true)keyboard2[SDL_SCANCODE_SPACE] = 1;
 	else keyboard2[SDL_SCANCODE_SPACE] = 0;
-	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTX] > 13106.8) keyboard2[SDL_SCANCODE_D] = 1;
+	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTX] > 0.4) keyboard2[SDL_SCANCODE_D] = 1;
 	else keyboard2[SDL_SCANCODE_D] = 0;
-	if(App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTX] <-13107.0) keyboard2[SDL_SCANCODE_A] = 1;
+	if(App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTX] <-0.4) keyboard2[SDL_SCANCODE_A] = 1;
 	else keyboard2[SDL_SCANCODE_A] = 0;
-	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTX] > 13106.8) keyboard2[SDL_SCANCODE_RIGHT] = 1;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTX] > 0.4) keyboard2[SDL_SCANCODE_RIGHT] = 1;
 	else keyboard2[SDL_SCANCODE_RIGHT] = 0;
-	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTX] <-13107.0) keyboard2[SDL_SCANCODE_LEFT] = 1;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTX] <-0.4) keyboard2[SDL_SCANCODE_LEFT] = 1;
 	else keyboard2[SDL_SCANCODE_LEFT] = 0;
-	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTY] > 13106.8/*6553.4 o +2*/) keyboard2[SDL_SCANCODE_S] = 1;
+	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTY] > 0.4/*6553.4 o +2*/) keyboard2[SDL_SCANCODE_S] = 1;
 	else keyboard2[SDL_SCANCODE_S] = 0;
-	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTY] < -13107.0) keyboard2[SDL_SCANCODE_W] = 1;
+	if (App->controller->axisstate[0][SDL_CONTROLLER_AXIS_LEFTY] < -0.4) keyboard2[SDL_SCANCODE_W] = 1;
 	else keyboard2[SDL_SCANCODE_W] = 0;
-	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTY] > 13106.8) keyboard2[SDL_SCANCODE_DOWN] = 1;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTY] > 0.4) keyboard2[SDL_SCANCODE_DOWN] = 1;
 	else keyboard2[SDL_SCANCODE_DOWN] = 0;
-	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTY] < -13107.0) keyboard2[SDL_SCANCODE_UP] = 1;
+	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTY] < -0.4) keyboard2[SDL_SCANCODE_UP] = 1;
 	else keyboard2[SDL_SCANCODE_UP] = 0;
 
 

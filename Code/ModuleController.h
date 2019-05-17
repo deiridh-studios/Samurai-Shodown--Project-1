@@ -15,6 +15,7 @@ public:
 	bool CleanUp();
 	update_status PreUpdate();
 
+
 public:
 	_SDL_GameController *controller[2];
 	bool buttonstate[2][12];
