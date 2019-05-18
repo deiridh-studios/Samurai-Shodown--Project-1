@@ -21,6 +21,7 @@ bool ModuleController::Start() {
 				return false;
 			}
 		}
+		else return false;
 	}
 	for (int i = 0; i < 2; ++i) {
 		for (int j = 0; j < 12; ++j) {
@@ -34,6 +35,31 @@ bool ModuleController::Start() {
 }
 
 update_status ModuleController::PreUpdate() {
+	if (SDL_NumJoysticks() != numjoystick) {
+		if (SDL_NumJoysticks() > numjoystick) {
+			for (int i = 0; i < SDL_NumJoysticks(); ++i) {
+				if (SDL_GameControllerGetAttached(controller[i]) == SDL_FALSE) {
+					if (SDL_IsGameController(i) == SDL_TRUE) {
+						controller[i] = SDL_GameControllerOpen(i);
+						if (controller[i] == NULL) {
+							LOG("Could not open gamecontroller %i: %s\n", i, SDL_GetError());
+							return UPDATE_ERROR;
+						}
+					}
+					else return UPDATE_ERROR;
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < numjoystick; ++i) {
+				if (SDL_GameControllerGetAttached(controller[i]) == SDL_FALSE) {
+					SDL_GameControllerClose(controller[i]);
+					controller[i] == NULL;
+				}
+			}
+		}
+		numjoystickbefore = SDL_NumJoysticks();
+	}
 	/*SDL_Event controllerevent[2];
 	bool finish = false;
 	for (int i = 0; i < 2; i++) {
@@ -59,7 +85,7 @@ update_status ModuleController::PreUpdate() {
 	}*/
 	//SDL_PumpEvents();
 	
-	for (int i = 0; i < numjoystick; i++) {
+	for (int i = 0; i < 2; i++) {
 		buttonstate[i][0] = SDL_GameControllerGetButton(controller[i], SDL_CONTROLLER_BUTTON_A);
 		buttonstate[i][1] = SDL_GameControllerGetButton(controller[i], SDL_CONTROLLER_BUTTON_B);
 		buttonstate[i][2] = SDL_GameControllerGetButton(controller[i], SDL_CONTROLLER_BUTTON_X);
@@ -90,7 +116,7 @@ update_status ModuleController::PreUpdate() {
 }
 
 bool ModuleController::CleanUp() {
-	for (int i = 0; i < numjoystick; ++i) {
+	for (int i = 0; i < 2; ++i) {
 		if (controller[i] != NULL)SDL_GameControllerClose(controller[i]);
 	}
 	SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);

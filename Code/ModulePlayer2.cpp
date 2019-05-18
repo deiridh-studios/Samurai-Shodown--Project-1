@@ -63,10 +63,10 @@ bool ModulePlayer2::CleanUp() {
 }
 
 update_status ModulePlayer2::PreUpdate() {
-	stopright = false;
-	stopleft = false;
 	if (position.x > App->player->position.x && position.y == 210)flip = true;
-	else if (position.x < App->player->position.x&&position.y == 210)flip = false;
+	else if (position.x < App->player->position.x&&position.y == 210) {
+		flip = false;
+	}
 	for (int i = 59; i > 0; i--)inputstate2[i] = inputstate2[i - 1];
 	inputstate2[0] = S_NONE;
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout2[i] = SO_NONE;
@@ -105,7 +105,8 @@ update_status ModulePlayer2::Update()
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
-	
+
+
 	if (flip == false) {
 		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
 	}
@@ -119,9 +120,16 @@ update_status ModulePlayer2::Update()
 	}
 	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
 
+
+
 	return UPDATE_CONTINUE;
 }
 
+update_status ModulePlayer2::PostUpdate() {
+	stopright = false;
+	stopleft = false;
+	return UPDATE_CONTINUE;
+}
 
 
 void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
@@ -138,32 +146,38 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 			stopright = true;
 		}
 		if (other->type == COLLIDER_PLAYER) {
-			if (App->player->actual == A_WALK_FORWARD) {
-				if (flip == false) {
-					position.x -= 1;
+			if (flip == false && App->player->stopright == true) {
+				stopright = true;
+				if (position.y > 200 && position.y < 210 && mult == -2)position.x-=5;
+			}
+			else if (flip == true && App->player->stopleft == true) {
+				stopleft = true;
+				if (position.y > 200 && position.y < 210 && mult == -2)position.x += 5;
+			}
+			else if (actual3 == A_WALK_FORWARD) {
+				if (flip == false) App->player->position.x++;
+				else App->player->position.x--;
+			}
+			else if (actual3 == A_JUMP_FORWARD && App->player->position.y < 210) {
+				if (App->player->actual == A_JUMP_FORWARD) {
+					if (flip == false)stopright = true;
+					else stopleft = true;
 				}
 				else {
-					position.x += 1;
+					if (flip == false)App->player->position.x++;
+					else App->player->position.x--;
 				}
 			}
-			/*if (App->player->position.y < 210&&App->player->position.y>200) {
-				if (other->rect.x > App->background->cameraleft.x + 30 || other->rect.x + other->rect.w < App->background->cameraright.x) {
-					if (flip == false) {
-						position.x -= 1;
-					}
-					else {
-						position.x += 1;
-					}
-				}
-			}
-			else if (position.y < 210 && position.y>200) {
+			else if (position.y > 200 && position.y < 210 && mult == -2 && App->player->position.y == 210) {
 				if (flip == false) {
-					position.x -= 1;
+					App->player->position.x++;
+					position.x--;
 				}
 				else {
-					position.x += 1;
+					App->player->position.x--;
+					position.x++;
 				}
-			}*/
+			}
 		}
 	}
 	else {

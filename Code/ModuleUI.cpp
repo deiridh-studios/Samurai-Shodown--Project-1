@@ -16,23 +16,13 @@ ModuleUI::ModuleUI(){}
 ModuleUI::~ModuleUI() {}
 
 bool ModuleUI::Start() {
-	font_score = App->fonts->Load("Sprites/Numbers FONT.png", "0123456789-bcdefghij", 2);
+	font_score = App->fonts->Load("Sprites/Numbers FONT.png", "0123456789-.,defghij", 2);
 	initialtime = SDL_GetTicks();
-	textlife = App->textures->Load("Sprites/Sprite_Sheet_UI_1.png");//IMG_Load("Sprites/textlife.png");
+	textlife = App->textures->Load("Sprites/Sprite_Sheet_UI_1.png");
 	lifebarplayer1.x = 273;
 	lifebarplayer1.y = 421;
 	lifebarplayer1.w = 134;
 	lifebarplayer1.h = 15;
-	/*
-	ukyoplayer1rect.x = 0;
-	ukyoplayer1rect.y = 0;
-	ukyoplayer1rect.w = 0;
-	ukyoplayer1rect.h = 0;
-	ukyoplayer2rect.x = 0;
-	ukyoplayer2rect.y = 0;
-	ukyoplayer2rect.w = 0;
-	ukyoplayer2rect.h = 0;
-	*/
 	lifebarplayer2.x = 273;
 	lifebarplayer2.y = 405;
 	lifebarplayer2.w = 134;
@@ -79,11 +69,10 @@ update_status ModuleUI::Update() {
 		App->input->space = true;
 		App->player->victory = true;
 	}
-	sprintf_s(axisx, 10, "%7d", (App->controller->axisstate[0][0]));
+	/*sprintf_s(axisx, 10, "%7d", (App->controller->axisstate[0][0]));
 	sprintf_s(axisy, 10, "%7d", (App->controller->axisstate[0][1]));
 	App->fonts->BlitText(0, 0, font_score, axisx);
-	App->fonts->BlitText(0, 10, font_score, axisy);
-	//SDL_RenderCopy(renderer, textlife, NULL, &lifebarplayer1);
+	App->fonts->BlitText(0, 10, font_score, axisy);*/
 	return UPDATE_CONTINUE;
 }
 

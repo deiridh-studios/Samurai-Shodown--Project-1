@@ -422,8 +422,6 @@ bool ModulePlayer::CleanUp() {
 }
 
 update_status ModulePlayer::PreUpdate() {
-	stopright = false;
-	stopleft = false;
 	if (position.x > App->player2->position.x&&position.y == 210)flip = true;
 	else if (position.x < App->player2->position.x&&position.y == 210)flip = false;
 	for (int i = 59; i > 0; i--)inputstate[i] = inputstate[i - 1];
@@ -459,10 +457,12 @@ update_status ModulePlayer::Update()
 		}
 
 	}
-	
+	if (stopleft == true) { LOG("stopleft: TRUE\n\n"); }
+	else LOG("stopleft: FALSE\n\n");
 		// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
-	
+
+
 	if (flip == false) {
 		App->render->Blit(graphics, App->player->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
 	}
@@ -476,10 +476,17 @@ update_status ModulePlayer::Update()
 
 	}
 	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
+
+
+
 	return UPDATE_CONTINUE;
 }
 
-
+update_status ModulePlayer::PostUpdate() {
+	stopright = false;
+	stopleft = false;
+	return UPDATE_CONTINUE;
+}
 
 
 void ModulePlayer::OnCollision(Collider* player, Collider* other) {
@@ -495,11 +502,35 @@ void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 			stopright = true;
 		}
 		if (other->type == COLLIDER_ENEMY) {
-			if (App->player2->actual3 == A_WALK_FORWARD) {
-				if (flip == false) {
-					position.x--;
+			if (flip == false && App->player2->stopright == true) {
+				stopright = true;
+				if (position.y > 200 && position.y < 210 && mult == -2)position.x-=5;
+			}
+			else if (flip == true && App->player2->stopleft == true) {
+				stopleft = true;
+				if (position.y > 200 && position.y < 210 && mult == -2)position.x+=5;
+			}
+			else if (actual == A_WALK_FORWARD) {
+				if (flip == false) App->player2->position.x++;
+				else App->player2->position.x--;
+			}
+			else if (actual == A_JUMP_FORWARD && App->player2->position.y < 210) {
+				if (App->player2->actual3 == A_JUMP_FORWARD) {
+					if (flip == false)stopright = true;
+					else stopleft = true;
 				}
 				else {
+					if (flip == false)App->player2->position.x++;
+					else App->player2->position.x--;
+				}
+			}
+			else if (position.y > 200 && position.y < 210 && mult == -2 && App->player2->position.y == 210) {
+				if (flip == false) {
+					App->player2->position.x++;
+					position.x--;
+				}
+				else{
+					App->player2->position.x--;
 					position.x++;
 				}
 			}

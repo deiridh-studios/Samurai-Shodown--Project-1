@@ -40,13 +40,13 @@ bool ModuleBackground::Start() {
 	Ukyo =App->audio->LoadChunk("Audio_FX/Ukyo.wav");
 	App->audio->PlayChunk(Ukyo);
 	graphics=App->textures->Load("Sprites/UkyoBackground.png");
+	cameraleftcol = App->collision->AddCollider({ App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT }, COLLIDER_WALL_LEFT, App->background);
+	camerarightcol = App->collision->AddCollider({ App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT }, COLLIDER_WALL_RIGHT, App->background);
 	App->player->Enable();
 	App->player2->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
 	App->UI->Enable();
-	cameraleftcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL_LEFT, App->background);
-	camerarightcol = App->collision->AddCollider({App->render->camera.x,App->render->camera.y,1,SCREEN_HEIGHT}, COLLIDER_WALL_RIGHT, App->background);
 	return true;
 }
 update_status ModuleBackground::Update() {
@@ -81,5 +81,5 @@ void ModuleBackground::OnCollision(Collider* wall, Collider* enemy) {
 
 	}
 	actual = HITTED;*/
-	LOG("ENEMY HITTED\n\n");
+	//LOG("ENEMY HITTED\n\n");
 }

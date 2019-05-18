@@ -19,7 +19,7 @@ public:
 public:
 	_SDL_GameController *controller[2];
 	bool buttonstate[2][12];
-	int axisstate[2][6];
+	float axisstate[2][6];
 	int numjoystick;
 	int mapping;
 
