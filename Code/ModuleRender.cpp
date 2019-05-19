@@ -9,6 +9,8 @@ ModuleRender::ModuleRender() : Module()
 	camera.x = camera.y = 0;
 	camera.w = SCREEN_WIDTH * SCREEN_SIZE;
 	camera.h = SCREEN_HEIGHT * SCREEN_SIZE;
+	zooming = 1.0F;
+	zoom = false;
 
 }
 
@@ -68,14 +70,16 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, bool use_camera, bool flip)
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, bool use_camera, bool flip, bool zoom)
 {
+
 	bool ret = true;
 	SDL_Rect rect;
 	if (use_camera)
 	{
-		rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
-		rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
+		rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE *zooming;
+		rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE *zooming;
+		
 	}
 	else
 	{
@@ -92,7 +96,17 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 	{
 		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 	}
-
+	if (use_camera) {
+		rect.w *= zooming;
+		rect.h *= zooming;
+		if (zooming < 1.0F) {
+			rect.y += 233 * (1 - zooming);
+			rect.x += 233 * (1 - zooming);
+		}
+		//rect.x = 0;
+		/* if (rect.x < 0)rect.x = 0;
+		if (rect.x > 670)rect.x = 670;*/
+	}
 	rect.w *= SCREEN_SIZE;
 	rect.h *= SCREEN_SIZE;
 	if (flip == false) {
@@ -109,6 +123,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 			ret = false;
 		}
 	}
+//	if(zoom==false&&zooming<1.0F)SDL_Delay(100);
 	return ret;
 }
 bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera)
@@ -121,10 +136,15 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	SDL_Rect rec(rect);
 	if (use_camera)
 	{
-		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE);
-		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE);
-		rec.w *= SCREEN_SIZE;
-		rec.h *= SCREEN_SIZE;
+		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE *zooming);
+		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE*zooming);
+		rec.w *= SCREEN_SIZE*zooming;
+		rec.h *= SCREEN_SIZE*zooming;
+		if (zooming < 1.0F)rec.y += 233 * (1 - zooming);
+		if (zooming < 1.0F)rec.x += 233 * (1 - zooming);
+		/*if (rec.x < 0)rec.x = 0;
+		if (rec.x > 670)rec.x = 670;*/
+
 	}
 
 	if (SDL_RenderFillRect(renderer, &rec) != 0)

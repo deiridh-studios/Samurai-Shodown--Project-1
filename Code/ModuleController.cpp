@@ -58,7 +58,7 @@ update_status ModuleController::PreUpdate() {
 				}
 			}
 		}
-		numjoystickbefore = SDL_NumJoysticks();
+		numjoystick = SDL_NumJoysticks();
 	}
 	/*SDL_Event controllerevent[2];
 	bool finish = false;

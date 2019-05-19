@@ -50,10 +50,22 @@ bool ModuleBackground::Start() {
 	return true;
 }
 update_status ModuleBackground::Update() {
-	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f, true);  //Background
+	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f, true, false, App->render->zoom);  //Background
 	if (App->input->space == true&&App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
+	}
+	if ((App->player->position.x - App->player2->position.x) > 200 || (App->player->position.x - App->player2->position.x) < -200) {
+		App->render->zoom = true;
+	}
+	else App->render->zoom = false;
+	if (App->render->zoom == true && App->render->zooming > 0.7F) {
+		App->render->zooming -= 0.005F;
+		if (App->render->zooming < 0.7F)App->render->zooming = 0.7F;
+	}
+	else if (App->render->zoom == false && App->render->zooming < 1.0F) {
+		App->render->zooming += 0.01F;
+		if (App->render->zooming > 1.0F)App->render->zooming = 1.0F;
 	}
 	cameraleft.x = (-App->render->camera.x) / SCREEN_SIZE;
 	cameraleft.y = 0;

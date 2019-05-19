@@ -108,15 +108,15 @@ update_status ModulePlayer2::Update()
 
 
 	if (flip == false) {
-		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
 	if (flip == true) {
-		App->render->Blit(graphics, App->player2->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+		App->render->Blit(graphics, App->player2->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
 	
 	if (actual3 != A_TORNADO) {
-		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
-		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true);
+		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom);
+		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom);
 	}
 	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
 

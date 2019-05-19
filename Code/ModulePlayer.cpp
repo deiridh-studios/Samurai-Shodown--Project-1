@@ -457,22 +457,21 @@ update_status ModulePlayer::Update()
 		}
 
 	}
-	if (stopleft == true) { LOG("stopleft: TRUE\n\n"); }
-	else LOG("stopleft: FALSE\n\n");
+
 		// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
 
 
 	if (flip == false) {
-		App->render->Blit(graphics, App->player->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+		App->render->Blit(graphics, App->player->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
 	if (flip == true) {
-		App->render->Blit(graphics, App->player->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true);
+		App->render->Blit(graphics, App->player->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
 	
 	if (actual != A_TORNADO) {
-		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r);
-		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true);
+		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom);
+		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom);
 
 	}
 	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
