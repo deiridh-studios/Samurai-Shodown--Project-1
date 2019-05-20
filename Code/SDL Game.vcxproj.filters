@@ -98,6 +98,9 @@
     <ClInclude Include="StateMachine.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSlowdown.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -170,6 +173,9 @@
       <Filter>Modules\MENUS</Filter>
     </ClCompile>
     <ClCompile Include="StateMachine.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSlowdown.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

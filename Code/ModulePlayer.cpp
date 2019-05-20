@@ -11,6 +11,7 @@
 #include "ModulePlayer2.h"
 #include "Modulebackground.h"
 #include "StateMachine.h"
+#include "ModuleSlowdown.h"
 #include "SDL/include/SDL_timer.h"
 
 
@@ -493,6 +494,7 @@ void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 		if (other->type == COLLIDER_ENEMY_SHOT) {
 			actual = A_HITTED;
 			if (hitted_timer == 0)hitted_timer = 1;
+			App->slowdown->StartSlowdown(100,60);
 		}
 		if (other->type == COLLIDER_WALL_LEFT) {
 			stopleft = true;

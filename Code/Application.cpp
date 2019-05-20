@@ -18,6 +18,7 @@
 #include "ModuleFonts.h"
 #include "ModuleUI.h"
 #include "ModuleSNKComplete.h"
+#include "ModuleSlowdown.h"
 #include "ModuleController.h"
 
 Application::Application()
@@ -43,6 +44,7 @@ Application::Application()
 	modules[i++] = UI = new ModuleUI();
 	modules[i++] = SNKComplete = new ModuleSNKComplete();
 	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = slowdown = new ModuleSlowdown();
 
 }
 
@@ -67,6 +69,7 @@ bool Application::Init()
 	collision->Disable();
 	particles->Disable();
 	UI->Disable();
+	slowdown->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

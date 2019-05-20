@@ -62,6 +62,14 @@ update_status ModuleInput::PreUpdate()
 	else keyboard2[SDL_SCANCODE_DOWN] = 0;
 	if (App->controller->axisstate[1][SDL_CONTROLLER_AXIS_LEFTY] < -0.4) keyboard2[SDL_SCANCODE_UP] = 1;
 	else keyboard2[SDL_SCANCODE_UP] = 0;
+	if (App->controller->buttonstate[0][SDL_CONTROLLER_BUTTON_A] == true)keyboard2[SDL_SCANCODE_T] = 1;
+	else keyboard2[SDL_SCANCODE_T] = 0;
+	if (App->controller->buttonstate[1][SDL_CONTROLLER_BUTTON_A] == true)keyboard2[SDL_SCANCODE_G] = 1;
+	else keyboard2[SDL_SCANCODE_G] = 0;
+	if (App->controller->buttonstate[0][SDL_CONTROLLER_BUTTON_B] == true)keyboard2[SDL_SCANCODE_Y] = 1;
+	else keyboard2[SDL_SCANCODE_Y] = 0;
+	if (App->controller->buttonstate[0][SDL_CONTROLLER_BUTTON_B] == true)keyboard2[SDL_SCANCODE_H] = 1;
+	else keyboard2[SDL_SCANCODE_H] = 0;
 
 
 

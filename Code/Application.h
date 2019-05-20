@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 20
+#define NUM_MODULES 21
 
 class ModuleWindow;
 class ModuleInput;
@@ -26,6 +26,7 @@ class ModuleFonts;
 class ModuleUI;
 class ModuleController;
 class ModuleSNKComplete;
+class ModuleSlowdown;
 
 class Application
 {
@@ -52,6 +53,7 @@ public:
 	ModuleUI* UI;
 	ModuleSNKComplete * SNKComplete;
 	ModuleController* controller;
+	ModuleSlowdown* slowdown;
 
 public:
 

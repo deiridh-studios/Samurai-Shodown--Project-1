@@ -103,9 +103,6 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 			rect.y += 233 * (1 - zooming);
 			rect.x += 233 * (1 - zooming);
 		}
-		//rect.x = 0;
-		/* if (rect.x < 0)rect.x = 0;
-		if (rect.x > 670)rect.x = 670;*/
 	}
 	rect.w *= SCREEN_SIZE;
 	rect.h *= SCREEN_SIZE;
@@ -140,10 +137,11 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE*zooming);
 		rec.w *= SCREEN_SIZE*zooming;
 		rec.h *= SCREEN_SIZE*zooming;
-		if (zooming < 1.0F)rec.y += 233 * (1 - zooming);
-		if (zooming < 1.0F)rec.x += 233 * (1 - zooming);
-		/*if (rec.x < 0)rec.x = 0;
-		if (rec.x > 670)rec.x = 670;*/
+		if (zooming < 1.0F) {
+			rec.y += 233 * (1 - zooming);
+			rec.x += 233 * (1 - zooming);
+		}
+
 
 	}
 

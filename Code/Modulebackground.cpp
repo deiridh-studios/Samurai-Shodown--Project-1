@@ -14,6 +14,7 @@
 #include"ModuleParticles.h"
 #include "ModuleUI.h"
 #include "ModuleSceneCongrats.h"
+#include "ModuleSlowdown.h"
 #include "SDL/include/SDL.h"
 
 ModuleBackground::ModuleBackground():Module(){
@@ -47,6 +48,7 @@ bool ModuleBackground::Start() {
 	App->particles->Enable();
 	App->collision->Enable();
 	App->UI->Enable();
+	App->slowdown->Enable();
 	return true;
 }
 update_status ModuleBackground::Update() {
