@@ -68,7 +68,7 @@ update_status ModuleInput::PreUpdate()
 	else keyboard2[SDL_SCANCODE_G] = 0;
 	if (App->controller->buttonstate[0][SDL_CONTROLLER_BUTTON_B] == true)keyboard2[SDL_SCANCODE_Y] = 1;
 	else keyboard2[SDL_SCANCODE_Y] = 0;
-	if (App->controller->buttonstate[0][SDL_CONTROLLER_BUTTON_B] == true)keyboard2[SDL_SCANCODE_H] = 1;
+	if (App->controller->buttonstate[1][SDL_CONTROLLER_BUTTON_B] == true)keyboard2[SDL_SCANCODE_H] = 1;
 	else keyboard2[SDL_SCANCODE_H] = 0;
 
 
