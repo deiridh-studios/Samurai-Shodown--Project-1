@@ -60,30 +60,6 @@ update_status ModuleController::PreUpdate() {
 		}
 		numjoystick = SDL_NumJoysticks();
 	}
-	/*SDL_Event controllerevent[2];
-	bool finish = false;
-	for (int i = 0; i < 2; i++) {
-		//SDL_PollEvent(&controllerevent[i]);
-		if (controllerevent[i].type == SDL_CONTROLLERDEVICEADDED) {
-			for (int j = 0; j < numjoystick; j++) {
-				if (controller[j] == NULL&&finish==false) {
-					if (SDL_IsGameController(j) == SDL_TRUE) controller[j] = SDL_GameControllerOpen(j);
-					LOG("Game Controller Added\n\n\n");
-					finish = true;
-				}
-			}
-		}
-		else if (controllerevent[i].type == SDL_CONTROLLERDEVICEREMOVED) {
-			for (int j = 0; j < numjoystick; j++) {
-				if (controller[j] != NULL&&finish==false) {
-					SDL_GameControllerClose(controller[j]);
-					LOG("Game Controller Removed\n\n\n");
-					finish = true;
-				}
-			}
-		}
-	}*/
-	//SDL_PumpEvents();
 	
 	for (int i = 0; i < 2; i++) {
 		buttonstate[i][0] = SDL_GameControllerGetButton(controller[i], SDL_CONTROLLER_BUTTON_A);
