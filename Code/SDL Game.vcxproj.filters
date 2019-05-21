@@ -62,9 +62,6 @@
     <ClInclude Include="ModuleSceneEarthquake.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneCongrats.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModulePlayer2.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -100,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="ModuleSlowdown.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneCongrats.h">
+      <Filter>Modules\MENUS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,9 +139,6 @@
     <ClCompile Include="ModuleSceneEarthquake.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneCongrats.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModulePlayer2.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -177,6 +174,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSlowdown.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneCongrats.cpp">
+      <Filter>Modules\MENUS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

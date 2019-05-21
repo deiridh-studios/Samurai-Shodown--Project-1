@@ -14,7 +14,14 @@ public:
 	bool CleanUp();
 
 public:
-	SDL_Rect rectbackground;
+	SDL_Rect UkyoPlayer2WIN;
+	SDL_Rect UkyoPlayer1WIN;
+	SDL_Rect UkyoPlayer2LOSE;
+	SDL_Rect UkyoPlayer1LOSE;
+	SDL_Rect lettersfinished;
+	Animation backgroundUkyo1;
+	Animation backgroundUkyo2;
+	Animation letters;
 	SDL_Texture* graphics = nullptr;
 	int font_victory;
 	char victory_text[2];
