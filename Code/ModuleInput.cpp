@@ -3,6 +3,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleController.h"
+#include "ModuleUI.h"
 #include "SDL/include/SDL.h"
 
 ModuleInput::ModuleInput() : Module()
@@ -99,6 +100,7 @@ update_status ModuleInput::PreUpdate()
 	if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED || keyboardstate[SDL_SCANCODE_SPACE] == KEY_REPEAT) space = true;
 	else if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PULLED) space = false;
 
+	if (keyboardstate[SDL_SCANCODE_RETURN] == KEY_PUSHED) App->UI->credits++;
 
 	
 	return update_status::UPDATE_CONTINUE;

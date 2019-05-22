@@ -47,7 +47,8 @@ bool ModuleBackground::Start() {
 	App->player2->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
-	App->UI->Enable();
+	App->UI->play = true;
+	App->UI->doinitialtime = true;
 	App->slowdown->Enable();
 	return true;
 }
@@ -86,7 +87,8 @@ bool ModuleBackground::CleanUp()
 	App->player2->Disable();
 	App->particles->Disable();
 	App->collision->Disable();
-	App->UI->Disable();
+	App->UI->play = false;
+	App->UI->doinitialtime = false;
 	App->textures->Unload(graphics);
 	return true;
 }

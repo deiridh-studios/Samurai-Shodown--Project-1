@@ -68,7 +68,6 @@ bool Application::Init()
 	scenecongrats->Disable();
 	collision->Disable();
 	particles->Disable();
-	UI->Disable();
 	slowdown->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)

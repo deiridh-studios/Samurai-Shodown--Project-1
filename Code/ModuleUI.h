@@ -10,14 +10,15 @@ class ModuleUI :public Module {
 public:
 	ModuleUI();
 	~ModuleUI();
-	bool Start();
+	bool Init();
 	update_status Update();
 	bool CleanUp();
 	void DamageTaken(int, int);
 	
-
-
-
+public:
+	bool play;
+	int credits;
+	bool doinitialtime;
 private:
 	int font_score;
 	char time_text[10];
@@ -30,11 +31,14 @@ private:
 	SDL_Rect ukyoplayer2rect;
 	SDL_Rect lifebarplayer2;
 	SDL_Rect komessage;
+	SDL_Rect komessagewhite;
 	char axisx[10];
 	char axisy[10];
 	int player1life;
 	int player2life;
 	SDL_Texture *textlife;
+	int koblink;
+
 
 };
 #endif

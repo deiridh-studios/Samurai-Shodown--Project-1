@@ -62,7 +62,7 @@ bool  ModuleSceneEarthquake::Start() {
 	App->player2->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
-	App->UI->Enable();
+	//App->UI->Enable();
 	return true;
 }
 update_status  ModuleSceneEarthquake::Update() {
@@ -82,7 +82,7 @@ bool  ModuleSceneEarthquake::CleanUp()
 	App->player2->Disable();
 	App->particles->Disable();
 	App->collision->Disable();
-	App->UI->Disable();
+	//App->UI->Disable();
 	App->textures->Unload(graphics);
 	return true;
 }
