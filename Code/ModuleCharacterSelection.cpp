@@ -254,7 +254,7 @@ bool  ModuleCharacterSelection::Start() {
 	return true;
 }
 
-int positionxp1 = 153, positionyp1 = 15, positionxp2 = 153, positionyp2 = 15;
+int positionxp1 = 153, positionyp1 = 15, positionxp2 = 153, positionyp2 = 15, posanx1 = 0, posanx2 = 160;
 Animation CurrentAn, CurrentAn2;
 
 update_status  ModuleCharacterSelection::Update() {
@@ -331,44 +331,57 @@ update_status  ModuleCharacterSelection::Update() {
 	//Animations P1
 	if (positionxp1 == 225 && positionyp1 == 15) {
 		CurrentAn.GetCurrentFrame() = TamTamP1.GetCurrentFrame();
+		posanx1 = 25;
 	}
 	else if (positionxp1 == 189 && positionyp1 == 15) {
 		CurrentAn.GetCurrentFrame() = CharlotteP1.GetCurrentFrame();
+		posanx1 = 2;
 	}
 	else if (positionxp1 == 153 && positionyp1 == 15) {
 		CurrentAn.GetCurrentFrame() = UkyoP1.GetCurrentFrame();
+		posanx1 = 30;
 	}
 	else if (positionxp1 == 117 && positionyp1 == 15) {
 		CurrentAn.GetCurrentFrame() = HaohmaruP1.GetCurrentFrame();
+		posanx1 = 5;
 	}
 	else if (positionxp1 == 81 && positionyp1 == 15) {
 		CurrentAn.GetCurrentFrame() = GalfordP1.GetCurrentFrame();
+		posanx1 = 15;
 	}
 	else if (positionxp1 == 45 && positionyp1 == 15) {
 		CurrentAn.GetCurrentFrame() = GenAnP1.GetCurrentFrame();
+		posanx1 = 25;
 	}
 	else if (positionxp1 == 225 && positionyp1 == 58) {
 		CurrentAn.GetCurrentFrame() = KyoshiroP1.GetCurrentFrame();
+		posanx1 = 5;
 	}
 	else if (positionxp1 == 189 && positionyp1 == 58) {
 		CurrentAn.GetCurrentFrame() = HanzoP1.GetCurrentFrame();
+		posanx1 = 29;
 	}
 	else if (positionxp1 == 153 && positionyp1 == 58) {
 		CurrentAn.GetCurrentFrame() = JubeiP1.GetCurrentFrame();
+		posanx1 = 22;
 	}
 	else if (positionxp1 == 117 && positionyp1 == 58) {
 		CurrentAn.GetCurrentFrame() = WanFuP1.GetCurrentFrame();
+		posanx1 = 5;
 	}
 	else if (positionxp1 == 81 && positionyp1 == 58) {
 		CurrentAn.GetCurrentFrame() = NakoruruP1.GetCurrentFrame();
+		posanx1 = 0;
 	}
 	else if (positionxp1 == 45 && positionyp1 == 58) {
 		CurrentAn.GetCurrentFrame() = EarthquakeP1.GetCurrentFrame();
+		posanx1 = 0;
 	}
 
 	//Animations P2
 	if (positionxp2 == 225 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = TamTamP2.GetCurrentFrame();
+
 	}
 	else if (positionxp2 == 189 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = CharlotteP2.GetCurrentFrame();
@@ -413,8 +426,8 @@ update_status  ModuleCharacterSelection::Update() {
 		App->render->Blit(graphics, positionxp1, positionyp1, &(SelectionAnimationP1.GetCurrentFrame()), 0.0f);
 		App->render->Blit(graphics, positionxp2, positionyp2, &(SelectionAnimationP2.GetCurrentFrame()), 0.0f);
 	}
-	App->render->Blit(graphics, 0, 80, &(CurrentAn.GetCurrentFrame()), 0.0f);
-	App->render->Blit(graphics, 160, 80, &(CurrentAn2.GetCurrentFrame()), 0.0f); //144
+	App->render->Blit(graphics, posanx1, 80, &(CurrentAn.GetCurrentFrame()), 0.0f);
+	App->render->Blit(graphics, posanx2, 80, &(CurrentAn2.GetCurrentFrame()), 0.0f); //144
 
 	if ((App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (positionxp1 == 153 && positionyp1 == 15) && (positionxp2 == 153 && positionyp2 == 15)) {
 		App->audio->StopMusic();
