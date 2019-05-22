@@ -26,22 +26,41 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	GenAnP1.PushBack({ 0, 210, 95, 140 });
 	GenAnP1.speed = 0.15;
 
+	//GenAnP2
+	GenAnP2.PushBack({ 908, 210, 100, 140 });
+	GenAnP2.PushBack({ 1008, 210, 100, 140 });
+	GenAnP2.PushBack({ 1108, 210, 100, 140 });
+	GenAnP2.PushBack({ 1008, 210, 100, 140 });
+	GenAnP2.PushBack({ 908, 210, 100, 140 });
+	GenAnP2.speed = 0.15;
+
 	//GalfordP1
 	GalfordP1.PushBack({ 0, 360, 111, 140 });
 	GalfordP1.PushBack({ 111, 360, 111, 140 });
 	GalfordP1.PushBack({ 222, 360, 111, 140 });
 	GalfordP1.PushBack({ 333, 360, 111, 140 });
-	GalfordP1.PushBack({ 444, 360, 111, 140 });
-	GalfordP1.PushBack({ 333, 360, 111, 140 });
 	GalfordP1.PushBack({ 222, 360, 111, 140 });
 	GalfordP1.PushBack({ 111, 360, 111, 140 });
 	GalfordP1.PushBack({ 0, 360, 111, 140 });
 	GalfordP1.speed = 0.15;
-	   	 
+	   
+	//GalfordP2
+	GalfordP2.PushBack({ 828, 360, 111, 140 });
+	GalfordP2.PushBack({ 940, 360, 111, 140 });
+	GalfordP2.PushBack({ 1051, 360, 112, 140 });
+	GalfordP2.PushBack({ 940, 360, 111, 140 });
+	GalfordP2.PushBack({ 828, 360, 111, 140 });
+	GalfordP2.speed = 0.15;
+
 	//UkyoP1
 	UkyoP1.PushBack({ 0, 510, 75, 140 });
 	UkyoP1.PushBack({ 75, 510, 75, 140 });
 	UkyoP1.speed = 0.02;
+
+	//UkyoP2
+	UkyoP2.PushBack({ 1166, 510, 75, 140 });
+	UkyoP2.PushBack({ 1241, 510, 75, 140 });
+	UkyoP2.speed = 0.02;
 
 	//HaohmaruP1
 	HaohmaruP1.PushBack({ 167, 510, 127, 140 });
@@ -50,6 +69,14 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	HaohmaruP1.PushBack({ 294, 510, 127, 140 });
 	HaohmaruP1.PushBack({ 167, 510, 127, 140 });
 	HaohmaruP1.speed = 0.15;
+
+	//HaohmaruP2
+	HaohmaruP2.PushBack({ 739, 510, 127, 140 });
+	HaohmaruP2.PushBack({ 866, 510, 127, 140 });
+	HaohmaruP2.PushBack({ 993, 510, 127, 140 });
+	HaohmaruP2.PushBack({ 866, 510, 127, 140 });
+	HaohmaruP2.PushBack({ 739, 510, 127, 140 });
+	HaohmaruP2.speed = 0.1;
 
 	//CharlotteP1
 	CharlotteP1.PushBack({ 0, 660, 143, 140 });
@@ -61,6 +88,16 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	CharlotteP1.PushBack({ 0, 660, 143, 140 });
 	CharlotteP1.speed = 0.15;
 
+	//CharlotteP2
+	CharlotteP2.PushBack({ 774, 660, 143, 140 });
+	CharlotteP2.PushBack({ 917, 660, 143, 140 });
+	CharlotteP2.PushBack({ 1060, 660, 143, 140 });
+	CharlotteP2.PushBack({ 1203, 660, 143, 140 });
+	CharlotteP2.PushBack({ 1060, 660, 143, 140 });
+	CharlotteP2.PushBack({ 917, 660, 143, 140 });
+	CharlotteP2.PushBack({ 774, 660, 143, 140 });
+	CharlotteP2.speed = 0.15;
+
 	//TamTamP1
 	TamTamP1.PushBack({ 0, 810, 95, 140 });
 	TamTamP1.PushBack({ 95, 810, 98, 140 });
@@ -69,9 +106,21 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	TamTamP1.PushBack({ 0, 810, 95, 140 });
 	TamTamP1.speed = 0.15;
 
+	//TamTamP2
+	TamTamP2.PushBack({ 1115, 960, 100, 140 });
+	TamTamP2.PushBack({ 1215, 960, 100, 140 });
+	TamTamP2.PushBack({ 1315, 960, 100, 140 });
+	TamTamP2.PushBack({ 1215, 960, 100, 140 });
+	TamTamP2.PushBack({ 1115, 960, 100, 140 });
+	TamTamP2.speed = 0.15;
+
 	//EarthquakeP1
 	EarthquakeP1.PushBack({ 308, 210, 144, 140 });
 	EarthquakeP1.speed = 0.15;
+
+	//EarthquakeP2
+	EarthquakeP2.PushBack({ 1225, 210, 144, 140 });
+	EarthquakeP2.speed = 0.15;
 
 	//NakoruruP1
 	NakoruruP1.PushBack({ 0, 960, 135, 140 });
@@ -84,6 +133,15 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	NakoruruP1.PushBack({ 945, 960, 135, 140 });
 	NakoruruP1.speed = 0.15;
 
+	//NakoruruP2
+	NakoruruP2.PushBack({ 338, 810, 135, 140 });
+	NakoruruP2.PushBack({ 473, 810, 135, 140 });
+	NakoruruP2.PushBack({ 609, 810, 135, 140 });
+	NakoruruP2.PushBack({ 745, 810, 135, 140 });
+	NakoruruP2.PushBack({ 881, 810, 135, 140 });
+	NakoruruP2.PushBack({ 1017, 810, 135, 140 });
+	NakoruruP2.speed = 0.15;
+
 	//WanFuP1
 	WanFuP1.PushBack({ 0, 1110, 116, 140 });
 	WanFuP1.PushBack({ 116, 1110, 118, 140 });
@@ -91,6 +149,14 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	WanFuP1.PushBack({ 116, 1110, 118, 140 });
 	WanFuP1.PushBack({ 0, 1110, 116, 140 });
 	WanFuP1.speed = 0.15;
+
+	//WanFuP2
+	WanFuP2.PushBack({ 402, 1110, 116, 140 });
+	WanFuP2.PushBack({ 524, 1110, 118, 140 });
+	WanFuP2.PushBack({ 644, 1110, 119, 140 });
+	WanFuP2.PushBack({ 524, 1110, 118, 140 });
+	WanFuP2.PushBack({ 402, 1110, 116, 140 });
+	WanFuP2.speed = 0.15;
 
 	//JubeiP1
 	JubeiP1.PushBack({ 0, 1260, 101, 140 });
@@ -102,6 +168,16 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	JubeiP1.PushBack({ 0, 1260, 101, 140 });
 	JubeiP1.speed = 0.15;
 
+	//JubeiP2
+	JubeiP2.PushBack({ 437, 1260, 96, 140 });
+	JubeiP2.PushBack({ 533, 1260, 98, 140 });
+	JubeiP2.PushBack({ 631, 1260, 104, 140 });
+	JubeiP2.PushBack({ 735, 1260, 103, 140 });
+	JubeiP2.PushBack({ 631, 1260, 104, 140 });
+	JubeiP2.PushBack({ 533, 1260, 98, 140 });
+	JubeiP2.PushBack({ 437, 1260, 96, 140 });
+	JubeiP2.speed = 0.15;
+
 	//HanzoP1
 	HanzoP1.PushBack({ 0, 1410, 88, 140 });
 	HanzoP1.PushBack({ 88, 1410, 88, 140 });
@@ -110,6 +186,15 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	HanzoP1.PushBack({ 352, 1410, 88, 140 });
 	HanzoP1.PushBack({ 440, 1410, 88, 140 });
 	HanzoP1.speed = 0.15;
+
+	//HanzoP2
+	HanzoP2.PushBack({ 900, 1110, 87, 140 });
+	HanzoP2.PushBack({ 987, 1110, 87, 140 });
+	HanzoP2.PushBack({ 1074, 1110, 87, 140 });
+	HanzoP2.PushBack({ 1161, 1110, 87, 140 });
+	HanzoP2.PushBack({ 1248, 1110, 87, 140 });
+	HanzoP2.PushBack({ 1335, 1110, 87, 140 });
+	HanzoP2.speed = 0.15;
 
 	//KyoshiroP1
 	KyoshiroP1.PushBack({ 0, 1560, 144, 140 });
@@ -122,6 +207,18 @@ ModuleCharacterSelection::ModuleCharacterSelection() :Module()
 	KyoshiroP1.PushBack({ 144, 1560, 144, 140 });
 	KyoshiroP1.PushBack({ 0, 1560, 144, 140 });
 	KyoshiroP1.speed = 0.15;
+
+	//KyoshiroP2
+	KyoshiroP2.PushBack({ 669, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 814, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 959, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 1104, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 1249, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 1104, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 959, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 814, 1410, 145, 140 });
+	KyoshiroP2.PushBack({ 669, 1410, 145, 140 });
+	KyoshiroP2.speed = 0.15;
 
 	//Selection Animation
 	SelectionAnimation.PushBack({ 177, 91, 37, 45 });
@@ -231,8 +328,7 @@ update_status  ModuleCharacterSelection::Update() {
 		}
 	}
 
-
-
+	//Animations P1
 	if (positionxp1 == 225 && positionyp1 == 15) {
 		CurrentAn.GetCurrentFrame() = TamTamP1.GetCurrentFrame();
 	}
@@ -270,6 +366,43 @@ update_status  ModuleCharacterSelection::Update() {
 		CurrentAn.GetCurrentFrame() = EarthquakeP1.GetCurrentFrame();
 	}
 
+	//Animations P2
+	if (positionxp2 == 225 && positionyp2 == 15) {
+		CurrentAn2.GetCurrentFrame() = TamTamP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 189 && positionyp2 == 15) {
+		CurrentAn2.GetCurrentFrame() = CharlotteP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 153 && positionyp2 == 15) {
+		CurrentAn2.GetCurrentFrame() = UkyoP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 117 && positionyp2 == 15) {
+		CurrentAn2.GetCurrentFrame() = HaohmaruP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 81 && positionyp2 == 15) {
+		CurrentAn2.GetCurrentFrame() = GalfordP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 45 && positionyp2 == 15) {
+		CurrentAn2.GetCurrentFrame() = GenAnP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 225 && positionyp2 == 58) {
+		CurrentAn2.GetCurrentFrame() = KyoshiroP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 189 && positionyp2 == 58) {
+		CurrentAn2.GetCurrentFrame() = HanzoP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 153 && positionyp2 == 58) {
+		CurrentAn2.GetCurrentFrame() = JubeiP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 117 && positionyp2 == 58) {
+		CurrentAn2.GetCurrentFrame() = WanFuP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 81 && positionyp2 == 58) {
+		CurrentAn2.GetCurrentFrame() = NakoruruP2.GetCurrentFrame();
+	}
+	else if (positionxp2 == 45 && positionyp2 == 58) {
+		CurrentAn2.GetCurrentFrame() = EarthquakeP2.GetCurrentFrame();
+	}
 
 	App->render->Blit(graphics, 0, 0, &background, 0.0f);
 	App->render->Blit(graphics, 45, 17, &charactersrect, 0.0f);
@@ -281,9 +414,9 @@ update_status  ModuleCharacterSelection::Update() {
 		App->render->Blit(graphics, positionxp2, positionyp2, &(SelectionAnimationP2.GetCurrentFrame()), 0.0f);
 	}
 	App->render->Blit(graphics, 0, 80, &(CurrentAn.GetCurrentFrame()), 0.0f);
-	App->render->Blit(graphics, 0, 80, &(CurrentAn2.GetCurrentFrame()), 0.0f);
+	App->render->Blit(graphics, 160, 80, &(CurrentAn2.GetCurrentFrame()), 0.0f); //144
 
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (positionxp1 == 153 && positionyp1 == 15) && (positionxp2 == 153 && positionyp2 == 15)) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->characterselection, App->background, 2);
 	}
