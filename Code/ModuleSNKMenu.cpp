@@ -196,8 +196,9 @@ bool  ModuleSNKMenu::Start() {
 update_status  ModuleSNKMenu::Update() {
 
 	App->render->Blit(graphics, 0, 0, &(SNKMenu.GetCurrentFrame()), 0.0f);
-	
-	if (SNKMenu.current_frame > 140) {
+
+
+	if (SNKMenu.current_frame > 130) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->SNKMenu, App->SNKComplete, 2);
 	}
