@@ -4,7 +4,6 @@
 #include "ModuleAudio.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleInput.h"
 #include "Animation.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
@@ -36,6 +35,7 @@ ModuleBackground::~ModuleBackground(){}
 bool ModuleBackground::Start() {
 	scrollleft = 0;
 	scrollright = 0;
+	fade = false;
 	App->audio->LoadMusic("Music/BackgroundUkyo.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
 	Ukyo =App->audio->LoadChunk("Audio_FX/Ukyo.wav");
@@ -54,7 +54,7 @@ bool ModuleBackground::Start() {
 }
 update_status ModuleBackground::Update() {
 	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f, true, false, App->render->zoom);  //Background
-	if (App->input->space == true&&App->fade->finished == true) {
+	if (fade == true&&App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
 	}

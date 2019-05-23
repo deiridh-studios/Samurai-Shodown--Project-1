@@ -104,6 +104,9 @@ update_status ModulePlayer2::Update()
 
 	}
 
+	////////////////////LOSE AUTOMATICALLY/////////////////////////
+	if (App->input->keyboardstate[SDL_SCANCODE_F3] == KEY_PUSHED)App->UI->DamageTaken(2, 100);
+
 	// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
 

@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "ModuleUI.h"
 #include "ModuleFonts.h"
-#include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -10,6 +9,7 @@
 #include "ModuleController.h"
 #include "ModuleFadeToBlack.h"
 #include "Modulebackground.h"
+#include "ModuleSNKMenu.h"
 #include "SDL/include/SDL_timer.h"
 #include<stdio.h>
 
@@ -21,7 +21,9 @@ bool ModuleUI::Init() {
 	font_score = App->fonts->Load("Sprites/Numbers FONT.png", "0123456789-.,defghij", 2);
 	font_score_white = App->fonts->Load("Sprites/WhiteNumbersFONT.png", "0123456789", 1);
 	font_points = App->fonts->Load("Sprites/NumbersUIPlayers.png", "0123456789P=", 1);
+	font_credits = App->fonts->Load("Sprites/NumbersCreditsFONT.png", "0123456789", 1);
 	textlife = App->textures->Load("Sprites/Sprite_Sheet_UI_1.png");
+	level4 = App->textures->Load("Sprites/CreditsandLevel4.png");
 	doinitialtime = false;
 	lifebarplayer1.x = 273;
 	lifebarplayer1red.x = lifebarplayer1white.x = 277;
@@ -62,18 +64,30 @@ bool ModuleUI::Init() {
 	nameplayer.y = 489;
 	nameplayer.w = 32;
 	nameplayer.h = 8;
+	level4rect.x = level4rect.y = creditrect.y = creditsrect.y = 0;
+	level4rect.w = 54;
+	level4rect.h = creditrect.h = creditsrect.h = 8;
+	creditrect.x = 54;
+	creditrect.w = 38;
+	creditsrect.x = 92;
+	creditsrect.w = 45;
 	play = false;
 	roundsp1 = roundsp2 = 0;
 	credits = 0;
 	koblink = lifeblink = 0;
 	timeblink = 0;
 	pointsp1 = pointsp2 = 0;
+	rounds = 0;
 	//App->input->space = false;
 	return true;
 }
 bool ModuleUI::CleanUp() {
 	App->fonts->UnLoad(font_score);
+	App->fonts->UnLoad(font_score_white);
+	App->fonts->UnLoad(font_points);
+	App->fonts->UnLoad(font_credits);
 	App->textures->Unload(textlife);
+	App->textures->Unload(level4);
 	return true;
 }
 update_status ModuleUI::Update() {
@@ -92,7 +106,23 @@ update_status ModuleUI::Update() {
 			else  App->fonts->BlitText(65, 50, font_score, time_text);
 		}
 		else App->fonts->BlitText(65, 50, font_score, time_text);
-		if (time / 1000 == 0)App->input->space = true;
+		if (time / 1000 == 0) {
+			rounds++;
+			if (player1life > player2life) {
+				roundsp1++;
+			}
+			else if (player2life > player1life) {
+				roundsp2++;
+			}
+			else if (rounds == 4) {
+				App->background->fade = true;
+				roundsp1 = roundsp2 = 0;
+				pointsp1 = pointsp2 = 0;
+			}
+			if (rounds != 4 && roundsp1 < 2 && roundsp2 < 2)(App->fade->FadeToBlack(App->background, App->background));
+			if (App->background->fade==true)rounds = 0;
+			play = false;
+		}
 
 
 
@@ -127,6 +157,7 @@ update_status ModuleUI::Update() {
 		if (roundsp2 > 1)App->render->Blit(textlife, 254, 45, &victorymarker, 0.0f, false);
 
 
+
 		////////KO AND KO BLINK//////
 		if (lifeplayer1.w <= 58 || lifeplayer2.w <= 58) {
 			koblink++;
@@ -135,8 +166,10 @@ update_status ModuleUI::Update() {
 			if (lifeblink > 10)lifeblink = 0;
 			lifebarplayer1red.w = lifebarplayer1white.w = lifeplayer1.w;
 			lifebarplayer2red.w = lifebarplayer2white.w = lifeplayer2.w;
-			if (koblink < 10 && (roundsp1 > 0 || roundsp2 > 0))App->render->Blit(textlife, 145, 10, &endmessagewhite, 0.0f, false);
-			else if(roundsp1 > 0 || roundsp2 > 0)App->render->Blit(textlife, 145, 10, &endmessage, 0.0f, false);
+			if ((roundsp1 > 0 && lifeplayer2.w <= 58) || (roundsp2 > 0 && lifeplayer2.w <= 58)||rounds==3) {
+				if(koblink<10)App->render->Blit(textlife, 145, 10, &endmessagewhite, 0.0f, false);
+				else App->render->Blit(textlife, 145, 10, &endmessage, 0.0f, false);
+			}
 			else if (koblink < 10) App->render->Blit(textlife, 145, 10, &komessagewhite, 0.0f, false);
 			else App->render->Blit(textlife, 145, 10, &komessage, 0.0f, false);
 			if (lifeblink > 5) {
@@ -148,29 +181,34 @@ update_status ModuleUI::Update() {
 				if (lifeplayer2.w <= 58)App->render->Blit(textlife, 180, 20, &lifebarplayer2white, 0.0f, false);
 			}
 		}
+		else if(rounds==3||(roundsp1==1&&roundsp2==1))App->render->Blit(textlife, 145, 10, &endmessage, 0.0f, false);
 		else App->render->Blit(textlife, 145, 10, &komessage, 0.0f, false);
 
 
 
 		///////////ONE PLAYER DEFEATED//////
-		if (lifeplayer1.w <= 0) {
-			roundsp2++;
-			if (roundsp2 == 2) {
-				App->input->space = true;
+		if (lifeplayer1.w <= 0||roundsp2==2||rounds==4) {
+			if(roundsp2<2)roundsp2++;
+			rounds++;
+			if (roundsp2 == 2 || rounds == 4) {
+				App->background->fade = true;
 				App->player2->victory = true;
-				//TEMPORAL
-				roundsp1 = 0;
+				roundsp1=roundsp2 = 0;
+				pointsp1 = 0;
+				rounds = 0;
 			}
 			else(App->fade->FadeToBlack(App->background, App->background));
 			play = false;
 		}
-		if (lifeplayer2.w <= 0) {
-			roundsp1++;
-			if (roundsp1 == 2) {
-				App->input->space = true;
+		if (lifeplayer2.w <= 0||roundsp1==2||rounds==4) {
+			if(roundsp1<2)roundsp1++;
+			rounds++;
+			if (roundsp1 == 2 || rounds == 4) {
+				App->background->fade = true;
 				App->player->victory = true;
-				//TEMPORAL
-				roundsp2 = 0;
+				roundsp1=roundsp2 = 0;
+				pointsp2 = 0;
+				rounds = 0;
 			}
 			else(App->fade->FadeToBlack(App->background, App->background));
 			play = false;
@@ -190,16 +228,28 @@ update_status ModuleUI::Update() {
 		if (roundsp1 > 0 || roundsp2 > 0)play = true;
 		
 	}
+
+	///////CREDITS AND LEVEL-4////////
+	if (App->SNKMenu->IsEnabled() == false) {
+		App->render->Blit(level4, 140, 216, &level4rect, 0.0f, false);
+		if(credits<2)App->render->Blit(level4, 230, 216, &creditrect, 0.0f, false);
+		else App->render->Blit(level4, 230, 216, &creditsrect, 0.0f, false);
+		sprintf_s(creditsc, 10, "%02d", credits);
+		App->fonts->BlitText(277, 216, font_credits, creditsc);
+	}
+
 	return UPDATE_CONTINUE;
 }
 
 void ModuleUI::DamageTaken(int numplayer, int damage) {
 	if (numplayer == 1) {
 		player1life -= damage;
+		if (player1life < 0)player1life = 0;
 		pointsp2 += 50;
 	}
 	else if (numplayer == 2) {
 		player2life -= damage;
+		if (player2life < 0)player2life = 0;
 		pointsp1 += 50;
 	}
 }

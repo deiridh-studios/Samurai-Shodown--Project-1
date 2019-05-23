@@ -29,7 +29,7 @@ bool ModuleRender::Init()
 	{
 		flags |= SDL_RENDERER_PRESENTVSYNC;
 	}
-
+	SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
 	renderer = SDL_CreateRenderer(App->window->window, -1, flags);
 	
 	if(renderer == NULL)

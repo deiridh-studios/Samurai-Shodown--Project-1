@@ -22,6 +22,7 @@ public:
 	Mix_Chunk* Ukyo;
 	int scrollleft;
 	int scrollright;
+	bool fade;
 	int x1 = 0;
 	Animation back;
 	SDL_Texture* graphics = nullptr;

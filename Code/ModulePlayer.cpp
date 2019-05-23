@@ -11,6 +11,7 @@
 #include "ModulePlayer2.h"
 #include "Modulebackground.h"
 #include "StateMachine.h"
+#include "ModuleUI.h"
 #include "ModuleSlowdown.h"
 #include "SDL/include/SDL_timer.h"
 
@@ -458,6 +459,10 @@ update_status ModulePlayer::Update()
 		}
 
 	}
+
+
+	////////////////////LOSE AUTOMATICALLY/////////////////////////
+	if (App->input->keyboardstate[SDL_SCANCODE_F4] == KEY_PUSHED)App->UI->DamageTaken(1, 100);
 
 		// Draw everything --------------------------------------
 	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
