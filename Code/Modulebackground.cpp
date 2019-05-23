@@ -59,7 +59,7 @@ update_status ModuleBackground::Update() {
 		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
 	}
 	if ((App->player->position.x - App->player2->position.x) > 200 || (App->player->position.x - App->player2->position.x) < -200) {
-		App->render->zoom = true;
+		//App->render->zoom = true;
 	}
 	else App->render->zoom = false;
 	if (App->render->zoom == true && App->render->zooming > 0.7F) {

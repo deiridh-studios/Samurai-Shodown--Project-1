@@ -159,7 +159,7 @@ update_status ModuleUI::Update() {
 				App->input->space = true;
 				App->player2->victory = true;
 				//TEMPORAL
-				roundsp1 = roundsp2 = 0;
+				roundsp1 = 0;
 			}
 			else(App->fade->FadeToBlack(App->background, App->background));
 			play = false;
@@ -170,7 +170,7 @@ update_status ModuleUI::Update() {
 				App->input->space = true;
 				App->player->victory = true;
 				//TEMPORAL
-				roundsp1 = roundsp2 = 0;
+				roundsp2 = 0;
 			}
 			else(App->fade->FadeToBlack(App->background, App->background));
 			play = false;
