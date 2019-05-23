@@ -48,7 +48,7 @@ bool ModuleBackground::Start() {
 	App->particles->Enable();
 	App->collision->Enable();
 	App->UI->play = true;
-	App->UI->doinitialtime = true;
+//	App->UI->doinitialtime = true;
 	App->slowdown->Enable();
 	return true;
 }

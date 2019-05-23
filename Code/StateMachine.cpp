@@ -155,7 +155,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 			else if (inputstate[0] == S_CROUCH_DOWN) inputstate[0] = S_R_CROUCH;
 			else if (inputstate[0] == S_CROUCH_RIGHT) inputstate[0] = S_R_CROUCH_RIGHT;
 			else if (inputstate[0] == S_CROUCH_LEFT) inputstate[0] = S_R_CROUCH_LEFT;
-			else if (inputstate[0] == S_NONE)inputstate[0] = S_T;
+			else if (inputstate[0] == S_NONE)inputstate[0] = S_R;
 			else if (inputstate[0] == S_T)inputstate[0] = S_TR;
 			else if (inputstate[0] == S_T_RIGHT)inputstate[0] = S_TR_RIGHT;
 			else if (inputstate[0] == S_T_LEFT)inputstate[0] = S_TR_LEFT;
@@ -400,7 +400,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 				position.x = position.x + 40;
 			}			CHANGE SOME POSITIONS IF NECESSARY AT THE END*/
 			punch_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCHS_STANDING:
@@ -423,7 +423,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 				position.x = position.x + 40;
 			}			CHANGE SOME POSITIONS IF NECESSARY AT THE END*/
 			punch_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCH_NEUTRAL_JUMP:
@@ -503,7 +503,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
 			//position.x = position.x + 40;			CHANGE SOME POSITIONS AT THE END IF NECESSARY
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCHS_NEUTRAL_JUMP:
@@ -543,7 +543,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
 			//position.x = position.x + 40;			CHANGE SOME POSITIONS AT THE END IF NECESSARY
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCH_FORWARD_JUMP:
@@ -623,7 +623,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
 			//position.x = position.x + 40;			CHANGE SOME POSITIONS AT THE END IF NECESSARY
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCHS_FORWARD_JUMP:
@@ -664,7 +664,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
 			//position.x = position.x + 40;			CHANGE SOME POSITIONS AT THE END IF NECESSARY
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCH_BACKWARD_JUMP:
@@ -736,7 +736,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
 			//position.x = position.x + 40;			CHANGE SOME POSITIONS AT THE END IF NECESSARY
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCHS_BACKWARD_JUMP:
@@ -777,7 +777,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
 			//position.x = position.x + 40;			CHANGE SOME POSITIONS AT THE END IF NECESSARY
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCH_CROUCH:
@@ -847,7 +847,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 				position.x -= 24;
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCHS_CROUCH:
@@ -884,7 +884,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 				position.x -= 24;
 			}					CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			punch_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_STANDING:
@@ -946,7 +946,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//	(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICKS_STANDING:
@@ -977,7 +977,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_NEUTRAL_JUMP:
@@ -1039,7 +1039,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICKS_NEUTRAL_JUMP:
@@ -1071,7 +1071,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//	(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_FORWARD_JUMP:
@@ -1135,7 +1135,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//	(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICKS_FORWARD_JUMP:
@@ -1168,7 +1168,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//	(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_BACKWARD_JUMP:
@@ -1232,7 +1232,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//	(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICKS_BACKWARD_JUMP:
@@ -1265,7 +1265,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (current_animation->GetFinished() == 1) {
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//	(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICK_CROUCH:
@@ -1333,7 +1333,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 				position.x += 15;
 			}				CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_KICKS_CROUCH:
@@ -1367,7 +1367,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 				position.x += 15;
 			}				CHANGE SOME POSITIONS AT THE END IF NECESSARY*/
 			kick_timer = 3;
-			(*attack)->to_delete = true;
+			//(*attack)->to_delete = true;
 		}
 		break;
 	case A_HITTED:
@@ -1382,8 +1382,8 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 			App->UI->DamageTaken(2, 5);
 			hitted_timer = 2;
 		}
-		if (flip == false)position.x -= 1;
-		else position.x += 1;
+		if (flip == false&&stopleft==false)position.x -= 1;
+		else if(flip==true&&stopright==false) position.x += 1;
 		if (position.y == 130) {
 			mult = -1;
 		}

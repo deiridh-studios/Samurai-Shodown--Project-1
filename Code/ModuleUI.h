@@ -21,23 +21,41 @@ public:
 	bool doinitialtime;
 private:
 	int font_score;
+	int font_score_white;
+	int font_points;
 	char time_text[10];
 	uint time;
 	uint initialtime;
 	SDL_Rect lifeplayer1;
 	SDL_Rect lifeplayer2;
 	SDL_Rect lifebarplayer1;
+	SDL_Rect lifebarplayer2;
+	SDL_Rect lifebarplayer1red;
+	SDL_Rect lifebarplayer2red;
+	SDL_Rect lifebarplayer1white;
+	SDL_Rect lifebarplayer2white;
 	SDL_Rect ukyoplayer1rect;
 	SDL_Rect ukyoplayer2rect;
-	SDL_Rect lifebarplayer2;
 	SDL_Rect komessage;
 	SDL_Rect komessagewhite;
+	SDL_Rect endmessage;
+	SDL_Rect endmessagewhite;
+	SDL_Rect nameplayer;
+	SDL_Rect victorymarker;
 	char axisx[10];
 	char axisy[10];
 	int player1life;
 	int player2life;
 	SDL_Texture *textlife;
 	int koblink;
+	int timeblink;
+	int lifeblink;
+	int pointsp1;
+	int pointsp2;
+	char points1[10];
+	char points2[10];
+	int roundsp1;
+	int roundsp2;
 
 
 };
