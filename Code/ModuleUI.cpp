@@ -65,10 +65,10 @@ bool ModuleUI::Init() {
 	nameplayer.w = 32;
 	nameplayer.h = 8;
 	level4rect.x = level4rect.y = creditrect.y = creditsrect.y = 0;
-	level4rect.w = 54;
+	level4rect.w = 53;
 	level4rect.h = creditrect.h = creditsrect.h = 8;
-	creditrect.x = 54;
-	creditrect.w = 38;
+	creditrect.x = 53;
+	creditrect.w = 39;
 	creditsrect.x = 92;
 	creditsrect.w = 45;
 	play = false;
