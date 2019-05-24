@@ -34,6 +34,7 @@ public:
 		return frames[(int)current_frame];
 	}
 	int GetFinished() { return finished; }
+	void Reset() { current_frame = 0; }
 };
 
 #endif

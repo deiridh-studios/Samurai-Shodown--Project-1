@@ -45,12 +45,15 @@ public:
 	int jump_timer;
 	int punch_timer;
 	int kick_timer;
-	int tornado_timer;
+	int specialattack_timer;
 	int hitted_timer;
 	bool victory;
 	bool stopleft;
 	bool flip;
 	bool stopright;
+	bool inair[60];
+	bool notfinished;
+	bool sword;
 	Animation shadow;
 };
 #endif

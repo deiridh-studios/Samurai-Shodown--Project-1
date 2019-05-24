@@ -51,7 +51,6 @@ enum state {
 	A_KICK_FORWARD_JUMP,
 	A_KICK_BACKWARD_JUMP,
 	A_KICK_CROUCH,
-	A_TORNADO,
 	A_APPLEATTACK,
 	A_HITTED,
 	A_HITTED_JUMP,
@@ -61,6 +60,8 @@ enum state {
 	A_WINNER,
 	A_FIREEAGLE,
 	A_ROLLATTACK,
+	A_DASH,
+	A_BACKDASH
 };
 enum inputin {
 	S_NONE = 0,
@@ -128,8 +129,10 @@ enum inputin {
 	S_YU_CROUCH,
 	S_YU_CROUCH_RIGHT,
 	S_YU_CROUCH_LEFT,
-	S_TORNADO,
-	S_APPLEATTACK
+	S_APPLEATTACK,
+	S_FIREEAGLE,
+	S_DASH,
+	S_BACKDASH
 };
 enum inputout {
 	SO_NONE=0,
@@ -139,9 +142,11 @@ enum inputout {
 	SO_JUMP_FINISH,
 	SO_PUNCH_FINISH,
 	SO_KICK_FINISH,
-	SO_TORNADO_FINISH,
 	SO_APPLEATTACK_FINISH,
-	SO_HITTED_FINISH
+	SO_FIREEAGLE_FINISH,
+	SO_HITTED_FINISH,
+	SO_DASH_FINISH,
+	SO_BACKDASH_FINISH
 };
 
 class ModulePlayer : public Module
@@ -165,7 +170,6 @@ public:
 	Mix_Chunk *hittedsound;
 	Mix_Chunk *tornadosound;
 	SDL_Texture* graphics = nullptr;
-	SDL_Texture* graphics2 = nullptr;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -176,7 +180,6 @@ public:
 	Animation jumpforward;
 	Animation jumpbackward;
 	Animation appleattack;
-	Animation tornado;
 	Animation hittedan;
 	Animation crouch;
 	Animation crouchfinished;
@@ -208,14 +211,16 @@ public:
 	int jump_timer;
 	int punch_timer;
 	int kick_timer;
-	int tornado_timer;
+	int specialattack_timer;
 	int hitted_timer;
 	int inputsouts;
 	bool victory;
 	bool flip;
 	bool stopleft;
 	bool stopright;
-
+	bool inair[60];
+	bool notfinished;
+	bool sword;
 };
 
 #endif

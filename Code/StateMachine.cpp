@@ -12,7 +12,8 @@
 #include "ModuleUI.h"
 #include "SDL/include/SDL.h"
 
-void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_timer, int& hitted_timer, int& inputsouts, iPoint position, bool flip, state actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS], Module* Player) {
+
+void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, int& inputsouts, iPoint position, bool flip, state actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS], Module* Player) {
 	if (actual != A_HITTED) {
 		bool left = false;
 		bool right = false;
@@ -238,10 +239,13 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		inputsouts++;
 		kick_timer = 0;
 	}
-	if (tornado_timer == 3) {
-		inputstateout[inputsouts] = SO_TORNADO_FINISH;
+	if (specialattack_timer == 3) {
+		if(actual==A_APPLEATTACK) inputstateout[inputsouts] = SO_APPLEATTACK_FINISH;
+		else if(actual==A_FIREEAGLE)  inputstateout[inputsouts] = SO_FIREEAGLE_FINISH;
+		else if (actual == A_DASH)  inputstateout[inputsouts] = SO_DASH_FINISH;
+		else if (actual == A_BACKDASH)  inputstateout[inputsouts] = SO_BACKDASH_FINISH;
 		inputsouts++;
-		tornado_timer = 0;
+		specialattack_timer = 0;
 	}	
 	if (hitted_timer == 3) {
 		inputstateout[inputsouts] = SO_HITTED_FINISH;
@@ -249,8 +253,14 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_
 		hitted_timer = 0;
 	}
 }
-Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int& tornado_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player) {
+Animation* ExecuteState(bool &sword, bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player) {
 	Animation* current_animation=&App->player->idle;
+	if (notfinished == true) {
+		current_animation = &App->player->punchair; current_animation->Reset();
+		current_animation = &App->player->kickair; current_animation->Reset();
+		current_animation=&App->player->idle;
+		(*attack)->to_delete = true;
+	}
 	bool forward = false;
 	bool backward = false;
 	bool jump = false;
@@ -358,7 +368,8 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		break;
 	case A_PUNCH_STANDING:
-		current_animation = &App->player->punch;
+		if(sword==true)current_animation = &App->player->punch;			///////////////DO THAT WITH ALL THE ATTACKS (THE SWORD BOOL IS TO SHOW WHETHER THE CHARACTER HAS THE SWORD OR NO
+		else {}															/////////////// SO WHEN HE HAS THE SWORD, THE ANIMATIONS AND THE COLLISION BOXES (AND PROBABLY THE SOUND) WILL BE DIFFERENT
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -1387,7 +1398,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (current_animation->GetFinished() == 1 && hitted_timer == 2)hitted_timer = 3;
 		break;
 	case A_HITTED_JUMP:
-		current_animation = &App->player->hittedan;
+		current_animation = &App->player->airhitted;
 		if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player) {
 			App->audio->PlayChunk(App->player->hittedsound);
 			App->UI->DamageTaken(1, 5);
@@ -1405,15 +1416,47 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		if (position.y >= 210)position.y = 210;
 		if (current_animation->GetFinished() == 1 && hitted_timer == 2 && position.y == 210)hitted_timer = 3;
 		break;
-	case A_TORNADO:
-		current_animation = &App->player->tornado;
-		if (tornado_timer == 1) {
-			if(Player == App->player) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
-			else if(Player == App->player2) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 0);
+	case A_APPLEATTACK:
+		current_animation = &App->player->appleattack;
+		if (specialattack_timer == 1) {
 			App->audio->PlayChunk(App->player->tornadosound);
-			tornado_timer = 2;
+			specialattack_timer = 2;
 		}
-		if (current_animation->GetFinished() == 1)tornado_timer = 3;
+		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
+		break;
+	case A_FIREEAGLE:
+		current_animation = &App->player->firebird;
+		if (specialattack_timer == 1) {
+			if (Player == App->player) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
+			else if (Player == App->player2) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 0);
+			App->audio->PlayChunk(App->player->tornadosound);
+			specialattack_timer = 2;
+		}
+		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
+		break;
+	case A_DASH:
+		//current_animation = &App->player->firebird;		ANIMATION
+
+		/////////////COLLISION BOXES
+		forward = true;
+		speed *= 2;
+		if (specialattack_timer == 1) {
+			App->audio->PlayChunk(App->player->tornadosound);
+			specialattack_timer = 2;
+		}	
+		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
+		break;
+	case A_BACKDASH:
+		//current_animation = &App->player->firebird;		ANIMATION
+
+				/////////////COLLISION BOXES
+		backward = true;
+		speed *= 2;
+		if (specialattack_timer == 1) {
+			App->audio->PlayChunk(App->player->tornadosound);
+			specialattack_timer = 2;
+		}
+		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
 		break;
 	}
 	if (forward == true) {
@@ -1456,7 +1499,7 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 	}
 	return current_animation;
 }
-void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado_timer, int &inputsouts, state& actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS]) {
+void CheckState(bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int &specialattack_timer, int &inputsouts, state& actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS]) {
 	switch (actual) {
 	case A_IDLE:
 		switch (inputstate[0]) {
@@ -1521,7 +1564,10 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		case S_YU_CROUCH: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_RIGHT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_LEFT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
-		case S_TORNADO: actual = A_TORNADO; tornado_timer = 1; break;
+		case S_APPLEATTACK: actual = A_APPLEATTACK; specialattack_timer = 1; break;
+		case S_FIREEAGLE: actual = A_FIREEAGLE; specialattack_timer = 1; break;
+		case S_DASH: actual = A_DASH; specialattack_timer = 1; break;
+		case S_BACKDASH: actual = A_BACKDASH; specialattack_timer = 1; break;
 		}
 		break;
 	case A_WALK_FORWARD:
@@ -1587,7 +1633,10 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		case S_YU_CROUCH: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_RIGHT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_LEFT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
-		case S_TORNADO: actual = A_TORNADO; tornado_timer = 1; break;
+		case S_APPLEATTACK: actual = A_APPLEATTACK; specialattack_timer = 1; break;
+		case S_FIREEAGLE: actual = A_FIREEAGLE; specialattack_timer = 1; break;
+		case S_DASH: actual = A_DASH; specialattack_timer = 1; break;
+		case S_BACKDASH: actual = A_BACKDASH; specialattack_timer = 1; break;
 		}
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_RIGHT_UP)actual = A_IDLE;
 		break;
@@ -1653,7 +1702,10 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		case S_YU_CROUCH: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_RIGHT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_LEFT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
-		case S_TORNADO: actual = A_TORNADO; tornado_timer = 1; break;
+		case S_APPLEATTACK: actual = A_APPLEATTACK; specialattack_timer = 1; break;
+		case S_FIREEAGLE: actual = A_FIREEAGLE; specialattack_timer = 1; break;
+		case S_DASH: actual = A_DASH; specialattack_timer = 1; break;
+		case S_BACKDASH: actual = A_BACKDASH; specialattack_timer = 1; break;
 		}
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_LEFT_UP)actual = A_IDLE;
 		break;
@@ -1713,6 +1765,7 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		case S_YU_CROUCH: actual = A_KICKS_NEUTRAL_JUMP; kick_timer = 1; break;
 		case S_YU_CROUCH_RIGHT: actual = A_KICKS_NEUTRAL_JUMP; kick_timer = 1; break;
 		case S_YU_CROUCH_LEFT: actual = A_KICKS_NEUTRAL_JUMP; kick_timer = 1; break;
+		case S_FIREEAGLE: actual = A_FIREEAGLE; specialattack_timer = 1; break;
 
 		}
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
@@ -1773,6 +1826,7 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		case S_YU_CROUCH: actual = A_KICKS_FORWARD_JUMP; kick_timer = 1; break;
 		case S_YU_CROUCH_RIGHT: actual = A_KICKS_FORWARD_JUMP; kick_timer = 1; break;
 		case S_YU_CROUCH_LEFT: actual = A_KICKS_FORWARD_JUMP; kick_timer = 1; break;
+		case S_FIREEAGLE: actual = A_FIREEAGLE; specialattack_timer = 1; break;
 
 		}
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
@@ -1833,6 +1887,7 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		case S_YU_CROUCH: actual = A_KICKS_BACKWARD_JUMP; kick_timer = 1; break;
 		case S_YU_CROUCH_RIGHT: actual = A_KICKS_BACKWARD_JUMP; kick_timer = 1; break;
 		case S_YU_CROUCH_LEFT: actual = A_KICKS_BACKWARD_JUMP; kick_timer = 1; break;
+		case S_FIREEAGLE: actual = A_FIREEAGLE; specialattack_timer = 1; break;
 		}
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
 		break;
@@ -1845,19 +1900,19 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 	case A_PUNCHL_NEUTRAL_JUMP:
 	case A_PUNCHS_NEUTRAL_JUMP:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_PUNCH_FINISH)actual = A_JUMP_NEUTRAL;
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH) { actual = A_IDLE; notfinished = true; }
 		break;
 	case A_PUNCH_FORWARD_JUMP:
 	case A_PUNCHL_FORWARD_JUMP:
 	case A_PUNCHS_FORWARD_JUMP:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_PUNCH_FINISH)actual = A_JUMP_FORWARD;
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH) { actual = A_IDLE; notfinished = true; }
 		break;
 	case A_PUNCH_BACKWARD_JUMP:
 	case A_PUNCHL_BACKWARD_JUMP:
 	case A_PUNCHS_BACKWARD_JUMP:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_PUNCH_FINISH)actual = A_JUMP_BACKWARD;
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH) { actual = A_IDLE; notfinished = true; }
 		break;
 	case A_KICK_STANDING:
 	case A_KICKL_STANDING:
@@ -1868,19 +1923,19 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 	case A_KICKL_NEUTRAL_JUMP:
 	case A_KICKS_NEUTRAL_JUMP:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_KICK_FINISH)actual = A_JUMP_NEUTRAL;
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH) { actual = A_IDLE; notfinished = true; }
 		break;
 	case A_KICK_FORWARD_JUMP:
 	case A_KICKL_FORWARD_JUMP:
 	case A_KICKS_FORWARD_JUMP:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_KICK_FINISH)actual = A_JUMP_FORWARD;
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH) { actual = A_IDLE; notfinished = true; }
 		break;
 	case A_KICK_BACKWARD_JUMP:
 	case A_KICKL_BACKWARD_JUMP:
 	case A_KICKS_BACKWARD_JUMP:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_KICK_FINISH)actual = A_JUMP_BACKWARD;
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH)actual = A_IDLE;
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_JUMP_FINISH) { actual = A_IDLE; notfinished = true; }
 		break;
 	case A_CROUCH:
 		switch (inputstate[0]) {
@@ -1938,7 +1993,10 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		case S_YU_CROUCH: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_RIGHT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
 		case S_YU_CROUCH_LEFT: actual = A_KICKS_CROUCH; kick_timer = 1; break;
-		case S_TORNADO: actual = A_TORNADO; tornado_timer = 1; break;
+		case S_APPLEATTACK: actual = A_APPLEATTACK; specialattack_timer = 1; break;
+		case S_FIREEAGLE: actual = A_FIREEAGLE; specialattack_timer = 1; break;
+		case S_DASH: actual = A_DASH; specialattack_timer = 1; break;
+		case S_BACKDASH: actual = A_BACKDASH; specialattack_timer = 1; break;
 		}
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_CROUCH_UP)actual = A_IDLE;
 		break;
@@ -1958,8 +2016,17 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 			else actual = A_IDLE;
 		}
 		break;
-	case A_TORNADO:
-		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_TORNADO_FINISH)actual = A_IDLE;
+	case A_APPLEATTACK:
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_APPLEATTACK_FINISH)actual = A_IDLE;
+		break;
+	case A_FIREEAGLE:
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_FIREEAGLE_FINISH) {actual = A_JUMP_NEUTRAL;}
+		break;
+	case A_DASH:
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_DASH_FINISH)actual = A_IDLE;
+		break;
+	case A_BACKDASH:
+		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_BACKDASH_FINISH)actual = A_IDLE;
 		break;
 	case A_HITTED:
 	case A_HITTED_JUMP:
@@ -1967,31 +2034,92 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		break;
 	}
 }
-void CheckSpecialAttacks(inputin inputstate[60]) {
+void CheckSpecialAttacks(inputin inputstate[60], bool inair[60]) {
 	bool out = false;
 	int done = 0;
-	int i = 1;
-	if (inputstate[0] == S_T_RIGHT) {
+	int i = 0;
+	if (inputstate[0] == S_T_LEFT || inputstate[0] == S_R_LEFT || inputstate[0] == S_TR_LEFT) {
 		do {
+			i++;
 			switch (inputstate[i]) {
-			case S_T_RIGHT:	i++; break;
-			case S_CROUCH_RIGHT:
-				i++;
+			case S_CROUCH_LEFT:
 				if (done == 0)done++;
 				break;
 			case S_CROUCH_DOWN:
 				if (done == 1) done = 2;
 				else out = true;
 				break;
-			case S_RIGHT_DOWN:
+			case S_LEFT_DOWN:
 				if (i > 6) out = true;
-				else i++;
 				break;
 			default:
 				out = true;
 				break;
 			}
 		} while (out == false && done < 2 && i < 60);
-		if (done == 2) inputstate[0] = S_TORNADO;
+		if (done == 2) inputstate[0] = S_APPLEATTACK;
+	}
+	else if ((inputstate[0] == S_T_RIGHT || inputstate[0] == S_R_RIGHT || inputstate[0] == S_TR_RIGHT) && inair[0] == true) {
+		do {
+			i++;
+			if (inair[i] == false)out = true;
+			switch (inputstate[i]) {
+			case S_CROUCH_RIGHT:
+				if (done == 0)done++;
+				else if (done > 1) out = true;
+				break;
+			case S_CROUCH_LEFT:
+				if (done == 2)done++;
+				else if (done < 2)out = true;
+				break;
+			case S_CROUCH_DOWN:
+				if (done == 1) done = 2;
+				else if(done<1)out = true;
+				break;
+			case S_RIGHT_DOWN:
+				if (i > 6) out = true;
+				break;
+			default:
+				out = true;
+				break;
+			}
+		} while (out == false && done < 3 && i < 60);
+		if (done == 3) inputstate[0] = S_FIREEAGLE;
+	}
+	else if (inputstate[0] == S_RIGHT_DOWN) {
+		do {
+			i++;
+			switch (inputstate[i]) {
+			case S_NONE:
+				if (i > 6)out = true;
+				else done = 1;
+				break;
+			case S_RIGHT_DOWN:
+				if(done==1)done++;
+				break;
+			default:
+				out = true;
+				break;
+			}
+		} while (out == false && done <2 && i < 60);
+		if (done == 2)inputstate[0] = S_DASH;
+	}
+	else if (inputstate[0] == S_LEFT_DOWN) {
+		do {
+			i++;
+			switch (inputstate[i]) {
+			case S_NONE:
+				if (i > 6)out = true;
+				else done = 1;
+				break;
+			case S_LEFT_DOWN:
+				if (done == 1)done++;
+				break;
+			default:
+				out = true;
+				break;
+			}
+		} while (out == false && done < 2 && i < 60);
+		if (done == 2)inputstate[0] = S_BACKDASH;
 	}
 }

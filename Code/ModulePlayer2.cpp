@@ -47,11 +47,14 @@ bool ModulePlayer2::Start()
 	jump_timer = 0;
 	punch_timer = 0;
 	kick_timer = 0;
-	tornado_timer = 0;
+	specialattack_timer = 0;
 	inputsouts = 0;
 	victory = false;
 	flip = true;
+	notfinished = false;
+	for (int i = 0; i < 60; i++)inair[i] = false;
 	stopleft = stopright = false;
+	sword = true;
 	return ret;
 }
 
@@ -72,8 +75,11 @@ update_status ModulePlayer2::PreUpdate() {
 	inputstate2[0] = S_NONE;
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout2[i] = SO_NONE;
 	inputsouts = 0;
-	Preupdate(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, inputsouts, position, flip, actual3, inputstate2, inputstateout2, App->player2);
-	CheckSpecialAttacks(inputstate2);
+	Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual3, inputstate2, inputstateout2, App->player2);
+	for (int i = 0; i < 59; i++)inair[i + 1] = inair[i];
+	if (position.y == 210)inair[0] = false;
+	else if (position.y < 210)inair[0] = true;
+	CheckSpecialAttacks(inputstate2, inair);
 	return UPDATE_CONTINUE;
 }
 
@@ -82,7 +88,7 @@ update_status ModulePlayer2::Update()
 {
 	//Animation* current_animation = &App->player->idle;
 	int speed = 2;
-	CheckState(jump_timer, punch_timer, kick_timer, tornado_timer, inputsouts, actual3, inputstate2, inputstateout2);
+	CheckState(notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, inputsouts, actual3, inputstate2, inputstateout2);
 
 	
 
@@ -108,8 +114,8 @@ update_status ModulePlayer2::Update()
 	if (App->input->keyboardstate[SDL_SCANCODE_F3] == KEY_PUSHED)App->UI->DamageTaken(2, 100);
 
 	// Draw everything --------------------------------------
-	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
-
+	SDL_Rect r = ExecuteState(sword,notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
+	notfinished = false;
 
 	if (flip == false) {
 		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
@@ -118,11 +124,8 @@ update_status ModulePlayer2::Update()
 		App->render->Blit(graphics, App->player2->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
 	
-	if (actual3 != A_TORNADO) {
-		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom);
-		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom);
-	}
-	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
+	if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom);
+	else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom);
 
 
 

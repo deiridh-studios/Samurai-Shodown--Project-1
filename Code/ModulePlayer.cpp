@@ -140,26 +140,6 @@ ModulePlayer::ModulePlayer()
 	jumpbackward.PushBack({ 761, 0, 75, 137 });
 	jumpbackward.speed = 0.1f;
 
-	//Tornado
-	////////////TO DO/////////////////
-	tornado.PushBack({ 0, 2384, 106, 96 });
-	tornado.PushBack({ 158, 2384, 72, 96 });
-	tornado.PushBack({ 298, 2384, 80, 96 });
-	tornado.PushBack({ 454, 2384, 66, 96 });
-	tornado.PushBack({ 586, 2376, 100, 104 });
-	tornado.PushBack({ 746, 2350, 60, 132 });
-	tornado.PushBack({ 851, 2376, 103,  104 });
-	tornado.PushBack({ 994, 2380, 104, 100 });
-	tornado.PushBack({ 1132, 2380, 102, 100 });
-	tornado.PushBack({ 1288, 2380, 102, 100 });
-	tornado.PushBack({ 1432, 2380, 104, 100 });
-	tornado.PushBack({ 1576, 2380, 104, 100 });
-	tornado.PushBack({ 1706, 2380, 110, 100 });
-	tornado.PushBack({ 1848, 2380, 106, 100 });
-	tornado.PushBack({ 0, 2526, 90, 96 });
-	tornado.PushBack({ 154, 2498, 90, 126 });
-	tornado.PushBack({ 300, 2514, 90, 110 });
-	tornado.speed = 0.2f;
 
 
 	//AppleAttack
@@ -394,18 +374,20 @@ bool ModulePlayer::Start()
 	body = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_PLAYER, this);
 	body2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_PLAYER, this);
 	body3 = App->collision->AddCollider({ position.x,(position.y - 20),45,35 }, COLLIDER_PLAYER, this);
-
+	sword = true;
 	actual = A_IDLE;
 	for (int i = 0; i < 60; i++) inputstate[i] = S_NONE;
 	for (int i = 0; i < 6; i++)inputstateout[i] = SO_NONE;
 	jump_timer = 0;
 	punch_timer = 0;
 	kick_timer = 0;
-	tornado_timer = 0;
+	specialattack_timer = 0;
 	inputsouts = 0;
 	victory = false;
 	flip = false;
+	for(int i=0;i<60;i++)inair[i] = false;
 	stopleft = stopright = false;
+	notfinished = false;
 	App->render->camera.x = App->render->camera.y = 0;
 	return ret;
 }
@@ -413,7 +395,6 @@ bool ModulePlayer::Start()
 //Clean Up
 bool ModulePlayer::CleanUp() {
 	App->textures->Unload(graphics);
-	App->textures->Unload(graphics2);
 	App->audio->StopChunk();
 	App->audio->UnLoadChunk(punchsound);
 	App->audio->UnLoadChunk(kicksound);
@@ -430,8 +411,11 @@ update_status ModulePlayer::PreUpdate() {
 	inputstate[0] = S_NONE;
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout[i] = SO_NONE;
 	inputsouts = 0;
-	Preupdate(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, inputsouts, position, flip, actual, inputstate, inputstateout, App->player);
-	CheckSpecialAttacks(inputstate);
+	Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual, inputstate, inputstateout, App->player);
+	for (int i = 0; i < 59; i++)inair[i+1] = inair[i];
+	if(position.y==210)inair[0] = false;
+	else if (position.y < 210)inair[0] = true;
+	CheckSpecialAttacks(inputstate, inair);
 	return UPDATE_CONTINUE;
 }
 
@@ -441,7 +425,7 @@ update_status ModulePlayer::Update()
 {
 	//Animation* current_animation = &idle;
 	int speed = 2;
-	CheckState(jump_timer, punch_timer, kick_timer, tornado_timer, inputsouts, actual, inputstate, inputstateout);
+	CheckState(notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, inputsouts, actual, inputstate, inputstateout);
 
 
 	////////////////////GODMODE/////////////////////////
@@ -465,9 +449,9 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboardstate[SDL_SCANCODE_F4] == KEY_PUSHED)App->UI->DamageTaken(1, 100);
 
 		// Draw everything --------------------------------------
-	SDL_Rect r = ExecuteState(jump_timer, punch_timer, kick_timer, tornado_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
+	SDL_Rect r = ExecuteState(sword, notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
 
-
+	notfinished = false;
 	if (flip == false) {
 		App->render->Blit(graphics, App->player->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
@@ -475,12 +459,8 @@ update_status ModulePlayer::Update()
 		App->render->Blit(graphics, App->player->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
 	
-	if (actual != A_TORNADO) {
-		if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom);
-		else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom);
-
-	}
-	else App->render->Blit(graphics2, position.x, position.y - r.h, &r);
+	if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom);
+	else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom);
 
 
 
