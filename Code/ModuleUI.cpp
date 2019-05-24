@@ -16,7 +16,6 @@
 
 ModuleUI::ModuleUI(){}
 ModuleUI::~ModuleUI() {}
-
 bool ModuleUI::Init() {
 	font_score = App->fonts->Load("Sprites/Numbers FONT.png", "0123456789-.,defghij", 2);
 	font_score_white = App->fonts->Load("Sprites/WhiteNumbersFONT.png", "0123456789", 1);
@@ -76,7 +75,8 @@ bool ModuleUI::Init() {
 	credits = 0;
 	koblink = lifeblink = 0;
 	timeblink = 0;
-	pointsp1 = pointsp2 = 0;
+	pointsp1 = 0;
+	pointsp2 = 0;
 	rounds = 0;
 	//App->input->space = false;
 	return true;
@@ -145,8 +145,8 @@ update_status ModuleUI::Update() {
 		App->fonts->BlitText(17, 10, font_points, "P1=");
 		App->fonts->BlitText(220, 10, font_points, "P2=");
 		sprintf_s(points1, 10, "%7d", pointsp1);
-		sprintf_s(points2, 10, "%7d", pointsp2);
 		App->fonts->BlitText(41, 10, font_points, points1);
+		sprintf_s(points2, 10, "%7d", pointsp2);
 		App->fonts->BlitText(245, 10, font_points, points2);
 
 

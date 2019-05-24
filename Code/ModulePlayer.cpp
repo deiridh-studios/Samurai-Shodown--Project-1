@@ -497,7 +497,8 @@ update_status ModulePlayer::PostUpdate() {
 void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 	if (player->type == COLLIDER_PLAYER) {
 		if (other->type == COLLIDER_ENEMY_SHOT) {
-			actual = A_HITTED;
+			if(position.y==210)actual = A_HITTED;
+			else actual = A_HITTED_JUMP;
 			if (hitted_timer == 0)hitted_timer = 1;
 			App->slowdown->StartSlowdown(100,60);
 		}

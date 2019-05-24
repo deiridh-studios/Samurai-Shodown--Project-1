@@ -1384,12 +1384,26 @@ Animation* ExecuteState(int& jump_timer, int& punch_timer, int& kick_timer, int&
 		}
 		if (flip == false&&stopleft==false)position.x -= 1;
 		else if(flip==true&&stopright==false) position.x += 1;
-		if (position.y == 130) {
-			mult = -1;
-		}
-		mult = -2;
-		if (position.y < 210)position.y -= speed * mult*2;
 		if (current_animation->GetFinished() == 1 && hitted_timer == 2)hitted_timer = 3;
+		break;
+	case A_HITTED_JUMP:
+		current_animation = &App->player->hittedan;
+		if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player) {
+			App->audio->PlayChunk(App->player->hittedsound);
+			App->UI->DamageTaken(1, 5);
+			hitted_timer = 2;
+		}
+		else if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player2) {
+			App->audio->PlayChunk(App->player->hittedsound);
+			App->UI->DamageTaken(2, 5);
+			hitted_timer = 2;
+		}
+		if (flip == false && stopleft == false)position.x -= 1;
+		else if (flip == true && stopright == false) position.x += 1;
+		mult = -2;
+		if (position.y < 210)position.y -= speed * mult * 2;
+		if (position.y >= 210)position.y = 210;
+		if (current_animation->GetFinished() == 1 && hitted_timer == 2 && position.y == 210)hitted_timer = 3;
 		break;
 	case A_TORNADO:
 		current_animation = &App->player->tornado;
@@ -1948,6 +1962,7 @@ void CheckState(int& jump_timer, int& punch_timer, int& kick_timer, int &tornado
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_TORNADO_FINISH)actual = A_IDLE;
 		break;
 	case A_HITTED:
+	case A_HITTED_JUMP:
 		for (int i = 0; i <= inputsouts; i++)if (inputstateout[i] == SO_HITTED_FINISH)actual = A_IDLE;
 		break;
 	}

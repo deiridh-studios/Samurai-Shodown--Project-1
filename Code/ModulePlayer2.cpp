@@ -140,7 +140,8 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 	//
 	if (enemy->type == COLLIDER_ENEMY) {
 		if (other->type == COLLIDER_PLAYER_SHOT) {
-			actual3 = A_HITTED;
+			if(position.y==210)actual3 = A_HITTED;
+			else actual3 = A_HITTED_JUMP;
 			if (hitted_timer == 0)hitted_timer = 1;
 			App->slowdown->StartSlowdown(100, 60);
 		}
