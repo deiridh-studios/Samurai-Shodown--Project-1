@@ -53,33 +53,38 @@ bool ModuleBackground::Start() {
 	return true;
 }
 update_status ModuleBackground::Update() {
+	LOG("%d\n", App->render->camera.x);
 	App->render->Blit(graphics, -170, -170, &(back.GetCurrentFrame()), 0.9f, true, false, App->render->zoom);  //Background
 	if (fade == true&&App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
 	}
-	if ((App->player->position.x - App->player2->position.x) > 200 || (App->player->position.x - App->player2->position.x) < -200) {
+	if ((App->player->position.x - App->player2->position.x) > 170 || (App->player->position.x - App->player2->position.x) < -170) {
 		App->render->zoom = true;
 	}
-	else if ((App->player->position.x - App->player2->position.x) < 130 && (App->player->position.x - App->player2->position.x) > -130)App->render->zoom = false;
+	else if ((App->player->position.x - App->player2->position.x) < 120 && (App->player->position.x - App->player2->position.x) > -120)App->render->zoom = false;
 	if (App->render->zoom == true && App->render->zooming > 0.7F) {
 		App->render->zooming -= 0.005F;
-		//if(App->render->camera.x<170)App->render->camera.x+=2;
-		//if (App->render->camera.x < 170)App->render->camera.x += App->render->zooming;
-		//App->render->camera.w+=2;
-		//App->render->camera.w += App->render->zooming;
+		int check = 640 * App->render->zooming;
+		check -= 474;
+		check = -check;
+		while (App->render->camera.x < check) {
+			App->render->camera.x++;
+		}
+		if (App->render->camera.x < 170)App->render->camera.x += 2;
 		if (App->render->zooming < 0.7F)App->render->zooming = 0.7F;
-	}/*
-	if (App->render->zoom == true && App->render->zooming <= 0.7F&&contador == 0) {
-		App->render->camera.x += 70;
-		contador++;
 	}
-	else if (App->render->zoom == false && App->render->zooming >= 1.0F&&contador == 1) {
-		App->render->camera.x -= 70;
-		contador-- ;
-	}*/
 	else if (App->render->zoom == false && App->render->zooming < 1.0F) {
 		App->render->zooming += 0.01F;
+		App->render->camera.x-=3;
+		while ((-App->render->camera.x > App->player->position.x) || (-App->render->camera.x > App->player2->position.x)) {
+			App->render->camera.x++;
+		}
+		while ((-(App->render->camera.x - 304) < App->player->body3->rect.x+App->player->body3->rect.w) || (-(App->render->camera.x - 304) < App->player2->bodyenemy3->rect.x + App->player2->bodyenemy3->rect.w)) {
+			App->render->camera.x--;
+		}
+		//if (App->render->camera.x < 90) App->render->camera.x -= 5;// App->render->camera.x = ((170 - camerax2)*App->render->zooming) - 170;
+		//else if (App->render->camera.x < 200)App->render->camera.x --;
 		//App->render->camera.x-=2;
 		//App->render->camera.x -= App->render->zooming;
 		//App->render->camera.w-=2;
@@ -109,9 +114,5 @@ bool ModuleBackground::CleanUp()
 	return true;
 }
 void ModuleBackground::OnCollision(Collider* wall, Collider* enemy) {
-	/*if (actual != HITTED) {
 
-	}
-	actual = HITTED;*/
-	//LOG("ENEMY HITTED\n\n");
 }
