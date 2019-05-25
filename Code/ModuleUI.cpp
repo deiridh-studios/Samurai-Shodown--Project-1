@@ -102,10 +102,10 @@ update_status ModuleUI::Update() {
 		if (time / 1000 <= 15) {
 			timeblink++;
 			if (timeblink > 10)timeblink = 0;
-			if(timeblink<5) App->fonts->BlitText(65, 50, font_score_white, time_text);
-			else  App->fonts->BlitText(65, 50, font_score, time_text);
+			if(timeblink<5) App->fonts->BlitText(62, 45, font_score_white, time_text);
+			else  App->fonts->BlitText(62, 45, font_score, time_text);
 		}
-		else App->fonts->BlitText(65, 50, font_score, time_text);
+		else App->fonts->BlitText(62, 45, font_score, time_text);
 		if (time / 1000 == 0) {
 			rounds++;
 			if (player1life > player2life) {
@@ -129,32 +129,32 @@ update_status ModuleUI::Update() {
 		/////////LIFE UPDATE/////////
 		lifeplayer1.w = player1life * 4;
 		lifeplayer2.w = player2life * 4;
-		App->render->Blit(textlife, 5, 20, &lifebarplayer1, 0.0f, false);
-		App->render->Blit(textlife, 180, 20, &lifebarplayer2, 0.0f, false);
-		if(lifeplayer1.w> 58)App->render->Blit(textlife, (137 - (player1life * 4)), 20, &lifeplayer1, 0.0f, false);
-		if(lifeplayer2.w> 58)App->render->Blit(textlife, 182, 20, &lifeplayer2, 0.0f, false);
+		App->render->Blit(textlife, 10, 20, &lifebarplayer1, 0.0f, false);
+		App->render->Blit(textlife, 160, 20, &lifebarplayer2, 0.0f, false);
+		if(lifeplayer1.w> 58)App->render->Blit(textlife, (138 - (player1life * 4)), 20, &lifeplayer1, 0.0f, false);
+		if(lifeplayer2.w> 58)App->render->Blit(textlife, 166, 20, &lifeplayer2, 0.0f, false);
 
 
 
 		////////NAME PLAYER///////
 		App->render->Blit(textlife, 17, 35, &nameplayer, 0.0f, false);
-		App->render->Blit(textlife, 270, 35, &nameplayer, 0.0f, false);
+		App->render->Blit(textlife, 253, 35, &nameplayer, 0.0f, false);
 
 
 		////////POINTS////////
 		App->fonts->BlitText(17, 10, font_points, "P1=");
-		App->fonts->BlitText(220, 10, font_points, "P2=");
+		App->fonts->BlitText(207, 10, font_points, "P2=");
 		sprintf_s(points1, 10, "%7d", pointsp1);
 		App->fonts->BlitText(41, 10, font_points, points1);
 		sprintf_s(points2, 10, "%7d", pointsp2);
-		App->fonts->BlitText(245, 10, font_points, points2);
+		App->fonts->BlitText(232, 10, font_points, points2);
 
 
 		///////VICTORY MARKERS//////////
-		if(roundsp1>0)App->render->Blit(textlife, 9, 45, &victorymarker, 0.0f, false);
-		if(roundsp1>1)App->render->Blit(textlife, 41, 45, &victorymarker, 0.0f, false);
-		if (roundsp2 > 0)App->render->Blit(textlife, 286, 45, &victorymarker, 0.0f, false);
-		if (roundsp2 > 1)App->render->Blit(textlife, 254, 45, &victorymarker, 0.0f, false);
+		if(roundsp1>0)App->render->Blit(textlife, 10, 45, &victorymarker, 0.0f, false);
+		if(roundsp1>1)App->render->Blit(textlife, 42, 45, &victorymarker, 0.0f, false);
+		if (roundsp2 > 0)App->render->Blit(textlife, 270, 45, &victorymarker, 0.0f, false);
+		if (roundsp2 > 1)App->render->Blit(textlife, 238, 45, &victorymarker, 0.0f, false);
 
 
 
@@ -167,22 +167,22 @@ update_status ModuleUI::Update() {
 			lifebarplayer1red.w = lifebarplayer1white.w = lifeplayer1.w;
 			lifebarplayer2red.w = lifebarplayer2white.w = lifeplayer2.w;
 			if ((roundsp1 > 0 && lifeplayer2.w <= 58) || (roundsp2 > 0 && lifeplayer2.w <= 58)||rounds==3) {
-				if(koblink<10)App->render->Blit(textlife, 145, 10, &endmessagewhite, 0.0f, false);
-				else App->render->Blit(textlife, 145, 10, &endmessage, 0.0f, false);
+				if(koblink<10)App->render->Blit(textlife, 138, 12, &endmessagewhite, 0.0f, false);
+				else App->render->Blit(textlife, 138, 12, &endmessage, 0.0f, false);
 			}
-			else if (koblink < 10) App->render->Blit(textlife, 145, 10, &komessagewhite, 0.0f, false);
-			else App->render->Blit(textlife, 145, 10, &komessage, 0.0f, false);
+			else if (koblink < 10) App->render->Blit(textlife, 138, 12, &komessagewhite, 0.0f, false);
+			else App->render->Blit(textlife, 138, 12, &komessage, 0.0f, false);
 			if (lifeblink > 5) {
-				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (137 - (player1life * 4)), 20, &lifebarplayer1red, 0.0f, false);
-				if (lifeplayer2.w <= 58) App->render->Blit(textlife, 180, 20, &lifebarplayer2red, 0.0f, false);
+				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (138 - (player1life * 4)), 20, &lifebarplayer1red, 0.0f, false);
+				if (lifeplayer2.w <= 58) App->render->Blit(textlife, 166, 20, &lifebarplayer2red, 0.0f, false);
 			}
 			else {
-				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (137 - (player1life * 4)), 20, &lifebarplayer1white, 0.0f, false);
-				if (lifeplayer2.w <= 58)App->render->Blit(textlife, 180, 20, &lifebarplayer2white, 0.0f, false);
+				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (138 - (player1life * 4)), 20, &lifebarplayer1white, 0.0f, false);
+				if (lifeplayer2.w <= 58)App->render->Blit(textlife, 166, 20, &lifebarplayer2white, 0.0f, false);
 			}
 		}
-		else if(rounds==3||(roundsp1==1&&roundsp2==1))App->render->Blit(textlife, 145, 10, &endmessage, 0.0f, false);
-		else App->render->Blit(textlife, 145, 10, &komessage, 0.0f, false);
+		else if(rounds==3||(roundsp1==1&&roundsp2==1))App->render->Blit(textlife, 138, 12, &endmessage, 0.0f, false);
+		else App->render->Blit(textlife, 138, 12, &komessage, 0.0f, false);
 
 
 

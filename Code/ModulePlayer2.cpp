@@ -35,7 +35,7 @@ bool ModulePlayer2::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Sprites//UkyoPlayer2SpriteSheet.png"); // arcade version
 	graphics2 = App->textures->Load("sprites/spritesHaohmaruFIXED.png");
-	position.x = 200;
+	position.x = 190;
 	position.y = 210;
 	bodyenemy = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_ENEMY, this);
 	bodyenemy2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_ENEMY, this);

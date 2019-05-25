@@ -369,7 +369,7 @@ bool ModulePlayer::Start()
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
 	hittedsound = App->audio->LoadChunk("Audio_FX/Hitted.wav");
 	tornadosound = App->audio->LoadChunk("Audio_FX/Tornado.wav");
-	position.x = 50;
+	position.x = 40;
 	position.y = 210;
 	body = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_PLAYER, this);
 	body2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_PLAYER, this);
