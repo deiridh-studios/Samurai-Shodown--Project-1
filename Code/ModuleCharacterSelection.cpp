@@ -375,46 +375,57 @@ update_status  ModuleCharacterSelection::Update() {
 	}
 	else if (positionxp1 == 45 && positionyp1 == 58) {
 		CurrentAn.GetCurrentFrame() = EarthquakeP1.GetCurrentFrame();
-		posanx1 = 0;
+		posanx1 = 3;
 	}
 
 	//Animations P2
 	if (positionxp2 == 225 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = TamTamP2.GetCurrentFrame();
-
+		posanx2 = 179;
 	}
 	else if (positionxp2 == 189 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = CharlotteP2.GetCurrentFrame();
+		posanx2 = 159;
 	}
 	else if (positionxp2 == 153 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = UkyoP2.GetCurrentFrame();
+		posanx2 = 199;
 	}
 	else if (positionxp2 == 117 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = HaohmaruP2.GetCurrentFrame();
+		posanx2 = 172;
 	}
 	else if (positionxp2 == 81 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = GalfordP2.GetCurrentFrame();
+		posanx2 = 177;
 	}
 	else if (positionxp2 == 45 && positionyp2 == 15) {
 		CurrentAn2.GetCurrentFrame() = GenAnP2.GetCurrentFrame();
+		posanx2 = 182;
 	}
 	else if (positionxp2 == 225 && positionyp2 == 58) {
 		CurrentAn2.GetCurrentFrame() = KyoshiroP2.GetCurrentFrame();
+		posanx2 = 154;
 	}
 	else if (positionxp2 == 189 && positionyp2 == 58) {
 		CurrentAn2.GetCurrentFrame() = HanzoP2.GetCurrentFrame();
+		posanx2 = 188;
 	}
 	else if (positionxp2 == 153 && positionyp2 == 58) {
 		CurrentAn2.GetCurrentFrame() = JubeiP2.GetCurrentFrame();
+		posanx2 = 181;
 	}
 	else if (positionxp2 == 117 && positionyp2 == 58) {
 		CurrentAn2.GetCurrentFrame() = WanFuP2.GetCurrentFrame();
+		posanx2 = 180;
 	}
 	else if (positionxp2 == 81 && positionyp2 == 58) {
 		CurrentAn2.GetCurrentFrame() = NakoruruP2.GetCurrentFrame();
+		posanx2 = 169;
 	}
 	else if (positionxp2 == 45 && positionyp2 == 58) {
 		CurrentAn2.GetCurrentFrame() = EarthquakeP2.GetCurrentFrame();
+		posanx2 = 157;
 	}
 
 	App->render->Blit(graphics, 0, 0, &background, 0.0f);
@@ -426,8 +437,8 @@ update_status  ModuleCharacterSelection::Update() {
 		App->render->Blit(graphics, positionxp1, positionyp1, &(SelectionAnimationP1.GetCurrentFrame()), 0.0f);
 		App->render->Blit(graphics, positionxp2, positionyp2, &(SelectionAnimationP2.GetCurrentFrame()), 0.0f);
 	}
-	App->render->Blit(graphics, posanx1, 80, &(CurrentAn.GetCurrentFrame()), 0.0f);
-	App->render->Blit(graphics, posanx2, 80, &(CurrentAn2.GetCurrentFrame()), 0.0f); //144
+	App->render->Blit(graphics, posanx1, 72, &(CurrentAn.GetCurrentFrame()), 0.0f);
+	App->render->Blit(graphics, posanx2, 72, &(CurrentAn2.GetCurrentFrame()), 0.0f); //144
 
 	if ((App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (positionxp1 == 153 && positionyp1 == 15) && (positionxp2 == 153 && positionyp2 == 15)) {
 		App->audio->StopMusic();
