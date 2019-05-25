@@ -220,7 +220,7 @@ update_status  ModuleSceneCongrats::Update() {
 
 	App->fonts->BlitText(145, 170, font_victory, victory_text);
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (App->fade->finished == true) && (letters.current_frame <= 59)) {
+	if ((App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (App->fade->finished == true) && (letters.current_frame > 59)) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->scenecongrats, App->scenewelcome, 2);
 	}

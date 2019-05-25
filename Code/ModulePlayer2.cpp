@@ -55,6 +55,8 @@ bool ModulePlayer2::Start()
 	for (int i = 0; i < 60; i++)inair[i] = false;
 	stopleft = stopright = false;
 	sword = true;
+	posx = App->render->zooming;
+	positionx2 = position.x;
 	return ret;
 }
 
@@ -114,18 +116,23 @@ update_status ModulePlayer2::Update()
 	if (App->input->keyboardstate[SDL_SCANCODE_F3] == KEY_PUSHED)App->UI->DamageTaken(2, 100);
 
 	// Draw everything --------------------------------------
+	int checkposition = ((170 + positionx2) * posx) - 170;
+	if (checkposition != position.x) positionx2 -= checkposition - position.x;
+	position.x = positionx2;
+	position.x = ((170 + position.x)*App->render->zooming) - 170;
+	posx = App->render->zooming;
 	SDL_Rect r = ExecuteState(sword,notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
 	notfinished = false;
 
 	if (flip == false) {
-		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
+		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom, true);
 	}
 	if (flip == true) {
-		App->render->Blit(graphics, App->player2->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
+		App->render->Blit(graphics, App->player2->position.x, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom, true);
 	}
 	
-	if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom);
-	else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom);
+	if (flip == false)	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, false, App->render->zoom, true);
+	else App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0F, true, true, App->render->zoom, true);
 
 
 

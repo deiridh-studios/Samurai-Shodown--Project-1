@@ -1463,13 +1463,13 @@ Animation* ExecuteState(bool &sword, bool &notfinished, int& jump_timer, int& pu
 		if (flip == false) {
 			if (stopright == false)	position.x += speed;
 			if (App->player->stopleft == false && App->player2->stopleft == false) {
-				if (App->background->cameraright.x < 670)App->render->camera.x -= speed;
+				if (App->background->cameraright.x < ((220 + 480) *  App->render->zooming) - 220)App->render->camera.x -= speed;
 			}
 		}
 		else {
 			if (stopleft == false) position.x -= speed;
 			if (App->player->stopright == false && App->player2->stopright == false) {
-				if (App->background->cameraleft.x > 0)App->render->camera.x += speed;
+				if (App->background->cameraleft.x > ((170 - 180) *  App->render->zooming) - 170)App->render->camera.x += speed;
 			}
 		}
 	}
@@ -1477,13 +1477,13 @@ Animation* ExecuteState(bool &sword, bool &notfinished, int& jump_timer, int& pu
 		if (flip == false) {
 			if (stopleft == false) position.x -= speed / 2;
 			if (App->player->stopright == false && App->player2->stopright == false) {
-				if (App->background->cameraleft.x > 0) App->render->camera.x += speed;
+				if (App->background->cameraleft.x > ((170 - 180) *  App->render->zooming)-170) App->render->camera.x += speed/2;
 			}
 		}
 		else {
 			if (stopright == false)position.x += speed / 2;
 			if (App->player->stopleft == false && App->player2->stopleft == false) {
-				if (App->background->cameraright.x < 670) App->render->camera.x -= speed;
+				if (App->background->cameraright.x < ((220 + 480) *  App->render->zooming) - 220)App->render->camera.x -= speed/2;
 			}
 		}
 	}

@@ -70,16 +70,16 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, bool use_camera, bool flip, bool zoom)
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, bool use_camera, bool flip, bool zoom, bool maintainx)
 {
 
 	bool ret = true;
 	SDL_Rect rect;
 	if (use_camera)
 	{
-		rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE *zooming;
+		rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;// *zooming;
 		rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE *zooming;
-		
+		//if(rect.x==43)rect.x = -8;
 	}
 	else
 	{
@@ -100,8 +100,10 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 		rect.w *= zooming;
 		rect.h *= zooming;
 		if (zooming < 1.0F) {
+			//if (maintainx == true)rect.x *= zooming;
+			/*if (camera.x < -300) rect.x += 467 * (1 - zooming);
+			else if (camera.x < 0)*///rect.x += 233 * (1 - zooming);
 			rect.y += 233 * (1 - zooming);
-			rect.x += 233 * (1 - zooming);
 		}
 	}
 	rect.w *= SCREEN_SIZE;
@@ -133,13 +135,14 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	SDL_Rect rec(rect);
 	if (use_camera)
 	{
-		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE *zooming);
+		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE);// *zooming);
 		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE*zooming);
-		rec.w *= SCREEN_SIZE*zooming;
+		rec.w *= SCREEN_SIZE;//*zooming;
 		rec.h *= SCREEN_SIZE*zooming;
 		if (zooming < 1.0F) {
+			/*if(camera.x<-300) rec.x += 467 * (1 - zooming);
+			else if(camera.x<0)*/// rec.x += 233 * (1 - zooming);
 			rec.y += 233 * (1 - zooming);
-			rec.x += 233 * (1 - zooming);
 		}
 
 

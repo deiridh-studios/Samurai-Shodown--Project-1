@@ -41,8 +41,8 @@ Application::Application()
 	modules[i++] = scenecongrats = new ModuleSceneCongrats();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
-	modules[i++] = UI = new ModuleUI();
 	modules[i++] = SNKComplete = new ModuleSNKComplete();
+	modules[i++] = UI = new ModuleUI();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = slowdown = new ModuleSlowdown();
 

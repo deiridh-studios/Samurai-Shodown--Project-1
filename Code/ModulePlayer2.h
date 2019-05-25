@@ -54,6 +54,8 @@ public:
 	bool inair[60];
 	bool notfinished;
 	bool sword;
+	float posx;
+	int positionx2;
 	Animation shadow;
 };
 #endif

@@ -53,21 +53,37 @@ bool ModuleBackground::Start() {
 	return true;
 }
 update_status ModuleBackground::Update() {
-	App->render->Blit(graphics, 0, -170, &(back.GetCurrentFrame()), 0.9f, true, false, App->render->zoom);  //Background
+	App->render->Blit(graphics, -170, -170, &(back.GetCurrentFrame()), 0.9f, true, false, App->render->zoom);  //Background
 	if (fade == true&&App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
 	}
 	if ((App->player->position.x - App->player2->position.x) > 200 || (App->player->position.x - App->player2->position.x) < -200) {
-		//App->render->zoom = true;
+		App->render->zoom = true;
 	}
-	else App->render->zoom = false;
+	else if ((App->player->position.x - App->player2->position.x) < 130 && (App->player->position.x - App->player2->position.x) > -130)App->render->zoom = false;
 	if (App->render->zoom == true && App->render->zooming > 0.7F) {
 		App->render->zooming -= 0.005F;
+		//if(App->render->camera.x<170)App->render->camera.x+=2;
+		//if (App->render->camera.x < 170)App->render->camera.x += App->render->zooming;
+		//App->render->camera.w+=2;
+		//App->render->camera.w += App->render->zooming;
 		if (App->render->zooming < 0.7F)App->render->zooming = 0.7F;
+	}/*
+	if (App->render->zoom == true && App->render->zooming <= 0.7F&&contador == 0) {
+		App->render->camera.x += 70;
+		contador++;
 	}
+	else if (App->render->zoom == false && App->render->zooming >= 1.0F&&contador == 1) {
+		App->render->camera.x -= 70;
+		contador-- ;
+	}*/
 	else if (App->render->zoom == false && App->render->zooming < 1.0F) {
 		App->render->zooming += 0.01F;
+		//App->render->camera.x-=2;
+		//App->render->camera.x -= App->render->zooming;
+		//App->render->camera.w-=2;
+		//App->render->camera.w -= App->render->zooming;
 		if (App->render->zooming > 1.0F)App->render->zooming = 1.0F;
 	}
 	cameraleft.x = (-App->render->camera.x) / SCREEN_SIZE;
