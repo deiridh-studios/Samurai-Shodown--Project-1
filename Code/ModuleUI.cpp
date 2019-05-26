@@ -10,6 +10,8 @@
 #include "ModuleFadeToBlack.h"
 #include "Modulebackground.h"
 #include "ModuleSNKMenu.h"
+#include "ModuleInput.h"
+#include "ModuleAudio.h"
 #include "SDL/include/SDL_timer.h"
 #include<stdio.h>
 
@@ -24,6 +26,8 @@ bool ModuleUI::Init() {
 	font_finalpoints = App->fonts->Load("Sprites/YellowNumbersAndPercent.png", "0123456789%", 1);
 	textlife = App->textures->Load("Sprites/Sprite_Sheet_UI_1.png");
 	level4 = App->textures->Load("Sprites/CreditsandLevel4.png");
+	sumpoints = App->audio->LoadChunk("Audio_FX/End_Combat_Points.wav");
+	sumpoints2 = App->audio->LoadChunk("Audio_FX/Enter_in_Menu.wav");
 	doinitialtime = false;
 	lifebarplayer1.x = 273;
 	lifebarplayer1red.x = lifebarplayer1white.x = 277;
@@ -95,11 +99,15 @@ bool ModuleUI::Init() {
 	victory = 0;
 	rounds = 0;
 	counter = 0;
+	startplay = false;
 	totalscore = lifescore = timescore = hitsscore = 0;
 	finished = false;
 	return true;
 }
 bool ModuleUI::CleanUp() {
+	App->audio->StopChunk();
+	App->audio->UnLoadChunk(sumpoints);
+	App->audio->UnLoadChunk(sumpoints2);
 	App->fonts->UnLoad(font_finalpoints);
 	App->fonts->UnLoad(font_score);
 	App->fonts->UnLoad(font_score_white);
@@ -112,6 +120,8 @@ bool ModuleUI::CleanUp() {
 update_status ModuleUI::Update() {
 	if (play == true && App->fade->finished == true) {
 		///////TIMER/////////
+		if (finished == false)startplay = true;
+		else startplay = false;
 		if (doinitialtime == true) {
 			initialtime = SDL_GetTicks();
 			doinitialtime = false;
@@ -262,12 +272,24 @@ update_status ModuleUI::Update() {
 					sprintf_s(score, 10, "%7d", hitsscore);
 					if (counter > 14)App->fonts->BlitText(125, 130, font_finalpoints, score);
 					sprintf_s(score, 10, "%c",'%');
-					if (counter > 16&&counter<21)App->fonts->BlitText(235, 130, font_finalpoints, score);
+					if (counter > 16&&counter<22)App->fonts->BlitText(235, 130, font_finalpoints, score);
 					sprintf_s(score, 10, "%7d", totalscore);
 					if (counter > 18)App->fonts->BlitText(125, 166, font_finalpoints, score);
 					if (counter >= 20) {
+						if (App->input->keyboardstate[SDL_SCANCODE_SPACE]) {
+							App->audio->PlayChunk(sumpoints, -1);
+							if(counter<22)hitsscore= ((float)hitsscore / (float)100) * 20000;
+							if(victory==1)pointsp1+=lifescore+timescore+ hitsscore;
+							else pointsp2+= lifescore + timescore + hitsscore;
+							totalscore+= lifescore + timescore + hitsscore;
+							App->audio->PlayChunk(sumpoints2);
+							lifescore = hitsscore = timescore = 0;
+							counter = 55;
+						}
 						for (int i = 0; i < 3; i++) {
 							if (lifescore > 0) {
+								if(counter==20)App->audio->PlayChunk(sumpoints, -1);
+								counter = 21;
 								lifescore -= 10;
 								totalscore += 10;
 								if (victory == 1)pointsp1 += 10;
@@ -279,11 +301,16 @@ update_status ModuleUI::Update() {
 								if (victory == 1)pointsp1 += 10;
 								else pointsp2 += 10;
 							}
-							else if (counter < 21) {
+							else if (counter < 22) {
+								App->audio->StopChunk();
+								App->audio->PlayChunk(sumpoints2);
 								hitsscore = ((float)hitsscore / (float)100) * 20000;
 								counter++;
 							}
+							else if (counter < 56)counter++;
 							else if (hitsscore > 0) {
+								if(counter==56)App->audio->PlayChunk(sumpoints, -1);
+								counter = 57;
 								hitsscore -= 10;
 								totalscore += 10;
 								if (victory == 1)pointsp1 += 10;
@@ -294,7 +321,7 @@ update_status ModuleUI::Update() {
 					if (counter < 20)counter++;
 				}
 				if (hitsscore == 0 && lifescore == 0 && timescore == 0) {
-					if (counter>23) {
+					if (counter>78) {
 						play = false;
 						victory = 0;
 						if (rounds != 4 && roundsp1 < 2 && roundsp2 < 2)(App->fade->FadeToBlack(App->background, App->background));
@@ -304,7 +331,14 @@ update_status ModuleUI::Update() {
 							roundsp1 = roundsp2 = 0;
 						}
 					}
-					if (counter <= 23)counter++;
+					if (counter <= 78) {
+						
+						if (counter == 57) {
+							App->audio->StopChunk();
+							App->audio->PlayChunk(sumpoints2);
+						}
+						counter++;
+					}
 				}
 			}
 		}

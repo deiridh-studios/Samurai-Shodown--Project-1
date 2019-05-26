@@ -415,7 +415,11 @@ update_status ModulePlayer::PreUpdate() {
 	inputstate[0] = S_NONE;
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout[i] = SO_NONE;
 	inputsouts = 0;
-	Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual, inputstate, inputstateout, App->player);
+	if (App->UI->startplay == true)Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual, inputstate, inputstateout, App->player);
+	else {
+		actual = A_IDLE;
+		position.y = 210;
+	}
 	for (int i = 0; i < 59; i++)inair[i+1] = inair[i];
 	if(position.y==210)inair[0] = false;
 	else if (position.y < 210)inair[0] = true;

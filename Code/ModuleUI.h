@@ -5,6 +5,8 @@
 #include "Globals.h"
 
 struct SDL_Texture;
+struct Mix_Chunk;
+
 
 class ModuleUI :public Module {
 public:
@@ -17,6 +19,7 @@ public:
 	
 public:
 	bool play;
+	bool startplay;
 	int credits;
 	bool doinitialtime;
 private:
@@ -51,6 +54,8 @@ private:
 	SDL_Rect totalrect;
 	SDL_Rect liferect;
 	SDL_Rect timerect;
+	Mix_Chunk *sumpoints;
+	Mix_Chunk *sumpoints2;
 	char axisx[10];
 	char axisy[10];
 	int player1life;

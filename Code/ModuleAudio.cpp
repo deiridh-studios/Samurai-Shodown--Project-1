@@ -127,8 +127,8 @@ bool const ModuleAudio::UnLoadMusic(_Mix_Music* music) {
 	return true;
 }
 
-void ModuleAudio::PlayChunk(Mix_Chunk* chunk) {
-	Mix_PlayChannel(-1, chunk, 0);
+void ModuleAudio::PlayChunk(Mix_Chunk* chunk, int loops, int channel) {
+	Mix_PlayChannel(channel, chunk, loops);
 }
 void ModuleAudio::StopChunk() {
 	Mix_HaltChannel(-1);

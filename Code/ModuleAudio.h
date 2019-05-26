@@ -23,7 +23,7 @@ public:
 	_Mix_Music* const LoadMusic(const char* path);
 	bool const UnLoadChunk(Mix_Chunk* chunk);
 	bool const UnLoadMusic(_Mix_Music* music);
-	void PlayChunk(Mix_Chunk*);
+	void PlayChunk(Mix_Chunk*, int loops=0, int channel=-1);
 	void StopChunk();
 	void PlayMusic(_Mix_Music*);
 	void StopMusic();
