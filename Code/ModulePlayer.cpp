@@ -391,6 +391,8 @@ bool ModulePlayer::Start()
 	App->render->camera.x = App->render->camera.y = 0;
 	posx = App->render->zooming;
 	positionx2 = position.x;
+	nattacks = nattackss = 0;
+	inattack = false;
 	return ret;
 }
 
@@ -456,9 +458,11 @@ update_status ModulePlayer::Update()
 	position.x = positionx2;
 	position.x =((170+position.x)*App->render->zooming)-170;
 	posx = App->render->zooming;
+	if (attack!=nullptr&&attack->to_delete == false)inattack = true;
 	SDL_Rect r = ExecuteState(sword, notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
-
+	if (inattack == false && attack!=nullptr&&attack->to_delete == false) nattacks++;
 	notfinished = false;
+	inattack = false;
 	if (flip == false) {
 		App->render->Blit(graphics, App->player->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
 	}
@@ -532,6 +536,7 @@ void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 	}
 	else {
 		if (other->type == COLLIDER_ENEMY) {
+			if(player->to_delete==false)nattackss++;
 			player->to_delete = true;
 		}
 	}

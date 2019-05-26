@@ -21,6 +21,7 @@ bool ModuleUI::Init() {
 	font_score_white = App->fonts->Load("Sprites/WhiteNumbersFONT.png", "0123456789", 1);
 	font_points = App->fonts->Load("Sprites/NumbersUIPlayers.png", "0123456789P=", 1);
 	font_credits = App->fonts->Load("Sprites/NumbersCreditsFONT.png", "0123456789", 1);
+	font_finalpoints = App->fonts->Load("Sprites/YellowNumbersAndPercent.png", "0123456789%", 1);
 	textlife = App->textures->Load("Sprites/Sprite_Sheet_UI_1.png");
 	level4 = App->textures->Load("Sprites/CreditsandLevel4.png");
 	doinitialtime = false;
@@ -70,6 +71,20 @@ bool ModuleUI::Init() {
 	creditrect.w = 39;
 	creditsrect.x = 92;
 	creditsrect.w = 45;
+	hitrect.x = 349;
+	hitrect.y = 93;
+	hitrect.h = 27;
+	hitrect.w = 68;
+	totalrect.x = 419;
+	totalrect.y = 95;
+	totalrect.h = timerect.h = liferect.h = 21;
+	totalrect.w = 67;
+	timerect.x = 395;
+	timerect.y = 124;
+	timerect.w = 64;
+	liferect.x = 440;
+	liferect.y = 145;
+	liferect.w = 63;
 	play = false;
 	roundsp1 = roundsp2 = 0;
 	credits = 0;
@@ -77,11 +92,15 @@ bool ModuleUI::Init() {
 	timeblink = 0;
 	pointsp1 = 0;
 	pointsp2 = 0;
+	victory = 0;
 	rounds = 0;
-	//App->input->space = false;
+	counter = 0;
+	totalscore = lifescore = timescore = hitsscore = 0;
+	finished = false;
 	return true;
 }
 bool ModuleUI::CleanUp() {
+	App->fonts->UnLoad(font_finalpoints);
 	App->fonts->UnLoad(font_score);
 	App->fonts->UnLoad(font_score_white);
 	App->fonts->UnLoad(font_points);
@@ -97,31 +116,27 @@ update_status ModuleUI::Update() {
 			initialtime = SDL_GetTicks();
 			doinitialtime = false;
 		}
-		time = (100000) - (SDL_GetTicks() - initialtime);
+		if(finished==false)time = (100000) - (SDL_GetTicks() - initialtime);
 		sprintf_s(time_text, 10, "%7d", (time / 1000));
 		if (time / 1000 <= 15) {
-			timeblink++;
+			if(finished==false)timeblink++;
 			if (timeblink > 10)timeblink = 0;
 			if(timeblink<5) App->fonts->BlitText(62, 45, font_score_white, time_text);
 			else  App->fonts->BlitText(62, 45, font_score, time_text);
 		}
 		else App->fonts->BlitText(62, 45, font_score, time_text);
-		if (time / 1000 == 0) {
+		if (time / 1000 == 0&&finished==false) {
 			rounds++;
 			if (player1life > player2life) {
-				roundsp1++;
+				victory = 1;
 			}
 			else if (player2life > player1life) {
-				roundsp2++;
+				victory = 2;
 			}
 			else if (rounds == 4) {
-				App->background->fade = true;
-				roundsp1 = roundsp2 = 0;
 				pointsp1 = pointsp2 = 0;
 			}
-			if (rounds != 4 && roundsp1 < 2 && roundsp2 < 2)(App->fade->FadeToBlack(App->background, App->background));
-			if (App->background->fade==true)rounds = 0;
-			play = false;
+			finished = true;
 		}
 
 
@@ -159,18 +174,25 @@ update_status ModuleUI::Update() {
 
 
 		////////KO AND KO BLINK//////
-		if (lifeplayer1.w <= 58 || lifeplayer2.w <= 58) {
+		if ((lifeplayer1.w <= 58 || lifeplayer2.w <= 58)) {
 			koblink++;
 			lifeblink++;
 			if (koblink > 20)koblink = 0;
+			else if (koblink > 10 && (lifeplayer1.w <= 18 || lifeplayer2.w <= 18))koblink = 0;
 			if (lifeblink > 10)lifeblink = 0;
 			lifebarplayer1red.w = lifebarplayer1white.w = lifeplayer1.w;
 			lifebarplayer2red.w = lifebarplayer2white.w = lifeplayer2.w;
-			if ((roundsp1 > 0 && lifeplayer2.w <= 58) || (roundsp2 > 0 && lifeplayer2.w <= 58)||rounds==3) {
-				if(koblink<10)App->render->Blit(textlife, 138, 12, &endmessagewhite, 0.0f, false);
-				else App->render->Blit(textlife, 138, 12, &endmessage, 0.0f, false);
+			if (finished == false) {
+				if ((roundsp1 > 0 && lifeplayer2.w <= 58) || (roundsp2 > 0 && lifeplayer2.w <= 58) || rounds == 3) {
+					if (koblink < 10 && lifeplayer1.w > 18 && lifeplayer2.w > 18)App->render->Blit(textlife, 138, 12, &endmessagewhite, 0.0f, false);
+					else if (koblink < 5 && (lifeplayer1.w <= 18 || lifeplayer2.w <= 18))App->render->Blit(textlife, 138, 12, &endmessagewhite, 0.0f, false);
+					else App->render->Blit(textlife, 138, 12, &endmessage, 0.0f, false);
+				}
+				else if (koblink < 10 && lifeplayer1.w > 18 && lifeplayer2.w > 18) App->render->Blit(textlife, 138, 12, &komessagewhite, 0.0f, false);
+				else if (koblink < 5 && (lifeplayer1.w <= 18 || lifeplayer2.w <= 18))App->render->Blit(textlife, 138, 12, &komessagewhite, 0.0f, false);
+				else App->render->Blit(textlife, 138, 12, &komessage, 0.0f, false);
 			}
-			else if (koblink < 10) App->render->Blit(textlife, 138, 12, &komessagewhite, 0.0f, false);
+			else if (rounds == 4 || roundsp1 == 2 || roundsp2 == 2 || (roundsp1 == 1 && roundsp2 == 1))App->render->Blit(textlife, 138, 12, &endmessage, 0.0f, false);
 			else App->render->Blit(textlife, 138, 12, &komessage, 0.0f, false);
 			if (lifeblink > 5) {
 				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (138 - (player1life * 4)), 20, &lifebarplayer1red, 0.0f, false);
@@ -187,37 +209,111 @@ update_status ModuleUI::Update() {
 
 
 		///////////ONE PLAYER DEFEATED//////
-		if (lifeplayer1.w <= 0||roundsp2==2||rounds==4) {
-			if(roundsp2<2)roundsp2++;
+		if ((lifeplayer1.w <= 0|victory==2||rounds==4)&&finished==false) {
+			roundsp2++;
+			victory = 2;
 			rounds++;
 			if (roundsp2 == 2 || rounds == 4) {
-				App->background->fade = true;
 				App->player2->victory = true;
-				roundsp1=roundsp2 = 0;
 				pointsp1 = 0;
-				rounds = 0;
 			}
-			else(App->fade->FadeToBlack(App->background, App->background));
-			play = false;
+			finished = true;
 		}
-		if (lifeplayer2.w <= 0||roundsp1==2||rounds==4) {
-			if(roundsp1<2)roundsp1++;
+		if ((lifeplayer2.w <= 0||victory==1||rounds==4)&&finished==false) {
+			roundsp1++;
+			victory = 1;
 			rounds++;
 			if (roundsp1 == 2 || rounds == 4) {
-				App->background->fade = true;
 				App->player->victory = true;
-				roundsp1=roundsp2 = 0;
 				pointsp2 = 0;
-				rounds = 0;
 			}
-			else(App->fade->FadeToBlack(App->background, App->background));
-			play = false;
+			finished = true;
+		}
+
+
+
+
+		/////////////////////SCORES AT THE FINISH////////////////////////////
+		if (finished == true) {
+			if (totalscore == 0 && hitsscore == 0 && lifescore == 0 && timescore == 0) {
+				initialtime = SDL_GetTicks();
+				App->render->zoom = false;
+				timescore = time / 1000;
+				timescore *= 100;
+				if (lifeplayer1.w > 0 && lifeplayer2.w == 0) {
+					lifescore = player1life * 200;
+					if (App->player->nattacks > 0)hitsscore = ((float)App->player->nattackss / (float)App->player->nattacks)*100;
+				}
+				else if (lifeplayer1.w == 0 && lifeplayer2.w > 0) {
+					lifescore = player2life * 200;
+					if(App->player2->nattacks>0)hitsscore = ((float)App->player2->nattackss / (float)App->player2->nattacks) * 100;
+				}
+			}
+			if (SDL_GetTicks() - initialtime >= 2000) {
+				if (victory!=0) {
+					App->render->Blit(textlife, 60, 70, &liferect, 0.0f, false);
+					if(counter>2)App->render->Blit(textlife, 60, 100, &timerect, 0.0f, false);
+					if (counter > 4)App->render->Blit(textlife, 60, 130, &hitrect, 0.0f, false);
+					if (counter > 8)App->render->Blit(textlife, 60, 166, &totalrect, 0.0f, false);
+					sprintf_s(score, 10, "%7d", lifescore);
+					if (counter > 10)App->fonts->BlitText(125, 70, font_finalpoints, score);
+					sprintf_s(score, 10, "%7d", timescore);
+					if (counter > 12)App->fonts->BlitText(125, 100, font_finalpoints, score);
+					sprintf_s(score, 10, "%7d", hitsscore);
+					if (counter > 14)App->fonts->BlitText(125, 130, font_finalpoints, score);
+					sprintf_s(score, 10, "%c",'%');
+					if (counter > 16&&counter<21)App->fonts->BlitText(235, 130, font_finalpoints, score);
+					sprintf_s(score, 10, "%7d", totalscore);
+					if (counter > 18)App->fonts->BlitText(125, 166, font_finalpoints, score);
+					if (counter >= 20) {
+						for (int i = 0; i < 3; i++) {
+							if (lifescore > 0) {
+								lifescore -= 10;
+								totalscore += 10;
+								if (victory == 1)pointsp1 += 10;
+								else pointsp2 += 10;
+							}
+							else if(timescore > 0) {
+								timescore -= 10;
+								totalscore += 10;
+								if (victory == 1)pointsp1 += 10;
+								else pointsp2 += 10;
+							}
+							else if (counter < 21) {
+								hitsscore = ((float)hitsscore / (float)100) * 20000;
+								counter++;
+							}
+							else if (hitsscore > 0) {
+								hitsscore -= 10;
+								totalscore += 10;
+								if (victory == 1)pointsp1 += 10;
+								else pointsp2 += 10;
+							}
+						}
+					}
+					if (counter < 20)counter++;
+				}
+				if (hitsscore == 0 && lifescore == 0 && timescore == 0) {
+					if (counter>23) {
+						play = false;
+						victory = 0;
+						if (rounds != 4 && roundsp1 < 2 && roundsp2 < 2)(App->fade->FadeToBlack(App->background, App->background));
+						else {
+							App->background->fade = true;
+							rounds = 0;
+							roundsp1 = roundsp2 = 0;
+						}
+					}
+					if (counter <= 23)counter++;
+				}
+			}
 		}
 	}
 
 	/////////BETWEEN ROUNDS OR BETWEEN FIGHTS////////
 	else {
 		koblink = 0;
+		counter = 0;
 		timeblink = 0;
 		lifeblink = 0;
 		lifeplayer1.w = 128;
@@ -225,6 +321,8 @@ update_status ModuleUI::Update() {
 		lifebarplayer1red.w = lifebarplayer1white.w = lifebarplayer2red.w = lifebarplayer2white.w = 134;
 		player1life = player2life = 32;
 		doinitialtime = true;
+		finished = false;
+		totalscore = lifescore = timescore = hitsscore = 0;
 		if (roundsp1 > 0 || roundsp2 > 0)play = true;
 		
 	}

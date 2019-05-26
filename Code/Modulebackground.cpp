@@ -48,12 +48,10 @@ bool ModuleBackground::Start() {
 	App->particles->Enable();
 	App->collision->Enable();
 	App->UI->play = true;
-//	App->UI->doinitialtime = true;
 	App->slowdown->Enable();
 	return true;
 }
 update_status ModuleBackground::Update() {
-	LOG("%d\n", App->render->camera.x);
 	App->render->Blit(graphics, -170, -170, &(back.GetCurrentFrame()), 0.9f, true, false, App->render->zoom);  //Background
 	if (fade == true&&App->fade->finished == true) {
 		App->audio->StopMusic();
@@ -83,12 +81,6 @@ update_status ModuleBackground::Update() {
 		while ((-(App->render->camera.x - 304) < App->player->body3->rect.x+App->player->body3->rect.w) || (-(App->render->camera.x - 304) < App->player2->bodyenemy3->rect.x + App->player2->bodyenemy3->rect.w)) {
 			App->render->camera.x--;
 		}
-		//if (App->render->camera.x < 90) App->render->camera.x -= 5;// App->render->camera.x = ((170 - camerax2)*App->render->zooming) - 170;
-		//else if (App->render->camera.x < 200)App->render->camera.x --;
-		//App->render->camera.x-=2;
-		//App->render->camera.x -= App->render->zooming;
-		//App->render->camera.w-=2;
-		//App->render->camera.w -= App->render->zooming;
 		if (App->render->zooming > 1.0F)App->render->zooming = 1.0F;
 	}
 	cameraleft.x = (-App->render->camera.x) / SCREEN_SIZE;

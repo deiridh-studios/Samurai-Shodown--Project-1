@@ -214,6 +214,9 @@ public:
 	int specialattack_timer;
 	int hitted_timer;
 	int inputsouts;
+	int nattacks;
+	int nattackss;
+	bool inattack;
 	bool victory;
 	bool flip;
 	bool stopleft;

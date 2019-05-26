@@ -47,6 +47,9 @@ public:
 	int kick_timer;
 	int specialattack_timer;
 	int hitted_timer;
+	int nattacks;
+	int nattackss;
+	bool inattack;
 	bool victory;
 	bool stopleft;
 	bool flip;

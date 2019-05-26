@@ -24,6 +24,7 @@ private:
 	int font_score_white;
 	int font_points;
 	int font_credits;
+	int font_finalpoints;
 	char time_text[10];
 	uint time;
 	uint initialtime;
@@ -46,6 +47,10 @@ private:
 	SDL_Rect level4rect;
 	SDL_Rect creditrect;
 	SDL_Rect creditsrect;
+	SDL_Rect hitrect;
+	SDL_Rect totalrect;
+	SDL_Rect liferect;
+	SDL_Rect timerect;
 	char axisx[10];
 	char axisy[10];
 	int player1life;
@@ -60,9 +65,17 @@ private:
 	char points1[10];
 	char points2[10];
 	char creditsc[10];
+	char score[10];
 	int roundsp1;
 	int roundsp2;
 	int rounds;
+	int lifescore;
+	int timescore;
+	int hitsscore;
+	int totalscore;
+	int victory;
+	int counter;
+	bool finished;
 
 
 };

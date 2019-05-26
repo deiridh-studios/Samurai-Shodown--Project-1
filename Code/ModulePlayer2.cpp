@@ -57,6 +57,8 @@ bool ModulePlayer2::Start()
 	sword = true;
 	posx = App->render->zooming;
 	positionx2 = position.x;
+	inattack = false;
+	nattacks = nattackss = 0;
 	return ret;
 }
 
@@ -121,8 +123,11 @@ update_status ModulePlayer2::Update()
 	position.x = positionx2;
 	position.x = ((170 + position.x)*App->render->zooming) - 170;
 	posx = App->render->zooming;
+	if (enemyattack != nullptr&&enemyattack->to_delete == false)inattack = true;
 	SDL_Rect r = ExecuteState(sword,notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
+	if (inattack == false && enemyattack != nullptr&&enemyattack->to_delete == false) nattacks++;
 	notfinished = false;
+	inattack = false;
 
 	if (flip == false) {
 		App->render->Blit(graphics, App->player2->position.x + 6, 202, &(shadow.GetCurrentFrame()), 1.0f, true, false, App->render->zoom);
@@ -197,6 +202,9 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 		}
 	}
 	else {
-		if (other->type == COLLIDER_PLAYER) enemy->to_delete = true;
+		if (other->type == COLLIDER_PLAYER) {
+			if (enemy->to_delete == false)nattackss++;
+			enemy->to_delete = true;
+		}
 	}
 }
