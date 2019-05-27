@@ -130,7 +130,7 @@ update_status  ModuleSceneWelcome::Update() {
 			App->render->Blit(graphics, 23, 190, &snkrect, 0.0f);
 		}
 	}
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED && App->fade->finished == true && Title.current_frame > 67) {
+	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED && App->fade->finished == true) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->scenewelcome, App->characterselection, 2);
 	}

@@ -198,9 +198,9 @@ update_status  ModuleSNKMenu::Update() {
 	App->render->Blit(graphics, 0, 0, &(SNKMenu.GetCurrentFrame()), 0.0f);
 
 
-	if (SNKMenu.current_frame > 130) {
+	if (SNKMenu.current_frame > 130||App->input->keyboardstate[SDL_SCANCODE_RETURN]==KEY_PUSHED) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->SNKMenu, App->SNKComplete, 2);
+		App->fade->FadeToBlack(App->SNKMenu, App->SNKComplete, 0.005F);
 	}
 	return UPDATE_CONTINUE;
 }

@@ -269,17 +269,17 @@ ModulePlayer::ModulePlayer()
 	shadow.speed = 0.4f;
 
 	///////////Pre  battle animation;
-	punchcrouch.PushBack({ 19, 1937 , 67 , 96 });
-	punchcrouch.PushBack({ 93 , 1937 , 66 , 96 });
-	punchcrouch.PushBack({ 173 , 1937 , 69 , 96 });
-	punchcrouch.PushBack({ 242, 1937 , 76 , 96 });
-	punchcrouch.PushBack({ 318, 1937 , 76 , 96 });
-	punchcrouch.PushBack({ 394, 1937 , 79 , 96 });
-	punchcrouch.PushBack({ 473, 1937 , 78 , 96 });
-	punchcrouch.PushBack({ 553, 1937 , 75 , 96 });
-	punchcrouch.PushBack({ 644, 1937 , 65 , 96 });
-	punchcrouch.PushBack({ 727, 1937 , 65 , 96 });
-	punchcrouch.PushBack({ 811 , 1937 , 65 , 96 });
+	prebattle.PushBack({ 19, 1937 , 67 , 96 });
+	prebattle.PushBack({ 93 , 1937 , 66 , 96 });
+	prebattle.PushBack({ 173 , 1937 , 69 , 96 });
+	prebattle.PushBack({ 242, 1937 , 76 , 96 });
+	prebattle.PushBack({ 318, 1937 , 76 , 96 });
+	prebattle.PushBack({ 394, 1937 , 79 , 96 });
+	prebattle.PushBack({ 473, 1937 , 78 , 96 });
+	prebattle.PushBack({ 553, 1937 , 75 , 96 });
+	prebattle.PushBack({ 644, 1937 , 65 , 96 });
+	prebattle.PushBack({ 727, 1937 , 65 , 96 });
+	prebattle.PushBack({ 811 , 1937 , 65 , 96 });
 	
 
 	///////////Winner animation;

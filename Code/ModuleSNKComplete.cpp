@@ -1479,7 +1479,7 @@ update_status  ModuleSNKComplete::Update() {
 
 	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->SNKComplete, App->scenewelcome, 2);
+		App->fade->FadeToBlack(App->SNKComplete, App->scenewelcome, 1);
 	}
 	return UPDATE_CONTINUE;
 }
