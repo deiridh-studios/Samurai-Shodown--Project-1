@@ -144,7 +144,43 @@ void ModuleCollision::DebugDraw()
 		case COLLIDER_PLAYER_SHOT: // yellow
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
-		
+		case COLLIDER_ENEMY_SHOT: // magenta
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case COLLIDER_STRONGER_PUNCH: //yellow
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case COLLIDER_KICK: //yellow
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case COLLIDER_STRONGER_KICK: //yellow
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case COLLIDER_JUMP_FORWARD: //blue
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case COLLIDER_JUMP_BACK: //blue
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case COLLIDER_ATTACK_APPLE: //magenta
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case COLLIDER_PUNCH_JUMPING: //yellow
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case COLLIDER_PUNCH_CROUCH: //yellow
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case COLLIDER_KICK_CROUCH: //yellow
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case COLLIDER_ATTACK_EAGLE: //magenta
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case COLLIDER_ATTACK_ROLL: //magenta
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+
 		}
 	}
 	
