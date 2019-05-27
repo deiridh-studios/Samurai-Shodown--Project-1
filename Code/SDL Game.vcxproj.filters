@@ -101,6 +101,9 @@
     <ClInclude Include="ModuleSceneCongrats.h">
       <Filter>Modules\MENUS</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleReferee.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -177,6 +180,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSceneCongrats.cpp">
       <Filter>Modules\MENUS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleReferee.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
