@@ -54,6 +54,25 @@ private:
 	SDL_Rect totalrect;
 	SDL_Rect liferect;
 	SDL_Rect timerect;
+	SDL_Rect powbarempty;
+	SDL_Rect powbargreen;
+	SDL_Rect powbarempty2;
+	SDL_Rect powbargreen2;
+	SDL_Rect powbaryellow;
+	SDL_Rect powbaryellow2;
+	SDL_Rect powbarorange;
+	SDL_Rect powbarorange2;
+	SDL_Rect powbarred;
+	SDL_Rect powbarred2;
+	SDL_Rect powbarwhite;
+	SDL_Rect powbarwhite2;
+	SDL_Rect pow1;
+	SDL_Rect pow2;
+	SDL_Rect pow3;
+	SDL_Rect pow4;
+	SDL_Rect fullpow1;
+	SDL_Rect fullpow2;
+	SDL_Rect fullpow3;
 	Mix_Chunk *sumpoints;
 	Mix_Chunk *sumpoints2;
 	char axisx[10];
@@ -80,6 +99,14 @@ private:
 	int totalscore;
 	int victory;
 	int counter;
+	int npow1;
+	int npow2;
+	int counterpow1;
+	int counterpow2;
+	int timepow1;
+	int timepow2;
+	bool finishpow1;
+	bool finishpow2;
 	bool finished;
 
 
