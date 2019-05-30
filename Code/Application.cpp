@@ -42,8 +42,8 @@ Application::Application()
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = SNKComplete = new ModuleSNKComplete();
-	modules[i++] = UI = new ModuleUI();
 	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = UI = new ModuleUI();
 	modules[i++] = slowdown = new ModuleSlowdown();
 
 }
@@ -63,7 +63,7 @@ bool Application::Init()
 	sceneearthquake->Disable();
 	scenewelcome->Disable();
 	SNKComplete->Disable();
-	SNKMenu->Disable();
+	characterselection->Disable();
 	background->Disable();
 	scenecongrats->Disable();
 	collision->Disable();

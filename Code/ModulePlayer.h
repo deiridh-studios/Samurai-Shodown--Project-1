@@ -225,6 +225,7 @@ public:
 	bool notfinished;
 	bool sword;
 	float posx;
+	bool pow;
 	int positionx2;
 };
 

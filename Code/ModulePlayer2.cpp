@@ -58,7 +58,9 @@ bool ModulePlayer2::Start()
 	posx = App->render->zooming;
 	positionx2 = position.x;
 	inattack = false;
+	pow = false;
 	nattacks = nattackss = 0;
+	hitted_timer = punch_timer = kick_timer = punch_timer = 0;
 	return ret;
 }
 
@@ -71,6 +73,8 @@ bool ModulePlayer2::CleanUp() {
 }
 
 update_status ModulePlayer2::PreUpdate() {
+	if (App->UI->npow2 == 32)pow = true;
+	else pow = false;
 	if (position.x > App->player->position.x && position.y == 210)flip = true;
 	else if (position.x < App->player->position.x&&position.y == 210) {
 		flip = false;
@@ -128,7 +132,7 @@ update_status ModulePlayer2::Update()
 	position.x = ((170 + position.x)*App->render->zooming) - 170;
 	posx = App->render->zooming;
 	if (enemyattack != nullptr&&enemyattack->to_delete == false)inattack = true;
-	SDL_Rect r = ExecuteState(sword,notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
+	SDL_Rect r = ExecuteState(sword,pow,notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2)->GetCurrentFrame();
 	if (inattack == false && enemyattack != nullptr&&enemyattack->to_delete == false) nattacks++;
 	notfinished = false;
 	inattack = false;
@@ -161,8 +165,10 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 		if (other->type == COLLIDER_PLAYER_SHOT) {
 			if(position.y==210)actual3 = A_HITTED;
 			else actual3 = A_HITTED_JUMP;
-			if (hitted_timer == 0)hitted_timer = 1;
-			App->slowdown->StartSlowdown(100, 60);
+			if (hitted_timer == 0) {
+				hitted_timer = 1;
+				App->slowdown->StartSlowdown(100, 60);
+			}
 		}
 			if (other->type == COLLIDER_WALL_LEFT) {
 			stopleft = true;

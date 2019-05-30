@@ -542,7 +542,7 @@ update_status ModuleUI::Update() {
 	}
 
 	///////CREDITS AND LEVEL-4////////
-	if (App->SNKMenu->IsEnabled() == false) {
+	if (App->SNKMenu->IsEnabled() == false||credits>0) {
 		App->render->Blit(level4, 131, 216, &level4rect, 0.0f, false);
 		if(credits<2)App->render->Blit(level4, 221, 216, &creditrect, 0.0f, false);
 		else App->render->Blit(level4, 221, 216, &creditsrect, 0.0f, false);

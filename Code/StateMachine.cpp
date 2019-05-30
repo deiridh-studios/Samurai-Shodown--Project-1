@@ -253,7 +253,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		hitted_timer = 0;
 	}
 }
-Animation* ExecuteState(bool &sword, bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player) {
+Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player) {
 	Animation* current_animation=&App->player->idle;
 	if (notfinished == true) {
 		current_animation = &App->player->punchair; current_animation->Reset();
@@ -1385,12 +1385,16 @@ Animation* ExecuteState(bool &sword, bool &notfinished, int& jump_timer, int& pu
 		current_animation = &App->player->hittedan;
 		if (hitted_timer == 1 /*&& position.y == 210*/&&Player==App->player) {
 			App->audio->PlayChunk(App->player->hittedsound);
-			App->UI->DamageTaken(1, 5);
+			if (pow == false && App->player2->pow == false)App->UI->DamageTaken(1, 5);
+			else if (pow == false || App->player2->pow == false)App->UI->DamageTaken(1, 10);
+			else App->UI->DamageTaken(1, 15);
 			hitted_timer = 2;
 		}
 		else if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player2) {
 			App->audio->PlayChunk(App->player->hittedsound);
-			App->UI->DamageTaken(2, 5);
+			if (App->player->pow == false && pow == false)App->UI->DamageTaken(2, 5);
+			else if(App->player->pow == false || pow == false)App->UI->DamageTaken(2, 10);
+			else App->UI->DamageTaken(2, 15);
 			hitted_timer = 2;
 		}
 		if (flip == false&&stopleft==false)position.x -= 1;

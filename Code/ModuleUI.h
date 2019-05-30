@@ -22,6 +22,8 @@ public:
 	bool startplay;
 	int credits;
 	bool doinitialtime;
+	int npow1;
+	int npow2;
 private:
 	int font_score;
 	int font_score_white;
@@ -99,8 +101,6 @@ private:
 	int totalscore;
 	int victory;
 	int counter;
-	int npow1;
-	int npow2;
 	int counterpow1;
 	int counterpow2;
 	int timepow1;
