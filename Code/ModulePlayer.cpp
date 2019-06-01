@@ -457,7 +457,7 @@ update_status ModulePlayer::Update()
 
 
 	////////////////////LOSE AUTOMATICALLY/////////////////////////
-	if (App->input->keyboardstate[SDL_SCANCODE_F4] == KEY_PUSHED)App->UI->DamageTaken(1, 100);
+	if (App->input->keyboardstate[SDL_SCANCODE_F4] == KEY_PUSHED)App->UI->DamageTaken(1, 100, 0);
 
 		// Draw everything --------------------------------------
 	int checkposition = ((170+positionx2) * posx)-170;

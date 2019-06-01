@@ -250,11 +250,11 @@ update_status ModuleUI::Update() {
 			else if (rounds == 4 || roundsp1 == 2 || roundsp2 == 2 || (roundsp1 == 1 && roundsp2 == 1))App->render->Blit(textlife, 138, 12, &endmessage, 0.0f, false);
 			else App->render->Blit(textlife, 138, 12, &komessage, 0.0f, false);
 			if (lifeblink > 5) {
-				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (136 - (player1life * 4)), 20, &lifebarplayer1red, 0.0f, false);
+				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (136 - ((int)player1life * 4)), 20, &lifebarplayer1red, 0.0f, false);
 				if (lifeplayer2.w <= 58) App->render->Blit(textlife, 166, 20, &lifebarplayer2red, 0.0f, false);
 			}
 			else {
-				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (136 - (player1life * 4)), 20, &lifebarplayer1white, 0.0f, false);
+				if (lifeplayer1.w <= 58)App->render->Blit(textlife, (136 - ((int)player1life * 4)), 20, &lifebarplayer1white, 0.0f, false);
 				if (lifeplayer2.w <= 58)App->render->Blit(textlife, 166, 20, &lifebarplayer2white, 0.0f, false);
 			}
 		}
@@ -264,19 +264,19 @@ update_status ModuleUI::Update() {
 
 
 		//////////////POW/////////////////////
-		if(npow1<11)powbargreen.w = npow1*2;
-		else if(npow1 < 13)	powbaryellow.w = (npow1 - 10) * 2;
+		if(npow1<11)powbargreen.w = (int)npow1*2;
+		else if(npow1 < 13)	powbaryellow.w = ((int)npow1 - 10) * 2;
 		else if(npow1<19){
-			powbaryellow.w = (npow1 - 5) * 2;
+			powbaryellow.w = ((int)npow1 - 5) * 2;
 			powbargreen.w = 5 * 2;
 		}
 		else if(npow1 < 25){
-			powbarorange.w = (npow1 - 16) * 2;
+			powbarorange.w = ((int)npow1 - 16) * 2;
 			powbaryellow.w = 13 * 2;
 			powbargreen.w = 3 * 2;
 		}
 		else if(npow1<32){
-			powbarred.w = (npow1 - 24)*2;
+			powbarred.w = ((int)npow1 - 24)*2;
 			powbarorange.w = 18 * 2;
 			powbaryellow.w = 6 * 2;
 			powbargreen.w = 0;
@@ -296,19 +296,19 @@ update_status ModuleUI::Update() {
 				powbarred.w -= 2;
 			}
 		}
-		if (npow2 < 11)powbargreen2.w = npow2*2;
-		else if (npow2 < 13) powbaryellow2.w = (npow2 - 10) * 2;
+		if (npow2 < 11)powbargreen2.w = (int)npow2*2;
+		else if (npow2 < 13) powbaryellow2.w = ((int)npow2 - 10) * 2;
 		else if (npow2 < 19) {
-			powbaryellow2.w = (npow2 - 5) * 2;
+			powbaryellow2.w = ((int)npow2 - 5) * 2;
 			powbargreen2.w = 5 * 2;
 		}
 		else if(npow2 < 25){
-			powbarorange2.w = (npow2 - 16) * 2;
+			powbarorange2.w = ((int)npow2 - 16) * 2;
 			powbaryellow2.w = 13 * 2;
 			powbargreen2.w = 3 * 2;
 		}
 		else if(npow2<32){
-			powbarred2.w = (npow2 - 24)*2;
+			powbarred2.w = ((int)npow2 - 24)*2;
 			powbarorange2.w = 18 * 2;
 			powbaryellow2.w = 6 * 2;
 			powbargreen2.w = 0;
@@ -338,28 +338,28 @@ update_status ModuleUI::Update() {
 		if (npow2 >= 19 && npow2 < 32)App->render->Blit(textlife, (197 + powbargreen2.w+powbaryellow2.w), 207, &powbarorange2, 0.0f, false);
 		if (npow1 >= 25 && npow1 < 32)App->render->Blit(textlife, (41 + (64 - powbargreen.w - powbaryellow.w - powbarorange.w-powbarred.w)), 207, &powbarred, 0.0f, false);
 		if (npow2 >= 25 && npow2 < 32)App->render->Blit(textlife, (197 + powbargreen2.w + powbaryellow2.w + powbarorange2.w), 207, &powbarred2, 0.0f, false);
-		if (npow1 == 32&&finishpow1==false) {
+		if (npow1 >= 32&&finishpow1==false) {
 			if (counterpow1 < 3) App->render->Blit(textlife, 41 + (64 - powbarred.w), 207, &powbarred, 0.0f, false);
 			else if (counterpow1 < 6) App->render->Blit(textlife, 41 + (64 - powbarwhite.w), 207, &powbarwhite, 0.0f, false);
 			else if (counterpow1 < 9) App->render->Blit(textlife, 41 + (64 - powbarorange.w), 207, &powbarorange, 0.0f, false);
 		}
-		else if (npow1 == 32 && finishpow1 == true) App->render->Blit(textlife, 41 + (64 - powbarred.w), 207, &powbarred, 0.0f, false);
-		if (npow2 == 32&&finishpow2==false) {
+		else if (npow1 >= 32 && finishpow1 == true) App->render->Blit(textlife, 41 + (64 - powbarred.w), 207, &powbarred, 0.0f, false);
+		if (npow2 >= 32&&finishpow2==false) {
 			if (counterpow2 < 3) App->render->Blit(textlife, 197, 207, &powbarred2, 0.0f, false);
 			else if (counterpow2 < 6) App->render->Blit(textlife, 197, 207, &powbarwhite2, 0.0f, false);
 			else if (counterpow2 < 9) App->render->Blit(textlife, 197, 207, &powbarorange2, 0.0f, false);
 		}
-		else if (npow2 == 32 && finishpow2 == true)	App->render->Blit(textlife, 197, 207, &powbarred2, 0.0f, false);
+		else if (npow2 >= 32 && finishpow2 == true)	App->render->Blit(textlife, 197, 207, &powbarred2, 0.0f, false);
 		if (npow1 < 8)App->render->Blit(textlife, 25, 205, &pow1, 0.0f, false);
 		else if (npow1 < 16) App->render->Blit(textlife, 19, 201, &pow2, 0.0f, false);
 		else if (npow1 < 24)App->render->Blit(textlife, 17, 196, &pow3, 0.0f, false);
 		else if (npow1 < 32)App->render->Blit(textlife, 13, 192, &pow4, 0.0f, false);
-		else if (npow1 == 32&&finishpow1==false) {
+		else if (npow1 >= 32&&finishpow1==false) {
 			if (counterpow1 < 3) App->render->Blit(textlife, 1, 177, &fullpow1, 0.0f, false);
-			else if (counterpow1 < 6) App->render->Blit(textlife, 1, 177, &fullpow2, 0.0f, false);
+			else if (counterpow1 < 6) App->render->Blit(textlife, 1, 181, &fullpow2, 0.0f, false);
 			else if (counterpow1 < 9) App->render->Blit(textlife, 1, 177, &fullpow3, 0.0f, false);
 		}
-		else if (npow1 == 32 && finishpow1 == true){
+		else if (npow1 >= 32 && finishpow1 == true){
 			if(counterpow1<20)App->render->Blit(textlife, 13, 192, &pow4, 0.0f, false);
 			else if (counterpow1<30)App->render->Blit(textlife, 17, 196, &pow3, 0.0f, false);
 			else if(counterpow1<40)App->render->Blit(textlife, 19, 201, &pow2, 0.0f, false);
@@ -373,16 +373,16 @@ update_status ModuleUI::Update() {
 		}
 		if (npow2 < 8)App->render->Blit(textlife, 261, 205, &pow1, 0.0f, false);
 		else if (npow2 < 16)App->render->Blit(textlife, 261, 201, &pow2, 0.0f, false);
-		else if (npow2 < 24)App->render->Blit(textlife, 259, 196, &pow3, 0.0f, false);
-		else if (npow2 < 32)App->render->Blit(textlife, 255, 192, &pow4, 0.0f, false);
-		else if (npow2 == 32&&finishpow2==false) {
-			if (counterpow2 < 3) App->render->Blit(textlife, 243, 177, &fullpow1, 0.0f, false);
-			else if (counterpow2 < 6) App->render->Blit(textlife, 243, 177, &fullpow2, 0.0f, false);
-			else if (counterpow2 < 9) App->render->Blit(textlife, 243, 177, &fullpow3, 0.0f, false);
+		else if (npow2 < 24)App->render->Blit(textlife, 261, 196, &pow3, 0.0f, false);
+		else if (npow2 < 32)App->render->Blit(textlife, 261, 192, &pow4, 0.0f, false);
+		else if (npow2 >= 32&&finishpow2==false) {
+			if (counterpow2 < 3) App->render->Blit(textlife, 253, 177, &fullpow1, 0.0f, false);
+			else if (counterpow2 < 6) App->render->Blit(textlife, 253, 181, &fullpow2, 0.0f, false);
+			else if (counterpow2 < 9) App->render->Blit(textlife, 253, 177, &fullpow3, 0.0f, false);
 		}
-		else if (npow2 == 32 && finishpow2 == true) {
-			if (counterpow2 < 20)App->render->Blit(textlife, 255, 192, &pow4, 0.0f, false);
-			else if (counterpow2 < 30)App->render->Blit(textlife, 259, 196, &pow3, 0.0f, false);
+		else if (npow2 >= 32 && finishpow2 == true) {
+			if (counterpow2 < 20)App->render->Blit(textlife, 261, 192, &pow4, 0.0f, false);
+			else if (counterpow2 < 30)App->render->Blit(textlife, 261, 196, &pow3, 0.0f, false);
 			else if (counterpow2 < 40)App->render->Blit(textlife, 261, 201, &pow2, 0.0f, false);
 			else App->render->Blit(textlife, 261, 205, &pow1, 0.0f, false);
 			if (powbarred2.w == 0) {
@@ -429,6 +429,8 @@ update_status ModuleUI::Update() {
 				timescore *= 100;
 				if (lifeplayer1.w > 0 && lifeplayer2.w == 0) {
 					lifescore = player1life * 200;
+					lifescore /= 10;
+					lifescore *= 10;
 					if (App->player->nattacks > 0)hitsscore = ((float)App->player->nattackss / (float)App->player->nattacks)*100;
 				}
 				else if (lifeplayer1.w == 0 && lifeplayer2.w > 0) {
@@ -452,7 +454,7 @@ update_status ModuleUI::Update() {
 					if (counter > 16&&counter<22)App->fonts->BlitText(235, 130, font_finalpoints, score);
 					sprintf_s(score, 10, "%7d", totalscore);
 					if (counter > 18)App->fonts->BlitText(125, 166, font_finalpoints, score);
-					if (counter >= 20) {
+					if (counter >= 20&&counter<58) {
 						if (App->input->keyboardstate[SDL_SCANCODE_SPACE]) {
 							App->audio->PlayChunk(sumpoints, -1);
 							if(counter<22)hitsscore= ((float)hitsscore / (float)100) * 20000;
@@ -461,7 +463,7 @@ update_status ModuleUI::Update() {
 							totalscore+= lifescore + timescore + hitsscore;
 							App->audio->PlayChunk(sumpoints2);
 							lifescore = hitsscore = timescore = 0;
-							counter = 55;
+							counter = 58;
 						}
 						for (int i = 0; i < 3; i++) {
 							if (lifescore > 0) {
@@ -498,7 +500,7 @@ update_status ModuleUI::Update() {
 					if (counter < 20)counter++;
 				}
 				if (hitsscore == 0 && lifescore == 0 && timescore == 0) {
-					if (counter>78) {
+					if (counter>79) {
 						play = false;
 						victory = 0;
 						if (rounds != 4 && roundsp1 < 2 && roundsp2 < 2)(App->fade->FadeToBlack(App->background, App->background));
@@ -511,11 +513,12 @@ update_status ModuleUI::Update() {
 							finishpow1 = finishpow2 = false;
 						}
 					}
-					if (counter <= 78) {
+					if (counter <= 79) {
 						
-						if (counter == 57) {
+						if (counter == 57 || counter == 58) {
 							App->audio->StopChunk();
 							App->audio->PlayChunk(sumpoints2);
+							counter = 58;
 						}
 						counter++;
 					}
@@ -553,17 +556,17 @@ update_status ModuleUI::Update() {
 	return UPDATE_CONTINUE;
 }
 
-void ModuleUI::DamageTaken(int numplayer, int damage) {
+void ModuleUI::DamageTaken(int numplayer, float damage, float pow) {
 	if (numplayer == 1) {
 		player1life -= damage;
 		if (player1life < 0)player1life = 0;
 		pointsp2 += 50;
-		if(npow1<32)npow1+=4;
+		if(npow1<32)npow1+=pow;
 	}
 	else if (numplayer == 2) {
 		player2life -= damage;
 		if (player2life < 0)player2life = 0;
 		pointsp1 += 50;
-		if(npow2<32)npow2+=4;
+		if(npow2<32)npow2+=pow;
 	}
 }

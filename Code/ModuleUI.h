@@ -15,15 +15,15 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
-	void DamageTaken(int, int);
+	void DamageTaken(int, float, float);
 	
 public:
 	bool play;
 	bool startplay;
 	int credits;
 	bool doinitialtime;
-	int npow1;
-	int npow2;
+	float npow1;
+	float npow2;
 private:
 	int font_score;
 	int font_score_white;
@@ -79,8 +79,8 @@ private:
 	Mix_Chunk *sumpoints2;
 	char axisx[10];
 	char axisy[10];
-	int player1life;
-	int player2life;
+	float player1life;
+	float player2life;
 	SDL_Texture *textlife;
 	SDL_Texture *level4;
 	int koblink;
