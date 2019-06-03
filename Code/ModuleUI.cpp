@@ -264,6 +264,10 @@ update_status ModuleUI::Update() {
 
 
 		//////////////POW/////////////////////
+		if (finishpow1 == true)npow1--;
+		if (finishpow2 == true)npow2--;
+		if (npow1 == 0) { finishpow1 = false; timepow1 = 0; counterpow1 = 0; }
+		if (npow2 == 0) { finishpow2 = false; timepow2 = 0; counterpow2 = 0; }
 		if(npow1<11)powbargreen.w = (int)npow1*2;
 		else if(npow1 < 13)	powbaryellow.w = ((int)npow1 - 10) * 2;
 		else if(npow1<19){
@@ -282,6 +286,7 @@ update_status ModuleUI::Update() {
 			powbargreen.w = 0;
 		}
 		else {
+			npow1 = 32;
 			if (timepow1 == 0)timepow1 = SDL_GetTicks();
 			if (SDL_GetTicks() - timepow1 >= 12000)finishpow1 = true;
 			if (finishpow1 == false) {
@@ -289,11 +294,6 @@ update_status ModuleUI::Update() {
 				else counterpow1 = 0;
 				powbaryellow.w = 0;
 				powbarred.w = powbarorange.w = 64;
-			}
-			else {
-				if (counterpow1 <= 9)counterpow1 = 10;
-				else counterpow1++;
-				powbarred.w -= 2;
 			}
 		}
 		if (npow2 < 11)powbargreen2.w = (int)npow2*2;
@@ -314,6 +314,7 @@ update_status ModuleUI::Update() {
 			powbargreen2.w = 0;
 		}
 		else {
+			npow2 = 32;
 			if (timepow2 == 0)timepow2 = SDL_GetTicks();
 			if (SDL_GetTicks() - timepow2 >= 12000)finishpow2 = true;
 			if (finishpow2 == false) {
@@ -321,11 +322,6 @@ update_status ModuleUI::Update() {
 				else counterpow2 = 0;
 				powbaryellow2.w = 0;
 				powbarred2.w = powbarorange2.w = 64;
-			}
-			else {
-				if (counterpow2 <= 9)counterpow2 = 10;
-				else counterpow2++;
-				powbarred2.w -= 2;
 			}
 		}
 		App->render->Blit(textlife, 41, 207, &powbarempty, 0.0f, false);
@@ -359,18 +355,7 @@ update_status ModuleUI::Update() {
 			else if (counterpow1 < 6) App->render->Blit(textlife, 1, 181, &fullpow2, 0.0f, false);
 			else if (counterpow1 < 9) App->render->Blit(textlife, 1, 177, &fullpow3, 0.0f, false);
 		}
-		else if (npow1 >= 32 && finishpow1 == true){
-			if(counterpow1<20)App->render->Blit(textlife, 13, 192, &pow4, 0.0f, false);
-			else if (counterpow1<30)App->render->Blit(textlife, 17, 196, &pow3, 0.0f, false);
-			else if(counterpow1<40)App->render->Blit(textlife, 19, 201, &pow2, 0.0f, false);
-			else App->render->Blit(textlife, 25, 205, &pow1, 0.0f, false);
-			if (powbarred.w == 0) {
-				npow1 = 0;
-				finishpow1 = false;
-				counterpow1 = 0;
-				timepow1 = 0;
-			}
-		}
+		else if (npow1 >= 32 && finishpow1 == true)App->render->Blit(textlife, 13, 192, &pow4, 0.0f, false);
 		if (npow2 < 8)App->render->Blit(textlife, 261, 205, &pow1, 0.0f, false);
 		else if (npow2 < 16)App->render->Blit(textlife, 261, 201, &pow2, 0.0f, false);
 		else if (npow2 < 24)App->render->Blit(textlife, 261, 196, &pow3, 0.0f, false);
@@ -380,23 +365,12 @@ update_status ModuleUI::Update() {
 			else if (counterpow2 < 6) App->render->Blit(textlife, 253, 181, &fullpow2, 0.0f, false);
 			else if (counterpow2 < 9) App->render->Blit(textlife, 253, 177, &fullpow3, 0.0f, false);
 		}
-		else if (npow2 >= 32 && finishpow2 == true) {
-			if (counterpow2 < 20)App->render->Blit(textlife, 261, 192, &pow4, 0.0f, false);
-			else if (counterpow2 < 30)App->render->Blit(textlife, 261, 196, &pow3, 0.0f, false);
-			else if (counterpow2 < 40)App->render->Blit(textlife, 261, 201, &pow2, 0.0f, false);
-			else App->render->Blit(textlife, 261, 205, &pow1, 0.0f, false);
-			if (powbarred2.w == 0) {
-				npow2 = 0;
-				finishpow2 = false;
-				counterpow2 = 0;
-				timepow2 = 0;
-			}
-		}
+		else if (npow2 >= 32 && finishpow2 == true) App->render->Blit(textlife, 261, 192, &pow4, 0.0f, false);
 
 
 
 		///////////ONE PLAYER DEFEATED//////
-		if ((lifeplayer1.w <= 0|victory==2||rounds==4)&&finished==false) {
+		if ((lifeplayer1.w <= 0||victory==2||rounds==4)&&finished==false) {
 			roundsp2++;
 			victory = 2;
 			rounds++;
@@ -425,20 +399,25 @@ update_status ModuleUI::Update() {
 			if (totalscore == 0 && hitsscore == 0 && lifescore == 0 && timescore == 0) {
 				initialtime = SDL_GetTicks();
 				App->render->zoom = false;
-				timescore = time / 1000;
-				timescore *= 100;
-				if (lifeplayer1.w > 0 && lifeplayer2.w == 0) {
-					lifescore = player1life * 200;
-					lifescore /= 10;
-					lifescore *= 10;
-					if (App->player->nattacks > 0)hitsscore = ((float)App->player->nattackss / (float)App->player->nattacks)*100;
+				if (victory != 0) {
+					timescore = time / 1000;
+					timescore *= 100;
+					if (victory == 1) {
+						lifescore = player1life * 200;
+						lifescore /= 10;
+						lifescore *= 10;
+						if (App->player->nattacks > 0)hitsscore = ((float)App->player->nattackss / (float)App->player->nattacks) * 100;
+					}
+					else if (victory == 2) {
+						lifescore = player2life * 200;
+						lifescore /= 10;
+						lifescore *= 10;
+						if (App->player2->nattacks > 0)hitsscore = ((float)App->player2->nattackss / (float)App->player2->nattacks) * 100;
+					}
 				}
-				else if (lifeplayer1.w == 0 && lifeplayer2.w > 0) {
-					lifescore = player2life * 200;
-					if(App->player2->nattacks>0)hitsscore = ((float)App->player2->nattackss / (float)App->player2->nattacks) * 100;
-				}
+				else totalscore++;
 			}
-			if (SDL_GetTicks() - initialtime >= 2000) {
+			if (SDL_GetTicks() - initialtime >= 2000||victory==0) {
 				if (victory!=0) {
 					App->render->Blit(textlife, 60, 70, &liferect, 0.0f, false);
 					if(counter>2)App->render->Blit(textlife, 60, 100, &timerect, 0.0f, false);
@@ -499,6 +478,7 @@ update_status ModuleUI::Update() {
 					}
 					if (counter < 20)counter++;
 				}
+				else counter = 80;
 				if (hitsscore == 0 && lifescore == 0 && timescore == 0) {
 					if (counter>79) {
 						play = false;
@@ -561,12 +541,12 @@ void ModuleUI::DamageTaken(int numplayer, float damage, float pow) {
 		player1life -= damage;
 		if (player1life < 0)player1life = 0;
 		pointsp2 += 50;
-		if(npow1<32)npow1+=pow;
+		if (npow1 < 32 || finishpow1 == false)npow1 += pow;
 	}
 	else if (numplayer == 2) {
 		player2life -= damage;
 		if (player2life < 0)player2life = 0;
 		pointsp1 += 50;
-		if(npow2<32)npow2+=pow;
+		if (npow2 < 32 || finishpow2 == false)npow2 += pow;
 	}
 }
