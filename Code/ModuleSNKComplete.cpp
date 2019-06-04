@@ -1465,7 +1465,7 @@ ModuleSNKComplete::ModuleSNKComplete() :Module()
 ModuleSNKComplete::~ModuleSNKComplete() {}
 
 bool  ModuleSNKComplete::Start() {
-	App->audio->LoadMusic("Music/start.ogg");
+	App->audio->LoadMusic("Music/StartCinematic.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
 	graphics = App->textures->Load("Sprites/SNKComplete.png");
 	Background.current_frame = 0;
