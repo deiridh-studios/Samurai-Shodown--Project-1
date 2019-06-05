@@ -257,6 +257,7 @@ ModulePlayer::ModulePlayer()
 	lostweapon.PushBack({ 1778, 477, 40, 72 });
 	lostweapon.PushBack({ 1818, 477, 42, 72 });
 	lostweapon.speed = 0.2f;
+
 	///////////Clash swords;
 	clashswords.PushBack({ 915, 1920, 65, 113 });
 	clashswords.PushBack({ 980, 1920, 71'5, 113 });

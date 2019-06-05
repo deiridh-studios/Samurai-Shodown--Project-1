@@ -48,7 +48,16 @@ public:
 	Animation BNormal;
 	Animation CNormal;
 	Animation DNormal;
+	Animation IdleUkyo1;
+	Animation strongerkickUkyo1;
+	Animation kickUkyo1;
+	Animation punchUkyo1;
+	Animation clashswordsUkyo1;
+	Animation strongerslashUkyo1;
+	Animation IdleUkyo2;
+	Animation clashswordsUkyo2;
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* graphics2 = nullptr;
+	SDL_Texture* graphics3 = nullptr;
 };
 #endif //
