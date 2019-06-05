@@ -13,6 +13,7 @@ enum keystate {
 	KEY_REPEAT,
 };
 
+
 class ModuleInput : public Module
 {
 public:
@@ -27,7 +28,6 @@ public:
 public:
 	const Uint8 *keyboard = nullptr;
 	bool space;
-
 	bool keyboard2[285];
 	keystate keyboardstate[285];
 };
