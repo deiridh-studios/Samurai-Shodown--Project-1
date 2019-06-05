@@ -16,6 +16,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void DamageTaken(int, float, float);
+	void newcredit();
 	
 public:
 	bool play;
@@ -77,6 +78,8 @@ private:
 	SDL_Rect fullpow3;
 	Mix_Chunk *sumpoints;
 	Mix_Chunk *sumpoints2;
+	Mix_Chunk *creditsound;
+	Mix_Chunk *lastsecssound;
 	char axisx[10];
 	char axisy[10];
 	float player1life;

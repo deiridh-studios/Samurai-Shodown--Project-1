@@ -28,6 +28,8 @@ bool ModuleUI::Init() {
 	level4 = App->textures->Load("Sprites/CreditsandLevel4.png");
 	sumpoints = App->audio->LoadChunk("Audio_FX/End_Combat_Points.wav");
 	sumpoints2 = App->audio->LoadChunk("Audio_FX/Enter_in_Menu.wav");
+	creditsound = App->audio->LoadChunk("Audio_FX/Credits.wav");
+	lastsecssound = App->audio->LoadChunk("Audio_FX/TimeOUT.wav");
 	doinitialtime = false;
 	lifebarplayer1.x = 273;
 	lifebarplayer1red.x = lifebarplayer1white.x = 277;
@@ -151,6 +153,8 @@ bool ModuleUI::Init() {
 }
 bool ModuleUI::CleanUp() {
 	App->audio->StopChunk();
+	App->audio->UnLoadChunk(lastsecssound);
+	App->audio->UnLoadChunk(creditsound);
 	App->audio->UnLoadChunk(sumpoints);
 	App->audio->UnLoadChunk(sumpoints2);
 	App->fonts->UnLoad(font_finalpoints);
@@ -165,15 +169,20 @@ bool ModuleUI::CleanUp() {
 update_status ModuleUI::Update() {
 	if (play == true && App->fade->finished == true) {
 		///////TIMER/////////
+		int oldtime=0;
 		if (finished == false)startplay = true;
 		else startplay = false;
 		if (doinitialtime == true) {
 			initialtime = SDL_GetTicks();
 			doinitialtime = false;
 		}
-		if(finished==false)time = (100000) - (SDL_GetTicks() - initialtime);
+		if (finished == false) {
+			if (time / 1000 <= 15) oldtime = time;
+			time = (100000) - (SDL_GetTicks() - initialtime);
+		}
 		sprintf_s(time_text, 10, "%7d", (time / 1000));
 		if (time / 1000 <= 15) {
+			if (oldtime / 1000 != time / 1000)App->audio->PlayChunk(lastsecssound, 0, -1);
 			if(finished==false)timeblink++;
 			if (timeblink > 10)timeblink = 0;
 			if(timeblink<5) App->fonts->BlitText(62, 45, font_score_white, time_text);
@@ -549,4 +558,8 @@ void ModuleUI::DamageTaken(int numplayer, float damage, float pow) {
 		pointsp1 += 50;
 		if (npow2 < 32 || finishpow2 == false)npow2 += pow;
 	}
+}
+
+void ModuleUI::newcredit() {
+	App->audio->PlayChunk(creditsound, 0, -1);
 }
