@@ -1431,8 +1431,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			current_animation = &App->player->hittedan;
 		else {/*
 			current_animation = &App->player->hittedan_nosword;
-		*/
 		}
+		*/
 		if (hitted_timer == 1 /*&& position.y == 210*/&&Player==App->player) {
 			App->audio->PlayChunk(App->player->hittedsound);
 			if (pow == false && App->player2->pow == false) {
@@ -1491,8 +1491,9 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		if (flip == false&&stopleft==false)position.x -= 1;
 		else if(flip==true&&stopright==false) position.x += 1;
-		if (current_animation->GetFinished() == 1 && hitted_timer == 2)hitted_timer = 3;
+		if (current_animation->GetFinished() == 1 && hitted_timer == 2) hitted_timer = 3;
 		break;
+
 	case A_HITTED_JUMP:
 		current_animation = &App->player->airhitted;
 		if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player) {
