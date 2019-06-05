@@ -21,7 +21,7 @@ public:
 	int scrollleft;
 	int scrollright;
 	int x1 = 0;
-	Animation backearthquake;
+	Animation back;
 	SDL_Texture* graphics = nullptr;
 };
 #endif //
