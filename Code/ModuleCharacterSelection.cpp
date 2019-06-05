@@ -243,6 +243,9 @@ bool  ModuleCharacterSelection::Start() {
 	App->audio->LoadMusic("Music/start.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
 	graphics = App->textures->Load("Sprites/CharactersSelection.png");
+	passingmenu = App->audio->LoadChunk("Audio_FX/SelMenu.wav");
+	entermenu = App->audio->LoadChunk("Audio_FX/EnterMenu.wav");
+
 	background.x = 495;
 	background.y = 0;
 	background.w = SCREEN_WIDTH;
@@ -268,6 +271,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionxp1 = 225;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_D] == KEY_PUSHED) {
 		if (positionxp1 < 225) {
@@ -276,6 +280,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionxp1 = 45;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_S] == KEY_PUSHED) {
 		if (positionyp1 < 58) {
@@ -284,6 +289,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionyp1 = 15;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_W] == KEY_PUSHED) {
 		if (positionyp1 > 15) {
@@ -292,6 +298,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionyp1 = 58;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 
 	//Input P2
@@ -302,6 +309,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionxp2 = 225;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_RIGHT] == KEY_PUSHED) {
 		if (positionxp2 < 225) {
@@ -310,6 +318,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionxp2 = 45;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_DOWN] == KEY_PUSHED) {
 		if (positionyp2 < 58) {
@@ -318,6 +327,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionyp2 = 15;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 	if (App->input->keyboardstate[SDL_SCANCODE_UP] == KEY_PUSHED) {
 		if (positionyp2 > 15) {
@@ -326,6 +336,7 @@ update_status  ModuleCharacterSelection::Update() {
 		else {
 			positionyp2 = 58;
 		}
+		App->audio->PlayChunk(passingmenu);
 	}
 
 	//Animations P1
@@ -441,6 +452,7 @@ update_status  ModuleCharacterSelection::Update() {
 	App->render->Blit(graphics, posanx2, 72, &(CurrentAn2.GetCurrentFrame()), 0.0f); //144
 
 	if ((App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (positionxp1 == 153 && positionyp1 == 15) && (positionxp2 == 153 && positionyp2 == 15)) {
+		App->audio->PlayChunk(entermenu);
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->characterselection, App->background, 2);
 	}
@@ -449,6 +461,9 @@ update_status  ModuleCharacterSelection::Update() {
 
 bool  ModuleCharacterSelection::CleanUp()
 {
+	App->audio->StopChunk();
+	App->audio->UnLoadChunk(passingmenu);
+	App->audio->UnLoadChunk(entermenu);
 	App->audio->UnLoadMusic(App->audio->musics[0]);
 	App->textures->Unload(graphics);
 	return true;

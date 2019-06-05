@@ -256,7 +256,7 @@ ModulePlayer::ModulePlayer()
 	///////////Lost weapon;
 	lostweapon.PushBack({ 1778, 477, 40, 72 });
 	lostweapon.PushBack({ 1818, 477, 42, 72 });
-
+	lostweapon.speed = 0.2f;
 	///////////Clash swords;
 	clashswords.PushBack({ 915, 1920, 65, 113 });
 	clashswords.PushBack({ 980, 1920, 71'5, 113 });
@@ -280,7 +280,7 @@ ModulePlayer::ModulePlayer()
 	prebattle.PushBack({ 644, 1937 , 65 , 96 });
 	prebattle.PushBack({ 727, 1937 , 65 , 96 });
 	prebattle.PushBack({ 811 , 1937 , 65 , 96 });
-	
+
 
 	///////////Winner animation;
 	win.PushBack({ 0,  2031'5 , 62'5 , 138'5 });
@@ -314,6 +314,7 @@ ModulePlayer::ModulePlayer()
 	firebird.PushBack({ 948, 550, 86, 137 });
 	firebird.PushBack({ 1034, 550, 57, 137 });
 	firebird.PushBack({ 1091, 550, 75, 137 });
+	//firebird.speed=o.2f
 	
 	///////////Roll attack;
 	rollattack.PushBack({ 0, 756, 71,  825 });
@@ -332,6 +333,8 @@ ModulePlayer::ModulePlayer()
 	rollattack.PushBack({ 580, 756, 92, 97 });
 	rollattack.PushBack({ 768, 756, 93, 97 });
 	rollattack.PushBack({ 976, 756, 78, 97 });
+	//rollattack.speed=0.2f;
+
 
 	///////////Air hitted;
 	airhitted.PushBack({ 1215,  1941, 82, 96 });
@@ -343,6 +346,7 @@ ModulePlayer::ModulePlayer()
 	airhitted.PushBack({ 1868, 1941, 70'6, 96 });
 	airhitted.PushBack({ 1938'6, 1941, 43'4, 96 });
 	airhitted.PushBack({ 1982, 1941, 76'5,96 });
+	//airhitted.speed=0.2f;
 
 	///////////Strong slash;
 	strongerslash.PushBack({43,   2488'5, 75, 91'5});
@@ -351,7 +355,74 @@ ModulePlayer::ModulePlayer()
 	strongerslash.PushBack({ 513, 2488'5, 84, 91'5});
 	strongerslash.PushBack({ 663, 2488'5, 97, 91'5});
 	strongerslash.PushBack({ 834, 2488'5, 145, 91'5 });
+	//strongerslash.speed = 0.2f;
+	/*
+	/////////////////////////////////////////////
+	///////animations ukyo no weapon////////////
+	///////////////////////////////////////////
 
+	/////punchair no weapon
+
+	/////strogpunch no weapon
+	strongpunch_noweapon.pushback({20 , 2771 , 56 , 83 });
+	strongpunch_noweapon.pushback({77 , 2771 , 79 , 83});
+	strongpunch_noweapon.pushback({});
+	strongpunch_noweapon.speed=0.2f;
+
+
+
+	////punchcrouch no weapon
+	punchcrouch_noweapon.pushback({1299 , 2497 , 56 , 83});
+	punchcrouch_noweapon.pushback({1378 , 2497 , 80 , 76});
+	punchcrouch_noweapon.pushback({1465 , 2497 , 84 , 77});
+	punchcrouch_noweapon.pushback({1465 , 2497 , 84 , 77});
+	punchcrouch_noweapon.pushback({1378 , 2497 , 80 , 76});
+	punchcrouch_noweapon.pushback({1299 , 2497 , 56 , 83});
+	punchcrouch_noweapon.speed=0.2f;
+
+	/////kick no weapon
+	kick_noweapon.pushback({998 , 2493 , 77 , 87});
+	kick_noweapon.pushback(1086 , 2493 , 89 , 88});
+	kick_noweapon.pushback({1174 , 2493 , 97 , 88});
+	kick_noweapon.pushback({1174 , 2493 , 97 , 88});
+	kick_noweapon.pushback(1086 , 2493 , 89 , 88});
+	kick_noweapon.pushback({998 , 2493 , 77 , 87});
+	kick_noweapon.speed=0.2f;
+
+
+	//// kickair no weapon
+	kickair_noweapon.pushback({});
+	kickair_noweapon.pushback({});
+	kickair_noweapon.pushback({});
+	kickair_noweapon.pushback({});
+	kickair_noweapon.speed=0.2f;
+
+	//// kickcrouch no weapon
+	kickcrouch_noweapon.pushback({302 , 2787 , 69 , 67});
+	kickcrouch_noweapon.pushback({402 , 2787 , 64 , 67});
+	kickcrouch_noweapon.pushback({484 , 2787 , 72 , 67});
+	kickcrouch_noweapon.pushback({684 , 2787 , 104 , 67});
+	kickcrouch_noweapon.pushback({684 , 2787 , 104 , 67});
+	kickcrouch_noweapon.pushback({484 , 2787 , 72 , 67});
+	kickcrouch_noweapon.pushback({402 , 2787 , 64 , 67});
+	kickcrouch_noweapon.pushback({302 , 2787 , 69 , 67});
+	kickcrouch_noweapon.speed = 0.2f;
+
+	////agarre
+	aggarre_noweapon.pushback({992 , 2621 , 73 , 96});
+	aggarre_noweapon.pushback({1065 , 2621 , 68 , 96});
+	aggarre_noweapon.pushback({1132 , 2621 , 66 , 96});
+	aggarre_noweapon.pushback({1196 , 2621 , 58 , 96});
+	aggarre_noweapon.speed=0.2f;
+
+	/////slash
+	slash_noweapon.pushback({1610 , 2640 , 72 , 76});
+	slash_noweapon.pushback({1681 ,2640 , 72 , 76});
+	slash_noweapon.pushback({1748 , 2640 , 72 , 76});
+	slash_noweapon.speed = 0.2f;
+
+
+////.....*/
 
 }
 

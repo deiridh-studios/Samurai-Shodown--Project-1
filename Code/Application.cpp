@@ -19,6 +19,7 @@
 #include "ModuleUI.h"
 #include "ModuleSNKComplete.h"
 #include "ModuleSlowdown.h"
+#include "ModuleReferee.h"
 #include "ModuleController.h"
 
 Application::Application()
@@ -36,6 +37,7 @@ Application::Application()
 	modules[i++] = characterselection = new ModuleCharacterSelection();
 	modules[i++] = background = new ModuleBackground();
 	modules[i++] = sceneearthquake = new ModuleSceneEarthquake();
+	modules[i++] = referee = new ModuleReferee();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = scenecongrats = new ModuleSceneCongrats();
@@ -59,6 +61,7 @@ bool Application::Init()
 	bool ret = true;
 
 	player2->Disable();
+	referee->Disable();
 	player->Disable();
 	sceneearthquake->Disable();
 	scenewelcome->Disable();

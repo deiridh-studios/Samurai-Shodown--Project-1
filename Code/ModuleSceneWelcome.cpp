@@ -10,6 +10,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneWelcome.h"
+#include "ModuleSceneEarthquake.h"
 #include "ModuleSNKMenu.h"
 #include "ModuleCharacterSelection.h"
 #include "ModuleSNKComplete.h"
@@ -117,6 +118,8 @@ bool  ModuleSceneWelcome::Start() {
 	return true;
 }
 
+int notdo = 0;
+
 update_status  ModuleSceneWelcome::Update() {
 	SDL_Rect rect{ 0,0,rectbackground.w*SCREEN_SIZE, rectbackground.h*SCREEN_SIZE };
 	App->render->Blit(graphics, 0, 0, &rectbackground, 0.0f);  //Background
@@ -130,9 +133,17 @@ update_status  ModuleSceneWelcome::Update() {
 			App->render->Blit(graphics, 23, 190, &snkrect, 0.0f);
 		}
 	}
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED && App->fade->finished == true) {
+
+	if ((Title.current_frame >= 67) && (notdo==0)) {
 		App->audio->StopMusic();
-		App->fade->FadeToBlack(App->scenewelcome, App->characterselection, 2);
+		App->fade->FadeToBlack(App->scenewelcome, App->sceneearthquake, 0.5F);
+		notdo = 1;
+	}
+
+	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) {
+		App->audio->StopMusic();
+		App->fade->FadeToBlack(App->scenewelcome, App->characterselection, 0.5F);
+		notdo = 1;
 	}
 	return UPDATE_CONTINUE;
 }

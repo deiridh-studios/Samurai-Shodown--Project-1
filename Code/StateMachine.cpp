@@ -369,7 +369,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		break;
 	case A_PUNCH_STANDING:
 		if(sword==true)current_animation = &App->player->punch;			///////////////DO THAT WITH ALL THE ATTACKS (THE SWORD BOOL IS TO SHOW WHETHER THE CHARACTER HAS THE SWORD OR NO
-		else {}															/////////////// SO WHEN HE HAS THE SWORD, THE ANIMATIONS AND THE COLLISION BOXES (AND PROBABLY THE SOUND) WILL BE DIFFERENT
+		else { /*current_animation = &App->player->punchnoweapon(sprites missing)*/ }															/////////////// SO WHEN HE HAS THE SWORD, THE ANIMATIONS AND THE COLLISION BOXES (AND PROBABLY THE SOUND) WILL BE DIFFERENT
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -392,7 +392,11 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHL_STANDING:
-		//current_animation = &App->player->punch;	ANIMATION
+		if (sword = true) current_animation = &App->player->punch;
+		else {/*else {current_animation = &App->player->punchnoweapon(sprites missing)
+			*/
+		};
+		//ANIMATION
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -415,7 +419,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHS_STANDING:
-		//current_animation = &App->player->punch;	ANIMATION
+		if (sword = true)current_animation = &App->player->punch;	//ANIMATION
+		else { /*current_animation = &App->player->punchnoweapon(tosprite); */ }
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -438,7 +443,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCH_NEUTRAL_JUMP:
-		current_animation = &App->player->punchair;
+		if (sword = true)current_animation = &App->player->punchair;	//ANIMATION
+		else { /*current_animation = &App->player->punchair_noweapon(tosprite); */ }
 		if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -478,7 +484,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHL_NEUTRAL_JUMP:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchair;	//ANIMATION
+		else { /*current_animation = &App->player->punchair_noweapon(tosprite); */ }				//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -518,7 +525,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHS_NEUTRAL_JUMP:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchair;	//ANIMATION
+		else { /*current_animation = &App->player->punchair_noweapon(tosprite); */ }				//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -558,7 +566,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCH_FORWARD_JUMP:
-		current_animation = &App->player->punchair;
+		if (sword = true)current_animation = &App->player->punchair;
+		else { /*current_animation = &App = ->player->punchair_noweapon */ }
 		if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -597,7 +606,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHL_FORWARD_JUMP:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchair;
+		else { /*current_animation = &App = ->player->punchair_noweapon */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -638,7 +648,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHS_FORWARD_JUMP:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchair;
+		else { /*current_animation = &App = ->player->punchair_noweapon */ } //ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -679,7 +690,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCH_BACKWARD_JUMP:
-		current_animation = &App->player->punchair;
+		if (sword = true)current_animation = &App->player->punchair;
+		else { /*current_animation = &App = ->player->punchair_noweapon */ }
 		if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -710,7 +722,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHL_BACKWARD_JUMP:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchair;
+		else { /*current_animation = &App = ->player->punchair_noweapon */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -751,7 +764,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHS_BACKWARD_JUMP:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchair;
+		else { /*current_animation = &App = ->player->punchair_noweapon */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -792,7 +806,10 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCH_CROUCH:
-		current_animation = &App->player->punchcrouch;
+		if (sword = true)current_animation = &App->player->punchcrouch;
+		else {
+			/*current_animation = &App->player->punchcrouch_noweapon*/
+		}
 		if (flip == false) {
 			body.SetPos(position.x + 35, (position.y - 65));
 			body2.SetPos(position.x + 52, (position.y - 50));
@@ -825,7 +842,10 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHL_CROUCH:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchcrouch;
+		else {
+			/*current_animation = &App->player->punchcrouch_noweapon*/
+		}//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -862,7 +882,10 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHS_CROUCH:
-		//current_animation = &App->player->punchair;		ANIMATION
+		if (sword = true)current_animation = &App->player->punchcrouch;
+		else {
+			/*current_animation = &App->player->punchcrouch_noweapon*/
+		}//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -899,7 +922,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICK_STANDING:
-		current_animation = &App->player->kick;
+		if (sword = true)current_animation = &App->player->kick;	//ANIMATION
+		else { /*current_animation = &App->player->kick_noweapon(tosprite); */ }
 		if (flip == false) {
 			position.x += 2;
 			body.SetPos(position.x + 18, (position.y - 80));
@@ -930,7 +954,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKL_STANDING:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kick;	//ANIMATION
+		else { /*current_animation = &App->player->kick_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -961,7 +986,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKS_STANDING:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kick;	//ANIMATION
+		else { /*current_animation = &App->player->kick_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -992,7 +1018,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICK_NEUTRAL_JUMP:
-		current_animation = &App->player->kickair;
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 60));
 			body2.SetPos(position.x + 12, (position.y - 49));
@@ -1022,7 +1049,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKL_NEUTRAL_JUMP:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1054,7 +1082,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKS_NEUTRAL_JUMP:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1086,7 +1115,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICK_FORWARD_JUMP:
-		current_animation = &App->player->kickair;
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 60));
 			body2.SetPos(position.x + 12, (position.y - 49));
@@ -1117,7 +1147,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKL_FORWARD_JUMP:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1150,7 +1181,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKS_FORWARD_JUMP:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1183,7 +1215,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICK_BACKWARD_JUMP:
-		current_animation = &App->player->kickair;
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }
 		if (flip == false) {
 			body.SetPos(position.x + 10, (position.y - 60));
 			body2.SetPos(position.x + 12, (position.y - 49));
@@ -1214,7 +1247,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKL_BACKWARD_JUMP:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1247,7 +1281,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKS_BACKWARD_JUMP:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickair;	//ANIMATION
+		else { /*current_animation = &App->player->kickair_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1280,7 +1315,10 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICK_CROUCH:
-		current_animation = &App->player->kickcrouch;
+		if (sword = true)current_animation = &App->player->kickcrouch;
+		else {/*
+			current_animation = &App->player->kickcrouch_noweapon*/
+		}		//
 		if (flip == false) {
 			body.SetPos(position.x + 15, (position.y - 65));
 			body2.SetPos(position.x + 25, (position.y - 50));
@@ -1314,7 +1352,10 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKL_CROUCH:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickcrouch;
+		else {/*
+			current_animation = &App->player->kickcrouch_noweapon*/
+		}		////ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1348,7 +1389,10 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKS_CROUCH:
-		//current_animation = &App->player->kick;		ANIMATION
+		if (sword = true)current_animation = &App->player->kickcrouch;
+		else {/*
+			current_animation = &App->player->kickcrouch_noweapon*/
+		}		////ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));
@@ -1383,6 +1427,12 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		break;
 	case A_HITTED:
 		current_animation = &App->player->hittedan;
+		/*if (sword = true)
+			current_animation = &App->player->hittedan;
+		else {/*
+			current_animation = &App->player->hittedan_nosword;
+		}
+		*/
 		if (hitted_timer == 1 /*&& position.y == 210*/&&Player==App->player) {
 			App->audio->PlayChunk(App->player->hittedsound);
 			if (pow == false && App->player2->pow == false) {
@@ -1441,8 +1491,9 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		if (flip == false&&stopleft==false)position.x -= 1;
 		else if(flip==true&&stopright==false) position.x += 1;
-		if (current_animation->GetFinished() == 1 && hitted_timer == 2)hitted_timer = 3;
+		if (current_animation->GetFinished() == 1 && hitted_timer == 2) hitted_timer = 3;
 		break;
+
 	case A_HITTED_JUMP:
 		current_animation = &App->player->airhitted;
 		if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player) {

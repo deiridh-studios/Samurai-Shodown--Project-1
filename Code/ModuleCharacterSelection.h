@@ -43,6 +43,8 @@ public:
 	Animation SelectionAnimation;
 	Animation SelectionAnimationP1;
 	Animation SelectionAnimationP2;
+	Mix_Chunk* passingmenu;
+	Mix_Chunk* entermenu;
 	SDL_Texture* graphics = nullptr;
 };
 #endif //

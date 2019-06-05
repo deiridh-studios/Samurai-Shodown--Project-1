@@ -14,6 +14,7 @@
 #include "ModuleUI.h"
 #include "ModuleSceneCongrats.h"
 #include "ModuleSlowdown.h"
+#include "ModuleReferee.h"
 #include "SDL/include/SDL.h"
 
 ModuleBackground::ModuleBackground():Module(){
@@ -49,6 +50,7 @@ bool ModuleBackground::Start() {
 	App->collision->Enable();
 	App->UI->play = true;
 	App->slowdown->Enable();
+	//App->referee->Enable();
 	return true;
 }
 update_status ModuleBackground::Update() {
@@ -100,6 +102,7 @@ bool ModuleBackground::CleanUp()
 	App->player2->Disable();
 	App->particles->Disable();
 	App->collision->Disable();
+	//App->referee->Disable();
 	App->UI->play = false;
 	App->UI->doinitialtime = false;
 	App->textures->Unload(graphics);
