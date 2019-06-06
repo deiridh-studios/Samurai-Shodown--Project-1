@@ -15,8 +15,6 @@ We are Deiridh Studios, one group of forming students from CITM UPC University, 
 ![Branching](https://raw.githubusercontent.com/deiridh-studios/Samurai-Shodown--Project-1/master/Web/All.png)
 
 
-![Octocat](https://raw.githubusercontent.com/deiridh-studios/Samurai-Shodown--Project-1/master/Web/Group.png)
-
 * * *
 
 ![Branching](https://raw.githubusercontent.com/deiridh-studios/Samurai-Shodown--Project-1/master/Web/Information.png)
