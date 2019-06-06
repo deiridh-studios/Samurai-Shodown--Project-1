@@ -2,17 +2,27 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Link to another page](./another-page.html).
+[Download the last release of the game](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/releases).
+# Deiridh Studios
 
-There should be whitespace between paragraphs.
+We are Deiridh Studios, one group of forming students from CITM UPC University, in Terrassa. As our first project we are recrating "Samurai Shodown", a fighting game from 1993. We are developing this game as a main coursework in the "Project Development" subject.
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+##Members
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Arnau.png)
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Jose.png)
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Roger.png)
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/mARC.png)
 
-# Header 1
+# Game Information
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+Samurai Shodown is the first game of this series from SNK, released in 1993, becoming really popular and a total success. It can be played in different platforms such as Neo Geo, Neo-Geo CD, SNES and Gameboy.
+
+It is a versus fighting game set in the late 18th century. Considered to be the first 2D weapons fighter, with a big variety of characters from around the world and with different stories behind them.
+
+The story of the game goes around Ambrosia, the god of darkness, who wants to spread chaos and revives Amakusa as a demon. Amakusa, then steals the “Palenque” stone from Green Hell to bring Ambrosia to the living world. So the objective of the game is, through a tournament, defeat the most powerful fighters in the world in order to arrive to Amakusa and stop him before he achieves to revive Ambrosia who with all his power will rule the world. 
+
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Art/Samurai%20Shodown%20LOGO.PNG)
 
 ## Header 2
 
