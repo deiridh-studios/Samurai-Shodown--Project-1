@@ -5,17 +5,21 @@ layout: default
 
 * * *
 
-# Deiridh Studios
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Title%20LOGO.png)
+
 
 We are Deiridh Studios, one group of forming students from CITM UPC University, in Terrassa. As our first project we are recrating "Samurai Shodown", a fighting game from 1993. We are developing this game as a main coursework in the "Project Development" subject.
 
-## Members
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Members.png)
 
 ![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/All.png)
 
+
+![Octocat](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Group.png)
+
 * * *
 
-# Game Information
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Information.png)
 
 Samurai Shodown is the first game of this series from SNK, released in 1993, becoming really popular and a total success. It can be played in different platforms such as Neo Geo, Neo-Geo CD, SNES and Gameboy.
 
@@ -27,22 +31,13 @@ The story of the game goes around Ambrosia, the god of darkness, who wants to sp
 
 * * *
 
-# Trailer
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Trailer.png)
 
 We made a trailer of the game to bring an idea of the game before playing:
 
 ## [Download ](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/releases) the last release of the game.
 ## See more of the game in our [Wiki](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/wiki).
-
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
+## See the trailer in [YouTube](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/wiki) again.
 
 ```
 2019 - CITM
