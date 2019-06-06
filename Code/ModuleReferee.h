@@ -23,6 +23,13 @@ public:
 	SDL_Texture* graphics = nullptr;
 	iPoint position;
 	state actual;
+	Animation idle;
+	Animation walkright;
+	Animation walkleft;
+	Animation startcombat;
+	Animation endingcombat;
+	Animation hitp1;
+	Animation hitp2;
 	SDL_Rect rect;//WHEN IMPLEMENTED ANIMATION, THIS RECT WILL HAVE TO BE ELIMINATED
 };
 
