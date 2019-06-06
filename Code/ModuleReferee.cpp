@@ -20,17 +20,40 @@ ModuleReferee::ModuleReferee(){
 // Idle animation
 
 // Walk backwards animation
-
-// Walk backwards animation
-
+	walkleft.pushback({22 , 542 , 59 , 71});
+	walkleft.pushback({91 , 542 , 56 , 71});
+	walkleft.pushback({159 , 542 , 59 , 71});
+	walkleft.pushback({223 , 542 , 67 , 70});
+	walkleft.speed=0.2 
+		// Walk backwards animation
+		walkright.pushback({});
 //BegginingCombat animation
-
+		startcombat.pushback({});
 //ending animation
-
+		endingcombat.pushback({});
 //hitted player 1 animation
+		//hitp1.pushback({84 , 33 , 59 , 94}); //player in the left hits player in the right
+		hitp1.pushback({183 , 33 , 59 , 94 });
+		hitp1.pushback({271 , 33 , 59 , 94 });
+		hitp1.pushback({355 , 33 , 59 , 94 });
+		hitp1.pushback({432 , 33 , 82 , 95});
+		hitp1.pushback({518 , 33 , 76 , 93});
+		hitp1.pushback({600 , 33 , 71 , 95});
+		hitp1.pushback({});
+		hitp1.speed = 0.2;    
+
 
 //hitted player 2 animation
-
+		//hitp1.pushback({84 , 33 , 59 , 94});//player in the right hits player in the left
+		hitp2.pushback({84 , 166 , 59 , 94 });
+		hitp2.pushback({176 , 166 , 59 , 94 });
+		hitp2.pushback({247 , 166 , 59 , 94 });
+		hitp2.pushback({306 , 166 , 59 , 94 });
+		hitp2.pushback({413 , 166 , 59 , 94 });
+		hitp2.pushback({505 , 166 , 59 , 94 });
+		hitp2.pushback({596 , 166 , 59 , 94 });
+		hitp2.pushback({});
+		hitp2.speed = 0.2f;
 
 }
 ModuleReferee::~ModuleReferee()
