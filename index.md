@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: hola
 ---
 
 
@@ -11,10 +11,7 @@ We are Deiridh Studios, one group of forming students from CITM UPC University, 
 
 ## Members
 
-![Octocat](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Arnau.png)
-![Octocat](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Jose.png)
-![Octocat](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/Roger.png)
-![Octocat](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/mARC.png)
+![Branching](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/blob/master/Web/All.png)
 
 * * *
 
