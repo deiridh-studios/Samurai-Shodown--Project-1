@@ -102,7 +102,7 @@ ModuleReferee::ModuleReferee(){
 ModuleReferee::~ModuleReferee()
 {}
 // Load assets
-int contexit = 1, positionbefore;
+//int contexit = 1, positionbefore;
 
 bool ModuleReferee::Start()
 {
@@ -110,7 +110,7 @@ bool ModuleReferee::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/sprites referee.png");
 	position.x = (App->player2->position.x - App->player->position.x) / 2;
-	positionbefore = (App->player2->position.x - App->player->position.x) / 2;
+	//positionbefore = (App->player2->position.x - App->player->position.x) / 2;
 	position.y = 100;
 	flip = false;
 	return ret;
@@ -132,62 +132,62 @@ update_status ModuleReferee::PreUpdate() {
 
 update_status ModuleReferee::Update() {
 	int positiontobe;
-	Animation current_animation;
+	Animation *current_animation=&idle;
 	if ((App->player->flip == true || App->player2->flip == false) && flip == false)flip = true;
 	else if ((App->player2->flip == true || App->player->flip == false) && flip == true)flip = false;
 	if (flip == false) positiontobe = ((App->player2->position.x - App->player->position.x) / 2) + App->player->position.x;
 	else positiontobe= ((App->player->position.x - App->player2->position.x) / 2) + App->player2->position.x;
 	if (App->player->hitted_timer == 1) {
-		current_animation.GetCurrentFrame() = hitp1.GetCurrentFrame();
+		current_animation = &hitp1;
 	}
 	else if (App->player2->hitted_timer == 1) {
-		current_animation.GetCurrentFrame() = hitp2.GetCurrentFrame();
+		current_animation = &hitp2;
 	}
 
-	/*
+	
 	else if (positiontobe > position.x + 10) {
-		position.x += 5;
+		position.x ++;
 		current_animation = &walkright;
-		current_animation.GetCurrentFrame() = hitp2.GetCurrentFrame();
+		//current_animation.GetCurrentFrame() = hitp2.GetCurrentFrame();
 	}
 	else if (positiontobe < position.x - 10) {
-		position.x -= 5;
+		position.x --;
 		current_animation = &walkleft;
 	}
-	*/
-
+	
+/*
 	else if (contexit %1 == 0) {
 		if (App->player2->flip == true) {
 			if (positiontobe > positionbefore) {
-				current_animation.GetCurrentFrame() = walkright.GetCurrentFrame();
+				current_animation = walkright;
 			}
 			else if (positiontobe < positionbefore) {
-				current_animation.GetCurrentFrame() = walkleft.GetCurrentFrame();
+				current_animation = walkleft;
 			}
 			else if (positiontobe == positionbefore) {
-				current_animation.GetCurrentFrame() = idle.GetCurrentFrame();
+				current_animation = idle;
 			}
 		}
 		else if (App->player2->flip == true) {
 			if (positiontobe > positionbefore) {
-				current_animation.GetCurrentFrame() = walkright.GetCurrentFrame();
+				current_animation = walkright;
 			}
 			else if (positiontobe < positionbefore) {
-				current_animation.GetCurrentFrame() = walkleft.GetCurrentFrame();
+				current_animation = walkleft;
 			}
 			else if (positiontobe == positionbefore) {
-				current_animation.GetCurrentFrame() = idle.GetCurrentFrame();
+				current_animation = idle;
 			}
 		}
 		contexit++;
 	}
-
+	*/
 	/*
 	if(flip==false)App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, false, App->render->zoom);
 	else App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, true, App->render->zoom);
 	*/
 
-	if(flip==false)App->render->Blit(graphics, positiontobe, position.y, &(current_animation.GetCurrentFrame()), 1.0F, true, false, App->render->zoom);
-	else App->render->Blit(graphics, positiontobe, position.y, &(current_animation.GetCurrentFrame()), 1.0F, true, true, App->render->zoom);
+	if(flip==false)App->render->Blit(graphics, positiontobe, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, false, App->render->zoom);
+	else App->render->Blit(graphics, positiontobe, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, true, App->render->zoom);
 	return UPDATE_CONTINUE;
 }
