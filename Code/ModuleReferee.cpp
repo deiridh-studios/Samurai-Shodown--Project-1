@@ -19,13 +19,13 @@ ModuleReferee::ModuleReferee(){
 
 
 // Idle animation
-	idle.PushBack({ 84 , 33 , 59 , 94 });
+	idle.PushBack({ 85 , 33 , 58 , 94 });
 	idle.speed = 0.2f;
 
 // Walk left animation
-	walkleft.PushBack({22 , 542 , 59 , 71});
-	walkleft.PushBack({91 , 542 , 56 , 71});
-	walkleft.PushBack({159 , 542 , 59 , 71});
+	walkleft.PushBack({22 , 542 , 58 , 71});
+	walkleft.PushBack({92 , 542 , 55 , 71});
+	walkleft.PushBack({159 , 542 , 52 , 71});
 	walkleft.PushBack({223 , 542 , 67 , 70});
 	walkleft.speed = 0.2f;
 
@@ -102,12 +102,15 @@ ModuleReferee::ModuleReferee(){
 ModuleReferee::~ModuleReferee()
 {}
 // Load assets
+int contexit = 1, positionbefore;
+
 bool ModuleReferee::Start()
 {
 	LOG("Loading referee textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/sprites referee.png");
 	position.x = (App->player2->position.x - App->player->position.x) / 2;
+	positionbefore = (App->player2->position.x - App->player->position.x) / 2;
 	position.y = 100;
 	flip = false;
 	return ret;
@@ -126,29 +129,65 @@ update_status ModuleReferee::PreUpdate() {
 }
 
 
+
 update_status ModuleReferee::Update() {
 	int positiontobe;
-	Animation *current_animation;
-	current_animation = &idle;
+	Animation current_animation;
 	if ((App->player->flip == true || App->player2->flip == false) && flip == false)flip = true;
 	else if ((App->player2->flip == true || App->player->flip == false) && flip == true)flip = false;
 	if (flip == false) positiontobe = ((App->player2->position.x - App->player->position.x) / 2) + App->player->position.x;
 	else positiontobe= ((App->player->position.x - App->player2->position.x) / 2) + App->player2->position.x;
 	if (App->player->hitted_timer == 1) {
-		current_animation = &hitp1;
+		current_animation.GetCurrentFrame() = hitp1.GetCurrentFrame();
 	}
 	else if (App->player2->hitted_timer == 1) {
-		current_animation =&hitp2;
+		current_animation.GetCurrentFrame() = hitp2.GetCurrentFrame();
 	}
-	else if (positiontobe > position.x+10) {
-			position.x += 5; 
-			current_animation = &walkright;
+
+	/*
+	else if (positiontobe > position.x + 10) {
+		position.x += 5;
+		current_animation = &walkright;
+		current_animation.GetCurrentFrame() = hitp2.GetCurrentFrame();
 	}
-	else if(positiontobe < position.x-10) {
-			position.x -= 5; 
-			current_animation = &walkleft;
+	else if (positiontobe < position.x - 10) {
+		position.x -= 5;
+		current_animation = &walkleft;
 	}
+	*/
+
+	else if (contexit %1 == 0) {
+		if (App->player2->flip == true) {
+			if (positiontobe > positionbefore) {
+				current_animation.GetCurrentFrame() = walkright.GetCurrentFrame();
+			}
+			else if (positiontobe < positionbefore) {
+				current_animation.GetCurrentFrame() = walkleft.GetCurrentFrame();
+			}
+			else if (positiontobe == positionbefore) {
+				current_animation.GetCurrentFrame() = idle.GetCurrentFrame();
+			}
+		}
+		else if (App->player2->flip == true) {
+			if (positiontobe > positionbefore) {
+				current_animation.GetCurrentFrame() = walkright.GetCurrentFrame();
+			}
+			else if (positiontobe < positionbefore) {
+				current_animation.GetCurrentFrame() = walkleft.GetCurrentFrame();
+			}
+			else if (positiontobe == positionbefore) {
+				current_animation.GetCurrentFrame() = idle.GetCurrentFrame();
+			}
+		}
+		contexit++;
+	}
+
+	/*
 	if(flip==false)App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, false, App->render->zoom);
 	else App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, true, App->render->zoom);
+	*/
+
+	if(flip==false)App->render->Blit(graphics, positiontobe, position.y, &(current_animation.GetCurrentFrame()), 1.0F, true, false, App->render->zoom);
+	else App->render->Blit(graphics, positiontobe, position.y, &(current_animation.GetCurrentFrame()), 1.0F, true, true, App->render->zoom);
 	return UPDATE_CONTINUE;
 }
