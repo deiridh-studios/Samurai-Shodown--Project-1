@@ -360,7 +360,7 @@ ModuleSceneEarthquake::ModuleSceneEarthquake():Module()
 	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
 	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
 	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
-	rectangletextempty.speed = 0.1f;
+	rectangletextempty.speed = 0.05f;
 
 	//APushing
 	APushing.PushBack({ 0, 1536, 48, 38 });
@@ -485,61 +485,132 @@ ModuleSceneEarthquake::ModuleSceneEarthquake():Module()
 	IdleUkyo1.PushBack({ 75, 0, 75, 137 });
 	IdleUkyo1.speed = 0.02f;
 
-	// Stronger Kick animation
-	strongerkickUkyo1.PushBack({ 15, 190, 70, 86 });
-	strongerkickUkyo1.PushBack({ 114, 190, 66, 86 });
-	strongerkickUkyo1.PushBack({ 202, 190, 67, 86 });
-	strongerkickUkyo1.PushBack({ 302, 190, 82, 86 });
-	strongerkickUkyo1.PushBack({ 402, 190, 100, 86 });
-	strongerkickUkyo1.speed = 0.2f;
+	//IdleWithoutSword
+	Idle2Ukyo1.PushBack({ 765, 0, 68, 137 });
+	Idle2Ukyo1.PushBack({ 833, 0, 68, 137 });
+	Idle2Ukyo1.speed = 0.02f;
 
-	// Kick animation
-	kickUkyo1.PushBack({ 0, 411, 97, 137 });
-	kickUkyo1.PushBack({ 97, 411, 97, 137 });
-	kickUkyo1.PushBack({ 194, 411, 97, 137 });
-	kickUkyo1.PushBack({ 97, 411, 97, 137 });
-	kickUkyo1.PushBack({ 0, 411, 97, 137 });
-	kickUkyo1.speed = 0.2f;
+	// AWithWeaponUkyo1
+	AWithWeaponUkyo1.PushBack({ 0, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 117, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 234, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 351, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 468, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 351, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 234, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 117, 274, 117, 137 });
+	AWithWeaponUkyo1.PushBack({ 0, 274, 117, 137 });
+	AWithWeaponUkyo1.speed = 0.3f;
 
-	// Punch animation (TO IMPROVE)
-	punchUkyo1.PushBack({ 0, 274, 117, 137 });
-	punchUkyo1.PushBack({ 117, 274, 117, 137 });
-	punchUkyo1.PushBack({ 234, 274, 117, 137 });
-	punchUkyo1.PushBack({ 351, 274, 117, 137 });
-	punchUkyo1.PushBack({ 468, 274, 117, 137 });
-	punchUkyo1.PushBack({ 351, 274, 117, 137 });
-	punchUkyo1.PushBack({ 234, 274, 117, 137 });
-	punchUkyo1.PushBack({ 117, 274, 117, 137 });
-	punchUkyo1.PushBack({ 0, 274, 117, 137 });
-	punchUkyo1.speed = 0.4f;
+	// BWithWeaponUkyo1
+	BWithWeaponUkyo1.PushBack({ 0, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 155, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 310, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 465, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 620, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 620, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 620, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 465, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 310, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 155, 685, 117, 137 });
+	BWithWeaponUkyo1.PushBack({ 0, 685, 117, 137 });
+	BWithWeaponUkyo1.speed = 0.2f;
 
-	//EmpateEspadas
-	clashswordsUkyo1.PushBack({ 915, 1920, 65, 113 });
-	clashswordsUkyo1.PushBack({ 980, 1920, 71'5, 113 });
-	clashswordsUkyo1.PushBack({ 1051'5, 1920, 97'5, 113 });
-	clashswordsUkyo1.speed = 0.5f;
+	// ABWithWeaponUkyo1
+	ABWithWeaponUkyo1.PushBack({ 0, 822, 158, 154 });
+	ABWithWeaponUkyo1.PushBack({ 158, 822, 158, 154 });
+	ABWithWeaponUkyo1.PushBack({ 316, 822, 158, 154 });
+	ABWithWeaponUkyo1.PushBack({ 474, 822, 158, 154 });
+	ABWithWeaponUkyo1.PushBack({ 632, 822, 158, 154 });
+	ABWithWeaponUkyo1.PushBack({ 790, 822, 158, 154 });
+	ABWithWeaponUkyo1.PushBack({ 158, 822, 158, 154 });
+	ABWithWeaponUkyo1.PushBack({ 0, 822, 158, 154 });
+	ABWithWeaponUkyo1.speed = 0.2f;
 
-	///////////Strong slash;
-	strongerslashUkyo1.PushBack({ 43,   2488'5, 75, 91'5 });
-	strongerslashUkyo1.PushBack({ 202, 2488'5, 83, 91'5 });
-	strongerslashUkyo1.PushBack({ 352, 2488'5, 86, 91'5 });
-	strongerslashUkyo1.PushBack({ 513, 2488'5, 84, 91'5 });
-	strongerslashUkyo1.PushBack({ 663, 2488'5, 97, 91'5 });
-	strongerslashUkyo1.PushBack({ 834, 2488'5, 145, 91'5 });
-	strongerslashUkyo1.speed = 0.5f;
 
+	//ClashSwordsUkyo1
+	clashswordsUkyo1.PushBack({ 579, 548, 70, 137 });
+	clashswordsUkyo1.PushBack({ 712, 548, 99, 137 });
+	clashswordsUkyo1.PushBack({ 649, 548, 63, 137 });
+	clashswordsUkyo1.PushBack({ 712, 548, 99, 137 });
+	clashswordsUkyo1.PushBack({ 579, 548, 70, 137 });
+	clashswordsUkyo1.PushBack({ 712, 548, 99, 137 });
+	clashswordsUkyo1.PushBack({ 649, 548, 63, 137 });
+	clashswordsUkyo1.PushBack({ 712, 548, 99, 137 });
+	clashswordsUkyo1.PushBack({ 579, 548, 70, 137 });
+	clashswordsUkyo1.speed = 0.1f;
+
+	// AWithoutWeaponUkyo1
+	AWithoutWeaponUkyo1.PushBack({ 0, 548, 67, 137 });
+	AWithoutWeaponUkyo1.PushBack({ 67, 548, 67, 137 });
+	AWithoutWeaponUkyo1.PushBack({ 134, 548, 78, 137 });
+	AWithoutWeaponUkyo1.PushBack({ 212, 548, 87, 137 });
+	AWithoutWeaponUkyo1.PushBack({ 134, 548, 78, 137 });
+	AWithoutWeaponUkyo1.PushBack({ 67, 548, 67, 137 });
+	AWithoutWeaponUkyo1.PushBack({ 0, 548, 67, 137 });
+	AWithoutWeaponUkyo1.speed = 0.15f;
+
+	// ABWithoutWeaponUkyo1
+	ABWithoutWeaponUkyo1.PushBack({ 330, 548, 55, 137 });
+	ABWithoutWeaponUkyo1.PushBack({ 385, 548, 80, 137 });
+	ABWithoutWeaponUkyo1.PushBack({ 465, 548, 98, 137 });
+	ABWithoutWeaponUkyo1.PushBack({ 465, 548, 98, 137 });
+	ABWithoutWeaponUkyo1.PushBack({ 465, 548, 98, 137 });
+	ABWithoutWeaponUkyo1.PushBack({ 385, 548, 80, 137 });
+	ABWithoutWeaponUkyo1.PushBack({ 385, 548, 80, 137 });
+	ABWithoutWeaponUkyo1.PushBack({ 330, 548, 55, 137 });
+	ABWithoutWeaponUkyo1.speed = 0.15f;
+
+	// CWithoutWeaponUkyo1
+	CWithoutWeaponUkyo1.PushBack({ 0, 411, 97, 137 });
+	CWithoutWeaponUkyo1.PushBack({ 97, 411, 97, 137 });
+	CWithoutWeaponUkyo1.PushBack({ 194, 411, 97, 137 });
+	CWithoutWeaponUkyo1.PushBack({ 97, 411, 97, 137 });
+	CWithoutWeaponUkyo1.PushBack({ 0, 411, 97, 137 });
+	CWithoutWeaponUkyo1.speed = 0.15f;
+
+	// CDWithoutWeaponUkyo1
+	CDWithoutWeaponUkyo1.PushBack({ 0, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 100, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 200, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 300, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 400, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 300, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 200, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 100, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.PushBack({ 0, 137, 100, 137 });
+	CDWithoutWeaponUkyo1.speed = 0.1f;
 
 	//////Ukyo 2n PLAYER////////////
 	//Idle
-	IdleUkyo2.PushBack({ 0, 0, 75, 137 });
-	IdleUkyo2.PushBack({ 75, 0, 75, 137 });
+	IdleUkyo2.PushBack({ 817, 411, 74, 137 });
+	IdleUkyo2.PushBack({ 891, 411, 75, 137 });
 	IdleUkyo2.speed = 0.02f;
 
+	//Hitted Ukyo2
+	HittedUkyo2.PushBack({ 835, 548, 67, 137 });
+
+	//Walking Ukyo2
+	WalkingUkyo2.PushBack({ 0, 976, 76, 137 });
+	WalkingUkyo2.PushBack({ 76, 976, 72, 137 });
+	WalkingUkyo2.PushBack({ 148, 976, 81, 137 });
+	WalkingUkyo2.PushBack({ 229, 976, 87, 137 });
+	WalkingUkyo2.PushBack({ 316, 976, 81, 137 });
+	WalkingUkyo2.PushBack({ 397, 976, 72, 137 });
+	WalkingUkyo2.PushBack({ 469, 976, 75, 137 });
+	WalkingUkyo2.speed = 0.2f;
+
 	//EmpateEspadas
-	clashswordsUkyo2.PushBack({ 915, 1920, 65, 113 });
-	clashswordsUkyo2.PushBack({ 980, 1920, 71'5, 113 });
-	clashswordsUkyo2.PushBack({ 1051'5, 1920, 97'5, 113 });
-	clashswordsUkyo2.speed = 0.5f;
+	clashswordsUkyo2.PushBack({ 785, 685, 63, 137 });
+	clashswordsUkyo2.PushBack({ 848, 685, 71, 137 });
+	clashswordsUkyo2.PushBack({ 919, 685, 98, 137 });
+	clashswordsUkyo2.PushBack({ 848, 685, 71, 137 });
+	clashswordsUkyo2.PushBack({ 785, 685, 63, 137 });
+	clashswordsUkyo2.PushBack({ 848, 685, 71, 137 });
+	clashswordsUkyo2.PushBack({ 919, 685, 98, 137 });
+	clashswordsUkyo2.PushBack({ 848, 685, 71, 137 });
+	clashswordsUkyo2.PushBack({ 785, 685, 63, 137 });
+	clashswordsUkyo2.speed = 0.1f;
 
 }
 
@@ -558,15 +629,16 @@ bool  ModuleSceneEarthquake::Start() {
 	App->audio->PlayChunk(earthquake);
 	graphics = App->textures->Load("Sprites/Back.png");
 	graphics2 = App->textures->Load("Sprites/UITutorial.png");
-	graphics3 = App->textures->Load("Sprites/UkyoPlayer1SpriteSheet.png");
+	graphics3 = App->textures->Load("Sprites/TutorialPlayers.png");
 	App->UI->Enable();
 	rectangletextempty.current_frame = 0;
 	return true;
 }
 
 Animation Current, CurrentA, CurrentB, CurrentC, CurrentD, CurrentP1, CurrentP2;
-int cont = 0, countpunch1=0, countkick1=0, countstrongslash1=0;
-bool final=false;
+int cont = 0, count = 0, positionyU1 = 55, positionxU1 = 77, positionxU2 = 155;
+int mult = 0;
+bool final=false, walk=false;
 
 update_status  ModuleSceneEarthquake::Update() {
 	App->render->Blit(graphics, 0, -175, &(back.GetCurrentFrame()), 0.9f);
@@ -585,14 +657,23 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
-		if (countpunch1 == 0) {
-			CurrentP1.GetCurrentFrame() = punchUkyo1.GetCurrentFrame();
+		if ((count == 0) && (APushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = AWithWeaponUkyo1.GetCurrentFrame();
 		}
-		if (punchUkyo1.finished = 1) {
-			countpunch1 = 1;
+		if (AWithWeaponUkyo1.current_frame >= 5) {
+			CurrentP1.GetCurrentFrame() = IdleUkyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
 		}
 	}
 	if (cont == 2) {
+		count = 0;
 		Current.GetCurrentFrame() = BWithWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
@@ -600,6 +681,10 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
 		CurrentP1.GetCurrentFrame() = IdleUkyo1.GetCurrentFrame();
 		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 155) {
+			positionxU2 = positionxU2 -1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
 	}
 	if (cont == 3) {
 		Current.GetCurrentFrame() = rectangletextB.GetCurrentFrame();
@@ -607,14 +692,23 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BPushing.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
-		if (countkick1 == 0) {
-			CurrentP1.GetCurrentFrame() = kickUkyo1.GetCurrentFrame();
+		if ((count == 0) && (BPushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = BWithWeaponUkyo1.GetCurrentFrame();
 		}
-		if (kickUkyo1.finished = 1) {
-			countkick1 = 1;
+		if (BWithWeaponUkyo1.current_frame >= 5) {
+			CurrentP1.GetCurrentFrame() = IdleUkyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
 		}
 	}
 	if (cont == 4) {
+		count = 0;
 		Current.GetCurrentFrame() = ABWithWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
@@ -622,6 +716,10 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
 		CurrentP1.GetCurrentFrame() = IdleUkyo1.GetCurrentFrame();
 		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 155) {
+			positionxU2 = positionxU2 - 1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
 	}
 	if (cont == 5) {
 		Current.GetCurrentFrame() = rectangletextAB.GetCurrentFrame();
@@ -629,40 +727,116 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BPushing.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
-		if (countstrongslash1 == 0) {
-			CurrentP1.GetCurrentFrame() = strongerslashUkyo1.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = IdleUkyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if ((count == 0) && (APushing.current_frame >= 8)) {
+			positionyU1 = 38;
+			CurrentP1.GetCurrentFrame() = ABWithWeaponUkyo1.GetCurrentFrame();
 		}
-		if (strongerslashUkyo1.finished = 1) {
-			countstrongslash1 = 1;
+		if (ABWithWeaponUkyo1.current_frame >= 6) {
+			positionyU1 = 55;
+			CurrentP1.GetCurrentFrame() = IdleUkyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
 		}
 	}
 	if (cont == 6) {
+		count = 0;
 		Current.GetCurrentFrame() = rectangletextempty.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = IdleUkyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 140) {
+			positionxU2 = positionxU2 - 1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
+		if (positionxU1 <= 90) {
+			positionxU1 = positionxU1 + 1;
+			//CurrentP2.GetCurrentFrame() = WalkingUkyo1.GetCurrentFrame();
+		}
+		if ((positionxU2 <= 140)&& (positionxU1 >= 90)) {
+			CurrentP2.GetCurrentFrame() = clashswordsUkyo2.GetCurrentFrame();
+			CurrentP1.GetCurrentFrame() = clashswordsUkyo1.GetCurrentFrame();
+		}
+		if (clashswordsUkyo1.finished == 1) {
+
+			CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			//CurrentP1.GetCurrentFrame() = fallingUkyo1.GetCurrentFrame();
+			
+			if (positionyU1 >= 55) {
+				mult = 1;
+			}
+			if (positionyU1 <= -20) {
+				mult = -1;
+			}
+			positionyU1 -= 2 * mult;
+
+			if (positionxU1 >= -20) {
+				positionxU1 = positionxU1 - 1;
+			}
+		}
 	}
 	if (cont == 7) {
+		positionyU1 = 55;
+		count = 0;
 		Current.GetCurrentFrame() = AWithoutWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU1 <= 77) {
+			positionxU1 = positionxU1 + 2;
+		}
 	}
 	if (cont == 8) {
+		positionxU1 = 77;
+		positionyU1 = 55;
 		Current.GetCurrentFrame() = rectangletextA2.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = APushing.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if ((count == 0) && (APushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = AWithoutWeaponUkyo1.GetCurrentFrame();
+		}
+		if (AWithoutWeaponUkyo1.current_frame >= 4) {
+			CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
+		}
 	}
 	if (cont == 9) {
+		count = 0;
 		Current.GetCurrentFrame() = BWithoutWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 155) {
+			positionxU2 = positionxU2 - 1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
 	}
 	if (cont == 10) {
 		Current.GetCurrentFrame() = rectangletextB2.GetCurrentFrame();
@@ -670,13 +844,36 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BPushing.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if ((count == 0) && (BPushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = AWithoutWeaponUkyo1.GetCurrentFrame();
+		}
+		if (AWithoutWeaponUkyo1.current_frame >= 6) {
+			CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
+		}
 	}
 	if (cont == 11) {
+		count = 0;
 		Current.GetCurrentFrame() = ABWithoutWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 155) {
+			positionxU2 = positionxU2 - 1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
 	}
 	if (cont == 12) {
 		Current.GetCurrentFrame() = rectangletextAB2.GetCurrentFrame();
@@ -684,13 +881,36 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BPushing.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if ((count == 0) && (BPushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = ABWithoutWeaponUkyo1.GetCurrentFrame();
+		}
+		if (ABWithoutWeaponUkyo1.current_frame >= 5) {
+			CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
+		}
 	}
 	if (cont == 13) {
+		count = 0;
 		Current.GetCurrentFrame() = CWithoutWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 155) {
+			positionxU2 = positionxU2 - 1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
 	}
 	if (cont == 14) {
 		Current.GetCurrentFrame() = rectangletextC2.GetCurrentFrame();
@@ -698,13 +918,37 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CPushing.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if ((count == 0) && (CPushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = CWithoutWeaponUkyo1.GetCurrentFrame();
+		}
+		if (CWithoutWeaponUkyo1.current_frame >= 3) {
+			CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
+		}
 	}
 	if (cont == 15) {
+		count = 0;
+		CWithoutWeaponUkyo1.Reset();
 		Current.GetCurrentFrame() = DWithoutWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 155) {
+			positionxU2 = positionxU2 - 1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
 	}
 	if (cont == 16) {
 		Current.GetCurrentFrame() = rectangletextD2.GetCurrentFrame();
@@ -712,13 +956,36 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DPushing.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if ((count == 0) && (DPushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = CWithoutWeaponUkyo1.GetCurrentFrame();
+		}
+		if (CWithoutWeaponUkyo1.current_frame >= 3) {
+			CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
+		}
 	}
 	if (cont == 17) {
+		count = 0;
 		Current.GetCurrentFrame() = CDWithoutWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+		if (positionxU2 >= 155) {
+			positionxU2 = positionxU2 - 1;
+			CurrentP2.GetCurrentFrame() = WalkingUkyo2.GetCurrentFrame();
+		}
 	}
 	if (cont == 18) {
 		Current.GetCurrentFrame() = rectangletextCD2.GetCurrentFrame();
@@ -726,6 +993,23 @@ update_status  ModuleSceneEarthquake::Update() {
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CPushing.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DPushing.GetCurrentFrame();
+		CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+		CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+
+		if ((count == 0) && (CPushing.current_frame >= 8)) {
+			CurrentP1.GetCurrentFrame() = CDWithoutWeaponUkyo1.GetCurrentFrame();
+		}
+		if (CDWithoutWeaponUkyo1.current_frame >= 6) {
+			CurrentP1.GetCurrentFrame() = Idle2Ukyo1.GetCurrentFrame();
+			if (positionxU2 <= 200) {
+				positionxU2 = positionxU2 + 2;
+				CurrentP2.GetCurrentFrame() = HittedUkyo2.GetCurrentFrame();
+			}
+			else {
+				CurrentP2.GetCurrentFrame() = IdleUkyo2.GetCurrentFrame();
+			}
+			count = 1;
+		}
 	}
 
 	if ((AWithWeapon.finished== 1) && (cont == 0)) {
@@ -898,8 +1182,8 @@ update_status  ModuleSceneEarthquake::Update() {
 	}
 
 	App->render->Blit(graphics2, 16, 20, &(Current.GetCurrentFrame()), 1);
-	App->render->Blit(graphics3, 70, 55, &(CurrentP1.GetCurrentFrame()), 1);
-	App->render->Blit(graphics3, 130, 55, &(CurrentP2.GetCurrentFrame()), 1); // Player 2
+	App->render->Blit(graphics3, positionxU1, positionyU1, &(CurrentP1.GetCurrentFrame()), 1);
+	App->render->Blit(graphics3, positionxU2, 55, &(CurrentP2.GetCurrentFrame()), 1); // Player 2
 	App->render->Blit(graphics2, 56, 175, &(CurrentA.GetCurrentFrame()), 1);
 	App->render->Blit(graphics2, 104, 175, &(CurrentB.GetCurrentFrame()), 1);
 	App->render->Blit(graphics2, 152, 175, &(CurrentC.GetCurrentFrame()), 1);
