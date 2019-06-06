@@ -101,6 +101,7 @@ update_status ModuleInput::PreUpdate()
 	else if (keyboardstate[SDL_SCANCODE_SPACE] == KEY_PULLED) space = false;
 
 	if (keyboardstate[SDL_SCANCODE_RETURN] == KEY_PUSHED) {
+		App->UI->newcredit();
 		if(App->UI->credits<99)App->UI->credits++;
 	}
 
