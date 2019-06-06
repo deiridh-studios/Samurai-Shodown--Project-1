@@ -56,6 +56,7 @@ public:
 	Animation strongerslashUkyo1;
 	Animation IdleUkyo2;
 	Animation clashswordsUkyo2;
+	Animation rectangletextempty;
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* graphics2 = nullptr;
 	SDL_Texture* graphics3 = nullptr;

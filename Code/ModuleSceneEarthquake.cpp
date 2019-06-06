@@ -336,6 +336,31 @@ ModuleSceneEarthquake::ModuleSceneEarthquake():Module()
 	rectangletextC2.PushBack({ 272, 1088, 272, 64 });
 	rectangletextD2.PushBack({ 0, 1216, 272, 64 });
 	rectangletextCD2.PushBack({ 2720, 1280, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.PushBack({ 544, 1088, 272, 64 });
+	rectangletextempty.speed = 0.1f;
 
 	//APushing
 	APushing.PushBack({ 0, 1536, 48, 38 });
@@ -535,11 +560,13 @@ bool  ModuleSceneEarthquake::Start() {
 	graphics2 = App->textures->Load("Sprites/UITutorial.png");
 	graphics3 = App->textures->Load("Sprites/UkyoPlayer1SpriteSheet.png");
 	App->UI->Enable();
+	rectangletextempty.current_frame = 0;
 	return true;
 }
 
 Animation Current, CurrentA, CurrentB, CurrentC, CurrentD, CurrentP1, CurrentP2;
 int cont = 0, countpunch1=0, countkick1=0, countstrongslash1=0;
+bool final=false;
 
 update_status  ModuleSceneEarthquake::Update() {
 	App->render->Blit(graphics, 0, -175, &(back.GetCurrentFrame()), 0.9f);
@@ -610,25 +637,95 @@ update_status  ModuleSceneEarthquake::Update() {
 		}
 	}
 	if (cont == 6) {
-		Current.GetCurrentFrame() = AWithoutWeapon.GetCurrentFrame();
+		Current.GetCurrentFrame() = rectangletextempty.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
 	}
 	if (cont == 7) {
+		Current.GetCurrentFrame() = AWithoutWeapon.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 8) {
 		Current.GetCurrentFrame() = rectangletextA2.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = APushing.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
 	}
-	if (cont == 8) {
+	if (cont == 9) {
 		Current.GetCurrentFrame() = BWithoutWeapon.GetCurrentFrame();
 		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
 		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
 		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
 		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 10) {
+		Current.GetCurrentFrame() = rectangletextB2.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BPushing.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 11) {
+		Current.GetCurrentFrame() = ABWithoutWeapon.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 12) {
+		Current.GetCurrentFrame() = rectangletextAB2.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = APushing.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BPushing.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 13) {
+		Current.GetCurrentFrame() = CWithoutWeapon.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 14) {
+		Current.GetCurrentFrame() = rectangletextC2.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CPushing.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 15) {
+		Current.GetCurrentFrame() = DWithoutWeapon.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 16) {
+		Current.GetCurrentFrame() = rectangletextD2.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DPushing.GetCurrentFrame();
+	}
+	if (cont == 17) {
+		Current.GetCurrentFrame() = CDWithoutWeapon.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CNormal.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DNormal.GetCurrentFrame();
+	}
+	if (cont == 18) {
+		Current.GetCurrentFrame() = rectangletextCD2.GetCurrentFrame();
+		CurrentA.GetCurrentFrame() = ANormal.GetCurrentFrame();
+		CurrentB.GetCurrentFrame() = BNormal.GetCurrentFrame();
+		CurrentC.GetCurrentFrame() = CPushing.GetCurrentFrame();
+		CurrentD.GetCurrentFrame() = DPushing.GetCurrentFrame();
 	}
 
 	if ((AWithWeapon.finished== 1) && (cont == 0)) {
@@ -640,30 +737,165 @@ update_status  ModuleSceneEarthquake::Update() {
 	if ((APushing.finished == 1) && (cont == 1)) {
 		if (CurrentA.current_frame == APushing.current_frame) {
 			cont = 2;
-			APushing.finished == 0;
+			APushing.Reset();
+			BPushing.Reset();
 		}
 	}
 
 	if ((BWithWeapon.finished == 1) && (cont == 2)) {
 		if (Current.current_frame == BWithWeapon.current_frame) {
 			cont = 3;
+			APushing.Reset();
+			BPushing.Reset();
 		}
 	}
 
 	if ((BPushing.finished == 1) && (cont == 3)) {
 		if (CurrentB.current_frame == BPushing.current_frame) {
 			cont = 4;
-			BPushing.finished == 0;
+			APushing.Reset();
+			BPushing.Reset();
 		}
 	}
 
 	if ((ABWithWeapon.finished == 1) && (cont == 4)) {
 		if (Current.current_frame == ABWithWeapon.current_frame) {
 			cont = 5;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
 		}
 	}
 
+	if ((BPushing.finished == 1) && (cont == 5)) {
+		if ((CurrentB.current_frame == BPushing.current_frame) && (CurrentA.current_frame == APushing.current_frame)) {
+			cont = 6;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
 
+	if ((rectangletextempty.finished == 1) && (cont == 6)) {
+		cont = 7;
+	}
+
+	if ((AWithoutWeapon.finished == 1) && (cont == 7)) {
+		if (Current.current_frame == AWithoutWeapon.current_frame) {
+			cont = 8;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((APushing.finished == 1) && (cont == 8)) {
+		if (CurrentA.current_frame == APushing.current_frame) {
+			cont = 9;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((BWithoutWeapon.finished == 1) && (cont == 9)) {
+		if (Current.current_frame == BWithoutWeapon.current_frame) {
+			cont = 10;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((BPushing.finished == 1) && (cont == 10)) {
+		if (CurrentB.current_frame == BPushing.current_frame) {
+			cont = 11;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((ABWithoutWeapon.finished == 1) && (cont == 11)) {
+		if (Current.current_frame == ABWithoutWeapon.current_frame) {
+			cont = 12;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((BPushing.finished == 1) && (cont == 12)) {
+		if (CurrentB.current_frame == BPushing.current_frame) {
+			cont = 13;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+	
+	if ((CWithoutWeapon.finished == 1) && (cont == 13)) {
+		if (Current.current_frame == CWithoutWeapon.current_frame) {
+			cont = 14;
+			APushing.Reset();
+			BPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((CPushing.finished == 1) && (cont == 14)) {
+		if (CurrentB.current_frame == CPushing.current_frame) {
+			cont = 15;
+			APushing.Reset();
+			BPushing.Reset();
+			CPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((DWithoutWeapon.finished == 1) && (cont == 15)) {
+		if (Current.current_frame == DWithoutWeapon.current_frame) {
+			cont = 16;
+			APushing.Reset();
+			BPushing.Reset();
+			CPushing.Reset();
+			DPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((DPushing.finished == 1) && (cont == 16)) {
+		if (CurrentB.current_frame == DPushing.current_frame) {
+			cont = 17;
+			APushing.Reset();
+			BPushing.Reset();
+			CPushing.Reset();
+			DPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((CDWithoutWeapon.finished == 1) && (cont == 17)) {
+		if (Current.current_frame == CDWithoutWeapon.current_frame) {
+			cont = 18;
+			APushing.Reset();
+			BPushing.Reset();
+			CPushing.Reset();
+			DPushing.Reset();
+			rectangletextempty.Reset();
+		}
+	}
+
+	if ((DPushing.finished == 1) && (cont == 18)) {
+		if (CurrentB.current_frame == DPushing.current_frame) {
+			APushing.Reset();
+			BPushing.Reset();
+			CPushing.Reset();
+			DPushing.Reset();
+			rectangletextempty.Reset();
+			final = true;
+		}
+	}
 
 	App->render->Blit(graphics2, 16, 20, &(Current.GetCurrentFrame()), 1);
 	App->render->Blit(graphics3, 70, 55, &(CurrentP1.GetCurrentFrame()), 1);
@@ -675,7 +907,7 @@ update_status  ModuleSceneEarthquake::Update() {
 
 
 
-	if (App->input->space == true&&App->fade->finished == true)  {
+	if ((App->input->space == true&&App->fade->finished == true) || (final == true))  {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->sceneearthquake, App->characterselection, 0.5F);
 	}
