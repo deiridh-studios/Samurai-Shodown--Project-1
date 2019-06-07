@@ -32,11 +32,11 @@ The story of the game goes around Ambrosia, the god of darkness, who wants to sp
 ![Branching](https://raw.githubusercontent.com/deiridh-studios/Samurai-Shodown--Project-1/master/Web/Trailer.png)
 
 We made a trailer of the game to bring an idea of the game before playing:
-[![Samurai Shodown TRAILER](https://raw.githubusercontent.com/deiridh-studios/Samurai-Shodown--Project-1/master/Web/Black%20LOGO.png)](https://www.youtube.com/watch?v=9AuA6_Txu68)
+[![Samurai Shodown TRAILER](https://raw.githubusercontent.com/deiridh-studios/Samurai-Shodown--Project-1/master/Miniatura.png)](https://www.youtube.com/watch?v=nefejW2u2IM&feature=youtu.be)
 
 ## [Download ](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/releases) the last release of the game.
 ## See more of the game in our [Wiki](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/wiki).
-## See the trailer in [YouTube](https://github.com/deiridh-studios/Samurai-Shodown--Project-1/wiki) again.
+## See the trailer in [YouTube](https://www.youtube.com/watch?v=nefejW2u2IM&feature=youtu.be) again.
 
 ```
 2019 - CITM
