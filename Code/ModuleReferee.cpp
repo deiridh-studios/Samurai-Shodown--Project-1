@@ -113,6 +113,7 @@ bool ModuleReferee::Start()
 	//positionbefore = (App->player2->position.x - App->player->position.x) / 2;
 	position.y = 100;
 	flip = false;
+	actualref = IDLE;
 	return ret;
 }
 
@@ -137,22 +138,30 @@ update_status ModuleReferee::Update() {
 	else if ((App->player2->flip == true || App->player->flip == false) && flip == true)flip = false;
 	if (flip == false) positiontobe = ((App->player2->position.x - App->player->position.x) / 2) + App->player->position.x;
 	else positiontobe= ((App->player->position.x - App->player2->position.x) / 2) + App->player2->position.x;
-	if (App->player->hitted_timer == 1) {
+	if (App->player->hitted_timer == 1||actual==P1) {
 		current_animation = &hitp1;
+		if(current_animation->finished==0)actualref = P1;
+		else actualref = IDLE;
 	}
-	else if (App->player2->hitted_timer == 1) {
+	else if (App->player2->hitted_timer == 1 || actualref == P2) {
 		current_animation = &hitp2;
+		if (current_animation->finished == 0)actualref = P2;
+		else actualref = IDLE;
 	}
 
 	
-	else if (positiontobe > position.x + 10) {
+	else if (positiontobe > position.x + 15|| actualref ==RIGHT) {
 		position.x ++;
 		current_animation = &walkright;
+		if (current_animation->finished == 0)actualref = RIGHT;
+		else actualref = IDLE;
 		//current_animation.GetCurrentFrame() = hitp2.GetCurrentFrame();
 	}
-	else if (positiontobe < position.x - 10) {
+	else if (positiontobe < position.x - 15|| actualref ==LEFT) {
 		position.x --;
 		current_animation = &walkleft;
+		if (current_animation->finished == 0)actualref = LEFT;
+		else actualref = IDLE;
 	}
 	
 /*
@@ -189,5 +198,6 @@ update_status ModuleReferee::Update() {
 
 	if(flip==false)App->render->Blit(graphics, positiontobe, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, false, App->render->zoom);
 	else App->render->Blit(graphics, positiontobe, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, true, App->render->zoom);
+	if (current_animation->finished == 1)actualref = IDLE;
 	return UPDATE_CONTINUE;
 }

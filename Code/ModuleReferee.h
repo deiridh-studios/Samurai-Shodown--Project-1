@@ -19,6 +19,13 @@ public:
 		
 
 public:
+	enum refereemovement {
+		IDLE,
+		LEFT,
+		RIGHT,
+		P1,
+		P2
+	};
 	bool flip;
 	SDL_Texture* graphics = nullptr;
 	iPoint position;
@@ -30,6 +37,7 @@ public:
 	Animation endingcombat;
 	Animation hitp1;
 	Animation hitp2;
+	refereemovement actualref;
 	SDL_Rect rect;//WHEN IMPLEMENTED ANIMATION, THIS RECT WILL HAVE TO BE ELIMINATED
 };
 
