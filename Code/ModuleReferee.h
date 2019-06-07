@@ -29,7 +29,6 @@ public:
 	bool flip;
 	SDL_Texture* graphics = nullptr;
 	iPoint position;
-	state actual;
 	Animation idle;
 	Animation walkright;
 	Animation walkleft;
@@ -38,6 +37,8 @@ public:
 	Animation hitp1;
 	Animation hitp2;
 	refereemovement actualref;
+	int positionx2;
+	float posx;
 	SDL_Rect rect;//WHEN IMPLEMENTED ANIMATION, THIS RECT WILL HAVE TO BE ELIMINATED
 };
 
