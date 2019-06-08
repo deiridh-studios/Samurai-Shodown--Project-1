@@ -136,7 +136,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 			else if (inputstate[0] == S_CROUCH_LEFT) inputstate[0] = S_T_CROUCH_LEFT;
 			else if (inputstate[0] == S_NONE)inputstate[0] = S_T;
 		}
-		
+
 
 		//CHECK LIGHT/STRONG PUNCH AND VARIATIONS OF IT//
 		punch = false;
@@ -190,6 +190,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 			else if (inputstate[0] == S_CROUCH_LEFT) inputstate[0] = S_Y_CROUCH_LEFT;
 			else if (inputstate[0] == S_NONE)inputstate[0] = S_Y;
 		}
+	
 
 		//CHECK NORMAL/STRONG KICK AND VARIATIONS OF IT//
 		kick = false;
@@ -1380,7 +1381,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(App->player->kicksound);
 			punch_timer = 2;
-			/*if (flip == false) {
+			if (flip == false) {
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x += 24;
@@ -1389,7 +1390,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x -= 24;
-			}			COLLIDER BOX*/
+			}			//COLLIDER BOX*/
 		}
 		if (current_animation->GetFinished() == 1) {
 			if (flip == true) {
