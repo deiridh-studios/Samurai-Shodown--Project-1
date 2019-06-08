@@ -118,10 +118,10 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		//CHECK PUNCH AND VARIATIONS OF IT//
 		bool punch = false;
 		if (Player == App->player) {
-			if (App->input->keyboardstate[SDL_SCANCODE_T] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_T] == KEY_REPEAT) punch = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_T] == KEY_PUSHED) punch = true;
 		}
 		else if (Player == App->player2) {
-			if (App->input->keyboardstate[SDL_SCANCODE_P] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_P] == KEY_REPEAT) punch = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_P] == KEY_PUSHED) punch = true;
 		}
 		if (punch == true) {
 			if (inputstate[0] == S_RIGHT_DOWN)inputstate[0] = S_T_RIGHT;
@@ -140,10 +140,10 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		//CHECK LIGHT/STRONG PUNCH AND VARIATIONS OF IT//
 		punch = false;
 		if (Player == App->player) {
-			if (App->input->keyboardstate[SDL_SCANCODE_R] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_R] == KEY_REPEAT) punch = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_R] == KEY_PUSHED) punch = true;
 		}
 		else if (Player == App->player2) {
-			if (App->input->keyboardstate[SDL_SCANCODE_O] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_O] == KEY_REPEAT) punch = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_O] == KEY_PUSHED) punch = true;
 		}
 		if (punch == true) {
 			if (inputstate[0] == S_RIGHT_DOWN)inputstate[0] = S_R_RIGHT;
@@ -171,10 +171,10 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		//CHECK LIGHT KICK AND VARIATIONS OF IT//
 		bool kick = false;
 		if (Player == App->player) {
-			if (App->input->keyboardstate[SDL_SCANCODE_Y] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_Y] == KEY_REPEAT) kick = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_Y] == KEY_PUSHED) kick = true;
 		}
 		else if (Player == App->player2) {
-			if (App->input->keyboardstate[SDL_SCANCODE_L] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_L] == KEY_REPEAT) kick = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_L] == KEY_PUSHED) kick = true;
 		}
 		if (kick == true) {
 			if (inputstate[0] == S_RIGHT_DOWN)inputstate[0] = S_Y_RIGHT;
@@ -193,10 +193,10 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		//CHECK NORMAL/STRONG KICK AND VARIATIONS OF IT//
 		kick = false;
 		if (Player == App->player) {
-			if (App->input->keyboardstate[SDL_SCANCODE_U] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_U] == KEY_REPEAT) kick = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_U] == KEY_PUSHED) kick = true;
 		}
 		else if (Player == App->player2) {
-			if (App->input->keyboardstate[SDL_SCANCODE_SEMICOLON] == KEY_PUSHED || App->input->keyboardstate[SDL_SCANCODE_SEMICOLON] == KEY_REPEAT) kick = true;
+			if (App->input->keyboardstate[SDL_SCANCODE_SEMICOLON] == KEY_PUSHED) kick = true;
 		}
 		if (kick == true) {
 			if (inputstate[0] == S_RIGHT_DOWN)inputstate[0] = S_U_RIGHT;
@@ -419,7 +419,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCHS_STANDING:
-		if (sword = true)current_animation = &App->player->punch;	//ANIMATION
+		if (sword = true)current_animation = &App->player->strongerslash;	//ANIMATION
 		else { /*current_animation = &App->player->punchnoweapon(tosprite); */ }
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
@@ -986,7 +986,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_KICKS_STANDING:
-		if (sword = true)current_animation = &App->player->kick;	//ANIMATION
+		if (sword = true)current_animation = &App->player->strongerkick;	//ANIMATION
 		else { /*current_animation = &App->player->kick_noweapon(tosprite); */ }//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
