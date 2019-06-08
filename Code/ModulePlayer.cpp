@@ -389,10 +389,10 @@ ModulePlayer::ModulePlayer()
 
 	/////kick no weapon
 	kick_noweapon.PushBack({998 , 2493 , 77 , 87});
-	kick_noweapon.PushBack(1086 , 2493 , 89 , 88});
+	kick_noweapon.PushBack({1086 , 2493 , 89 , 88});
 	kick_noweapon.PushBack({1174 , 2493 , 97 , 88});
 	kick_noweapon.PushBack({1174 , 2493 , 97 , 88});
-	kick_noweapon.PushBack(1086 , 2493 , 89 , 88});
+	kick_noweapon.PushBack({1086 , 2493 , 89 , 88});
 	kick_noweapon.PushBack({998 , 2493 , 77 , 87});
 	kick_noweapon.speed=0.2f;
 
@@ -418,11 +418,11 @@ ModulePlayer::ModulePlayer()
 	kickcrouch_noweapon.speed = 0.2f;
 
 	////agarre
-	aggarre_noweapon.PushBack({992 , 2621 , 73 , 96});
-	aggarre_noweapon.PushBack({1065 , 2621 , 68 , 96});
-	aggarre_noweapon.PushBack({1132 , 2621 , 66 , 96});
-	aggarre_noweapon.PushBack({1196 , 2621 , 58 , 96});
-	aggarre_noweapon.speed=0.2f;
+	agarre_noweapon.PushBack({992 , 2621 , 73 , 96});
+	agarre_noweapon.PushBack({1065 , 2621 , 68 , 96});
+	agarre_noweapon.PushBack({1132 , 2621 , 66 , 96});
+	agarre_noweapon.PushBack({1196 , 2621 , 58 , 96});
+	agarre_noweapon.speed=0.2f;
 
 	/////slash
 	slash_noweapon.PushBack({1610 , 2640 , 72 , 76});

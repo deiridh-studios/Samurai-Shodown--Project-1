@@ -62,6 +62,8 @@ enum state {
 	A_ROLLATTACK,
 	A_DASH,
 	A_BACKDASH,
+	A_DASH_NOWEAPON,
+	A_BACKDASH_NOWEAPON,
 	A_SPECIAL_ATTACK_CROUCH,
 	A_RUN_WEAPON,
 	A_RUN_NOWEAPON,
@@ -219,10 +221,12 @@ public:
 	Animation punchair_noweapon;
 	Animation punchcrouch_noweapon;
 	Animation kick_noweapon;
-	Animation kickari_noweapon;
+	Animation kickair_noweapon;
 	Animation kickcrouch_noweapon;
 	Animation agarre_noweapon;
 	Animation slash_noweapon;
+	Animation dash;
+	Animation dashnoweapon;
 	SDL_Rect shadowrect;
 
 
