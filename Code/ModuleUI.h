@@ -25,6 +25,7 @@ public:
 	bool doinitialtime;
 	float npow1;
 	float npow2;
+	int victory;
 private:
 	int font_score;
 	int font_score_white;
@@ -102,7 +103,6 @@ private:
 	int timescore;
 	int hitsscore;
 	int totalscore;
-	int victory;
 	int counter;
 	int counterpow1;
 	int counterpow2;

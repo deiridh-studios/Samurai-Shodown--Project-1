@@ -363,12 +363,12 @@ ModulePlayer::ModulePlayer()
 	///////////////////////////////////////////
 
 	/////punchair no weapon
-	punchair_noweapon({ 1299 , 2497 , 56 , 83 });
-	punchair_noweapon({ 1378 , 2497 , 80 , 76 });
-	punchair_noweapon({ 1465 , 2497 , 84 , 77 });
-	punchair_noweapon({ 1465 , 2497 , 84 , 77 });
-	punchair_noweapon({ 1378 , 2497 , 80 , 76 });
-	punchair_noweapon({ 1299 , 2497 , 56 , 83 });
+	punchair_noweapon.PushBack({ 1299 , 2497 , 56 , 83 });
+	punchair_noweapon.PushBack({ 1378 , 2497 , 80 , 76 });
+	punchair_noweapon.PushBack({ 1465 , 2497 , 84 , 77 });
+	punchair_noweapon.PushBack({ 1465 , 2497 , 84 , 77 });
+	punchair_noweapon.PushBack({ 1378 , 2497 , 80 , 76 });
+	punchair_noweapon.PushBack({ 1299 , 2497 , 56 , 83 });
 	punchair_noweapon.speed = 0.2f;
 
 

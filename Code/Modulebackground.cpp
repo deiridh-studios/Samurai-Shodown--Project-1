@@ -60,7 +60,7 @@ update_status ModuleBackground::Update() {
 		App->fade->FadeToBlack(App->background, App->scenecongrats, 2);
 	}
 	if ((App->player->position.x - App->player2->position.x) > 170 || (App->player->position.x - App->player2->position.x) < -170) {
-		App->render->zoom = true;
+		if(App->UI->victory==0&&App->UI->startplay==true)App->render->zoom = true;
 	}
 	else if ((App->player->position.x - App->player2->position.x) < 120 && (App->player->position.x - App->player2->position.x) > -120)App->render->zoom = false;
 	if (App->render->zoom == true && App->render->zooming > 0.7F) {
@@ -80,8 +80,10 @@ update_status ModuleBackground::Update() {
 		while ((-App->render->camera.x > App->player->position.x) || (-App->render->camera.x > App->player2->position.x)) {
 			App->render->camera.x++;
 		}
-		while ((-(App->render->camera.x - 304) < App->player->body3->rect.x+App->player->body3->rect.w) || (-(App->render->camera.x - 304) < App->player2->bodyenemy3->rect.x + App->player2->bodyenemy3->rect.w)) {
-			App->render->camera.x--;
+		if ((App->UI->victory != 1&&App->player->flip==false)||(App->UI->victory != 2 && App->player2->flip == false)) {
+			while ((-(App->render->camera.x - 304) < App->player->body3->rect.x + App->player->body3->rect.w) || (-(App->render->camera.x - 304) < App->player2->bodyenemy3->rect.x + App->player2->bodyenemy3->rect.w)) {
+				App->render->camera.x--;
+			}
 		}
 		if (App->render->zooming > 1.0F)App->render->zooming = 1.0F;
 	}
