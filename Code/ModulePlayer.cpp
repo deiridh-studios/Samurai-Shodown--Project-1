@@ -422,6 +422,19 @@ ModulePlayer::ModulePlayer()
 	slash_noweapon.pushback({1748 , 2640 , 72 , 76});
 	slash_noweapon.speed = 0.2f;
 
+	//// Special crouch attack
+
+
+	//// run with weapon
+
+
+	//// run without weapon
+
+
+	//// powerful slash
+
+
+	//// agarre amb weapon
 
 ////.....*/
 
