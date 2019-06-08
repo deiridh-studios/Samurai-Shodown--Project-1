@@ -369,7 +369,9 @@ ModulePlayer::ModulePlayer()
 	punchair_noweapon({ 1465 , 2497 , 84 , 77 });
 	punchair_noweapon({ 1378 , 2497 , 80 , 76 });
 	punchair_noweapon({ 1299 , 2497 , 56 , 83 });
-	punchair_noweapon.speed = 0.2f
+	punchair_noweapon.speed = 0.2f;
+
+
 	/////strogpunch no weapon
 	strongpunch_noweapon.PushBack({20 , 2771 , 56 , 83 });
 	strongpunch_noweapon.PushBack({77 , 2771 , 79 , 83});
@@ -430,7 +432,7 @@ ModulePlayer::ModulePlayer()
 	slash_noweapon.PushBack({1748 , 2640 , 72 , 76});
 	slash_noweapon.speed = 0.2f;
 
-
+	
 
 	//// Special crouch attack
 	specialcrouchattack.PushBack({56, 2305'1 , 115, 139});

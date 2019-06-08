@@ -197,6 +197,7 @@ public:
 	Animation jumpbackward;
 	Animation appleattack;
 	Animation hittedan;
+	Animation hittedan_nosword;
 	Animation crouch;
 	Animation crouchfinished;
 	Animation punchair;
