@@ -136,6 +136,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 			else if (inputstate[0] == S_CROUCH_LEFT) inputstate[0] = S_T_CROUCH_LEFT;
 			else if (inputstate[0] == S_NONE)inputstate[0] = S_T;
 		}
+		
 
 		//CHECK LIGHT/STRONG PUNCH AND VARIATIONS OF IT//
 		punch = false;
@@ -198,6 +199,8 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		else if (Player == App->player2) {
 			if (App->input->keyboardstate[SDL_SCANCODE_SEMICOLON] == KEY_PUSHED) kick = true;
 		}
+
+		
 		if (kick == true) {
 			if (inputstate[0] == S_RIGHT_DOWN)inputstate[0] = S_U_RIGHT;
 			else if (inputstate[0] == S_LEFT_DOWN)inputstate[0] = S_U_LEFT;
@@ -220,7 +223,15 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 			else if (inputstate[0] == S_Y_CROUCH_RIGHT) inputstate[0] = S_YU_CROUCH_RIGHT;
 			else if (inputstate[0] == S_Y_CROUCH_LEFT) inputstate[0] = S_YU_CROUCH_LEFT;
 		}
+		/*bool appleattack = false;
+		if (Player == App->player) {
+			if (App->input->keyboardstate[SDL_SCANCODE_Z] == KEY_PUSHED) appleattack = true;
+		}
+		else if(Player==App->player2){
+			if (App->input->keyboardstate[SDL_SCANCODE_N] == KEY_PUSHED)appleattack = true;
+		}*/
 	}
+
 	//CHECK TIMERS//
 	if (jump_timer > 0) {
 		if (position.y == 210) {
