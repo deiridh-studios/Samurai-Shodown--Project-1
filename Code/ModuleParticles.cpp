@@ -27,7 +27,7 @@ bool ModuleParticles::Start()
 	graphics = App->textures->Load("sprites/spritesHaohmaruFIXED.png");
 
 	// Tornado particle
-
+	/*
 	////////Tornado animation
 
 	tornado.anim.PushBack({ 1182, 861, 106, 70 });
@@ -56,17 +56,29 @@ bool ModuleParticles::Start()
 	tornado2.anim.speed = 0.2f;
 	tornado2.speed.x = 0;
 	tornado2.life = 2300;
+	*/
 
 	// sword particle
-	sword.anim.PushBack({ ,2065, 8,76});
-	sword.anim.PushBack({ ,2065, 55,76});
-	sword.anim.PushBack({ ,2065, 77,76});
-	sword.anim.PushBack({ ,2065, 55,76});
-	sword.anim.PushBack({ ,2065, 8,76});
-	sword.anim.PushBack({ ,2065, 55,76});
-	sword.anim.PushBack({ ,2065, 77,76});
-	// eagle particle
+	sword.anim.PushBack({ 1561, 2065, 8,76});
+	sword.anim.PushBack({ 1616, 2065, 55,76});
+	sword.anim.PushBack({ 1676, 2065, 77,76});
+	sword.anim.PushBack({ 1761, 2065, 55,76});
+	sword.anim.PushBack({ 1859, 2065, 8,76});
+	sword.anim.PushBack({ 1911, 2065, 55,76});
+	sword.anim.PushBack({ 1976, 2065, 77,76});
+	sword.anim.speed = 0.1f;
+	sword.speed.x = 0;
+	sword.life = 2300;
 
+	// eagle particle
+	eagle.anim.PushBack({ 1181, 866, 108, 62 });
+	eagle.anim.PushBack({ 1289, 866, 105, 62 });
+	eagle.anim.PushBack({ 1394, 866, 121, 62 });
+	eagle.anim.PushBack({ 1515, 866, 121, 62 });
+	eagle.anim.PushBack({ 1636, 866, 142, 62 });
+	eagle.anim.speed = 0.2f;
+	eagle.speed.x = 0;
+	eagle.life = 2300;
 	return true;
 }
 
