@@ -423,18 +423,45 @@ ModulePlayer::ModulePlayer()
 	slash_noweapon.speed = 0.2f;
 
 	//// Special crouch attack
-
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.speed = 0.2f;
 
 	//// run with weapon
-
+	runweapon.pushback({1610 , 2640 , 72 , 76});
+	runweapon.pushback({1610 , 2640 , 72 , 76});
+	runweapon.pushback({1610 , 2640 , 72 , 76});
+	runweapon.speed = 0.2f;
 
 	//// run without weapon
-
+	runnoweapon.pushback({1610 , 2640 , 72 , 76});
+	runnoweapon.pushback({1610 , 2640 , 72 , 76});
+	runnoweapon.pushback({1610 , 2640 , 72 , 76});
+	runnoweapon.speed = 0.2f;
 
 	//// powerful slash
-
+	powerfulslash.pushback({1610 , 2640 , 72 , 76});
+	powerfulslash.pushback({1610 , 2640 , 72 , 76});
+	powerfulslash.pushback({1610 , 2640 , 72 , 76});
+	powerfulslash.pushback({1610 , 2640 , 72 , 76});
+	powerfulslash.pushback({1610 , 2640 , 72 , 76});
+	powerfulslash.pushback({1610 , 2640 , 72 , 76});
+	powerfulslash.speed = 0.2f;
 
 	//// agarre amb weapon
+	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
+	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
+	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
+	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
+	gripwithweapon.speed = 0.2f;
 
 ////.....*/
 
