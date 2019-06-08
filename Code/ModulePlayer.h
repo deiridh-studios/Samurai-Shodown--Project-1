@@ -195,6 +195,7 @@ public:
 	Animation jumpbackward;
 	Animation appleattack;
 	Animation hittedan;
+	Animation hittedan_nosword;
 	Animation crouch;
 	Animation crouchfinished;
 	Animation punchair;
@@ -219,7 +220,7 @@ public:
 	Animation punchair_noweapon;
 	Animation punchcrouch_noweapon;
 	Animation kick_noweapon;
-	Animation kickari_noweapon;
+	Animation kickair_noweapon;
 	Animation kickcrouch_noweapon;
 	Animation agarre_noweapon;
 	Animation slash_noweapon;
