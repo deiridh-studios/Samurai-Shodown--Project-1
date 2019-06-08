@@ -281,7 +281,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		current_animation = &App->player->idle;
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
-			body2.SetPos(position.x + 20, (position.y - 57));
+			body2.SetPos(position.x + 24, (position.y - 57));
 			body3.SetPos(position.x + 10, (position.y - 40));
 		}
 		else {
@@ -321,28 +321,28 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 	case A_JUMP_NEUTRAL:
 		current_animation = &App->player->jump;
 		if (flip == false) {
-			body.SetPos(position.x + 10, (position.y - 90));
-			body2.SetPos(position.x + 12, (position.y - 69));
-			body3.SetPos(position.x + 5, (position.y - 55));
+			body.SetPos(position.x + 15, (position.y - 90));
+			body2.SetPos(position.x + 26, (position.y - 69));
+			body3.SetPos(position.x + 11, (position.y - 55));
 		}
 		else {
-			body.SetPos(position.x + 35, (position.y - 90));
-			body2.SetPos(position.x + 42, (position.y - 69));
-			body3.SetPos(position.x + 30, (position.y - 55));
+			body.SetPos(position.x + 15, (position.y - 90));
+			body2.SetPos(position.x + 11, (position.y - 69));
+			body3.SetPos(position.x + 10, (position.y - 55));
 		}
 		jump = true;
 		break;
 	case A_JUMP_FORWARD:
 		current_animation = &App->player->jumpforward;
 		if (flip == false) {
-			body.SetPos(position.x + 10, (position.y - 90));
-			body2.SetPos(position.x + 12, (position.y - 69));
-			body3.SetPos(position.x + 5, (position.y - 55));
+			body.SetPos(position.x + 13, (position.y - 90));
+			body2.SetPos(position.x + 23, (position.y - 69));
+			body3.SetPos(position.x + 9, (position.y - 55));
 		}
 		else {
-			body.SetPos(position.x + 35, (position.y - 90));
-			body2.SetPos(position.x + 42, (position.y - 69));
-			body3.SetPos(position.x + 30, (position.y - 55));
+			body.SetPos(position.x + 11, (position.y - 90));
+			body2.SetPos(position.x + 11, (position.y - 69));
+			body3.SetPos(position.x + 9, (position.y - 55));
 		}
 		jump = true;
 		forward = true;
@@ -350,15 +350,15 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 	case A_JUMP_BACKWARD:
 		current_animation = &App->player->jumpbackward;
 		if (flip == false) {
-			body.SetPos(position.x + 10, (position.y - 90));
-			body2.SetPos(position.x + 12, (position.y - 69));
-			body3.SetPos(position.x + 5, (position.y - 55));
+			body.SetPos(position.x + 14, (position.y - 90));
+			body2.SetPos(position.x + 23, (position.y - 69));
+			body3.SetPos(position.x + 8, (position.y - 55));
 		}
 		else {
 
-			body.SetPos(position.x + 35, (position.y - 90));
-			body2.SetPos(position.x + 42, (position.y - 69));
-			body3.SetPos(position.x + 30, (position.y - 55));
+			body.SetPos(position.x + 11, (position.y - 90));
+			body2.SetPos(position.x + 11, (position.y - 69));
+			body3.SetPos(position.x + 11, (position.y - 55));
 		}
 		jump = true;
 		backward = true;
@@ -366,9 +366,10 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 	case A_CROUCH:
 		current_animation = &App->player->crouch;
 		if (flip == false) {
-			body.SetPos(position.x + 50, (position.y - 70));
-			body2.SetPos(position.x + 67, (position.y - 54));
-			body3.SetPos(position.x + 47, (position.y - 40));
+			body.SetPos(position.x + 28, (position.y - 70));
+			body2.SetPos(position.x + 42, (position.y - 54));
+			body3.SetPos(position.x + 23
+				, (position.y - 40));
 		}
 		else {
 			body.SetPos(position.x + 15, (position.y - 70));
