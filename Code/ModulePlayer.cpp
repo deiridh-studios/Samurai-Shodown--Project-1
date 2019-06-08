@@ -357,72 +357,80 @@ ModulePlayer::ModulePlayer()
 	strongerslash.PushBack({ 663, 2488'5, 97, 91'5});
 	strongerslash.PushBack({ 834, 2488'5, 145, 91'5 });
 	//strongerslash.speed = 0.2f;
-	/*
+	
 	/////////////////////////////////////////////
 	///////animations ukyo no weapon////////////
 	///////////////////////////////////////////
 
 	/////punchair no weapon
-
+	punchair_noweapon({ 1299 , 2497 , 56 , 83 });
+	punchair_noweapon({ 1378 , 2497 , 80 , 76 });
+	punchair_noweapon({ 1465 , 2497 , 84 , 77 });
+	punchair_noweapon({ 1465 , 2497 , 84 , 77 });
+	punchair_noweapon({ 1378 , 2497 , 80 , 76 });
+	punchair_noweapon({ 1299 , 2497 , 56 , 83 });
+	punchair_noweapon.speed = 0.2f
 	/////strogpunch no weapon
-	strongpunch_noweapon.pushback({20 , 2771 , 56 , 83 });
-	strongpunch_noweapon.pushback({77 , 2771 , 79 , 83});
-	strongpunch_noweapon.pushback({});
+	strongpunch_noweapon.PushBack({20 , 2771 , 56 , 83 });
+	strongpunch_noweapon.PushBack({77 , 2771 , 79 , 83});
+	strongpunch_noweapon.PushBack({});
 	strongpunch_noweapon.speed=0.2f;
 
 
 
 	////punchcrouch no weapon
-	punchcrouch_noweapon.pushback({1299 , 2497 , 56 , 83});
-	punchcrouch_noweapon.pushback({1378 , 2497 , 80 , 76});
-	punchcrouch_noweapon.pushback({1465 , 2497 , 84 , 77});
-	punchcrouch_noweapon.pushback({1465 , 2497 , 84 , 77});
-	punchcrouch_noweapon.pushback({1378 , 2497 , 80 , 76});
-	punchcrouch_noweapon.pushback({1299 , 2497 , 56 , 83});
+	punchcrouch_noweapon.PushBack({1299 , 2497 , 56 , 83});
+	punchcrouch_noweapon.PushBack({1378 , 2497 , 80 , 76});
+	punchcrouch_noweapon.PushBack({1465 , 2497 , 84 , 77});
+	punchcrouch_noweapon.PushBack({1465 , 2497 , 84 , 77});
+	punchcrouch_noweapon.PushBack({1378 , 2497 , 80 , 76});
+	punchcrouch_noweapon.PushBack({1299 , 2497 , 56 , 83});
 	punchcrouch_noweapon.speed=0.2f;
 
 	/////kick no weapon
-	kick_noweapon.pushback({998 , 2493 , 77 , 87});
-	kick_noweapon.pushback(1086 , 2493 , 89 , 88});
-	kick_noweapon.pushback({1174 , 2493 , 97 , 88});
-	kick_noweapon.pushback({1174 , 2493 , 97 , 88});
-	kick_noweapon.pushback(1086 , 2493 , 89 , 88});
-	kick_noweapon.pushback({998 , 2493 , 77 , 87});
+	kick_noweapon.PushBack({998 , 2493 , 77 , 87});
+	kick_noweapon.PushBack(1086 , 2493 , 89 , 88});
+	kick_noweapon.PushBack({1174 , 2493 , 97 , 88});
+	kick_noweapon.PushBack({1174 , 2493 , 97 , 88});
+	kick_noweapon.PushBack(1086 , 2493 , 89 , 88});
+	kick_noweapon.PushBack({998 , 2493 , 77 , 87});
 	kick_noweapon.speed=0.2f;
 
 
 	//// kickair no weapon
-	kickair_noweapon.pushback({});
-	kickair_noweapon.pushback({});
-	kickair_noweapon.pushback({});
-	kickair_noweapon.pushback({});
+	kickair_noweapon.PushBack({0, 2634 , 63 , 84});
+	kickair_noweapon.PushBack({60 , 2634 , 85 , 84});
+	kickair_noweapon.PushBack({144 , 2631 , 111 , 84});
+	kickair_noweapon.PushBack({ 144 , 2631 , 111 , 84 });
+	kickair_noweapon.PushBack({ 60 , 2634 , 85 , 84 });
+	kickair_noweapon.PushBack({ 0, 2634 , 63 , 84 });
 	kickair_noweapon.speed=0.2f;
 
 	//// kickcrouch no weapon
-	kickcrouch_noweapon.pushback({302 , 2787 , 69 , 67});
-	kickcrouch_noweapon.pushback({402 , 2787 , 64 , 67});
-	kickcrouch_noweapon.pushback({484 , 2787 , 72 , 67});
-	kickcrouch_noweapon.pushback({684 , 2787 , 104 , 67});
-	kickcrouch_noweapon.pushback({684 , 2787 , 104 , 67});
-	kickcrouch_noweapon.pushback({484 , 2787 , 72 , 67});
-	kickcrouch_noweapon.pushback({402 , 2787 , 64 , 67});
-	kickcrouch_noweapon.pushback({302 , 2787 , 69 , 67});
+	kickcrouch_noweapon.PushBack({302 , 2787 , 69 , 67});
+	kickcrouch_noweapon.PushBack({402 , 2787 , 64 , 67});
+	kickcrouch_noweapon.PushBack({484 , 2787 , 72 , 67});
+	kickcrouch_noweapon.PushBack({684 , 2787 , 104 , 67});
+	kickcrouch_noweapon.PushBack({684 , 2787 , 104 , 67});
+	kickcrouch_noweapon.PushBack({484 , 2787 , 72 , 67});
+	kickcrouch_noweapon.PushBack({402 , 2787 , 64 , 67});
+	kickcrouch_noweapon.PushBack({302 , 2787 , 69 , 67});
 	kickcrouch_noweapon.speed = 0.2f;
 
 	////agarre
-	aggarre_noweapon.pushback({992 , 2621 , 73 , 96});
-	aggarre_noweapon.pushback({1065 , 2621 , 68 , 96});
-	aggarre_noweapon.pushback({1132 , 2621 , 66 , 96});
-	aggarre_noweapon.pushback({1196 , 2621 , 58 , 96});
+	aggarre_noweapon.PushBack({992 , 2621 , 73 , 96});
+	aggarre_noweapon.PushBack({1065 , 2621 , 68 , 96});
+	aggarre_noweapon.PushBack({1132 , 2621 , 66 , 96});
+	aggarre_noweapon.PushBack({1196 , 2621 , 58 , 96});
 	aggarre_noweapon.speed=0.2f;
 
 	/////slash
-	slash_noweapon.pushback({1610 , 2640 , 72 , 76});
-	slash_noweapon.pushback({1681 ,2640 , 72 , 76});
-	slash_noweapon.pushback({1748 , 2640 , 72 , 76});
+	slash_noweapon.PushBack({1610 , 2640 , 72 , 76});
+	slash_noweapon.PushBack({1681 ,2640 , 72 , 76});
+	slash_noweapon.PushBack({1748 , 2640 , 72 , 76});
 	slash_noweapon.speed = 0.2f;
 
-	*/
+
 
 	//// Special crouch attack
 	specialcrouchattack.PushBack({56, 2305'1 , 115, 139});

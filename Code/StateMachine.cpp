@@ -369,7 +369,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		break;
 	case A_PUNCH_STANDING:
 		if(sword==true)current_animation = &App->player->punch;			///////////////DO THAT WITH ALL THE ATTACKS (THE SWORD BOOL IS TO SHOW WHETHER THE CHARACTER HAS THE SWORD OR NO
-		else { /*current_animation = &App->player->punchnoweapon(sprites missing)*/ }															/////////////// SO WHEN HE HAS THE SWORD, THE ANIMATIONS AND THE COLLISION BOXES (AND PROBABLY THE SOUND) WILL BE DIFFERENT
+		else { current_animation = &App->player->strongpunch_noweapon; };														/////////////// SO WHEN HE HAS THE SWORD, THE ANIMATIONS AND THE COLLISION BOXES (AND PROBABLY THE SOUND) WILL BE DIFFERENT
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -393,8 +393,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		break;
 	case A_PUNCHL_STANDING:
 		if (sword = true) current_animation = &App->player->punch;
-		else {/*else {current_animation = &App->player->punchnoweapon(sprites missing)
-			*/
+		else {
+			current_animation = &App->player->strongpunch_noweapon;
 		};
 		//ANIMATION
 		if (punch_timer == 1) {
@@ -420,7 +420,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		break;
 	case A_PUNCHS_STANDING:
 		if (sword = true)current_animation = &App->player->strongerslash;	//ANIMATION
-		else { /*current_animation = &App->player->punchnoweapon(tosprite); */ }
+		else { current_animation = &App->player->strongpunch_noweapon; }
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -485,7 +485,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		break;
 	case A_PUNCHL_NEUTRAL_JUMP:
 		if (sword = true)current_animation = &App->player->punchair;	//ANIMATION
-		else { /*current_animation = &App->player->punchair_noweapon(tosprite); */ }				//ANIMATION
+		else { current_animation = &App->player->punchair_noweapon(tosprite);  }				//ANIMATION
 		/*if (flip == false) {
 			body.SetPos(position.x + 50, (position.y - 120));
 			body2.SetPos(position.x + 52, (position.y - 99));

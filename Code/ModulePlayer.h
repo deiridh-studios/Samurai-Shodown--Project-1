@@ -66,6 +66,15 @@ enum state {
 	A_RUN_WEAPON,
 	A_RUN_NOWEAPON,
 	A_POWERFUL_SLASH,
+	A_STRONGPUNCH_NOWEAPON,
+	A_PUNCH_AIR_NOWEAPON,
+	A_PUNCH_CROUCH_NOWEAPON,
+	A_KICK_NOWEAPON,
+	A_KICK_AIR_NOWEAPON,
+	A_KICK_CROUCH_NOWEAPON,
+	A_AGARRE_NOWEAPON,
+	A_SLASH_NOWEAPON,
+
 
 };
 enum inputin {
@@ -206,7 +215,17 @@ public:
 	Animation runnoweapon;
 	Animation powerfulslash;
 	Animation gripwithweapon;
+	Animation strongpunch_noweapon;
+	Animation punchair_noweapon;
+	Animation punchcrouch_noweapon;
+	Animation kick_noweapon;
+	Animation kickari_noweapon;
+	Animation kickcrouch_noweapon;
+	Animation agarre_noweapon;
+	Animation slash_noweapon;
 	SDL_Rect shadowrect;
+
+
 
 
 	iPoint position;
