@@ -983,13 +983,13 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 66,(position.y - 48),50,98 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x +66,(position.y - 48),50,98 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x += 24;
 			}
 			else {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x -20 ,(position.y - 48),50,98 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x -20,(position.y - 48),50,98 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x -= 24;
 			}			//COLLIDER BOX*/
 		}
@@ -1015,13 +1015,13 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 66,(position.y + 448),50,98 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 66,(position.y + 448),50,98 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x += 24;
 			}
 			else {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x -20,(position.y + 450),50,98 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x -20,(position.y + 448),50,98 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x -= 24;
 			}			//COLLIDER BOX*/
 		}
