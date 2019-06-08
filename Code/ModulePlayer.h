@@ -65,7 +65,8 @@ enum state {
 	A_SPECIAL_ATTACK_CROUCH,
 	A_RUN_WEAPON,
 	A_RUN_NOWEAPON,
-	A_POWERFUL_SLASH
+	A_POWERFUL_SLASH,
+
 };
 enum inputin {
 	S_NONE = 0,

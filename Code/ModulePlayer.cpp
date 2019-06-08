@@ -422,48 +422,50 @@ ModulePlayer::ModulePlayer()
 	slash_noweapon.pushback({1748 , 2640 , 72 , 76});
 	slash_noweapon.speed = 0.2f;
 
+	*/
+
 	//// Special crouch attack
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
-	specialcrouchattack.pushback({1610 , 2640 , 72 , 76});
+	specialcrouchattack.PushBack({56, 2305'1 , 115, 139});
+	specialcrouchattack.PushBack({242, 2305'1 , 360, 139});
+	specialcrouchattack.PushBack({433, 2305'1 , 572, 139});
+	specialcrouchattack.PushBack({622, 2305'1 , 762, 139});
+	specialcrouchattack.PushBack({812, 2305'1 , 951, 139});
+	specialcrouchattack.PushBack({1003, 2305'1 , 1141, 139});
+	specialcrouchattack.PushBack({1190 , 2305'1 , 1329, 139});
+	specialcrouchattack.PushBack({1381, 2305'1 , 1521, 139});
+	specialcrouchattack.PushBack({1571, 2305'1 , 1710, 139});
+	specialcrouchattack.PushBack({1765, 2305'1 , 1826, 139});
 	specialcrouchattack.speed = 0.2f;
 
 	//// run with weapon
-	runweapon.pushback({1610 , 2640 , 72 , 76});
-	runweapon.pushback({1610 , 2640 , 72 , 76});
-	runweapon.pushback({1610 , 2640 , 72 , 76});
+	runweapon.PushBack({1275 , 2640 , 101 , 78});
+	runweapon.PushBack({1376 , 2640 , 98, 78});
+	runweapon.PushBack({1474 , 2640 , 100 , 78});
 	runweapon.speed = 0.2f;
 
 	//// run without weapon
-	runnoweapon.pushback({1610 , 2640 , 72 , 76});
-	runnoweapon.pushback({1610 , 2640 , 72 , 76});
-	runnoweapon.pushback({1610 , 2640 , 72 , 76});
+	runnoweapon.PushBack({1609 , 2640 , 73 , 78});
+	runnoweapon.PushBack({1681 , 2640 , 67 , 78});
+	runnoweapon.PushBack({1749 , 2640 , 70 , 78});
 	runnoweapon.speed = 0.2f;
 
 	//// powerful slash
-	powerfulslash.pushback({1610 , 2640 , 72 , 76});
-	powerfulslash.pushback({1610 , 2640 , 72 , 76});
-	powerfulslash.pushback({1610 , 2640 , 72 , 76});
-	powerfulslash.pushback({1610 , 2640 , 72 , 76});
-	powerfulslash.pushback({1610 , 2640 , 72 , 76});
-	powerfulslash.pushback({1610 , 2640 , 72 , 76});
+	powerfulslash.PushBack({821 , 2747 , 73 , 155});
+	powerfulslash.PushBack({978 , 2747 , 82 , 155});
+	powerfulslash.PushBack({1130 , 2747 , 155 , 155});
+	powerfulslash.PushBack({1286 , 2747 , 157, 155});
+	powerfulslash.PushBack({1442 , 2747 , 159, 155});
+	powerfulslash.PushBack({1602 , 2747 , 145, 155});
 	powerfulslash.speed = 0.2f;
 
 	//// agarre amb weapon
-	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
-	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
-	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
-	gripwithweapon.pushback({1610 , 2640 , 72 , 76});
+	gripwithweapon.PushBack({659 , 2604 , 76 , 114});
+	gripwithweapon.PushBack({733 , 2604 , 68 , 114});
+	gripwithweapon.PushBack({801 , 2604 , 63 , 114});
+	gripwithweapon.PushBack({865 , 2604 , 57 , 114});
 	gripwithweapon.speed = 0.2f;
 
-////.....*/
+
 
 }
 
