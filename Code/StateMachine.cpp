@@ -137,6 +137,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 			else if (inputstate[0] == S_NONE)inputstate[0] = S_T;
 		}
 
+
 		//CHECK LIGHT/STRONG PUNCH AND VARIATIONS OF IT//
 		punch = false;
 		if (Player == App->player) {
@@ -189,6 +190,7 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 			else if (inputstate[0] == S_CROUCH_LEFT) inputstate[0] = S_Y_CROUCH_LEFT;
 			else if (inputstate[0] == S_NONE)inputstate[0] = S_Y;
 		}
+	
 
 		//CHECK NORMAL/STRONG KICK AND VARIATIONS OF IT//
 		kick = false;
@@ -198,6 +200,8 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		else if (Player == App->player2) {
 			if (App->input->keyboardstate[SDL_SCANCODE_SEMICOLON] == KEY_PUSHED) kick = true;
 		}
+
+		
 		if (kick == true) {
 			if (inputstate[0] == S_RIGHT_DOWN)inputstate[0] = S_U_RIGHT;
 			else if (inputstate[0] == S_LEFT_DOWN)inputstate[0] = S_U_LEFT;
@@ -220,7 +224,15 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 			else if (inputstate[0] == S_Y_CROUCH_RIGHT) inputstate[0] = S_YU_CROUCH_RIGHT;
 			else if (inputstate[0] == S_Y_CROUCH_LEFT) inputstate[0] = S_YU_CROUCH_LEFT;
 		}
+		/*bool appleattack = false;
+		if (Player == App->player) {
+			if (App->input->keyboardstate[SDL_SCANCODE_Z] == KEY_PUSHED) appleattack = true;
+		}
+		else if(Player==App->player2){
+			if (App->input->keyboardstate[SDL_SCANCODE_N] == KEY_PUSHED)appleattack = true;
+		}*/
 	}
+
 	//CHECK TIMERS//
 	if (jump_timer > 0) {
 		if (position.y == 210) {
@@ -1378,7 +1390,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x -= 24;
-			}			COLLIDER BOX*/
+			}			//COLLIDER BOX*/
 		}
 		if (current_animation->GetFinished() == 1) {
 			if (flip == true) {
