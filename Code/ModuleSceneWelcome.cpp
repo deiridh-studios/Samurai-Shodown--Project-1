@@ -118,7 +118,7 @@ bool  ModuleSceneWelcome::Start() {
 	return true;
 }
 
-int notdo = 0;
+int notdo = 1;
 
 update_status  ModuleSceneWelcome::Update() {
 	SDL_Rect rect{ 0,0,rectbackground.w*SCREEN_SIZE, rectbackground.h*SCREEN_SIZE };
@@ -133,14 +133,17 @@ update_status  ModuleSceneWelcome::Update() {
 			App->render->Blit(graphics, 23, 190, &snkrect, 0.0f);
 		}
 	}
-
-	if ((Title.current_frame >= 67) && (notdo==0)) {
+	if (Title.current_frame >= 67&&notdo==1) {
+		time = SDL_GetTicks(); 
+		notdo = 0;
+	}
+	if ((SDL_GetTicks()-time>=5000) && (notdo==0)) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->scenewelcome, App->sceneearthquake, 0.5F);
 		notdo = 1;
 	}
 
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) {
+	if (App->fade->finished == true && App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->scenewelcome, App->characterselection, 0.5F);
 		notdo = 1;
