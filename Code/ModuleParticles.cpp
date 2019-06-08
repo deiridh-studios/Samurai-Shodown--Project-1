@@ -57,6 +57,15 @@ bool ModuleParticles::Start()
 	tornado2.speed.x = 0;
 	tornado2.life = 2300;
 
+	// sword particle
+	sword.anim.PushBack({ ,2065, 8,76});
+	sword.anim.PushBack({ ,2065, 55,76});
+	sword.anim.PushBack({ ,2065, 77,76});
+	sword.anim.PushBack({ ,2065, 55,76});
+	sword.anim.PushBack({ ,2065, 8,76});
+	sword.anim.PushBack({ ,2065, 55,76});
+	sword.anim.PushBack({ ,2065, 77,76});
+	// eagle particle
 
 	return true;
 }

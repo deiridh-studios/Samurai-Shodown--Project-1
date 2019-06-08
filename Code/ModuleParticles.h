@@ -52,6 +52,8 @@ public:
 
 	Particle tornado;
 	Particle tornado2;
+	Particle eagle;
+	Particle sword;
 };
 
 #endif // __MODULEPARTICLES_H__
