@@ -475,7 +475,11 @@ ModulePlayer::ModulePlayer()
 	gripwithweapon.PushBack({865 , 2604 , 57 , 114});
 	gripwithweapon.speed = 0.2f;
 
+	//// dash
+	dash.PushBack({ 1860, 2616, 71, 101 });
 
+	////dash no weapon
+	dashnoweapon.PushBack({93, 2624, 71, 93});
 
 }
 
