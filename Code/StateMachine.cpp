@@ -1532,7 +1532,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
 		break;
 	case A_DASH:
-		//current_animation = &App->player->firebird;		ANIMATION
+		//current_animation = &App->player->(=);		//ANIMATION
 
 		/////////////COLLISION BOXES
 		forward = true;

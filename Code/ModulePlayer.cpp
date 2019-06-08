@@ -432,7 +432,7 @@ ModulePlayer::ModulePlayer()
 	slash_noweapon.PushBack({1748 , 2640 , 72 , 76});
 	slash_noweapon.speed = 0.2f;
 
-
+	
 
 	//// Special crouch attack
 	specialcrouchattack.PushBack({56, 2305'1 , 115, 139});
