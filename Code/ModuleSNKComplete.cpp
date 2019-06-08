@@ -1477,7 +1477,7 @@ update_status  ModuleSNKComplete::Update() {
 	App->render->Blit(graphics, 0, 0, &(Background.GetCurrentFrame()), 0.0f);
 
 
-	if (App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) {
+	if ((App->fade->finished == true && App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED)||Background.finished==1) {
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->SNKComplete, App->scenewelcome, 1);
 	}

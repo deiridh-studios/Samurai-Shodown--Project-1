@@ -20,5 +20,6 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation Words;
 	Animation Title;
+	int time;
 };
 #endif //

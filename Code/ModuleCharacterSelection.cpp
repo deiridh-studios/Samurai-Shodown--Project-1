@@ -240,7 +240,7 @@ ModuleCharacterSelection::~ModuleCharacterSelection() {}
 
 bool  ModuleCharacterSelection::Start() {
 
-	App->audio->LoadMusic("Music/start.ogg");
+	App->audio->LoadMusic("Music/characterselection.ogg");
 	App->audio->PlayMusic(App->audio->musics[0]);
 	graphics = App->textures->Load("Sprites/CharactersSelection.png");
 	passingmenu = App->audio->LoadChunk("Audio_FX/SelMenu.wav");
@@ -451,7 +451,7 @@ update_status  ModuleCharacterSelection::Update() {
 	App->render->Blit(graphics, posanx1, 72, &(CurrentAn.GetCurrentFrame()), 0.0f);
 	App->render->Blit(graphics, posanx2, 72, &(CurrentAn2.GetCurrentFrame()), 0.0f); //144
 
-	if ((App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (positionxp1 == 153 && positionyp1 == 15) && (positionxp2 == 153 && positionyp2 == 15)) {
+	if ((App->fade->finished == true && App->input->keyboardstate[SDL_SCANCODE_SPACE] == KEY_PUSHED) && (positionxp1 == 153 && positionyp1 == 15) && (positionxp2 == 153 && positionyp2 == 15)) {
 		App->audio->PlayChunk(entermenu);
 		App->audio->StopMusic();
 		App->fade->FadeToBlack(App->characterselection, App->background, 2);
