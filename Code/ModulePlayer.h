@@ -76,6 +76,7 @@ enum state {
 	A_KICK_CROUCH_NOWEAPON,
 	A_AGARRE_NOWEAPON,
 	A_SLASH_NOWEAPON,
+	A_PROTECT,
 
 
 };
@@ -228,6 +229,7 @@ public:
 	Animation slash_noweapon;
 	Animation dash;
 	Animation dashnoweapon;
+	Animation protect;
 	SDL_Rect shadowrect;
 
 

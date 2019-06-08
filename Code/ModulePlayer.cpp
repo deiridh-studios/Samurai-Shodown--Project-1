@@ -481,6 +481,10 @@ ModulePlayer::ModulePlayer()
 	////dash no weapon
 	dashnoweapon.PushBack({93, 2624, 71, 93});
 
+	////protect
+	protect.PushBack({1919, 48, 68, 90});
+	protect.PushBack({1987, 48, 75'5, 90});
+
 }
 
 ModulePlayer::~ModulePlayer()
