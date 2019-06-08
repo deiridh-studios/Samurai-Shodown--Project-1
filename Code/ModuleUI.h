@@ -111,7 +111,11 @@ private:
 	bool finishpow1;
 	bool finishpow2;
 	bool finished;
-
+	Animation engarde;
+	Animation begin;
+	Animation duel;
+	Animation perfect;
+	Animation welldone;
 
 };
 #endif

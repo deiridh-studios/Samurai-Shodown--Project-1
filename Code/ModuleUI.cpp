@@ -16,7 +16,101 @@
 #include<stdio.h>
 
 
-ModuleUI::ModuleUI(){}
+ModuleUI::ModuleUI(){
+	////engarde
+	engarde.PushBack({0, 302'5, 175, 4'5});
+	engarde.PushBack({0, 296'5, 175, 6'5});
+	engarde.PushBack({0, 288'5, 175, 7});
+	engarde.PushBack({0, 278, 175, 10'5});
+	engarde.PushBack({0, 265, 175, 12'5});
+	engarde.PushBack({0, 251, 175, 14'5});
+	engarde.PushBack({0, 235, 175, 16'5});
+	engarde.PushBack({0, 217, 175, 18});
+	engarde.PushBack({0, 197, 175, 19});
+	engarde.PushBack({0, 173'5, 175, 23'5});
+	engarde.PushBack({0, 149, 175, 24'5});
+	engarde.PushBack({0, 123, 175, 26'5});
+	engarde.PushBack({0, 94'5, 175, 29'5});
+	engarde.PushBack({0, 64, 175, 30});
+	engarde.PushBack({0, 31'5, 175, 32});
+	engarde.PushBack({0, 0, 175, 32'5});
+	
+
+	////begin
+	begin.PushBack({177'5, 326, 20'5, 10});
+	begin.PushBack({177'5, 338, 32, 16});
+	begin.PushBack({177'5, 353'5, 46'5, 24'5});
+	begin.PushBack({ 101, 317, 60, 28});
+	begin.PushBack({ 101, 346, 72, 35});
+	begin.PushBack({0, 321, 84, 41});
+	begin.PushBack({0, 363, 97, 47});
+	begin.PushBack({0, 412, 104, 49});
+	begin.PushBack({0, 462, 104, 50});
+
+	////duel
+	duel.PushBack({ 243, 112, 165, 5});
+	duel.PushBack({ 243, 116, 165, 6'5});
+	duel.PushBack({ 243, 122, 165, 8'5});
+	duel.PushBack({ 243, 130, 165, 11});
+	duel.PushBack({ 243, 141'5, 165, 10});
+	duel.PushBack({ 243, 152, 165, 13'5});
+	duel.PushBack({ 243, 165, 165, 16'5});
+	duel.PushBack({ 243, 181, 165, 18});
+	duel.PushBack({ 243, 199'5, 165, 20});
+	duel.PushBack({ 243, 219, 165, 22'5});
+	duel.PushBack({ 243, 241'5, 165, 23'5});
+	duel.PushBack({ 243, 265, 165, 25});
+	duel.PushBack({ 243, 290, 165, 29});
+	duel.PushBack({ 243, 318, 165, 29'5});
+	duel.PushBack({ 243, 348, 165, 33});
+	duel.PushBack({ 384, 109, 61, 32});
+	duel.PushBack({ 384, 139'5, 57, 29'5});
+	duel.PushBack({ 384, 168, 54, 27});
+	duel.PushBack({ 384, 194'5, 49, 26'5});
+	duel.PushBack({ 384, 223, 45, 23'5});
+	duel.PushBack({ 384, 247, 42, 21});
+	duel.PushBack({ 384, 269, 38, 19});
+	duel.PushBack({ 384, 288'5, 34, 17'5});
+	duel.PushBack({ 384, 309'5, 30, 15'5});
+	duel.PushBack({ 384, 325'5, 26, 13'5});
+	duel.PushBack({ 384, 341, 22, 11});
+	duel.PushBack({ 384, 353'5, 18, 9'5});
+	duel.PushBack({ 384, 364, 14, 7});
+	duel.PushBack({ 384, 372, 10, 5});
+
+	////perfect
+	perfect.PushBack({ 424, 499, 16'5, 15});
+	perfect.PushBack({ 423, 488, 23, 23});
+	perfect.PushBack({ 390, 484, 30'5, 30});
+	perfect.PushBack({ 351, 484, 36, 36});
+	perfect.PushBack({ 302, 483, 43'5, 43});
+	perfect.PushBack({ 245'5, 483, 50'5, 51'5});
+	perfect.PushBack({ 183, 483, 57, 57});
+	perfect.PushBack({ 113, 483, 65, 64});
+	perfect.PushBack({ 374'5, 438, 70'5, 71});
+	perfect.PushBack({ 294, 438, 77, 77});
+	perfect.PushBack({ 207, 438, 84'5, 84});
+	perfect.PushBack({ 113, 438, 92, 92});
+	perfect.PushBack({ 335, 384, 97, 98});
+	perfect.PushBack({ 228, 384, 104, 105});
+	perfect.PushBack({ 113, 384, 112, 112});
+
+	////welldone
+	welldone.PushBack({ 465, 101, 20, 5});
+	welldone.PushBack({ 465, 93, 29, 7});
+	welldone.PushBack({ 465, 81, 46, 11});
+	welldone.PushBack({ 405, 94'5, 56, 14'5});
+	welldone.PushBack({ 340, 93, 65, 17});
+	welldone.PushBack({ 266, 92, 74, 18});
+	welldone.PushBack({ 183, 91'5, 83, 19'5});
+	welldone.PushBack({ 333, 75, 92, 20});
+	welldone.PushBack({ 333, 52'5, 100, 21'5});
+	welldone.PushBack({ 333, 28, 108, 24'5});
+	welldone.PushBack({ 333, 0, 117, 27'5});
+	welldone.PushBack({ 183, 63, 127, 30});
+	welldone.PushBack({ 183, 136, 136, 30'5});
+	welldone.PushBack({ 183, 0, 145, 32});
+}
 ModuleUI::~ModuleUI() {}
 bool ModuleUI::Init() {
 	font_score = App->fonts->Load("Sprites/Numbers FONT.png", "0123456789-.,defghij", 2);
