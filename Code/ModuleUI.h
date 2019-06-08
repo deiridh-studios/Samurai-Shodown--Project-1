@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Globals.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 struct Mix_Chunk;
@@ -87,6 +88,7 @@ private:
 	float player2life;
 	SDL_Texture *textlife;
 	SDL_Texture *level4;
+	SDL_Texture *textletters;
 	int koblink;
 	int timeblink;
 	int lifeblink;
@@ -111,6 +113,9 @@ private:
 	bool finishpow1;
 	bool finishpow2;
 	bool finished;
+	bool startletters;
+	bool finishletters;
+	bool toperfect;
 	Animation engarde;
 	Animation begin;
 	Animation duel;

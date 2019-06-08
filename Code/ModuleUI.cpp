@@ -119,6 +119,7 @@ bool ModuleUI::Init() {
 	font_credits = App->fonts->Load("Sprites/NumbersCreditsFONT.png", "0123456789", 1);
 	font_finalpoints = App->fonts->Load("Sprites/YellowNumbersAndPercent.png", "0123456789%", 1);
 	textlife = App->textures->Load("Sprites/Sprite_Sheet_UI_1.png");
+	textletters = App->textures->Load("Sprites/Sprite_Sheet_UI_2.png");
 	level4 = App->textures->Load("Sprites/CreditsandLevel4.png");
 	sumpoints = App->audio->LoadChunk("Audio_FX/End_Combat_Points.wav");
 	sumpoints2 = App->audio->LoadChunk("Audio_FX/Enter_in_Menu.wav");
@@ -241,8 +242,10 @@ bool ModuleUI::Init() {
 	npow1 = npow2 = 0;
 	startplay = false;
 	finishpow1 = finishpow2 = false;
+	startletters = finishletters = true;
 	totalscore = lifescore = timescore = hitsscore = 0;
 	finished = false;
+	toperfect = false;
 	return true;
 }
 bool ModuleUI::CleanUp() {
@@ -256,12 +259,21 @@ bool ModuleUI::CleanUp() {
 	App->fonts->UnLoad(font_score_white);
 	App->fonts->UnLoad(font_points);
 	App->fonts->UnLoad(font_credits);
+	App->textures->Unload(textletters);
 	App->textures->Unload(textlife);
 	App->textures->Unload(level4);
 	return true;
 }
 update_status ModuleUI::Update() {
-	if (play == true && App->fade->finished == true) {
+	////////////////EN GARDE AND BEGIN//////////////////
+	if (App->background->IsEnabled() == true && App->fade->finished == true&&startletters==true) {
+		Animation* current_animation=&engarde;
+		if (engarde.finished == true)current_animation = &duel;
+		if (duel.finished == true)current_animation = &begin;
+		App->render->Blit(textletters, 100, 100, &(current_animation->GetCurrentFrame()), 1.0f, false);
+		if(begin.finished==true)startletters = false;
+	}
+	if (play == true && App->fade->finished == true&&startletters==false) {
 		///////TIMER/////////
 		int oldtime=0;
 		if (finished == false)startplay = true;
@@ -499,7 +511,23 @@ update_status ModuleUI::Update() {
 
 		/////////////////////SCORES AT THE FINISH////////////////////////////
 		if (finished == true) {
-			if (totalscore == 0 && hitsscore == 0 && lifescore == 0 && timescore == 0) {
+			if (finishletters == true) {
+				Animation* current_animation;
+				if (victory != 0 && (roundsp1 == 2 || roundsp2 == 2 || rounds == 4));//victory
+				else if (victory != 0);//ippon
+				else;//timeup
+				//if victory/ippon finished and if (roundsp1 == 2 || roundsp2 == 2 || rounds == 4) well done && ukyo
+				//else if victory/ippon finished ukyo
+				//else draw
+				//if ukyo finished && (player1life==32||player2life==32)perfect
+				//else if ukyo finished perfect.Finished()
+				//if draw finished && rounds==4 duel finished
+				//else if draw finished duelfinished.Finished()
+				//}
+				//Blit
+				/*if ukyo/duelfinished finished*/finishletters = false;
+			}
+			if (totalscore == 0 && hitsscore == 0 && lifescore == 0 && timescore == 0&&finishletters==false) {
 				initialtime = SDL_GetTicks();
 				App->render->zoom = false;
 				if (victory != 0) {
@@ -520,7 +548,7 @@ update_status ModuleUI::Update() {
 				}
 				else totalscore++;
 			}
-			if (SDL_GetTicks() - initialtime >= 2000||victory==0) {
+			if ((SDL_GetTicks() - initialtime >= 2000||victory==0)&&finishletters==false) {
 				if (victory!=0) {
 					App->render->Blit(textlife, 60, 70, &liferect, 0.0f, false);
 					if(counter>2)App->render->Blit(textlife, 60, 100, &timerect, 0.0f, false);
@@ -611,7 +639,7 @@ update_status ModuleUI::Update() {
 	}
 
 	/////////BETWEEN ROUNDS OR BETWEEN FIGHTS////////
-	else {
+	else if(startletters==false){
 		koblink = 0;
 		counter = 0;
 		timeblink = 0;
@@ -622,7 +650,15 @@ update_status ModuleUI::Update() {
 		player1life = player2life = 32;
 		doinitialtime = true;
 		finished = false;
+		startletters = true;
+		finishletters = true;
 		totalscore = lifescore = timescore = hitsscore = 0;
+		engarde.Reset();
+		duel.Reset();
+		begin.Reset();
+		welldone.Reset();
+		perfect.Reset();
+		//RESET ALL NEW ANIMATIONS
 		if (roundsp1 > 0 || roundsp2 > 0)play = true;
 		
 	}
