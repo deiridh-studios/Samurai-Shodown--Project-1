@@ -1328,26 +1328,68 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 			if (pow == false && App->player2->pow == false) {
 				if(App->player2->actual3==A_PUNCH_STANDING) App->UI->DamageTaken(1, ((float)32/ (float)7), 3);
 				else if(App->player2->actual3 == A_PUNCH_BACKWARD_JUMP|| App->player2->actual3 == A_PUNCH_FORWARD_JUMP|| App->player2->actual3 == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)16/ (float)3), 3);
-				else if(App->player2->actual3 == A_PUNCH_CROUCH) App->UI->DamageTaken(1, 4, 2);
+				else if (App->player2->actual3 == A_PUNCHS_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHS_FORWARD_JUMP || App->player2->actual3 == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)16 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHL_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHL_FORWARD_JUMP || App->player2->actual3 == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)16 / (float)9), 1);
+				else if(App->player2->actual3 == A_PUNCHL_STANDING) App->UI->DamageTaken(1, ((float)16 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHS_STANDING) App->UI->DamageTaken(1, 4, 4);
+				else if (App->player2->actual3 == A_PUNCH_CROUCH) App->UI->DamageTaken(1, 4, 2);
+				else if (App->player2->actual3 == A_PUNCHS_CROUCH) App->UI->DamageTaken(1, 4, 2);
+				else if (App->player2->actual3 == A_PUNCHL_CROUCH) App->UI->DamageTaken(1, ((float)16 / (float)9), 1);
 				else if (App->player2->actual3 == A_KICK_STANDING) App->UI->DamageTaken(1, ((float)32 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_STANDING) App->UI->DamageTaken(1, ((float)8 / (float)5), 1);
+				else if (App->player2->actual3 == A_KICKS_STANDING) App->UI->DamageTaken(1, 4, 2);
 				else if (App->player2->actual3 == A_KICK_BACKWARD_JUMP || App->player2->actual3 == A_KICK_FORWARD_JUMP || App->player2->actual3 == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKS_BACKWARD_JUMP || App->player2->actual3 == A_KICKS_FORWARD_JUMP || App->player2->actual3 == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_BACKWARD_JUMP || App->player2->actual3 == A_KICKL_FORWARD_JUMP || App->player2->actual3 == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)25), 0);
 				else if (App->player2->actual3 == A_KICK_CROUCH) App->UI->DamageTaken(1, ((float)16/ (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_KICKL_CROUCH) App->UI->DamageTaken(1, ((float)8 / (float)5), ((float)1 / (float)1));
+				else if (App->player2->actual3 == A_KICKS_CROUCH) App->UI->DamageTaken(1, ((float)16 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 6,1);
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 6, 4);
 			}
 			else if (pow == false || App->player2->pow == false) {
-				if (App->player2->actual3 == A_PUNCH_STANDING) App->UI->DamageTaken(1, (64 / 7), 3);
+				if (App->player2->actual3 == A_PUNCH_STANDING) App->UI->DamageTaken(1, ((float)64 / (float)7), 3);
 				else if (App->player2->actual3 == A_PUNCH_BACKWARD_JUMP || App->player2->actual3 == A_PUNCH_FORWARD_JUMP || App->player2->actual3 == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHS_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHS_FORWARD_JUMP || App->player2->actual3 == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHL_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHL_FORWARD_JUMP || App->player2->actual3 == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHL_STANDING) App->UI->DamageTaken(1, ((float)32 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHS_STANDING) App->UI->DamageTaken(1, 8, 4);
 				else if (App->player2->actual3 == A_PUNCH_CROUCH) App->UI->DamageTaken(1, 8, 2);
-				else if (App->player2->actual3 == A_KICK_STANDING) App->UI->DamageTaken(1, (64 / 13), 1);
+				else if (App->player2->actual3 == A_PUNCHS_CROUCH) App->UI->DamageTaken(1, 8, 2);
+				else if (App->player2->actual3 == A_PUNCHL_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)9), 1);
+				else if (App->player2->actual3 == A_KICK_STANDING) App->UI->DamageTaken(1, ((float)64 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_STANDING) App->UI->DamageTaken(1, ((float)16 / (float)5), 1);
+				else if (App->player2->actual3 == A_KICKS_STANDING) App->UI->DamageTaken(1, 8, 2);
 				else if (App->player2->actual3 == A_KICK_BACKWARD_JUMP || App->player2->actual3 == A_KICK_FORWARD_JUMP || App->player2->actual3 == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)13), 1);
-				else if (App->player2->actual3 == A_KICK_CROUCH) App->UI->DamageTaken(1, (32 / 5), (1 / 2));
+				else if (App->player2->actual3 == A_KICKS_BACKWARD_JUMP || App->player2->actual3 == A_KICKS_FORWARD_JUMP || App->player2->actual3 == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_BACKWARD_JUMP || App->player2->actual3 == A_KICKL_FORWARD_JUMP || App->player2->actual3 == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)25), 0);
+				else if (App->player2->actual3 == A_KICK_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_KICKL_CROUCH) App->UI->DamageTaken(1, ((float)16 / (float)5), ((float)1 / (float)1));
+				else if (App->player2->actual3 == A_KICKS_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 12, 1);
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 12, 4);
 			}
 			else {
 				if (App->player2->actual3 == A_PUNCH_STANDING) App->UI->DamageTaken(1, ((float)128 / (float)7), 3);
 				else if (App->player2->actual3 == A_PUNCH_BACKWARD_JUMP || App->player2->actual3 == A_PUNCH_FORWARD_JUMP || App->player2->actual3 == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHS_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHS_FORWARD_JUMP || App->player2->actual3 == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHL_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHL_FORWARD_JUMP || App->player2->actual3 == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHL_STANDING) App->UI->DamageTaken(1, ((float)64 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHS_STANDING) App->UI->DamageTaken(1, 16, 4);
 				else if (App->player2->actual3 == A_PUNCH_CROUCH) App->UI->DamageTaken(1, 16, 2);
+				else if (App->player2->actual3 == A_PUNCHS_CROUCH) App->UI->DamageTaken(1, 16, 2);
+				else if (App->player2->actual3 == A_PUNCHL_CROUCH) App->UI->DamageTaken(1, ((float)64 / (float)9), 1);
 				else if (App->player2->actual3 == A_KICK_STANDING) App->UI->DamageTaken(1, ((float)128 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_STANDING) App->UI->DamageTaken(1, ((float)32 / (float)5), 1);
+				else if (App->player2->actual3 == A_KICKS_STANDING) App->UI->DamageTaken(1, 16, 2);
 				else if (App->player2->actual3 == A_KICK_BACKWARD_JUMP || App->player2->actual3 == A_KICK_FORWARD_JUMP || App->player2->actual3 == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)128 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKS_BACKWARD_JUMP || App->player2->actual3 == A_KICKS_FORWARD_JUMP || App->player2->actual3 == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)128 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_BACKWARD_JUMP || App->player2->actual3 == A_KICKL_FORWARD_JUMP || App->player2->actual3 == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)128 / (float)25), 0);
 				else if (App->player2->actual3 == A_KICK_CROUCH) App->UI->DamageTaken(1, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_KICKL_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)5), ((float)1 / (float)1));
+				else if (App->player2->actual3 == A_KICKS_CROUCH) App->UI->DamageTaken(1, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 24, 1);
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 24, 4);
 			}
 			hitted_timer = 2;
 		}
@@ -1356,26 +1398,68 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 			if (pow == false && App->player->pow == false) {
 				if (App->player->actual == A_PUNCH_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)7), 3);
 				else if (App->player->actual == A_PUNCH_BACKWARD_JUMP || App->player->actual == A_PUNCH_FORWARD_JUMP || App->player->actual == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)16 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHS_BACKWARD_JUMP || App->player->actual == A_PUNCHS_FORWARD_JUMP || App->player->actual == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)16 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHL_BACKWARD_JUMP || App->player->actual == A_PUNCHL_FORWARD_JUMP || App->player->actual == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)16 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHL_STANDING) App->UI->DamageTaken(2, ((float)16 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHS_STANDING) App->UI->DamageTaken(2, 4, 4);
 				else if (App->player->actual == A_PUNCH_CROUCH) App->UI->DamageTaken(2, 4, 2);
+				else if (App->player->actual == A_PUNCHS_CROUCH) App->UI->DamageTaken(2, 4, 2);
+				else if (App->player->actual == A_PUNCHL_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)9), 1);
 				else if (App->player->actual == A_KICK_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_STANDING) App->UI->DamageTaken(2, ((float)8 / (float)5), 1);
+				else if (App->player->actual == A_KICKS_STANDING) App->UI->DamageTaken(2, 4, 2);
 				else if (App->player->actual == A_KICK_BACKWARD_JUMP || App->player->actual == A_KICK_FORWARD_JUMP || App->player->actual == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)13), 1);
+				else if (App->player->actual == A_KICKS_BACKWARD_JUMP || App->player->actual == A_KICKS_FORWARD_JUMP || App->player->actual == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_BACKWARD_JUMP || App->player->actual == A_KICKL_FORWARD_JUMP || App->player->actual == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)25), 0);
 				else if (App->player->actual == A_KICK_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_KICKL_CROUCH) App->UI->DamageTaken(2, ((float)8 / (float)5), ((float)1 / (float)1));
+				else if (App->player->actual == A_KICKS_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 6, 1);
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 6, 4);
 			}
 			else if (pow == false || App->player->pow == false) {
 				if (App->player->actual == A_PUNCH_STANDING) App->UI->DamageTaken(2, ((float)64 / (float)7), 3);
 				else if (App->player->actual == A_PUNCH_BACKWARD_JUMP || App->player->actual == A_PUNCH_FORWARD_JUMP || App->player->actual == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHS_BACKWARD_JUMP || App->player->actual == A_PUNCHS_FORWARD_JUMP || App->player->actual == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHL_BACKWARD_JUMP || App->player->actual == A_PUNCHL_FORWARD_JUMP || App->player->actual == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHL_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHS_STANDING) App->UI->DamageTaken(2, 8, 4);
 				else if (App->player->actual == A_PUNCH_CROUCH) App->UI->DamageTaken(2, 8, 2);
+				else if (App->player->actual == A_PUNCHS_CROUCH) App->UI->DamageTaken(2, 8, 2);
+				else if (App->player->actual == A_PUNCHL_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)9), 1);
 				else if (App->player->actual == A_KICK_STANDING) App->UI->DamageTaken(2, ((float)64 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_STANDING) App->UI->DamageTaken(2, ((float)16 / (float)5), 1);
+				else if (App->player->actual == A_KICKS_STANDING) App->UI->DamageTaken(2, 8, 2);
 				else if (App->player->actual == A_KICK_BACKWARD_JUMP || App->player->actual == A_KICK_FORWARD_JUMP || App->player->actual == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)13), 1);
-				else if (App->player->actual == A_KICK_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)5), ((float)1/ (float)2));
+				else if (App->player->actual == A_KICKS_BACKWARD_JUMP || App->player->actual == A_KICKS_FORWARD_JUMP || App->player->actual == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_BACKWARD_JUMP || App->player->actual == A_KICKL_FORWARD_JUMP || App->player->actual == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)25), 0);
+				else if (App->player->actual == A_KICK_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_KICKL_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)5), ((float)1 / (float)1));
+				else if (App->player->actual == A_KICKS_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 12, 1);
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 12, 4);
 			}
 			else {
 				if (App->player->actual == A_PUNCH_STANDING) App->UI->DamageTaken(2, ((float)128 / (float)7), 3);
 				else if (App->player->actual == A_PUNCH_BACKWARD_JUMP || App->player->actual == A_PUNCH_FORWARD_JUMP || App->player->actual == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)3), 3);
-				else if (App->player->actual == A_PUNCH_CROUCH) App->UI->DamageTaken(2, 16, 2);
+				else if (App->player->actual == A_PUNCHS_BACKWARD_JUMP || App->player->actual == A_PUNCHS_FORWARD_JUMP || App->player->actual == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHL_BACKWARD_JUMP || App->player->actual == A_PUNCHL_FORWARD_JUMP || App->player->actual == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHL_STANDING) App->UI->DamageTaken(2, ((float)64 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHS_STANDING) App->UI->DamageTaken(2, 12, 4);
+				else if (App->player->actual == A_PUNCH_CROUCH) App->UI->DamageTaken(2, 12, 2);
+				else if (App->player->actual == A_PUNCHS_CROUCH) App->UI->DamageTaken(2, 12, 2);
+				else if (App->player->actual == A_PUNCHL_CROUCH) App->UI->DamageTaken(2, ((float)64 / (float)9), 1);
 				else if (App->player->actual == A_KICK_STANDING) App->UI->DamageTaken(2, ((float)128 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)5), 1);
+				else if (App->player->actual == A_KICKS_STANDING) App->UI->DamageTaken(2, 16, 2);
 				else if (App->player->actual == A_KICK_BACKWARD_JUMP || App->player->actual == A_KICK_FORWARD_JUMP || App->player->actual == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)128 / (float)13), 1);
+				else if (App->player->actual == A_KICKS_BACKWARD_JUMP || App->player->actual == A_KICKS_FORWARD_JUMP || App->player->actual == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)128 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_BACKWARD_JUMP || App->player->actual == A_KICKL_FORWARD_JUMP || App->player->actual == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)128 / (float)25), 0);
 				else if (App->player->actual == A_KICK_CROUCH) App->UI->DamageTaken(2, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_KICKL_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)5), ((float)1 / (float)1));
+				else if (App->player->actual == A_KICKS_CROUCH) App->UI->DamageTaken(2, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 24, 1);
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 24, 4);
 			}
 			hitted_timer = 2;
 		}
@@ -1388,12 +1472,142 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		current_animation = &App->player->airhitted;
 		if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player) {
 			App->audio->PlayChunk(App->player->hittedsound);
-			App->UI->DamageTaken(1, 5,1 );
+			if (pow == false && App->player2->pow == false) {
+				if (App->player2->actual3 == A_PUNCH_STANDING) App->UI->DamageTaken(1, ((float)32 / (float)7), 3);
+				else if (App->player2->actual3 == A_PUNCH_BACKWARD_JUMP || App->player2->actual3 == A_PUNCH_FORWARD_JUMP || App->player2->actual3 == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)16 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHS_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHS_FORWARD_JUMP || App->player2->actual3 == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)16 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHL_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHL_FORWARD_JUMP || App->player2->actual3 == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)16 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHL_STANDING) App->UI->DamageTaken(1, ((float)16 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHS_STANDING) App->UI->DamageTaken(1, 4, 4);
+				else if (App->player2->actual3 == A_PUNCH_CROUCH) App->UI->DamageTaken(1, 4, 2);
+				else if (App->player2->actual3 == A_PUNCHS_CROUCH) App->UI->DamageTaken(1, 4, 2);
+				else if (App->player2->actual3 == A_PUNCHL_CROUCH) App->UI->DamageTaken(1, ((float)16 / (float)9), 1);
+				else if (App->player2->actual3 == A_KICK_STANDING) App->UI->DamageTaken(1, ((float)32 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_STANDING) App->UI->DamageTaken(1, ((float)8 / (float)5), 1);
+				else if (App->player2->actual3 == A_KICKS_STANDING) App->UI->DamageTaken(1, 4, 2);
+				else if (App->player2->actual3 == A_KICK_BACKWARD_JUMP || App->player2->actual3 == A_KICK_FORWARD_JUMP || App->player2->actual3 == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKS_BACKWARD_JUMP || App->player2->actual3 == A_KICKS_FORWARD_JUMP || App->player2->actual3 == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_BACKWARD_JUMP || App->player2->actual3 == A_KICKL_FORWARD_JUMP || App->player2->actual3 == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)25), 0);
+				else if (App->player2->actual3 == A_KICK_CROUCH) App->UI->DamageTaken(1, ((float)16 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_KICKL_CROUCH) App->UI->DamageTaken(1, ((float)8 / (float)5), ((float)1 / (float)1));
+				else if (App->player2->actual3 == A_KICKS_CROUCH) App->UI->DamageTaken(1, ((float)16 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 6, 1);
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 6, 4);
+			}
+			else if (pow == false || App->player2->pow == false) {
+				if (App->player2->actual3 == A_PUNCH_STANDING) App->UI->DamageTaken(1, ((float)64 / (float)7), 3);
+				else if (App->player2->actual3 == A_PUNCH_BACKWARD_JUMP || App->player2->actual3 == A_PUNCH_FORWARD_JUMP || App->player2->actual3 == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHS_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHS_FORWARD_JUMP || App->player2->actual3 == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHL_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHL_FORWARD_JUMP || App->player2->actual3 == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)32 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHL_STANDING) App->UI->DamageTaken(1, ((float)32 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHS_STANDING) App->UI->DamageTaken(1, 8, 4);
+				else if (App->player2->actual3 == A_PUNCH_CROUCH) App->UI->DamageTaken(1, 8, 2);
+				else if (App->player2->actual3 == A_PUNCHS_CROUCH) App->UI->DamageTaken(1, 8, 2);
+				else if (App->player2->actual3 == A_PUNCHL_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)9), 1);
+				else if (App->player2->actual3 == A_KICK_STANDING) App->UI->DamageTaken(1, ((float)64 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_STANDING) App->UI->DamageTaken(1, ((float)16 / (float)5), 1);
+				else if (App->player2->actual3 == A_KICKS_STANDING) App->UI->DamageTaken(1, 8, 2);
+				else if (App->player2->actual3 == A_KICK_BACKWARD_JUMP || App->player2->actual3 == A_KICK_FORWARD_JUMP || App->player2->actual3 == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKS_BACKWARD_JUMP || App->player2->actual3 == A_KICKS_FORWARD_JUMP || App->player2->actual3 == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_BACKWARD_JUMP || App->player2->actual3 == A_KICKL_FORWARD_JUMP || App->player2->actual3 == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)25), 0);
+				else if (App->player2->actual3 == A_KICK_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_KICKL_CROUCH) App->UI->DamageTaken(1, ((float)16 / (float)5), ((float)1 / (float)1));
+				else if (App->player2->actual3 == A_KICKS_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 12, 1);
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 12, 4);
+			}
+			else {
+				if (App->player2->actual3 == A_PUNCH_STANDING) App->UI->DamageTaken(1, ((float)128 / (float)7), 3);
+				else if (App->player2->actual3 == A_PUNCH_BACKWARD_JUMP || App->player2->actual3 == A_PUNCH_FORWARD_JUMP || App->player2->actual3 == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHS_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHS_FORWARD_JUMP || App->player2->actual3 == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)3), 3);
+				else if (App->player2->actual3 == A_PUNCHL_BACKWARD_JUMP || App->player2->actual3 == A_PUNCHL_FORWARD_JUMP || App->player2->actual3 == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)64 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHL_STANDING) App->UI->DamageTaken(1, ((float)64 / (float)9), 1);
+				else if (App->player2->actual3 == A_PUNCHS_STANDING) App->UI->DamageTaken(1, 16, 4);
+				else if (App->player2->actual3 == A_PUNCH_CROUCH) App->UI->DamageTaken(1, 16, 2);
+				else if (App->player2->actual3 == A_PUNCHS_CROUCH) App->UI->DamageTaken(1, 16, 2);
+				else if (App->player2->actual3 == A_PUNCHL_CROUCH) App->UI->DamageTaken(1, ((float)64 / (float)9), 1);
+				else if (App->player2->actual3 == A_KICK_STANDING) App->UI->DamageTaken(1, ((float)128 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_STANDING) App->UI->DamageTaken(1, ((float)32 / (float)5), 1);
+				else if (App->player2->actual3 == A_KICKS_STANDING) App->UI->DamageTaken(1, 16, 2);
+				else if (App->player2->actual3 == A_KICK_BACKWARD_JUMP || App->player2->actual3 == A_KICK_FORWARD_JUMP || App->player2->actual3 == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)128 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKS_BACKWARD_JUMP || App->player2->actual3 == A_KICKS_FORWARD_JUMP || App->player2->actual3 == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)128 / (float)13), 1);
+				else if (App->player2->actual3 == A_KICKL_BACKWARD_JUMP || App->player2->actual3 == A_KICKL_FORWARD_JUMP || App->player2->actual3 == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(1, ((float)128 / (float)25), 0);
+				else if (App->player2->actual3 == A_KICK_CROUCH) App->UI->DamageTaken(1, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_KICKL_CROUCH) App->UI->DamageTaken(1, ((float)32 / (float)5), ((float)1 / (float)1));
+				else if (App->player2->actual3 == A_KICKS_CROUCH) App->UI->DamageTaken(1, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 24, 1);
+				else if (App->player2->actual3 == A_APPLEATTACK) App->UI->DamageTaken(1, 24, 4);
+			}
 			hitted_timer = 2;
 		}
 		else if (hitted_timer == 1 /*&& position.y == 210*/ && Player == App->player2) {
 			App->audio->PlayChunk(App->player->hittedsound);
-			App->UI->DamageTaken(2, 5, 1);
+			if (pow == false && App->player->pow == false) {
+				if (App->player->actual == A_PUNCH_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)7), 3);
+				else if (App->player->actual == A_PUNCH_BACKWARD_JUMP || App->player->actual == A_PUNCH_FORWARD_JUMP || App->player->actual == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)16 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHS_BACKWARD_JUMP || App->player->actual == A_PUNCHS_FORWARD_JUMP || App->player->actual == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)16 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHL_BACKWARD_JUMP || App->player->actual == A_PUNCHL_FORWARD_JUMP || App->player->actual == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)16 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHL_STANDING) App->UI->DamageTaken(2, ((float)16 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHS_STANDING) App->UI->DamageTaken(2, 4, 4);
+				else if (App->player->actual == A_PUNCH_CROUCH) App->UI->DamageTaken(2, 4, 2);
+				else if (App->player->actual == A_PUNCHS_CROUCH) App->UI->DamageTaken(2, 4, 2);
+				else if (App->player->actual == A_PUNCHL_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)9), 1);
+				else if (App->player->actual == A_KICK_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_STANDING) App->UI->DamageTaken(2, ((float)8 / (float)5), 1);
+				else if (App->player->actual == A_KICKS_STANDING) App->UI->DamageTaken(2, 4, 2);
+				else if (App->player->actual == A_KICK_BACKWARD_JUMP || App->player->actual == A_KICK_FORWARD_JUMP || App->player->actual == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)13), 1);
+				else if (App->player->actual == A_KICKS_BACKWARD_JUMP || App->player->actual == A_KICKS_FORWARD_JUMP || App->player->actual == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_BACKWARD_JUMP || App->player->actual == A_KICKL_FORWARD_JUMP || App->player->actual == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)25), 0);
+				else if (App->player->actual == A_KICK_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_KICKL_CROUCH) App->UI->DamageTaken(2, ((float)8 / (float)5), ((float)1 / (float)1));
+				else if (App->player->actual == A_KICKS_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 6, 1);
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 6, 4);
+			}
+			else if (pow == false || App->player->pow == false) {
+				if (App->player->actual == A_PUNCH_STANDING) App->UI->DamageTaken(2, ((float)64 / (float)7), 3);
+				else if (App->player->actual == A_PUNCH_BACKWARD_JUMP || App->player->actual == A_PUNCH_FORWARD_JUMP || App->player->actual == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHS_BACKWARD_JUMP || App->player->actual == A_PUNCHS_FORWARD_JUMP || App->player->actual == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHL_BACKWARD_JUMP || App->player->actual == A_PUNCHL_FORWARD_JUMP || App->player->actual == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)32 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHL_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHS_STANDING) App->UI->DamageTaken(2, 8, 4);
+				else if (App->player->actual == A_PUNCH_CROUCH) App->UI->DamageTaken(2, 8, 2);
+				else if (App->player->actual == A_PUNCHS_CROUCH) App->UI->DamageTaken(2, 8, 2);
+				else if (App->player->actual == A_PUNCHL_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)9), 1);
+				else if (App->player->actual == A_KICK_STANDING) App->UI->DamageTaken(2, ((float)64 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_STANDING) App->UI->DamageTaken(2, ((float)16 / (float)5), 1);
+				else if (App->player->actual == A_KICKS_STANDING) App->UI->DamageTaken(2, 8, 2);
+				else if (App->player->actual == A_KICK_BACKWARD_JUMP || App->player->actual == A_KICK_FORWARD_JUMP || App->player->actual == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)13), 1);
+				else if (App->player->actual == A_KICKS_BACKWARD_JUMP || App->player->actual == A_KICKS_FORWARD_JUMP || App->player->actual == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_BACKWARD_JUMP || App->player->actual == A_KICKL_FORWARD_JUMP || App->player->actual == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)25), 0);
+				else if (App->player->actual == A_KICK_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_KICKL_CROUCH) App->UI->DamageTaken(2, ((float)16 / (float)5), ((float)1 / (float)1));
+				else if (App->player->actual == A_KICKS_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 12, 1);
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 12, 4);
+			}
+			else {
+				if (App->player->actual == A_PUNCH_STANDING) App->UI->DamageTaken(2, ((float)128 / (float)7), 3);
+				else if (App->player->actual == A_PUNCH_BACKWARD_JUMP || App->player->actual == A_PUNCH_FORWARD_JUMP || App->player->actual == A_PUNCH_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHS_BACKWARD_JUMP || App->player->actual == A_PUNCHS_FORWARD_JUMP || App->player->actual == A_PUNCHS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)3), 3);
+				else if (App->player->actual == A_PUNCHL_BACKWARD_JUMP || App->player->actual == A_PUNCHL_FORWARD_JUMP || App->player->actual == A_PUNCHL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)64 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHL_STANDING) App->UI->DamageTaken(2, ((float)64 / (float)9), 1);
+				else if (App->player->actual == A_PUNCHS_STANDING) App->UI->DamageTaken(2, 12, 4);
+				else if (App->player->actual == A_PUNCH_CROUCH) App->UI->DamageTaken(2, 12, 2);
+				else if (App->player->actual == A_PUNCHS_CROUCH) App->UI->DamageTaken(2, 12, 2);
+				else if (App->player->actual == A_PUNCHL_CROUCH) App->UI->DamageTaken(2, ((float)64 / (float)9), 1);
+				else if (App->player->actual == A_KICK_STANDING) App->UI->DamageTaken(2, ((float)128 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_STANDING) App->UI->DamageTaken(2, ((float)32 / (float)5), 1);
+				else if (App->player->actual == A_KICKS_STANDING) App->UI->DamageTaken(2, 16, 2);
+				else if (App->player->actual == A_KICK_BACKWARD_JUMP || App->player->actual == A_KICK_FORWARD_JUMP || App->player->actual == A_KICK_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)128 / (float)13), 1);
+				else if (App->player->actual == A_KICKS_BACKWARD_JUMP || App->player->actual == A_KICKS_FORWARD_JUMP || App->player->actual == A_KICKS_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)128 / (float)13), 1);
+				else if (App->player->actual == A_KICKL_BACKWARD_JUMP || App->player->actual == A_KICKL_FORWARD_JUMP || App->player->actual == A_KICKL_NEUTRAL_JUMP) App->UI->DamageTaken(2, ((float)128 / (float)25), 0);
+				else if (App->player->actual == A_KICK_CROUCH) App->UI->DamageTaken(2, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_KICKL_CROUCH) App->UI->DamageTaken(2, ((float)32 / (float)5), ((float)1 / (float)1));
+				else if (App->player->actual == A_KICKS_CROUCH) App->UI->DamageTaken(2, ((float)64 / (float)5), ((float)1 / (float)2));
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 24, 1);
+				else if (App->player->actual == A_APPLEATTACK) App->UI->DamageTaken(2, 24, 4);
+			}
 			hitted_timer = 2;
 		}
 		if (flip == false && stopleft == false)position.x -= 1;

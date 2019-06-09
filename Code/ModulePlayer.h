@@ -265,6 +265,7 @@ public:
 	bool pow;
 	bool aftercrouch;
 	bool movementextra;
+	bool hitapple;
 	int positionx2;
 };
 

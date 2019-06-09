@@ -101,6 +101,7 @@ public:
 	bool pow;
 	bool aftercrouch;
 	bool movementextra;
+	bool hitapple;
 	float posx;
 	int positionx2;
 };

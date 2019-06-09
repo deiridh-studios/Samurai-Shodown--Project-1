@@ -500,6 +500,7 @@ bool ModulePlayer2::Start()
 	nattacks = nattackss = 0;
 	hitted_timer = punch_timer = kick_timer = punch_timer = 0;
 	movementextra = false;
+	hitapple = false;
 	return ret;
 }
 
@@ -575,6 +576,7 @@ update_status ModulePlayer2::Update()
 	posx = App->render->zooming;
 	if (enemyattack != nullptr&&enemyattack->to_delete == false)inattack = true;
 	current_animation = ExecuteState(movementextra,sword, pow, notfinished, jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft,aftercrouch, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2, *current_animation);
+	if (actual3 == A_APPLEATTACK && current_animation->current_frame == 0)hitapple = true;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	if (actual3 == A_START && current_animation->finished == 1)actual3 = A_IDLE;
 	if (inattack == false && enemyattack != nullptr&&enemyattack->to_delete == false) nattacks++;
@@ -657,8 +659,12 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 	}
 	else {
 		if (other->type == COLLIDER_PLAYER) {
-			if (enemy->to_delete == false)nattackss++;
-			enemy->to_delete = true;
+			if (enemy->to_delete == false && App->player2->actual3 != A_APPLEATTACK)nattackss++;
+			if (hitapple == true && actual3 == A_APPLEATTACK) {
+				hitapple = false;
+				nattackss++;
+			}
+			if (App->player2->actual3 != A_APPLEATTACK)enemy->to_delete = true;
 		}
 	}
 }
