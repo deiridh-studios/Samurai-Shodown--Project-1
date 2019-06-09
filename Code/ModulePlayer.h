@@ -264,6 +264,7 @@ public:
 	float posx;
 	bool pow;
 	bool aftercrouch;
+	bool movementextra;
 	int positionx2;
 };
 
