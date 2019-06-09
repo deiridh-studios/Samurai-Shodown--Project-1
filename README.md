@@ -84,7 +84,8 @@ Release history:
 
 -Samurai Shodown, v0.63:
     This time the almost finished version of Saurai Shodown includes new features in the UI, the character selection screen but only allows to play with one player, you can see the others players too but no select any of them. Finally we have included the winning and lose modules for the battles.	
-
+-Samurai Shodown, v1.0:
+    Final version of the Alpha, you can play Ukyo with two players to proof yourself better than your friends. It have almost every move that you can find in the game. But, there are some bugs to be fixed and some mechanics to be implemented.
 
 ## Credits
 
