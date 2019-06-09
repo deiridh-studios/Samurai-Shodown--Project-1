@@ -121,6 +121,12 @@ private:
 	Animation duel;
 	Animation perfect;
 	Animation welldone;
+	Animation duel1;
+	Animation duel2;
+	Animation duel3;
+	Animation ippon;
+	Animation victory;
+	Animation ukyowins;
 
 };
 #endif
