@@ -504,6 +504,7 @@ bool ModulePlayer::Start()
 	inattack = false;
 	aftercrouch = false;
 	movementextra = false;
+	hitapple = false;
 	return ret;
 }
 
@@ -581,6 +582,7 @@ update_status ModulePlayer::Update()
 	posx = App->render->zooming;
 	if (attack!=nullptr&&attack->to_delete == false)inattack = true;
 	current_animation = ExecuteState(movementextra,sword, pow, notfinished, jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, aftercrouch, *body, *body2, *body3, &attack, position, App->player, *current_animation);
+	if (actual == A_APPLEATTACK && current_animation->current_frame == 0)hitapple = true;
 	SDL_Rect r =current_animation->GetCurrentFrame();
 	if (actual == A_START && current_animation->finished == 1)actual = A_IDLE;
 	if (inattack == false && attack!=nullptr&&attack->to_delete == false) nattacks++;
@@ -661,8 +663,12 @@ void ModulePlayer::OnCollision(Collider* player, Collider* other) {
 	}
 	else {
 		if (other->type == COLLIDER_ENEMY) {
-			if(player->to_delete==false)nattackss++;
-			player->to_delete = true;
+			if(player->to_delete==false&&App->player->actual!=A_APPLEATTACK)nattackss++;
+			if (hitapple == true&&actual==A_APPLEATTACK) {
+				hitapple = false;
+				nattackss++;
+			}
+			if(App->player->actual != A_APPLEATTACK)player->to_delete = true;
 		}
 	}
 }
