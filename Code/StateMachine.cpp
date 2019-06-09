@@ -265,8 +265,9 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		hitted_timer = 0;
 	}
 }
-Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, bool& aftercrouch, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player, Animation& current) {
+Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, bool& aftercrouch, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player, Animation& current) {
 	Animation* current_animation;
+	Animation checkanim;
 	bool do_double_anim = false;
 	if (Player == App->player) current_animation = &App->player->idle;
 	else current_animation = &App->player2->idle;
@@ -409,8 +410,17 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_PUNCH_STANDING:
-		if(sword==true)current_animation = &App->player->punch;			///////////////DO THAT WITH ALL THE ATTACKS (THE SWORD BOOL IS TO SHOW WHETHER THE CHARACTER HAS THE SWORD OR NO
-		else { current_animation = &App->player->strongpunch_noweapon; };														/////////////// SO WHEN HE HAS THE SWORD, THE ANIMATIONS AND THE COLLISION BOXES (AND PROBABLY THE SOUND) WILL BE DIFFERENT
+		if (sword == true) {
+			if (Player == App->player) {
+				current_animation = &App->player->strongerslash;
+				checkanim = App->player->strongerslash;
+			}
+			else {
+				current_animation = &App->player2->strongerslash;
+				checkanim = App->player2->strongerslash;
+			}
+		}
+		else { current_animation = &App->player->strongpunch_noweapon; };														
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -419,25 +429,38 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				position.x = position.x - 40;
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 6,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x - 34,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x - 39,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 		}
+		checkanim.GetCurrentFrame();
+		if (flip == true && (int)checkanim.current_frame == 4 && movementextra == false) {
+			position.x = position.x - 50;
+			movementextra = true;
+		}
+		else if (flip == true && movementextra == true&& (int)checkanim.current_frame != 4) {
+			position.x = position.x + 50;
+			movementextra = false;
+		}
 		if (current_animation->GetFinished() == 1) {
-			if (flip == true) {
-				position.x = position.x + 40;
-			}
 			punch_timer = 3;
 			(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCHL_STANDING:
-		if (sword = true) current_animation = &App->player->punch;
+		if (sword == true) {
+			if (Player == App->player) {
+				current_animation = &App->player->punch;
+				checkanim=App->player->punch;
+			}
+			else {
+				current_animation = &App->player2->punch;
+				checkanim= App->player2->punch;
+			}
+		}
 		else {
 			current_animation = &App->player->strongpunch_noweapon;
 		};
-		//ANIMATION
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
@@ -446,39 +469,72 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				position.x = position.x - 40;
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 6,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
-			}				//COLLIDER BOX*/
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x -44,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x -49,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
+			}				
+		}
+		checkanim.GetCurrentFrame();
+		if (flip == true && (int)checkanim.current_frame == 3 && movementextra == false) {
+			position.x = position.x - 30;
+			movementextra = true;
+		}
+		else if(flip == true && (int)checkanim.current_frame == 4 && movementextra == true) {
+			position.x = position.x - 20;
+			movementextra = false;
+		}
+		else if (flip == true && (int)checkanim.current_frame == 5 && movementextra == false) {
+			position.x = position.x + 20;
+			movementextra = true;
+		}
+		else if (flip == true && movementextra == true && (int)checkanim.current_frame >5 ) {
+			position.x = position.x + 30;
+			movementextra = false;
 		}
 		if (current_animation->GetFinished() == 1) {
-			if (flip == true) {
-				position.x = position.x + 40;
-			}			//CHANGE SOME POSITIONS IF NECESSARY AT THE END*/
 			punch_timer = 3;
 			(*attack)->to_delete = true;
 		}
 		break;
 	case A_PUNCHS_STANDING:
-		if (sword = true)current_animation = &App->player->strongerslash;	//ANIMATION
+		if (sword = true) {
+			if (Player == App->player) {
+				current_animation = &App->player->powerfulslash;
+				checkanim = App->player->powerfulslash;
+			}
+			else {
+				current_animation = &App->player2->powerfulslash;
+				checkanim = App->player2->powerfulslash;
+			}
+		}
 		else { current_animation = &App->player->strongpunch_noweapon; }
+		checkanim.GetCurrentFrame();
 		if (punch_timer == 1) {
 			App->audio->PlayChunk(App->player->punchsound);
 			punch_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 38,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 60,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
+				body.SetPos(position.x + 38, (position.y - 80));
+				body2.SetPos(position.x + 44, (position.y - 57));
+				body3.SetPos(position.x + 30, (position.y - 40));
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 83,(position.y - 155),75,125 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 115,(position.y - 155),75,125 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			else {
-				position.x = position.x - 40;
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 6,(position.y - 75),75,50 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 75),75,50 }, COLLIDER_ENEMY_SHOT, App->player2);
+				body.SetPos(position.x - 5, (position.y - 70));
+				body2.SetPos(position.x - 12, (position.y - 54));
+				body3.SetPos(position.x - 12, (position.y - 40));
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x - 49,(position.y - 155),75,125 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x - 54,(position.y - 155),75,125 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}				//COLLIDER BOX*/
 		}
+		if (flip == true && (int)checkanim.current_frame == 2 && movementextra == false) {
+			position.x = position.x - 70;
+			movementextra = true;
+		}
+		else if (flip == true && movementextra == true && (int)checkanim.current_frame>6) {
+			position.x = position.x + 70;
+			movementextra = false;
+		}
 		if (current_animation->GetFinished() == 1) {
-			if (flip == true) {
-				position.x = position.x + 40;
-			}			//CHANGE SOME POSITIONS IF NECESSARY AT THE END*/
 			punch_timer = 3;
 			(*attack)->to_delete = true;
 		}

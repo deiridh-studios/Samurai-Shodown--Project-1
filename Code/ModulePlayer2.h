@@ -102,6 +102,7 @@ public:
 	bool sword;
 	bool pow;
 	bool aftercrouch;
+	bool movementextra;
 	float posx;
 	int positionx2;
 };
