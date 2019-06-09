@@ -1265,8 +1265,8 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 				position.x += 24;
 			}
 			else {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x -20,(position.y - 30),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x -20,(position.y - 30),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x -= 24;
 			}			//COLLIDER BOX*/
 		}
@@ -1404,41 +1404,42 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		if (current_animation->GetFinished() == 1 && hitted_timer == 2 && position.y == 210)hitted_timer = 3;
 		break;
 	case A_APPLEATTACK:
-		if(sword == true)current_animation = &App->player->appleattack;
-		else { break; }
-		App->audio->PlayChunk(App->player->tornadosound);
+		if (sword = true)current_animation = &App->player->appleattack;
+		else {
+			break;;
+		}		//
 		if (flip == false) {
-			body.SetPos(position.x + 8, (position.y - 80));
-			body2.SetPos(position.x + 4, (position.y - 57));
-			body3.SetPos(position.x + 1, (position.y - 40));
+			body.SetPos(position.x + 15, (position.y - 65));
+			body2.SetPos(position.x + 25, (position.y - 50));
+			body3.SetPos(position.x + 12, (position.y - 35));
 		}
 		else {
-			body.SetPos(position.x + 18, (position.y - 80));
-			body2.SetPos(position.x + 26, (position.y - 57));
-			body3.SetPos(position.x + 16, (position.y - 40));
+			body.SetPos(position.x + 50, (position.y - 65));
+			body2.SetPos(position.x + 67, (position.y - 50));
+			body3.SetPos(position.x + 47, (position.y - 35));
 		}
+
 		if (specialattack_timer == 1) {
 			App->audio->PlayChunk(App->player->tornadosound);
 			specialattack_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 80,(position.y - 115),50,210 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 80,(position.y - 115),50,210 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,200 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,200 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
-			else {
-				position.x = position.x - 40;
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 6,(position.y - 115),75,160 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 115),75,160 }, COLLIDER_ENEMY_SHOT, App->player2);
-			}				//COLLIDER BOX*/
-
-						//CHANGE SOME POSITIONS IF NECESSARY AT THE END*/
-				specialattack_timer = 2;
-				
+			if (flip == true) {
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				position.x -= 15;
 			}
+		}
 		if (current_animation->GetFinished() == 1) {
+			if (flip == true) {
+				position.x += 15;
+			}
 			specialattack_timer = 3;
 			(*attack)->to_delete = true;
 		}
-			break;
+		break;
 			
 
 		

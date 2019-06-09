@@ -18,18 +18,31 @@ https://github.com/deiridh-studios/Samurai-Shodown--Project-1/wiki
 ## Usage
 
 In the latest version of the game you will be able to play only with the keyboard, but you can play with a friend because the two characters can be controlled.
-
+###Keyboard:
 Player 1: 
 - Character movements will be controlled with: A as left, D as right, W as jump and S for crouch.
-- Character actions will be done using: T is used for punch or slash(it depends if the character wields a weapon), and you can use Y for kick the oponent.
+- Character actions will be done using: T is used for punch or slash(it depends if the character wields a weapon), and you can use Y for kick the oponent. With R you will be able to realize a stronger punch and U for a stronger kick, these will do more damage to the oponent.
+- Special movements and combos: using double direction key you will autimatically do a dash. 
 
 Player 2: 
 - Character movements will be controlled with: left direction, right direction, up as jump and down for crouch.
-- Character actions will be done using: H is used for punch or slash(it depends if the character wields a weapon), and you can use G for kick the oponent.
+- Character actions will be done using: H is used for punch or slash(it depends if the character wields a weapon), and you can use G for kick the oponent. With O you will be able to realize a stronger punch and semicolon(;) key for a stronger kick, these will do more damage to the oponent.
+- Special movements and combos: using double direction key you will autimatically do a dash. 
+
+###Gamepad
+Player 1: 
+- Character movements will be controlled with: D-pad.
+- Character actions will be done using: / is used for punch or slash(it depends if the character wields a weapon), and you can use / for kick the oponent. With / you will be able to realize a stronger punch and / for a stronger kick, these will do more damage to the oponent.
+- Special movements and combos: using double direction key you will autimatically do a dash. 
 
 You can combine differents keys to make differents movements as crouch-kick or crouch-slash, jumping-kick or jumping-slash and any action during the movement of the character.
 
-Finally your character has an extra ablity that will throw an special attack: this can be used with the combo crouch, move forward and punch.
+###Special Keys:
+-Press F1 to see collision boxes.
+-Press F3 for direct win.
+-Press F4 for direct lose.
+-Press F5 for godmode player 1.
+-Press F6 for godmode player 2.
 
 
 ## History
@@ -57,13 +70,13 @@ Release history:
     Now with the timer added you will have tu hurry up if you want to end the life's oponent before the time ends, when it does the battle will be ended and the final scene will appear to congratulate the players. 
 
 -Samurai Shodown, v0.5:
-
+    This is an almost all new version of the game, we are developing the game with a new map and player, so this version includes the new player spriteshits and animation as the new map.
 
 -Samurai Shodown, v0.55:
     For first time gamed is implemented and fullscreen ukyo stage with the two Ukyo players. In this versions the movement in battle is widely limited with just the capacit of movement right and left.
 
 -Samurai Shodown, v0.58:
-
+    Now you are able to make some new moves using your gamepad like jump, crouch and some attack movements.
 
 -Samurai Shodown, v0.6:
     This time the gamepad is allowed to control the player and you can use it for the movements tha are implemented in game for the moment. We have added some new mechanics or special effects like slowdown camera or the zoom out.
