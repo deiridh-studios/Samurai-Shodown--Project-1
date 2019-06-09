@@ -203,7 +203,7 @@ ModulePlayer::ModulePlayer()
 	appleattack.PushBack({ 1400, 1739, 200, 157 });
 	appleattack.PushBack({ 1600, 1739, 200, 157 });
 	appleattack.PushBack({ 1800, 1739, 200, 157 });
-	appleattack.speed = 0.2f;
+	appleattack.speed = 0.8f;
 
 	//Animation hitted;
 	hittedan.PushBack({ 1920, 0, 67, 137 });
@@ -334,7 +334,7 @@ ModulePlayer::ModulePlayer()
 	rollattack.PushBack({ 580, 756, 92, 97 });
 	rollattack.PushBack({ 768, 756, 93, 97 });
 	rollattack.PushBack({ 976, 756, 78, 97 });
-	//rollattack.speed=0.2f;
+	rollattack.speed=0.2f;
 
 
 	///////////Air hitted;
