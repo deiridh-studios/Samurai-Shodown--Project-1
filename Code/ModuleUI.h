@@ -27,6 +27,7 @@ public:
 	float npow1;
 	float npow2;
 	int victory;
+	int rounds;
 private:
 	int font_score;
 	int font_score_white;
@@ -100,7 +101,6 @@ private:
 	char score[10];
 	int roundsp1;
 	int roundsp2;
-	int rounds;
 	int lifescore;
 	int timescore;
 	int hitsscore;

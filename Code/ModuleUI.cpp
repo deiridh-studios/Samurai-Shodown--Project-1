@@ -18,35 +18,35 @@
 
 ModuleUI::ModuleUI(){
 	////engarde
-	engarde.PushBack({ 0, 32, 15'3, 31'7});
-	engarde.PushBack({ 24'3, 32, 16'7, 31'7});
-	engarde.PushBack({ 63'3, 32, 16'4, 31'7});
-	engarde.PushBack({ 87'3, 32, 16, 31'7});
-	engarde.PushBack({ 111'3, 32, 16'7, 31'7});
-	engarde.PushBack({ 135, 32, 17, 31'7});
-	engarde.PushBack({ 159, 32, 17, 31'7});
-	engarde.PushBack({0, 302'5, 175, 4'5});
-	engarde.PushBack({0, 296'5, 175, 6'5});
-	engarde.PushBack({0, 288'5, 175, 7});
-	engarde.PushBack({0, 278, 175, 10'5});
-	engarde.PushBack({0, 265, 175, 12'5});
-	engarde.PushBack({0, 251, 175, 14'5});
-	engarde.PushBack({0, 235, 175, 16'5});
+	engarde.PushBack({ 0, 32, 15, 31});
+	engarde.PushBack({ 0, 32, 40, 31});
+	engarde.PushBack({ 0, 32, 79, 31});
+	engarde.PushBack({ 0, 32, 103, 31});
+	engarde.PushBack({ 0, 32, 127, 31});
+	engarde.PushBack({ 0, 32, 152, 31});
+	engarde.PushBack({ 0, 32, 175, 31});
+	engarde.PushBack({0, 302, 175, 4});
+	engarde.PushBack({0, 296, 175, 6});
+	engarde.PushBack({0, 288, 175, 7});
+	engarde.PushBack({0, 278, 175, 10});
+	engarde.PushBack({0, 265, 175, 12});
+	engarde.PushBack({0, 251, 175, 14});
+	engarde.PushBack({0, 235, 175, 16});
 	engarde.PushBack({0, 217, 175, 18});
 	engarde.PushBack({0, 197, 175, 19});
-	engarde.PushBack({0, 173'5, 175, 23'5});
-	engarde.PushBack({0, 149, 175, 24'5});
-	engarde.PushBack({0, 123, 175, 26'5});
-	engarde.PushBack({0, 94'5, 175, 29'5});
+	engarde.PushBack({0, 173, 175, 23});
+	engarde.PushBack({0, 149, 175, 24});
+	engarde.PushBack({0, 123, 175, 26});
+	engarde.PushBack({0, 94, 175, 29});
 	engarde.PushBack({0, 64, 175, 30});
-	engarde.PushBack({0, 31'5, 175, 32});
-	engarde.PushBack({0, 0, 175, 32'5});
+	engarde.PushBack({0, 31, 175, 32});
+	engarde.PushBack({0, 0, 175, 32});
 	engarde.speed = 0.2f;
 
 	////begin
-	begin.PushBack({177'5, 326, 20'5, 10});
-	begin.PushBack({177'5, 338, 32, 16});
-	begin.PushBack({177'5, 353'5, 46'5, 24'5});
+	begin.PushBack({177, 326, 20, 10});
+	begin.PushBack({177, 338, 32, 16});
+	begin.PushBack({177, 353, 46, 24});
 	begin.PushBack({ 101, 317, 60, 28});
 	begin.PushBack({ 101, 346, 72, 35});
 	begin.PushBack({0, 321, 84, 41});
@@ -57,48 +57,48 @@ ModuleUI::ModuleUI(){
 
 	////duel
 	duel.PushBack({ 243, 112, 165,     5});
-	duel.PushBack({ 243, 116, 165,   6'5});
-	duel.PushBack({ 243, 122, 165,   8'5});
+	duel.PushBack({ 243, 116, 165,   6});
+	duel.PushBack({ 243, 122, 165,   8});
 	duel.PushBack({ 243, 130, 165,    11});
-	duel.PushBack({ 243, 141'5,165,   10});
-	duel.PushBack({ 243, 152, 165,  13'5});
-	duel.PushBack({ 243, 165, 165,  16'5});
+	duel.PushBack({ 243, 141,165,   10});
+	duel.PushBack({ 243, 152, 165,  13});
+	duel.PushBack({ 243, 165, 165,  16});
 	duel.PushBack({ 243, 181, 165,    18});
-	duel.PushBack({ 243, 199'5, 165,  20});
-	duel.PushBack({ 243, 219, 165,  22'5});
-	duel.PushBack({ 243,241'5,165,  23'5});
+	duel.PushBack({ 243, 199, 165,  20});
+	duel.PushBack({ 243, 219, 165,  22});
+	duel.PushBack({ 243,241,165,  23});
 	duel.PushBack({ 243, 265, 165,    25});
 	duel.PushBack({ 243, 290, 165,    29});
-	duel.PushBack({ 243, 318, 165,  29'5});
+	duel.PushBack({ 243, 318, 165,  29});
 	duel.PushBack({ 243, 348, 165,    33});
 	duel.PushBack({ 384, 109, 61,     32});
-	duel.PushBack({ 384, 139'5,57,  29'5});
+	duel.PushBack({ 384, 139,57,  29});
 	duel.PushBack({ 384, 168, 54,     27});
-	duel.PushBack({ 384, 194'5,49,  26'5});
-	duel.PushBack({ 384, 223, 45,   23'5});
+	duel.PushBack({ 384, 194,49,  26});
+	duel.PushBack({ 384, 223, 45,   23});
 	duel.PushBack({ 384, 247, 42,     21});
 	duel.PushBack({ 384, 269, 38,     19});
-	duel.PushBack({ 384, 288'5,34,  17'5});
-	duel.PushBack({ 384, 309'5,30,  15'5});
-	duel.PushBack({ 384, 325'5,26,  13'5});
+	duel.PushBack({ 384, 288,34,  17});
+	duel.PushBack({ 384, 309,30,  15});
+	duel.PushBack({ 384, 325,26,  13});
 	duel.PushBack({ 384, 341, 22,     11});
-	duel.PushBack({ 384, 353'5, 18,  9'5});
+	duel.PushBack({ 384, 353, 18,  9});
 	duel.PushBack({ 384, 364, 14,      7});
 	duel.PushBack({ 384, 372, 10, 5});
 	duel.speed = 0.2f;
 
 	////perfect
-	perfect.PushBack({ 424, 499, 16'5, 15});
+	perfect.PushBack({ 424, 499, 16, 15});
 	perfect.PushBack({ 423, 488, 23, 23});
-	perfect.PushBack({ 390, 484, 30'5, 30});
+	perfect.PushBack({ 390, 484, 30, 30});
 	perfect.PushBack({ 351, 484, 36, 36});
-	perfect.PushBack({ 302, 483, 43'5, 43});
-	perfect.PushBack({ 245'5, 483, 50'5, 51'5});
+	perfect.PushBack({ 302, 483, 43, 43});
+	perfect.PushBack({ 245, 483, 50, 51});
 	perfect.PushBack({ 183, 483, 57, 57});
 	perfect.PushBack({ 113, 483, 65, 64});
-	perfect.PushBack({ 374'5, 438, 70'5, 71});
+	perfect.PushBack({ 374, 438, 70, 71});
 	perfect.PushBack({ 294, 438, 77, 77});
-	perfect.PushBack({ 207, 438, 84'5, 84});
+	perfect.PushBack({ 207, 438, 84, 84});
 	perfect.PushBack({ 113, 438, 92, 92});
 	perfect.PushBack({ 335, 384, 97, 98});
 	perfect.PushBack({ 228, 384, 104, 105});
@@ -109,114 +109,113 @@ ModuleUI::ModuleUI(){
 	welldone.PushBack({ 465, 101, 20, 5});
 	welldone.PushBack({ 465, 93, 29, 7});
 	welldone.PushBack({ 465, 81, 46, 11});
-	welldone.PushBack({ 405, 94'5, 56, 14'5});
+	welldone.PushBack({ 405, 94, 56, 14});
 	welldone.PushBack({ 340, 93, 65, 17});
 	welldone.PushBack({ 266, 92, 74, 18});
-	welldone.PushBack({ 183, 91'5, 83, 19'5});
+	welldone.PushBack({ 183, 91, 83, 19});
 	welldone.PushBack({ 333, 75, 92, 20});
-	welldone.PushBack({ 333, 52'5, 100, 21'5});
-	welldone.PushBack({ 333, 28, 108, 24'5});
-	welldone.PushBack({ 333, 0, 117, 27'5});
+	welldone.PushBack({ 333, 52, 100, 21});
+	welldone.PushBack({ 333, 28, 108, 24});
+	welldone.PushBack({ 333, 0, 117, 27});
 	welldone.PushBack({ 183, 63, 127, 30});
-	welldone.PushBack({ 183, 136, 136, 30'5});
+	welldone.PushBack({ 183, 136, 136, 30});
 	welldone.PushBack({ 183, 0, 145, 32});
 	welldone.speed = 0.2f;
 
 	////duel1
-	duel1.PushBack({ 324, 111, 13'5,    5});
-	duel1.PushBack({ 324, 116'5, 13'5,  6'5});
-	duel1.PushBack({ 324, 122, 13'5,  8'5});
-	duel1.PushBack({ 324, 130, 13'5,   11});
-	duel1.PushBack({ 324, 140'5, 13'5,   10});
-	duel1.PushBack({ 324, 152'5, 13'5, 13'5});
-	duel1.PushBack({ 324, 166, 13'5, 16'5});
-	duel1.PushBack({ 324, 181'5, 13'5,   18});
-	duel1.PushBack({ 324, 200, 13'5,   20});
-	duel1.PushBack({ 324, 220, 13'5, 22'5});
-	duel1.PushBack({ 324, 242, 13'5, 23'5 });
-	duel1.PushBack({ 324, 266, 13'5,   25 });
-	duel1.PushBack({ 324, 292, 13'5,   29 });
-	duel1.PushBack({ 324, 319, 13'5, 29'5 });
-	duel1.PushBack({ 324, 350, 13'5,   33});
+	duel1.PushBack({ 324, 111, 13,    5});
+	duel1.PushBack({ 324, 116, 13,  6});
+	duel1.PushBack({ 324, 122, 13,  8});
+	duel1.PushBack({ 324, 130, 13,   11});
+	duel1.PushBack({ 324, 140, 13,   10});
+	duel1.PushBack({ 324, 152, 13, 13});
+	duel1.PushBack({ 324, 166, 13, 16});
+	duel1.PushBack({ 324, 181, 13,   18});
+	duel1.PushBack({ 324, 200, 13,   20});
+	duel1.PushBack({ 324, 220, 13, 22});
+	duel1.PushBack({ 324, 242, 13, 23 });
+	duel1.PushBack({ 324, 266, 13,   25 });
+	duel1.PushBack({ 324, 292, 13,   29 });
+	duel1.PushBack({ 324, 319, 13, 29 });
+	duel1.PushBack({ 324, 350, 13,   33});
 
 	duel1.PushBack({ 461, 109,    12,   32});	  
-	duel1.PushBack({ 457, 139'5,  11, 29'5});	  
-	duel1.PushBack({450'5,168,  10'5,   27});	  
-	duel1.PushBack({ 446, 194'5,  10, 26'5});	  
-	duel1.PushBack({ 440, 223,    10, 23'5});	  
+	duel1.PushBack({ 457, 139,  11, 29});	  
+	duel1.PushBack({450,168,  10,   27});	  
+	duel1.PushBack({ 446, 194,  10, 26});	  
+	duel1.PushBack({ 440, 223,    10, 23});	  
 	duel1.PushBack({ 435, 247,    10,   21});	  
 	duel1.PushBack({ 430, 269,     9,   19});	  
-	duel1.PushBack({ 425, 288'5,   8, 17'5});	  
-	duel1.PushBack({ 419, 309'5,   8, 15'5});	  
-	duel1.PushBack({ 414, 325'5,   7, 13'5});	  
+	duel1.PushBack({ 425, 288,   8, 17});	  
+	duel1.PushBack({ 419, 309,   8, 15});	  
+	duel1.PushBack({ 414, 325,   7, 13});	  
 	duel1.PushBack({ 409, 341,     6,   11});	  
-	duel1.PushBack({ 405, 353'5,   5,  9'5});	  
+	duel1.PushBack({ 405, 353,   5,  9});	  
 	duel1.PushBack({ 399, 364,     5,    7});
 	duel1.PushBack({ 394, 372,     4,    3});
 	duel1.speed = 0.2f;
 
 	////duel2
-	duel2.PushBack({ 339'5, 111, 17,    5 });
-	duel2.PushBack({ 339'5, 116'5, 17,  6'5 });
-	duel2.PushBack({ 339'5, 122, 17,  8'5 });
-	duel2.PushBack({ 339'5, 130, 17,   11 });
-	duel2.PushBack({ 339'5, 140'5, 17,   10 });
-	duel2.PushBack({ 339'5, 152'5, 17, 13'5 });
-	duel2.PushBack({ 339'5, 166, 17, 16'5 });
-	duel2.PushBack({ 339'5, 181'5, 17,   18 });
-	duel2.PushBack({ 339'5, 200, 17,   20 });
-	duel2.PushBack({ 339'5, 220, 17, 22'5 });
-	duel2.PushBack({ 339'5, 242, 17, 23'5 });
-	duel2.PushBack({ 339'5, 266, 17,   25 });
-	duel2.PushBack({ 339'5, 292, 17,   29 });
-	duel2.PushBack({ 339'5, 319'5, 17, 29'5 });
-	duel2.PushBack({ 339'5, 350, 17,   33 });
-		
-	duel2.PushBack({ 475, 109, 15'5, 32});
-	duel2.PushBack({ 470'5, 139'5, 14'5, 29'5});
-	duel2.PushBack({ 464'5, 168, 13'5, 27});
-	duel2.PushBack({ 456, 194'5, 15, 26'5});
-	duel2.PushBack({ 453, 223, 12, 23'5});
+	duel2.PushBack({ 339, 111, 17,    5 });
+	duel2.PushBack({ 339, 116, 17,  6 });
+	duel2.PushBack({ 339, 122, 17,  8 });
+	duel2.PushBack({ 339, 130, 17,   11 });
+	duel2.PushBack({ 339, 140, 17,   10 });
+	duel2.PushBack({ 339, 152, 17, 13 });
+	duel2.PushBack({ 339, 166, 17, 16 });
+	duel2.PushBack({ 339, 181, 17,   18 });
+	duel2.PushBack({ 339, 200, 17,   20 });
+	duel2.PushBack({ 339, 220, 17, 22 });
+	duel2.PushBack({ 339, 242, 17, 23 });
+	duel2.PushBack({ 339, 266, 17,   25 });
+	duel2.PushBack({ 339, 292, 17,   29 });
+	duel2.PushBack({ 339, 319, 17, 29 });
+	duel2.PushBack({ 339, 350, 17,   33 });
+	duel2.PushBack({ 475, 109, 15, 32});
+	duel2.PushBack({ 470, 139, 14, 29});
+	duel2.PushBack({ 464, 168, 13, 27});
+	duel2.PushBack({ 456, 194, 15, 26});
+	duel2.PushBack({ 453, 223, 12, 23});
 	duel2.PushBack({ 448, 247, 12, 21});
 	duel2.PushBack({ 440, 269, 11, 19});
-	duel2.PushBack({ 434, 288'5, 10, 17'5});
-	duel2.PushBack({ 431, 309'5, 9, 15'5});
-	duel2.PushBack({ 424'5, 325'5, 8'5, 13'5});
-	duel2.PushBack({ 418'5, 341, 7'5, 11});
-	duel2.PushBack({ 412, 353'5, 6, 9'5});
-	duel2.PushBack({ 406'5, 364, 5'5, 7 });
+	duel2.PushBack({ 434, 288, 10, 17});
+	duel2.PushBack({ 431, 309, 9, 15});
+	duel2.PushBack({ 424, 325, 8, 13});
+	duel2.PushBack({ 418, 341, 7, 11});
+	duel2.PushBack({ 412, 353, 6, 9'5});
+	duel2.PushBack({ 406, 364, 5, 7 });
 	duel2.PushBack({ 400, 372, 4, 3 });
 	duel2.speed = 0.2f;
 
 	////duel3
 	duel3.PushBack({ 360, 111, 16,    5 });
-	duel3.PushBack({ 360, 116'5, 16,  6'5 });
-	duel3.PushBack({ 360, 122, 16,  8'5 });
+	duel3.PushBack({ 360, 116, 16,  6 });
+	duel3.PushBack({ 360, 122, 16,  8 });
 	duel3.PushBack({ 360, 130, 16,   11 });
-	duel3.PushBack({ 360, 140'5, 16,   10 });
-	duel3.PushBack({ 360, 152'5, 16, 13'5 });
-	duel3.PushBack({ 360, 166, 16, 16'5 });
-	duel3.PushBack({ 360, 181'5, 16,   18 });
+	duel3.PushBack({ 360, 140, 16,   10 });
+	duel3.PushBack({ 360, 152, 16, 13 });
+	duel3.PushBack({ 360, 166, 16, 16 });
+	duel3.PushBack({ 360, 181, 16,   18 });
 	duel3.PushBack({ 360, 200, 16,   20 });
-	duel3.PushBack({ 360, 220, 16, 22'5 });
-	duel3.PushBack({ 360, 242, 16, 23'5 });
+	duel3.PushBack({ 360, 220, 16, 22 });
+	duel3.PushBack({ 360, 242, 16, 23 });
 	duel3.PushBack({ 360, 266, 16,   25 });
 	duel3.PushBack({ 360, 292, 16,   29 });
-	duel3.PushBack({ 360, 319'5, 16, 29'5 });
+	duel3.PushBack({ 360, 319, 16, 29 });
 	duel3.PushBack({ 360, 350, 16,   33 });
 		
 	duel3.PushBack({ 492, 109, 15, 32});
-	duel3.PushBack({ 488, 139'5, 15, 29'5});
+	duel3.PushBack({ 488, 139, 15, 29});
 	duel3.PushBack({ 480, 168, 14, 27});
-	duel3.PushBack({ 474, 194'5, 13, 26'5});
-	duel3.PushBack({ 468, 223, 11, 23'5});
+	duel3.PushBack({ 474, 194, 13, 26});
+	duel3.PushBack({ 468, 223, 11, 23});
 	duel3.PushBack({ 462, 247, 11, 21});
 	duel3.PushBack({ 452, 269, 11, 19});
-	duel3.PushBack({ 445, 288'5, 9, 17'5});
-	duel3.PushBack({ 441, 309'5, 9, 15'5});
-	duel3.PushBack({ 435, 325'5, 8, 13'5});
+	duel3.PushBack({ 445, 288, 9, 17});
+	duel3.PushBack({ 441, 309, 9, 15});
+	duel3.PushBack({ 435, 325, 8, 13});
 	duel3.PushBack({ 427, 341, 8, 11 });
-	duel3.PushBack({ 420, 353'5, 6, 9'5});
+	duel3.PushBack({ 420, 353, 6, 9});
 	duel3.PushBack({ 415, 364, 5, 7});
 	duel3.PushBack({ 407, 372, 3, 3 });
 	duel3.speed = 0.2f;
@@ -231,10 +230,10 @@ ModuleUI::ModuleUI(){
 	ippon.PushBack({ 0, 172, 64, 22});
 	ippon.PushBack({ 0, 194, 59, 22});
 	ippon.PushBack({ 0, 216, 54, 18});
-	ippon.PushBack({ 0, 234, 48, 17'5});
-	ippon.PushBack({ 0, 251'5, 43, 15'5});
-	ippon.PushBack({ 0, 267, 36, 12'5});
-	ippon.PushBack({ 0, 279'5, 30, 11'5});
+	ippon.PushBack({ 0, 234, 48, 17});
+	ippon.PushBack({ 0, 251, 43, 15});
+	ippon.PushBack({ 0, 267, 36, 12});
+	ippon.PushBack({ 0, 279, 30, 11});
 	ippon.PushBack({ 0, 291, 25, 9});
 	ippon.PushBack({ 28, 292, 20, 7});
 	ippon.speed = 0.2f;
@@ -260,7 +259,7 @@ ModuleUI::ModuleUI(){
 
 
 	////ukyowins
-	ukyowins.PushBack({ 448'5, 319, 63'5, 33});
+	ukyowins.PushBack({ 448, 319, 63, 33});
 	ukyowins.PushBack({ 452, 352, 60, 30});
 	ukyowins.PushBack({ 456, 382, 56, 29});
 	ukyowins.PushBack({ 396, 319, 53, 27});
@@ -489,6 +488,12 @@ update_status ModuleUI::Update() {
 		if (engarde.finished == true)current_animation = &duel;
 		if (duel.finished == true)current_animation = &begin;
 		App->render->Blit(textletters, 100, 100, &(current_animation->GetCurrentFrame()), 1.0f, false);
+		if (current_animation == &duel) {
+			if (rounds == 0)current_animation = &duel1;
+			else if (rounds == 1)current_animation = &duel2;
+			else if(rounds==2)current_animation = &duel3;
+			if(rounds!=3)App->render->Blit(textletters, 160, 100, &(current_animation->GetCurrentFrame()), 1.0f, false);
+		}
 		if(begin.finished==true)startletters = false;
 	}
 	if (play == true && App->fade->finished == true&&startletters==false) {
@@ -731,21 +736,22 @@ update_status ModuleUI::Update() {
 		if (finished == true) {
 			if (finishletters == true) {
 				Animation* current_animation;
-				if (victory != 0 && (roundsp1 == 2 || roundsp2 == 2 || rounds == 4));//victory
-				else if (victory != 0);//ippon
-				else;//timeup
-				//if victory/ippon finished and if (roundsp1 == 2 || roundsp2 == 2 || rounds == 4) well done && ukyo
-				//else if victory/ippon finished ukyo
-				//else draw
-				//if ukyo finished && (player1life==32||player2life==32)perfect
-				//else if ukyo finished perfect.Finished()
-				//if draw finished && rounds==4 duel finished
-				//else if draw finished duelfinished.Finished()
-				//}
-				//Blit
-				/*if ukyo/duelfinished finished*/finishletters = false;
+				if (victory != 0 && (roundsp1 == 2 || roundsp2 == 2 || rounds == 4))current_animation = &victoryan;
+				else if (victory != 0)current_animation = &ippon;
+				else current_animation = &timeup;
+				if ((victoryan.finished == 1 || ippon.finished == 1) && (roundsp1 == 2 || roundsp2 == 2 || rounds == 4)) {
+					current_animation = &welldone;
+					App->render->Blit(textletters, 100, 80, &(current_animation->GetCurrentFrame()), 1.0f, false);
+					current_animation = &ukyowins;
+				}
+				else if (victoryan.finished == 1 || ippon.finished == 1) current_animation = &ukyowins;
+				else if(timeup.finished==1)current_animation = &draw;
+				if (ukyowins.finished == 1 && (player1life == 32 || player2life == 32))current_animation = &perfect;
+				else if (ukyowins.finished == 1) perfect.Finish();
+				App->render->Blit(textletters, 100, 80, &(current_animation->GetCurrentFrame()), 1.0f, false);
+				if (ukyowins.finished == 1 || draw.finished == 1)finishletters = false;
 			}
-			if (totalscore == 0 && hitsscore == 0 && lifescore == 0 && timescore == 0&&finishletters==false) {
+			if (totalscore == 0 && hitsscore == 0 && lifescore == 0 && timescore == 0 && finishletters == false) {
 				initialtime = SDL_GetTicks();
 				App->render->zoom = false;
 				if (victory != 0) {
@@ -766,10 +772,10 @@ update_status ModuleUI::Update() {
 				}
 				else totalscore++;
 			}
-			if ((SDL_GetTicks() - initialtime >= 2000||victory==0)&&finishletters==false) {
-				if (victory!=0) {
+			if ((SDL_GetTicks() - initialtime >= 2000 || victory == 0) && finishletters == false) {
+				if (victory != 0) {
 					App->render->Blit(textlife, 60, 70, &liferect, 0.0f, false);
-					if(counter>2)App->render->Blit(textlife, 60, 100, &timerect, 0.0f, false);
+					if (counter > 2)App->render->Blit(textlife, 60, 100, &timerect, 0.0f, false);
 					if (counter > 4)App->render->Blit(textlife, 60, 130, &hitrect, 0.0f, false);
 					if (counter > 8)App->render->Blit(textlife, 60, 166, &totalrect, 0.0f, false);
 					sprintf_s(score, 10, "%7d", lifescore);
@@ -778,31 +784,31 @@ update_status ModuleUI::Update() {
 					if (counter > 12)App->fonts->BlitText(125, 100, font_finalpoints, score);
 					sprintf_s(score, 10, "%7d", hitsscore);
 					if (counter > 14)App->fonts->BlitText(125, 130, font_finalpoints, score);
-					sprintf_s(score, 10, "%c",'%');
-					if (counter > 16&&counter<22)App->fonts->BlitText(235, 130, font_finalpoints, score);
+					sprintf_s(score, 10, "%c", '%');
+					if (counter > 16 && counter < 22)App->fonts->BlitText(235, 130, font_finalpoints, score);
 					sprintf_s(score, 10, "%7d", totalscore);
 					if (counter > 18)App->fonts->BlitText(125, 166, font_finalpoints, score);
-					if (counter >= 20&&counter<58) {
+					if (counter >= 20 && counter < 58) {
 						if (App->input->keyboardstate[SDL_SCANCODE_SPACE]) {
 							App->audio->PlayChunk(sumpoints, -1);
-							if(counter<22)hitsscore= ((float)hitsscore / (float)100) * 20000;
-							if(victory==1)pointsp1+=lifescore+timescore+ hitsscore;
-							else pointsp2+= lifescore + timescore + hitsscore;
-							totalscore+= lifescore + timescore + hitsscore;
+							if (counter < 22)hitsscore = ((float)hitsscore / (float)100) * 20000;
+							if (victory == 1)pointsp1 += lifescore + timescore + hitsscore;
+							else pointsp2 += lifescore + timescore + hitsscore;
+							totalscore += lifescore + timescore + hitsscore;
 							App->audio->PlayChunk(sumpoints2);
 							lifescore = hitsscore = timescore = 0;
 							counter = 58;
 						}
 						for (int i = 0; i < 3; i++) {
 							if (lifescore > 0) {
-								if(counter==20)App->audio->PlayChunk(sumpoints, -1);
+								if (counter == 20)App->audio->PlayChunk(sumpoints, -1);
 								counter = 21;
 								lifescore -= 10;
 								totalscore += 10;
 								if (victory == 1)pointsp1 += 10;
 								else pointsp2 += 10;
 							}
-							else if(timescore > 0) {
+							else if (timescore > 0) {
 								timescore -= 10;
 								totalscore += 10;
 								if (victory == 1)pointsp1 += 10;
@@ -816,7 +822,7 @@ update_status ModuleUI::Update() {
 							}
 							else if (counter < 56)counter++;
 							else if (hitsscore > 0) {
-								if(counter==56)App->audio->PlayChunk(sumpoints, -1);
+								if (counter == 56)App->audio->PlayChunk(sumpoints, -1);
 								counter = 57;
 								hitsscore -= 10;
 								totalscore += 10;
@@ -829,7 +835,7 @@ update_status ModuleUI::Update() {
 				}
 				else counter = 80;
 				if (hitsscore == 0 && lifescore == 0 && timescore == 0) {
-					if (counter>79) {
+					if (counter > 79) {
 						play = false;
 						victory = 0;
 						if (rounds != 4 && roundsp1 < 2 && roundsp2 < 2)(App->fade->FadeToBlack(App->background, App->background));
@@ -843,7 +849,7 @@ update_status ModuleUI::Update() {
 						}
 					}
 					if (counter <= 79) {
-						
+
 						if (counter == 57 || counter == 58) {
 							App->audio->StopChunk();
 							App->audio->PlayChunk(sumpoints2);
@@ -876,7 +882,14 @@ update_status ModuleUI::Update() {
 		begin.Reset();
 		welldone.Reset();
 		perfect.Reset();
-		//RESET ALL NEW ANIMATIONS
+		victoryan.Reset();
+		draw.Reset();
+		ukyowins.Reset();
+		ippon.Reset();
+		welldone.Reset();
+		duel1.Reset();
+		duel2.Reset();
+		duel3.Reset();
 		if (roundsp1 > 0 || roundsp2 > 0)play = true;
 		
 	}

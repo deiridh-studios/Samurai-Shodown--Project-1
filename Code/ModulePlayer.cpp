@@ -481,7 +481,8 @@ bool ModulePlayer::Start()
 	body2 = App->collision->AddCollider({ position.x,(position.y - 50),25,15 }, COLLIDER_PLAYER, this);
 	body3 = App->collision->AddCollider({ position.x,(position.y - 20),45,35 }, COLLIDER_PLAYER, this);
 	sword = true;
-	actual = A_IDLE;
+	if (App->UI->rounds == 0)actual = A_START;
+	else actual = A_IDLE;
 	for (int i = 0; i < 60; i++) inputstate[i] = S_NONE;
 	for (int i = 0; i < 6; i++)inputstateout[i] = SO_NONE;
 	jump_timer = 0;
@@ -529,6 +530,7 @@ update_status ModulePlayer::PreUpdate() {
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout[i] = SO_NONE;
 	inputsouts = 0;
 	if (App->UI->startplay == true)Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual, inputstate, inputstateout, App->player, *current_animation);
+	else if (App->UI->rounds == 0&&actual==A_START)actual = A_START;
 	else {
 		actual = A_IDLE;
 		position.y = 210;
@@ -580,6 +582,7 @@ update_status ModulePlayer::Update()
 	if (attack!=nullptr&&attack->to_delete == false)inattack = true;
 	current_animation = ExecuteState(movementextra,sword, pow, notfinished, jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, aftercrouch, *body, *body2, *body3, &attack, position, App->player, *current_animation);
 	SDL_Rect r =current_animation->GetCurrentFrame();
+	if (actual == A_START && current_animation->finished == 1)actual = A_IDLE;
 	if (inattack == false && attack!=nullptr&&attack->to_delete == false) nattacks++;
 	notfinished = false;
 	inattack = false;

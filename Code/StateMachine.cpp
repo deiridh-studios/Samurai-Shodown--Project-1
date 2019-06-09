@@ -1495,7 +1495,7 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
 		break;*/
 
-	/*case A_DASH:
+	case A_DASH:
 		if (sword == true) current_animation = &App->player->dash;
 		else {
 			current_animation = &App->player->dashnoweapon;
@@ -1516,7 +1516,7 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 			body2.SetPos(position.x + 52, (position.y - 40));
 			body3.SetPos(position.x + 45, (position.y - 60));
 		}			//COLLIDER BOX
-		if (dash_timer == 1) {
+		/*if (dash_timer == 1) {
 			//sound missing
 		dash_timer = 2;
 
@@ -1533,13 +1533,12 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		}
 		if (current_animation->GetFinished() == 1) dash_timer = 3; {
 			dash_timer = 3;
-			(*attack)->to_delete = true;
-		}
-		break;*/
+		}*/
+		break;
 		
 		/////////////COLLISION BOXES
 		
-	/*case A_BACKDASH:
+	case A_BACKDASH:
 		if (sword == true)current_animation = &App->player->dash; 	//ANIMATION
 		else{
 			current_animation = &App->player->dashnoweapon;
@@ -1561,10 +1560,27 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 			App->audio->PlayChunk(App->player->tornadosound);
 			specialattack_timer = 2;
 		}
-		if (current_animation->GetFinished() == 1){specialattack_timer = 3;
+		if (current_animation->GetFinished() == 1){
+			specialattack_timer = 3;
+		}
 		break;
-	}*/
-
+	case A_START:
+		if (Player == App->player) {
+			current_animation = &App->player->prebattle;
+			if (current_animation->finished == 1) {
+				current_animation = &App->player->idle;
+				actual = A_IDLE;
+			}
+		}
+		else if (Player == App->player2) {
+			current_animation = &App->player2->prebattle;
+			if (current_animation->finished == 1) {
+				current_animation = &App->player2->idle;
+				actual = A_IDLE;
+			}
+		}
+		break;
+	}
 	/////////////////
 	if (forward == true) {
 		if (flip == false) {
@@ -1607,7 +1623,9 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 	if (do_double_anim == false && current_animation != &current){
 		current.Reset();
 	}
+	
 	return current_animation;
+
 }
 void CheckState(bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int &specialattack_timer, int &inputsouts, state& actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS]) {
 	switch (actual) {

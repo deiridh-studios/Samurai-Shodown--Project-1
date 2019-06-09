@@ -77,6 +77,7 @@ enum state {
 	A_AGARRE_NOWEAPON,
 	A_SLASH_NOWEAPON,
 	A_PROTECT,
+	A_START
 
 
 };
