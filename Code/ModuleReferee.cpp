@@ -19,7 +19,7 @@ ModuleReferee::ModuleReferee(){
 
 
 // Idle animation
-	idle.PushBack({ 85 , 33 , 58 , 94 });
+	idle.PushBack({ 85 , 55 , 58 , 72 });
 	idle.speed = 0.2f;
 
 // Walk left animation
@@ -76,26 +76,26 @@ ModuleReferee::ModuleReferee(){
 //hitted player 1 animation
 	//hitp1.pushback({84 , 33 , 59 , 94}); //player in the left hits player in the right
 
-	hitp1.PushBack({183 , 33 , 59 , 94 });
-	hitp1.PushBack({271 , 33 , 59 , 94 });
-	hitp1.PushBack({355 , 33 , 59 , 94 });
-	hitp1.PushBack({432 , 33 , 82 , 95});
-	hitp1.PushBack({518 , 33 , 76 , 93});
-	hitp1.PushBack({600 , 33 , 71 , 95});
-	hitp1.PushBack({});
+	hitp1.PushBack({184 , 57 , 58 , 70 });
+	hitp1.PushBack({271 , 57 , 51 , 70 });
+	hitp1.PushBack({356 , 57 , 51 , 70 });
+	hitp1.PushBack({433 , 34 , 81 , 92 });
+	hitp1.PushBack({519 , 36 , 73 , 91 });
+	hitp1.PushBack({601 , 48 , 69 , 79 });
+	//hitp1.PushBack({});
 	hitp1.speed = 0.2f;    
 
 
 //hitted player 2 animation
 	//hitp1.pushback({84 , 33 , 59 , 94});//player in the right hits player in the left
-	hitp2.PushBack({84 , 166 , 59 , 94 });
-	hitp2.PushBack({176 , 166 , 59 , 94 });
-	hitp2.PushBack({247 , 166 , 59 , 94 });
-	hitp2.PushBack({306 , 166 , 59 , 94 });
-	hitp2.PushBack({413 , 166 , 59 , 94 });
-	hitp2.PushBack({505 , 166 , 59 , 94 });
-	hitp2.PushBack({596 , 166 , 59 , 94 });
-	hitp2.PushBack({});
+	hitp2.PushBack({83 , 189 , 59 , 70 });
+	hitp2.PushBack({176 , 188 , 51 , 72 });
+	hitp2.PushBack({247 , 188 , 51 , 72 });
+	hitp2.PushBack({307 , 167 , 81 , 92 });
+	hitp2.PushBack({413 , 168 , 77 , 91 });
+	hitp2.PushBack({506 , 168 , 73 , 91 });
+	hitp2.PushBack({596 , 180 , 69 , 79 });
+	//hitp2.PushBack({});
 	hitp2.speed = 0.2f;
 
 }
@@ -109,7 +109,7 @@ bool ModuleReferee::Start()
 	LOG("Loading referee textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/sprites referee.png");
-	position.x = (App->player2->position.x - App->player->position.x) / 2;
+	position.x = ((App->player2->position.x - App->player->position.x) / 2)+20;
 	//positionbefore = (App->player2->position.x - App->player->position.x) / 2;
 	position.y = 100;
 	flip = false;
@@ -143,8 +143,8 @@ update_status ModuleReferee::Update() {
 	posx = App->render->zooming;
 	if (App->player->flip == true && App->player->position.y == 210)flip = true;
 	else if (App->player2->flip == true || App->player2->position.y == 210)flip = false;
-	if (flip == false) positiontobe = ((App->player2->position.x - App->player->position.x) / 2) + App->player->position.x;
-	else positiontobe= ((App->player->position.x - App->player2->position.x) / 2) + App->player2->position.x;
+	if (flip == false) positiontobe = (((App->player2->position.x - App->player->position.x) / 2)+ (20 * App->render->zooming)) + App->player->position.x;
+	else positiontobe= (((App->player->position.x - App->player2->position.x) / 2)+(20*App->render->zooming)) + App->player2->position.x;
 	if (App->render->zooming<1.0F&&App->render->zooming>0.7F) {
 		if (App->player->actual == A_WALK_FORWARD) {
 			if(App->player->flip==false)actualref = RIGHT;
@@ -178,8 +178,34 @@ update_status ModuleReferee::Update() {
 		current_animation = &walkleft;
 		actualref = LEFT;
 	}
+	if ((current_animation == &hitp1 || current_animation == &hitp2) && current_animation->current_frame > 1) {
+		Animation refanim;
+		if (current_animation == &hitp1) {
+			refanim= hitp1;
+			refanim.GetCurrentFrame();
+			if ((int)refanim.current_frame == 3)position.y = 77;
+			else if ((int)refanim.current_frame == 4)position.y = 79;
+			else if ((int)refanim.current_frame == 5)position.y = 91;
+			else {
+				position.y = 100;
+			}
+		}
+		else if (current_animation == &hitp2) {
+			refanim = hitp2;
+			refanim.GetCurrentFrame();
+			if ((int)refanim.current_frame == 3)position.y = 79;
+			else if ((int)refanim.current_frame == 4)position.y = 79;
+			else if ((int)refanim.current_frame == 5)position.y = 79;
+			else if ((int)refanim.current_frame == 6)position.y = 92;
+			else position.y = 100;
+		}
+	}
+	else position.y = 100;
 	if(flip==false)App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, false, App->render->zoom);
 	else App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 1.0F, true, true, App->render->zoom);
-	if (current_animation->finished == 1)actualref = IDLE;
+	if (current_animation->finished == 1) {
+		actualref = IDLE;
+		position.y = 100;
+	}
 	return UPDATE_CONTINUE;
 }
