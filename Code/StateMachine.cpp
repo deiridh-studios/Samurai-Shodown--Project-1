@@ -1529,6 +1529,16 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 	case A_APPLEATTACK:
 		current_animation = &App->player->appleattack;
 		App->audio->PlayChunk(App->player->tornadosound);
+		if (flip == false) {
+			body.SetPos(position.x + 50, (position.y - 65));
+			body2.SetPos(position.x + 52, (position.y - 50));
+			body3.SetPos(position.x + 32, (position.y - 35));
+		}
+		else {
+			body.SetPos(position.x + 50, (position.y - 65));
+			body2.SetPos(position.x + 67, (position.y - 50));
+			body3.SetPos(position.x + 47, (position.y - 35));
+		}
 		if (specialattack_timer == 1) {
 			App->audio->PlayChunk(App->player->tornadosound);
 			specialattack_timer = 2;
@@ -1543,7 +1553,7 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			}				//COLLIDER BOX*/
 
 						//CHANGE SOME POSITIONS IF NECESSARY AT THE END*/
-				specialattack_timer = 2;
+				//specialattack_timer = 2;
 				
 			}
 			if (current_animation->GetFinished() == 1)specialattack_timer = 3;
