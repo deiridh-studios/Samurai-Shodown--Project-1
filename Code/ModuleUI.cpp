@@ -41,7 +41,7 @@ ModuleUI::ModuleUI(){
 	engarde.PushBack({0, 64, 175, 30});
 	engarde.PushBack({0, 31'5, 175, 32});
 	engarde.PushBack({0, 0, 175, 32'5});
-	
+	engarde.speed = 0.2f;
 
 	////begin
 	begin.PushBack({177'5, 326, 20'5, 10});
@@ -53,6 +53,7 @@ ModuleUI::ModuleUI(){
 	begin.PushBack({0, 363, 97, 47});
 	begin.PushBack({0, 412, 104, 49});
 	begin.PushBack({0, 462, 104, 50});
+	begin.speed = 0.2f;
 
 	////duel
 	duel.PushBack({ 243, 112, 165,     5});
@@ -84,6 +85,7 @@ ModuleUI::ModuleUI(){
 	duel.PushBack({ 384, 353'5, 18,  9'5});
 	duel.PushBack({ 384, 364, 14,      7});
 	duel.PushBack({ 384, 372, 10, 5});
+	duel.speed = 0.2f;
 
 	////perfect
 	perfect.PushBack({ 424, 499, 16'5, 15});
@@ -101,6 +103,7 @@ ModuleUI::ModuleUI(){
 	perfect.PushBack({ 335, 384, 97, 98});
 	perfect.PushBack({ 228, 384, 104, 105});
 	perfect.PushBack({ 113, 384, 112, 112});
+	perfect.speed = 0.2f;
 
 	////welldone
 	welldone.PushBack({ 465, 101, 20, 5});
@@ -117,6 +120,7 @@ ModuleUI::ModuleUI(){
 	welldone.PushBack({ 183, 63, 127, 30});
 	welldone.PushBack({ 183, 136, 136, 30'5});
 	welldone.PushBack({ 183, 0, 145, 32});
+	welldone.speed = 0.2f;
 
 	////duel1
 	duel1.PushBack({ 324, 111, 13'5,    5});
@@ -149,6 +153,7 @@ ModuleUI::ModuleUI(){
 	duel1.PushBack({ 405, 353'5,   5,  9'5});	  
 	duel1.PushBack({ 399, 364,     5,    7});
 	duel1.PushBack({ 394, 372,     4,    3});
+	duel1.speed = 0.2f;
 
 	////duel2
 	duel2.PushBack({ 339'5, 111, 17,    5 });
@@ -181,6 +186,7 @@ ModuleUI::ModuleUI(){
 	duel2.PushBack({ 412, 353'5, 6, 9'5});
 	duel2.PushBack({ 406'5, 364, 5'5, 7 });
 	duel2.PushBack({ 400, 372, 4, 3 });
+	duel2.speed = 0.2f;
 
 	////duel3
 	duel3.PushBack({ 360, 111, 16,    5 });
@@ -213,6 +219,7 @@ ModuleUI::ModuleUI(){
 	duel3.PushBack({ 420, 353'5, 6, 9'5});
 	duel3.PushBack({ 415, 364, 5, 7});
 	duel3.PushBack({ 407, 372, 3, 3 });
+	duel3.speed = 0.2f;
 
 	////ippon
 	ippon.PushBack({ 0, 0, 93, 32});
@@ -230,9 +237,10 @@ ModuleUI::ModuleUI(){
 	ippon.PushBack({ 0, 279'5, 30, 11'5});
 	ippon.PushBack({ 0, 291, 25, 9});
 	ippon.PushBack({ 28, 292, 20, 7});
-	
+	ippon.speed = 0.2f;
 
 	////victory
+
 	victoryan.PushBack({ 400, 0,   12,  32});
 	victoryan.PushBack({ 400, 32,  112,  32});
 	victoryan.PushBack({ 407, 64,  105,  30});
@@ -250,6 +258,7 @@ ModuleUI::ModuleUI(){
 	victoryan.PushBack({ 489, 292,  23,  6});
 	victoryan.PushBack({ 497, 298, 15, 4});
 
+
 	////ukyowins
 	ukyowins.PushBack({ 448'5, 319, 63'5, 33});
 	ukyowins.PushBack({ 452, 352, 60, 30});
@@ -264,6 +273,60 @@ ModuleUI::ModuleUI(){
 	ukyowins.PushBack({ 368, 376, 26, 12});
 	ukyowins.PushBack({ 372, 388, 22, 10});
 	ukyowins.PushBack({ 376, 398, 18, 9});
+	ukyowins.speed = 0.2f;
+
+	////draw
+	draw.PushBack({ 733, 0, 59, 32 });
+	draw.PushBack({ 792, 0, 59, 32 });
+	draw.PushBack({ 733, 32, 59, 32 });
+	draw.PushBack({ 792, 32, 59, 32 });
+	draw.PushBack({ 733, 64, 59, 32 });
+	draw.PushBack({ 792, 64, 59, 32 });
+	draw.PushBack({ 733, 96, 59, 32 });
+	draw.PushBack({ 792, 96, 59, 32 });
+	draw.PushBack({ 733, 128, 59, 32 });
+	draw.PushBack({ 792, 128, 59, 32 });
+	draw.PushBack({ 733, 160, 59, 32 });
+	draw.PushBack({ 792, 160, 59, 32 });
+	draw.PushBack({ 733, 192, 59, 32 });
+	draw.PushBack({ 792, 192, 59, 32 });
+	draw.PushBack({ 792, 192, 59, 32 });
+	draw.PushBack({ 792, 192, 59, 32 });
+	draw.PushBack({ 792, 192, 59, 32 });
+	draw.PushBack({ 733, 192, 59, 32 });
+	draw.PushBack({ 792, 160, 59, 32 });
+	draw.PushBack({ 733, 160, 59, 32 });
+	draw.PushBack({ 792, 128, 59, 32 });
+	draw.PushBack({ 733, 128, 59, 32 });
+	draw.PushBack({ 792, 96, 59, 32 });
+	draw.PushBack({ 733, 96, 59, 32 });
+	draw.PushBack({ 792, 64, 59, 32 });
+	draw.PushBack({ 733, 64, 59, 32 });
+	draw.PushBack({ 792, 32, 59, 32 });
+	draw.PushBack({ 733, 32, 59, 32 });
+	draw.PushBack({ 792, 0, 59, 32 });
+	draw.PushBack({ 733, 0, 59, 32 });
+	draw.speed = 0.2f;
+
+
+
+	////time up
+	timeup.PushBack({ 511, 0, 111, 32 });
+	timeup.PushBack({ 622, 0, 111, 32 });
+	timeup.PushBack({ 511, 0, 59, 32 });
+	timeup.PushBack({ 622, 0, 59, 32 });
+	timeup.PushBack({ 511, 0, 59, 32 });
+	timeup.PushBack({ 622, 0, 59, 32 });
+	timeup.PushBack({ 511, 0, 59, 32 });
+	timeup.PushBack({ 622, 0, 59, 32 });
+	timeup.PushBack({ 511, 0, 59, 32 });
+	timeup.PushBack({ 622, 0, 59, 32 });
+	timeup.PushBack({ 511, 0, 59, 32 });
+	timeup.PushBack({ 622, 0, 59, 32 });
+	timeup.PushBack({ 511, 0, 59, 32 });
+	timeup.PushBack({ 622, 0, 59, 32 });
+	timeup.speed = 0.2f;
+
 
 }
 ModuleUI::~ModuleUI() {}

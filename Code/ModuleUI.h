@@ -127,6 +127,8 @@ private:
 	Animation ippon;
 	Animation victoryan;
 	Animation ukyowins;
+	Animation draw;
+	Animation timeup;
 
 };
 #endif
