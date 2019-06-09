@@ -22,18 +22,19 @@ In the latest version of the game you will be able to play only with the keyboar
 Player 1: 
 - Character movements will be controlled with: A as left, D as right, W as jump and S for crouch.
 - Character actions will be done using: T is used for punch or slash(it depends if the character wields a weapon), and you can use Y for kick the oponent. With R you will be able to realize a stronger punch and U for a stronger kick, these will do more damage to the oponent.
-- Special movements and combos: using double direction key you will autimatically do a dash. 
+- Special movements and combos: using double direction key you will autimatically do a dash. You have two special combos to deal with extra damage on your oponent, the first one: down, down+left, left, R/T and the second one(while jumping): down+left, down, down+right, right and T/R.
+
 
 Player 2: 
 - Character movements will be controlled with: left direction, right direction, up as jump and down for crouch.
 - Character actions will be done using: H is used for punch or slash(it depends if the character wields a weapon), and you can use G for kick the oponent. With O you will be able to realize a stronger punch and semicolon(;) key for a stronger kick, these will do more damage to the oponent.
-- Special movements and combos: using double direction key you will autimatically do a dash. 
+- Special movements and combos: using double direction key you will autimatically do a dash. You have two special combos to deal with extra damage on your oponent, the first one: down, down+left, left, R/T and the second one(while jumping): down+left, down, down+right, right and T/R.
 
 ###Gamepad
 Player 1: 
 - Character movements will be controlled with: D-pad.
 - Character actions will be done using: / is used for punch or slash(it depends if the character wields a weapon), and you can use / for kick the oponent. With / you will be able to realize a stronger punch and / for a stronger kick, these will do more damage to the oponent.
-- Special movements and combos: using double direction key you will autimatically do a dash. 
+- Special movements and combos: using double direction key you will autimatically do a dash. You have two special combos to deal with extra damage on your oponent, the first one: down, down+left, left, -/- and the second one(while jumping): down+left, down, down+right, right and -/-.
 
 You can combine differents keys to make differents movements as crouch-kick or crouch-slash, jumping-kick or jumping-slash and any action during the movement of the character.
 

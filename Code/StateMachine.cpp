@@ -1673,6 +1673,8 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		if (position.y >= 210)position.y = 210;
 		if (current_animation->GetFinished() == 1 && hitted_timer == 2 && position.y == 210)hitted_timer = 3;
 		break;
+	
+	
 	case A_APPLEATTACK:
 		if (sword = true)current_animation = &App->player->appleattack;
 		else {
@@ -1740,6 +1742,17 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		else {
 			current_animation = &App->player->dashnoweapon;
 		}	
+		//add colliders/ non damage colliders, limit
+		if (flip == false) {
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 20, (position.y - 57));
+			body3.SetPos(position.x + 10, (position.y - 40));
+		}
+		else {
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 26, (position.y - 57));
+			body3.SetPos(position.x + 16, (position.y - 40));
+		}
 		forward = true;
 		speed *= 2;
 		if (specialattack_timer == 1&&(stopleft==false&&stopright==false)) {
@@ -1786,17 +1799,17 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		else{
 			current_animation = &App->player->dashnoweapon;
 		}
+
 		if (flip == false) {
-			body.SetPos(position.x + 50, (position.y - 20));
-			body2.SetPos(position.x + 52, (position.y - 40));
-			body3.SetPos(position.x + 45, (position.y - 60));
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 20, (position.y - 57));
+			body3.SetPos(position.x + 10, (position.y - 40));
 		}
 		else {
-			body.SetPos(position.x + 50, (position.y - 20));
-			body2.SetPos(position.x + 52, (position.y - 40));
-			body3.SetPos(position.x + 45, (position.y - 60));
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 26, (position.y - 57));
+			body3.SetPos(position.x + 16, (position.y - 40));
 		}
-				/////////////COLLISION BOXES
 		backward = true;
 		speed *= 2;
 		if (specialattack_timer == 1 && (stopleft == false && stopright == false)) {
@@ -1821,6 +1834,14 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 				current_animation = &App->player2->idle;
 				actual = A_IDLE;
 			}
+		}
+		if (flip == false) {
+
+			position.x += 64;
+		}
+		else {
+
+			position.x -= 64;
 		}
 		break;
 	}
