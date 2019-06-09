@@ -56,6 +56,22 @@ Release history:
 - Timer, V0.42:
     Now with the timer added you will have tu hurry up if you want to end the life's oponent before the time ends, when it does the battle will be ended and the final scene will appear to congratulate the players. 
 
+-Samurai Shodown, v0.5:
+
+
+-Samurai Shodown, v0.55:
+    For first time gamed is implemented and fullscreen ukyo stage with the two Ukyo players. In this versions the movement in battle is widely limited with just the capacit of movement right and left.
+
+-Samurai Shodown, v0.58:
+
+
+-Samurai Shodown, v0.6:
+    This time the gamepad is allowed to control the player and you can use it for the movements tha are implemented in game for the moment. We have added some new mechanics or special effects like slowdown camera or the zoom out.
+
+-Samurai Shodown, v0.63:
+    This time the almost finished version of Saurai Shodown includes new features in the UI, the character selection screen but only allows to play with one player, you can see the others players too but no select any of them. Finally we have included the winning and lose modules for the battles.	
+
+
 ## Credits
 
 ### Marc Ramos Gomez

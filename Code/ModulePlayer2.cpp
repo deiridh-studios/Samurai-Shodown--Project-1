@@ -77,15 +77,15 @@ ModulePlayer2::ModulePlayer2()
 
 
 	// Punch animation (TO IMPROVE)
-	punch.PushBack({ 0, 274, 117, 137 });
-	punch.PushBack({ 117, 274, 117, 137 });
-	punch.PushBack({ 234, 274, 117, 137 });
-	punch.PushBack({ 351, 274, 117, 137 });
+	punch.PushBack({ 0, 274, 76, 137 });
+	punch.PushBack({ 117, 274, 75, 137 });
+	punch.PushBack({ 234, 274, 75, 137 });
+	punch.PushBack({ 351, 274, 102, 137 });
 	punch.PushBack({ 468, 274, 117, 137 });
-	punch.PushBack({ 351, 274, 117, 137 });
-	punch.PushBack({ 234, 274, 117, 137 });
-	punch.PushBack({ 117, 274, 117, 137 });
-	punch.PushBack({ 0, 274, 117, 137 });
+	punch.PushBack({ 351, 274, 102, 137 });
+	punch.PushBack({ 234, 274, 75, 137 });
+	punch.PushBack({ 117, 274, 75, 137 });
+	punch.PushBack({ 0, 274, 76, 137 });
 	punch.speed = 0.4f;
 
 	// Jump
@@ -347,13 +347,16 @@ ModulePlayer2::ModulePlayer2()
 	//airhitted.speed=0.2f;
 
 	///////////Strong slash;
-	strongerslash.PushBack({ 43,   2488'5, 75, 91'5 });
-	strongerslash.PushBack({ 202, 2488'5, 83, 91'5 });
-	strongerslash.PushBack({ 352, 2488'5, 86, 91'5 });
-	strongerslash.PushBack({ 513, 2488'5, 84, 91'5 });
-	strongerslash.PushBack({ 663, 2488'5, 97, 91'5 });
-	strongerslash.PushBack({ 834, 2488'5, 145, 91'5 });
-	//strongerslash.speed = 0.2f;
+	//strongerslash.PushBack({ 43,   2488, 75, 91 });
+	strongerslash.PushBack({ 202, 2488, 83, 91 });
+	strongerslash.PushBack({ 352, 2488, 86, 91 });
+	strongerslash.PushBack({ 513, 2488, 84, 91 });
+	strongerslash.PushBack({ 663, 2488, 97, 91 });
+	strongerslash.PushBack({ 834, 2488, 145, 91 });
+	strongerslash.PushBack({ 663, 2488, 97, 91 });
+	strongerslash.PushBack({ 352, 2488, 86, 91 });
+	strongerslash.PushBack({ 202, 2488, 83, 91 });
+	strongerslash.speed = 0.2f;
 
 	/////////////////////////////////////////////
 	///////animations ukyo no weapon////////////
@@ -457,12 +460,15 @@ ModulePlayer2::ModulePlayer2()
 	runnoweapon.speed = 0.2f;
 
 	//// powerful slash
-	powerfulslash.PushBack({ 821 , 2747 , 73 , 155 });
-	powerfulslash.PushBack({ 978 , 2747 , 82 , 155 });
-	powerfulslash.PushBack({ 1130 , 2747 , 155 , 155 });
-	powerfulslash.PushBack({ 1286 , 2747 , 157, 155 });
-	powerfulslash.PushBack({ 1442 , 2747 , 159, 155 });
-	powerfulslash.PushBack({ 1602 , 2747 , 145, 155 });
+	powerfulslash.PushBack({ 824 , 2747 , 69 , 155 });
+	powerfulslash.PushBack({ 980 , 2747 , 79 , 155 });
+	powerfulslash.PushBack({ 1130 , 2747 , 154 , 155 });
+	powerfulslash.PushBack({ 1286 , 2747 , 155, 155 });
+	powerfulslash.PushBack({ 1444 , 2747 , 155, 155 });
+	powerfulslash.PushBack({ 1602 , 2747 , 143, 155 });
+	powerfulslash.PushBack({ 1130 , 2747 , 154 , 155 });
+	powerfulslash.PushBack({ 980 , 2747 , 79 , 155 });
+	powerfulslash.PushBack({ 824 , 2747 , 69 , 155 });
 	powerfulslash.speed = 0.2f;
 
 	//// agarre amb weapon
@@ -525,6 +531,7 @@ bool ModulePlayer2::Start()
 	aftercrouch = false;
 	nattacks = nattackss = 0;
 	hitted_timer = punch_timer = kick_timer = punch_timer = 0;
+	movementextra = false;
 	return ret;
 }
 
@@ -598,7 +605,7 @@ update_status ModulePlayer2::Update()
 	position.x = ((170 + position.x)*App->render->zooming) - 170;
 	posx = App->render->zooming;
 	if (enemyattack != nullptr&&enemyattack->to_delete == false)inattack = true;
-	current_animation = ExecuteState(sword, pow, notfinished, jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft,aftercrouch, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2, *current_animation);
+	current_animation = ExecuteState(movementextra,sword, pow, notfinished, jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual3, flip, speed, mult, stopright, stopleft,aftercrouch, *bodyenemy, *bodyenemy2, *bodyenemy3, &enemyattack, position, App->player2, *current_animation);
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	if (inattack == false && enemyattack != nullptr&&enemyattack->to_delete == false) nattacks++;
 	notfinished = false;
