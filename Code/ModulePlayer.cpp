@@ -107,39 +107,6 @@ ModulePlayer::ModulePlayer()
 	jump.speed = 0.12f;
 
 
-	// Jump Forward
-	//jumpforward.PushBack({ 761, 0, 75, 137 });
-	//jumpforward.PushBack({ 836, 0, 68, 137 });
-	//jumpforward.PushBack({ 904, 0, 75, 137 });
-	jumpforward.PushBack({ 979, 0, 61, 137 });
-	jumpforward.PushBack({ 1040, 0, 66, 137 });
-	jumpforward.PushBack({ 1106, 0, 63, 137 });
-	//jumpbackward.PushBack({ 1190, 0, 83, 137 });
-	jumpforward.PushBack({ 1106, 0, 63, 137 });
-	jumpforward.PushBack({ 1040, 0, 66, 137 });
-	jumpforward.PushBack({ 979, 0, 61, 137 });
-	jumpforward.PushBack({ 904, 0, 75, 137 });
-	jumpforward.PushBack({ 836, 0, 68, 137 });
-	jumpforward.PushBack({ 761, 0, 75, 137 });
-	jumpforward.speed = 0.12f;
-
-
-	// Jump backwards
-	//jumpbackward.PushBack({ 761, 0, 75, 137 });
-	//jumpbackward.PushBack({ 836, 0, 68, 137 });
-	//jumpbackward.PushBack({ 904, 0, 75, 137 });
-	jumpbackward.PushBack({ 979, 0, 61, 137 });
-	jumpbackward.PushBack({ 1040, 0, 66, 137 });
-	jumpbackward.PushBack({ 1106, 0, 63, 137 });
-	//jumpbackward.PushBack({ 1190, 0, 83, 137 });
-	jumpbackward.PushBack({ 1106, 0, 63, 137 });
-	jumpbackward.PushBack({ 1040, 0, 66, 137 });
-	jumpbackward.PushBack({ 979, 0, 61, 137 });
-	jumpbackward.PushBack({ 904, 0, 75, 137 });
-	jumpbackward.PushBack({ 836, 0, 68, 137 });
-	jumpbackward.PushBack({ 761, 0, 75, 137 });
-	jumpbackward.speed = 0.12f;
-
 
 
 	//AppleAttack
@@ -507,6 +474,7 @@ bool ModulePlayer::Start()
 	jumpsound = App->audio->LoadChunk("Audio_FX/Jump.wav");
 	hittedsound = App->audio->LoadChunk("Audio_FX/Hitted.wav");
 	tornadosound = App->audio->LoadChunk("Audio_FX/Tornado.wav");
+	strongattacksound = App->audio->LoadChunk("Audio_FX/UkyoStrongAttacks.wav");
 	position.x = 40;
 	position.y = 210;
 	body = App->collision->AddCollider({ position.x,(position.y - 100),35,20 }, COLLIDER_PLAYER, this);
@@ -542,6 +510,7 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp() {
 	App->textures->Unload(graphics);
 	App->audio->StopChunk();
+	App->audio->UnLoadChunk(strongattacksound);
 	App->audio->UnLoadChunk(punchsound);
 	App->audio->UnLoadChunk(kicksound);
 	App->audio->UnLoadChunk(jumpsound);

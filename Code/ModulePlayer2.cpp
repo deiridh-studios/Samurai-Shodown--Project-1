@@ -104,39 +104,6 @@ ModulePlayer2::ModulePlayer2()
 	jump.speed = 0.12f;
 
 
-	// Jump Forward
-//	jumpforward.PushBack({ 761, 0, 75, 137 });
-//	jumpforward.PushBack({ 836, 0, 68, 137 });
-//	jumpforward.PushBack({ 904, 0, 75, 137 });
-	jumpforward.PushBack({ 979, 0, 61, 137 });
-	jumpforward.PushBack({ 1040, 0, 66, 137 });
-	jumpforward.PushBack({ 1106, 0, 63, 137 });
-	//jumpforward.PushBack({ 1169, 0, 61, 137 });
-	jumpforward.PushBack({ 1106, 0, 63, 137 });
-	jumpforward.PushBack({ 1040, 0, 66, 137 });
-	jumpforward.PushBack({ 979, 0, 61, 137 });
-	jumpforward.PushBack({ 904, 0, 75, 137 });
-	jumpforward.PushBack({ 836, 0, 68, 137 });
-	jumpforward.PushBack({ 761, 0, 75, 137 });
-	jumpforward.speed = 0.12f;
-
-
-	// Jump backwards
-//	jumpbackward.PushBack({ 761, 0, 75, 137 });
-//	jumpbackward.PushBack({ 836, 0, 68, 137 });
-//	jumpbackward.PushBack({ 904, 0, 75, 137 });
-	jumpbackward.PushBack({ 979, 0, 61, 137 });
-	jumpbackward.PushBack({ 1040, 0, 66, 137 });
-	jumpbackward.PushBack({ 1106, 0, 63, 137 });
-	//jumpbackward.PushBack({ 1169, 0, 61, 137 });
-	jumpbackward.PushBack({ 1106, 0, 63, 137 });
-	jumpbackward.PushBack({ 1040, 0, 66, 137 });
-	jumpbackward.PushBack({ 979, 0, 61, 137 });
-	jumpbackward.PushBack({ 904, 0, 75, 137 });
-	jumpbackward.PushBack({ 836, 0, 68, 137 });
-	jumpbackward.PushBack({ 761, 0, 75, 137 });
-	jumpbackward.speed = 0.12f;
-
 
 
 	//AppleAttack

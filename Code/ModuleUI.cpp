@@ -233,22 +233,22 @@ ModuleUI::ModuleUI(){
 	
 
 	////victory
-	victory.PushBack({ 400, 0,   12,  32});
-	victory.PushBack({ 400, 32,  112,  32});
-	victory.PushBack({ 407, 64,  105,  30});
-	victory.PushBack({ 414, 94,  98,  28});
-	victory.PushBack({ 421, 122,  91,  26});
-	victory.PushBack({ 428, 148,  84,  24});
-	victory.PushBack({ 435, 172,  77,  22});
-	victory.PushBack({ 441, 194,  71,  20});
-	victory.PushBack({ 448, 214,  64,  18});
-	victory.PushBack({ 455, 232,  57,  16});
-	victory.PushBack({ 462, 248,  50,  14});
-	victory.PushBack({ 469, 262,  43,  12});
-	victory.PushBack({ 476, 274,  36,  10});
-	victory.PushBack({ 482, 284,  30,  8});
-	victory.PushBack({ 489, 292,  23,  6});
-	victory.PushBack({ 497, 298, 15, 4});
+	victoryan.PushBack({ 400, 0,   12,  32});
+	victoryan.PushBack({ 400, 32,  112,  32});
+	victoryan.PushBack({ 407, 64,  105,  30});
+	victoryan.PushBack({ 414, 94,  98,  28});
+	victoryan.PushBack({ 421, 122,  91,  26});
+	victoryan.PushBack({ 428, 148,  84,  24});
+	victoryan.PushBack({ 435, 172,  77,  22});
+	victoryan.PushBack({ 441, 194,  71,  20});
+	victoryan.PushBack({ 448, 214,  64,  18});
+	victoryan.PushBack({ 455, 232,  57,  16});
+	victoryan.PushBack({ 462, 248,  50,  14});
+	victoryan.PushBack({ 469, 262,  43,  12});
+	victoryan.PushBack({ 476, 274,  36,  10});
+	victoryan.PushBack({ 482, 284,  30,  8});
+	victoryan.PushBack({ 489, 292,  23,  6});
+	victoryan.PushBack({ 497, 298, 15, 4});
 
 	////ukyowins
 	ukyowins.PushBack({ 448'5, 319, 63'5, 33});

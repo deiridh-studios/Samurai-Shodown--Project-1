@@ -125,7 +125,7 @@ private:
 	Animation duel2;
 	Animation duel3;
 	Animation ippon;
-	Animation victory;
+	Animation victoryan;
 	Animation ukyowins;
 
 };

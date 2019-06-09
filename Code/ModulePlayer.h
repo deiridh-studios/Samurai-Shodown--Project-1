@@ -186,6 +186,7 @@ public:
 	Mix_Chunk *kicksound;
 	Mix_Chunk *hittedsound;
 	Mix_Chunk *tornadosound;
+	Mix_Chunk *strongattacksound;
 	SDL_Texture* graphics = nullptr;
 	Animation idle;
 	Animation forward;
@@ -194,8 +195,6 @@ public:
 	Animation kick;
 	Animation strongerkick;
 	Animation jump;
-	Animation jumpforward;
-	Animation jumpbackward;
 	Animation appleattack;
 	Animation hittedan;
 	Animation hittedan_nosword;

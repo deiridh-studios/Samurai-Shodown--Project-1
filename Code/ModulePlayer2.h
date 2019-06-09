@@ -38,8 +38,6 @@ public:
 	Animation kick;
 	Animation strongerkick;
 	Animation jump;
-	Animation jumpforward;
-	Animation jumpbackward;
 	Animation appleattack;
 	Animation hittedan;
 	Animation hittedan_nosword;
