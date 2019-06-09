@@ -33,8 +33,8 @@ Player 2:
 ###Gamepad
 Player 1: 
 - Character movements will be controlled with: D-pad.
-- Character actions will be done using: / is used for punch or slash(it depends if the character wields a weapon), and you can use / for kick the oponent. With / you will be able to realize a stronger punch and / for a stronger kick, these will do more damage to the oponent.
-- Special movements and combos: using double direction key you will autimatically do a dash. You have two special combos to deal with extra damage on your oponent, the first one: down, down+left, left, -/- and the second one(while jumping): down+left, down, down+right, right and -/-.
+- Character actions will be done using: X is used for punch or slash(it depends if the character wields a weapon), and you can use A for kick the oponent. With Y you will be able to realize a stronger punch and B for a stronger kick, these will do more damage to the oponent.
+- Special movements and combos: using double direction key you will autimatically do a dash. You have two special combos to deal with extra damage on your oponent, the first one: down, down+left, left, X/A and the second one(while jumping): down+left, down, down+right, right and X/Y.
 
 You can combine differents keys to make differents movements as crouch-kick or crouch-slash, jumping-kick or jumping-slash and any action during the movement of the character.
 
