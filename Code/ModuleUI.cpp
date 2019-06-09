@@ -55,34 +55,34 @@ ModuleUI::ModuleUI(){
 	begin.PushBack({0, 462, 104, 50});
 
 	////duel
-	duel.PushBack({ 243, 112, 165, 5});
-	duel.PushBack({ 243, 116, 165, 6'5});
-	duel.PushBack({ 243, 122, 165, 8'5});
-	duel.PushBack({ 243, 130, 165, 11});
-	duel.PushBack({ 243, 141'5, 165, 10});
-	duel.PushBack({ 243, 152, 165, 13'5});
-	duel.PushBack({ 243, 165, 165, 16'5});
-	duel.PushBack({ 243, 181, 165, 18});
-	duel.PushBack({ 243, 199'5, 165, 20});
-	duel.PushBack({ 243, 219, 165, 22'5});
-	duel.PushBack({ 243, 241'5, 165, 23'5});
-	duel.PushBack({ 243, 265, 165, 25});
-	duel.PushBack({ 243, 290, 165, 29});
-	duel.PushBack({ 243, 318, 165, 29'5});
-	duel.PushBack({ 243, 348, 165, 33});
-	duel.PushBack({ 384, 109, 61, 32});
-	duel.PushBack({ 384, 139'5, 57, 29'5});
-	duel.PushBack({ 384, 168, 54, 27});
-	duel.PushBack({ 384, 194'5, 49, 26'5});
-	duel.PushBack({ 384, 223, 45, 23'5});
-	duel.PushBack({ 384, 247, 42, 21});
-	duel.PushBack({ 384, 269, 38, 19});
-	duel.PushBack({ 384, 288'5, 34, 17'5});
-	duel.PushBack({ 384, 309'5, 30, 15'5});
-	duel.PushBack({ 384, 325'5, 26, 13'5});
-	duel.PushBack({ 384, 341, 22, 11});
-	duel.PushBack({ 384, 353'5, 18, 9'5});
-	duel.PushBack({ 384, 364, 14, 7});
+	duel.PushBack({ 243, 112, 165,     5});
+	duel.PushBack({ 243, 116, 165,   6'5});
+	duel.PushBack({ 243, 122, 165,   8'5});
+	duel.PushBack({ 243, 130, 165,    11});
+	duel.PushBack({ 243, 141'5,165,   10});
+	duel.PushBack({ 243, 152, 165,  13'5});
+	duel.PushBack({ 243, 165, 165,  16'5});
+	duel.PushBack({ 243, 181, 165,    18});
+	duel.PushBack({ 243, 199'5, 165,  20});
+	duel.PushBack({ 243, 219, 165,  22'5});
+	duel.PushBack({ 243,241'5,165,  23'5});
+	duel.PushBack({ 243, 265, 165,    25});
+	duel.PushBack({ 243, 290, 165,    29});
+	duel.PushBack({ 243, 318, 165,  29'5});
+	duel.PushBack({ 243, 348, 165,    33});
+	duel.PushBack({ 384, 109, 61,     32});
+	duel.PushBack({ 384, 139'5,57,  29'5});
+	duel.PushBack({ 384, 168, 54,     27});
+	duel.PushBack({ 384, 194'5,49,  26'5});
+	duel.PushBack({ 384, 223, 45,   23'5});
+	duel.PushBack({ 384, 247, 42,     21});
+	duel.PushBack({ 384, 269, 38,     19});
+	duel.PushBack({ 384, 288'5,34,  17'5});
+	duel.PushBack({ 384, 309'5,30,  15'5});
+	duel.PushBack({ 384, 325'5,26,  13'5});
+	duel.PushBack({ 384, 341, 22,     11});
+	duel.PushBack({ 384, 353'5, 18,  9'5});
+	duel.PushBack({ 384, 364, 14,      7});
 	duel.PushBack({ 384, 372, 10, 5});
 
 	////perfect
@@ -117,6 +117,154 @@ ModuleUI::ModuleUI(){
 	welldone.PushBack({ 183, 63, 127, 30});
 	welldone.PushBack({ 183, 136, 136, 30'5});
 	welldone.PushBack({ 183, 0, 145, 32});
+
+	////duel1
+	duel1.PushBack({ 324, 111, 13'5,    5});
+	duel1.PushBack({ 324, 116'5, 13'5,  6'5});
+	duel1.PushBack({ 324, 122, 13'5,  8'5});
+	duel1.PushBack({ 324, 130, 13'5,   11});
+	duel1.PushBack({ 324, 140'5, 13'5,   10});
+	duel1.PushBack({ 324, 152'5, 13'5, 13'5});
+	duel1.PushBack({ 324, 166, 13'5, 16'5});
+	duel1.PushBack({ 324, 181'5, 13'5,   18});
+	duel1.PushBack({ 324, 200, 13'5,   20});
+	duel1.PushBack({ 324, 220, 13'5, 22'5});
+	duel1.PushBack({ 324, 242, 13'5, 23'5 });
+	duel1.PushBack({ 324, 266, 13'5,   25 });
+	duel1.PushBack({ 324, 292, 13'5,   29 });
+	duel1.PushBack({ 324, 319, 13'5, 29'5 });
+	duel1.PushBack({ 324, 350, 13'5,   33});
+
+	duel1.PushBack({ 461, 109,    12,   32});	  
+	duel1.PushBack({ 457, 139'5,  11, 29'5});	  
+	duel1.PushBack({450'5,168,  10'5,   27});	  
+	duel1.PushBack({ 446, 194'5,  10, 26'5});	  
+	duel1.PushBack({ 440, 223,    10, 23'5});	  
+	duel1.PushBack({ 435, 247,    10,   21});	  
+	duel1.PushBack({ 430, 269,     9,   19});	  
+	duel1.PushBack({ 425, 288'5,   8, 17'5});	  
+	duel1.PushBack({ 419, 309'5,   8, 15'5});	  
+	duel1.PushBack({ 414, 325'5,   7, 13'5});	  
+	duel1.PushBack({ 409, 341,     6,   11});	  
+	duel1.PushBack({ 405, 353'5,   5,  9'5});	  
+	duel1.PushBack({ 399, 364,     5,    7});
+	duel1.PushBack({ 394, 372,     4,    3});
+
+	////duel2
+	duel2.PushBack({ 339'5, 111, 17,    5 });
+	duel2.PushBack({ 339'5, 116'5, 17,  6'5 });
+	duel2.PushBack({ 339'5, 122, 17,  8'5 });
+	duel2.PushBack({ 339'5, 130, 17,   11 });
+	duel2.PushBack({ 339'5, 140'5, 17,   10 });
+	duel2.PushBack({ 339'5, 152'5, 17, 13'5 });
+	duel2.PushBack({ 339'5, 166, 17, 16'5 });
+	duel2.PushBack({ 339'5, 181'5, 17,   18 });
+	duel2.PushBack({ 339'5, 200, 17,   20 });
+	duel2.PushBack({ 339'5, 220, 17, 22'5 });
+	duel2.PushBack({ 339'5, 242, 17, 23'5 });
+	duel2.PushBack({ 339'5, 266, 17,   25 });
+	duel2.PushBack({ 339'5, 292, 17,   29 });
+	duel2.PushBack({ 339'5, 319'5, 17, 29'5 });
+	duel2.PushBack({ 339'5, 350, 17,   33 });
+		
+	duel2.PushBack({ 475, 109, 15'5, 32});
+	duel2.PushBack({ 470'5, 139'5, 14'5, 29'5});
+	duel2.PushBack({ 464'5, 168, 13'5, 27});
+	duel2.PushBack({ 456, 194'5, 15, 26'5});
+	duel2.PushBack({ 453, 223, 12, 23'5});
+	duel2.PushBack({ 448, 247, 12, 21});
+	duel2.PushBack({ 440, 269, 11, 19});
+	duel2.PushBack({ 434, 288'5, 10, 17'5});
+	duel2.PushBack({ 431, 309'5, 9, 15'5});
+	duel2.PushBack({ 424'5, 325'5, 8'5, 13'5});
+	duel2.PushBack({ 418'5, 341, 7'5, 11});
+	duel2.PushBack({ 412, 353'5, 6, 9'5});
+	duel2.PushBack({ 406'5, 364, 5'5, 7 });
+	duel2.PushBack({ 400, 372, 4, 3 });
+
+	////duel3
+	duel3.PushBack({ 360, 111, 16,    5 });
+	duel3.PushBack({ 360, 116'5, 16,  6'5 });
+	duel3.PushBack({ 360, 122, 16,  8'5 });
+	duel3.PushBack({ 360, 130, 16,   11 });
+	duel3.PushBack({ 360, 140'5, 16,   10 });
+	duel3.PushBack({ 360, 152'5, 16, 13'5 });
+	duel3.PushBack({ 360, 166, 16, 16'5 });
+	duel3.PushBack({ 360, 181'5, 16,   18 });
+	duel3.PushBack({ 360, 200, 16,   20 });
+	duel3.PushBack({ 360, 220, 16, 22'5 });
+	duel3.PushBack({ 360, 242, 16, 23'5 });
+	duel3.PushBack({ 360, 266, 16,   25 });
+	duel3.PushBack({ 360, 292, 16,   29 });
+	duel3.PushBack({ 360, 319'5, 16, 29'5 });
+	duel3.PushBack({ 360, 350, 16,   33 });
+		
+	duel3.PushBack({ 492, 109, 15, 32});
+	duel3.PushBack({ 488, 139'5, 15, 29'5});
+	duel3.PushBack({ 480, 168, 14, 27});
+	duel3.PushBack({ 474, 194'5, 13, 26'5});
+	duel3.PushBack({ 468, 223, 11, 23'5});
+	duel3.PushBack({ 462, 247, 11, 21});
+	duel3.PushBack({ 452, 269, 11, 19});
+	duel3.PushBack({ 445, 288'5, 9, 17'5});
+	duel3.PushBack({ 441, 309'5, 9, 15'5});
+	duel3.PushBack({ 435, 325'5, 8, 13'5});
+	duel3.PushBack({ 427, 341, 8, 11 });
+	duel3.PushBack({ 420, 353'5, 6, 9'5});
+	duel3.PushBack({ 415, 364, 5, 7});
+	duel3.PushBack({ 407, 372, 3, 3 });
+
+	////ippon
+	ippon.PushBack({ 0, 0, 93, 32});
+	ippon.PushBack({ 0, 32, 93, 32});
+	ippon.PushBack({ 0, 64, 87, 30});
+	ippon.PushBack({ 0, 94, 81, 28});
+	ippon.PushBack({ 0, 122, 76, 26});
+	ippon.PushBack({ 0, 148, 70, 24});
+	ippon.PushBack({ 0, 172, 64, 22});
+	ippon.PushBack({ 0, 194, 59, 22});
+	ippon.PushBack({ 0, 216, 54, 18});
+	ippon.PushBack({ 0, 234, 48, 17'5});
+	ippon.PushBack({ 0, 251'5, 43, 15'5});
+	ippon.PushBack({ 0, 267, 36, 12'5});
+	ippon.PushBack({ 0, 279'5, 30, 11'5});
+	ippon.PushBack({ 0, 291, 25, 9});
+	ippon.PushBack({ 28, 292, 20, 7});
+	
+
+	////victory
+	victory.PushBack({ 400, 0,   12,  32});
+	victory.PushBack({ 400, 32,  112,  32});
+	victory.PushBack({ 407, 64,  105,  30});
+	victory.PushBack({ 414, 94,  98,  28});
+	victory.PushBack({ 421, 122,  91,  26});
+	victory.PushBack({ 428, 148,  84,  24});
+	victory.PushBack({ 435, 172,  77,  22});
+	victory.PushBack({ 441, 194,  71,  20});
+	victory.PushBack({ 448, 214,  64,  18});
+	victory.PushBack({ 455, 232,  57,  16});
+	victory.PushBack({ 462, 248,  50,  14});
+	victory.PushBack({ 469, 262,  43,  12});
+	victory.PushBack({ 476, 274,  36,  10});
+	victory.PushBack({ 482, 284,  30,  8});
+	victory.PushBack({ 489, 292,  23,  6});
+	victory.PushBack({ 497, 298, 15, 4});
+
+	////ukyowins
+	ukyowins.PushBack({ 448'5, 319, 63'5, 33});
+	ukyowins.PushBack({ 452, 352, 60, 30});
+	ukyowins.PushBack({ 456, 382, 56, 29});
+	ukyowins.PushBack({ 396, 319, 53, 27});
+	ukyowins.PushBack({ 399, 346, 50, 24});
+	ukyowins.PushBack({ 404, 370, 45, 22});
+	ukyowins.PushBack({ 407, 392, 42, 21});
+	ukyowins.PushBack({ 356, 328, 38, 18});
+	ukyowins.PushBack({ 360, 346, 34, 16});
+	ukyowins.PushBack({ 364, 362, 30, 14});
+	ukyowins.PushBack({ 368, 376, 26, 12});
+	ukyowins.PushBack({ 372, 388, 22, 10});
+	ukyowins.PushBack({ 376, 398, 18, 9});
+
 }
 ModuleUI::~ModuleUI() {}
 bool ModuleUI::Init() {
