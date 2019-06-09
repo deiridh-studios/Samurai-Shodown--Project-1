@@ -1370,26 +1370,26 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			current_animation = &App->player->kickcrouch_noweapon;
 		}		////ANIMATION
 		if (flip == false) {
-			body.SetPos(position.x + 50, (position.y - 120));
-			body2.SetPos(position.x + 52, (position.y - 99));
-			body3.SetPos(position.x + 45, (position.y - 85));
+			body.SetPos(position.x + 15, (position.y - 65));
+			body2.SetPos(position.x + 25, (position.y - 50));
+			body3.SetPos(position.x + 12, (position.y - 35));
 		}
 		else {
-			body.SetPos(position.x + 50, (position.y - 120));
-			body2.SetPos(position.x + 52, (position.y - 99));
-			body3.SetPos(position.x + 45, (position.y - 85));
+			body.SetPos(position.x + 50, (position.y - 65));
+			body2.SetPos(position.x + 67, (position.y - 50));
+			body3.SetPos(position.x + 47, (position.y - 35));
 		}			//COLLIDER BOX*/
 		if (kick_timer == 1) {
 			App->audio->PlayChunk(App->player->kicksound);
 			kick_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 50,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 30,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x += 24;
 			}
 			else {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 5,(position.y - 110),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,40 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,40 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x -= 24;
 			}			//COLLIDER BOX*/
 		}
@@ -1544,8 +1544,40 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
 		break;
-	case A_DASH:
-		//current_animation = &App->player->(=);		//ANIMATION
+/*	case A_DASH:
+		if (sword == true) current_animation = &App->player->dash;
+		else {
+			current_animation = &App->player->dashnoweapon;
+		}	if (flip == false) {
+			body.SetPos(position.x + 50, (position.y - 20));
+			body2.SetPos(position.x + 52, (position.y - 40));
+			body3.SetPos(position.x + 45, (position.y - 60));
+		}
+		else {
+			body.SetPos(position.x + 50, (position.y - 20));
+			body2.SetPos(position.x + 52, (position.y - 40));
+			body3.SetPos(position.x + 45, (position.y - 60));
+		}			//COLLIDER BOX
+		if (dash_timer == 1) {
+			//sound missing
+			dash_timer = 2;
+
+			
+			
+			if (flip == false) {
+				
+				position.x += 64;
+			}
+			else {
+				
+				position.x -= 64;
+			}			//COLLIDER BOX
+		}
+		if (current_animation->GetFinished() == 1) {
+			dash_timer = 3;
+			(*attack)->to_delete = true;
+		}
+		break;*/
 
 		/////////////COLLISION BOXES
 		forward = true;
