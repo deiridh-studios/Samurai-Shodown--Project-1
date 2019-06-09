@@ -16,7 +16,6 @@ public:
 	bool CleanUp();
 
 public:
-	Mix_Chunk* earthquake;
 	SDL_Rect rectbackground;
 	int scrollleft;
 	int scrollright;

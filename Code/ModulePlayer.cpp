@@ -307,13 +307,13 @@ ModulePlayer::ModulePlayer()
 	///////////Air hitted;
 	airhitted.PushBack({ 1215,  1941, 82, 96 });
 	airhitted.PushBack({ 1297, 1941, 97, 96 });
-	airhitted.PushBack({ 1394, 1941, 126'3, 96 });
-	airhitted.PushBack({ 1520'3, 1941, 125'9, 96 });
-	airhitted.PushBack({ 1646'2, 1941, 125'8, 96 });
+	airhitted.PushBack({ 1394, 1941, 126, 96 });
+	airhitted.PushBack({ 1520, 1941, 125, 96 });
+	airhitted.PushBack({ 1646, 1941, 125, 96 });
 	airhitted.PushBack({ 1772, 1941, 96, 96 });
-	airhitted.PushBack({ 1868, 1941, 70'6, 96 });
-	airhitted.PushBack({ 1938'6, 1941, 43'4, 96 });
-	airhitted.PushBack({ 1982, 1941, 76'5,96 });
+	airhitted.PushBack({ 1868, 1941, 70, 96 });
+	airhitted.PushBack({ 1938, 1941, 43, 96 });
+	airhitted.PushBack({ 1982, 1941, 76,96 });
 	//airhitted.speed=0.2f;
 
 	///////////Strong slash;
@@ -450,6 +450,16 @@ ModulePlayer::ModulePlayer()
 
 	//// dash
 	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.PushBack({ 1860, 2616, 71, 101 });
+	dash.speed = 0.2f;
+
+
 
 	////dash no weapon
 	dashnoweapon.PushBack({93, 2624, 71, 93});

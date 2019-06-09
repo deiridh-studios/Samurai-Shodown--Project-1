@@ -623,10 +623,6 @@ bool  ModuleSceneEarthquake::Start() {
 	rectbackground.h = (SCREEN_HEIGHT);
 	scrollleft = 0;
 	scrollright = 0;
-	App->audio->LoadMusic("Music/stage2.ogg");
-	App->audio->PlayMusic(App->audio->musics[0]);
-	earthquake = App->audio->LoadChunk("Audio_FX/Earthquake.wav");
-	App->audio->PlayChunk(earthquake);
 	graphics = App->textures->Load("Sprites/Back.png");
 	graphics2 = App->textures->Load("Sprites/UITutorial.png");
 	graphics3 = App->textures->Load("Sprites/TutorialPlayers.png");
@@ -1199,9 +1195,6 @@ update_status  ModuleSceneEarthquake::Update() {
 }
 bool  ModuleSceneEarthquake::CleanUp()
 {
-	App->audio->StopChunk();
-	App->audio->UnLoadChunk(earthquake);
-	App->audio->UnLoadMusic(App->audio->musics[0]);
 	//App->UI->Disable();
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphics2);
