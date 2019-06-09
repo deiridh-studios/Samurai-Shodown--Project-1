@@ -1652,14 +1652,18 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 	case A_FIREEAGLE:
 
 		if(sword == true)current_animation = &App->player->firebird;
+		
 		else { break; }
 		if (specialattack_timer == 1) {
-			if (Player == App->player) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
-			else if (Player == App->player2) App->particles->AddParticle(App->particles->tornado, position.x, position.y - 100, COLLIDER_ENEMY_SHOT, 0);
+			if (Player == App->player) App->particles->AddParticle(App->particles->eagle, position.x + 100, position.y - 100, COLLIDER_PLAYER_SHOT, 0);
+			else if (Player == App->player2) App->particles->AddParticle(App->particles->eagle, position.x + 100, position.y - 100, COLLIDER_ENEMY_SHOT, 0);
 			App->audio->PlayChunk(App->player->tornadosound);
 			specialattack_timer = 2;
 		}
-		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
+		if (current_animation->GetFinished() == 1) {
+			specialattack_timer = 3;
+			(*attack)->to_delete = true;
+		}
 		break;
 
 
@@ -1698,7 +1702,7 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
 		break;*/
 
-/*	case A_DASH:
+	/*case A_DASH:
 		if (sword == true) current_animation = &App->player->dash;
 		else {
 			current_animation = &App->player->dashnoweapon;
@@ -1721,7 +1725,7 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		}			//COLLIDER BOX
 		if (dash_timer == 1) {
 			//sound missing
-			dash_timer = 2;
+		dash_timer = 2;
 
 			
 			
@@ -1743,8 +1747,7 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		/////////////COLLISION BOXES
 		
 	/*case A_BACKDASH:
-		if(sword ==true)
-		current_animation = &App->player->dash;		//ANIMATION
+		if (sword == true)current_animation = &App->player->dash; 	//ANIMATION
 		else{
 			current_animation = &App->player->dashnoweapon;
 		}
@@ -1765,7 +1768,7 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 			App->audio->PlayChunk(App->player->tornadosound);
 			specialattack_timer = 2;
 		}
-		if (current_animation->GetFinished() == 1)specialattack_timer = 3;
+		if (current_animation->GetFinished() == 1){specialattack_timer = 3;
 		break;
 	}*/
 
