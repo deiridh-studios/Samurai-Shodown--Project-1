@@ -18,6 +18,13 @@
 
 ModuleUI::ModuleUI(){
 	////engarde
+	engarde.PushBack({ 0, 32, 15'3, 31'7});
+	engarde.PushBack({ 24'3, 32, 16'7, 31'7});
+	engarde.PushBack({ 63'3, 32, 16'4, 31'7});
+	engarde.PushBack({ 87'3, 32, 16, 31'7});
+	engarde.PushBack({ 111'3, 32, 16'7, 31'7});
+	engarde.PushBack({ 135, 32, 17, 31'7});
+	engarde.PushBack({ 159, 32, 17, 31'7});
 	engarde.PushBack({0, 302'5, 175, 4'5});
 	engarde.PushBack({0, 296'5, 175, 6'5});
 	engarde.PushBack({0, 288'5, 175, 7});
