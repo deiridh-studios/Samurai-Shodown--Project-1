@@ -24,7 +24,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("sprites/spritesHaohmaruFIXED.png");
+	graphics = App->textures->Load("sprites/UkyoPlayer1SpriteSheet.png");
 
 	// Tornado particle
 	/*

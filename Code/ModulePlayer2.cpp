@@ -531,7 +531,7 @@ update_status ModulePlayer2::PreUpdate() {
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout2[i] = SO_NONE;
 	inputsouts = 0;
 	if(App->UI->startplay ==true)Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual3, inputstate2, inputstateout2, App->player2, *current_animation);
-	else if (App->UI->rounds == 0&&actual3==A_START)actual3 = A_START;
+	//else if (App->UI->rounds == 0&&actual3==A_START)actual3 = A_START;
 	else{
 		actual3 = A_IDLE;
 		position.y = 210;
@@ -666,12 +666,8 @@ void ModulePlayer2::OnCollision(Collider* enemy, Collider* other) {
 	}
 	else {
 		if (other->type == COLLIDER_PLAYER) {
-			if (enemy->to_delete == false && App->player2->actual3 != A_APPLEATTACK)nattackss++;
-			if (hitapple == true && actual3 == A_APPLEATTACK) {
-				hitapple = false;
-				nattackss++;
-			}
-			if (App->player2->actual3 != A_APPLEATTACK)enemy->to_delete = true;
+			if (enemy->to_delete == false)nattackss++;
+			enemy->to_delete = true;
 		}
 	}
 }
