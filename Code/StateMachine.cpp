@@ -13,7 +13,7 @@
 #include "SDL/include/SDL.h"
 
 
-void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, int& inputsouts, iPoint position, bool flip, state actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS], Module* Player) {
+void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, int& inputsouts, iPoint position, bool flip, state actual, inputin inputstate[60], inputout inputstateout[INPUTSOUTS], Module* Player, Animation& current) {
 	if (actual != A_HITTED) {
 		bool left = false;
 		bool right = false;
@@ -265,12 +265,22 @@ void Preupdate(int& jump_timer, int& punch_timer, int& kick_timer, int& speciala
 		hitted_timer = 0;
 	}
 }
-Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player) {
-	Animation* current_animation=&App->player->idle;
+Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_timer, int& punch_timer, int& kick_timer, int& specialattack_timer, int& hitted_timer, state actual, bool flip, int speed,  int& mult, bool stopright, bool stopleft, bool& aftercrouch, Collider& body, Collider& body2, Collider& body3, Collider **attack, iPoint& position, Module* Player, Animation& current) {
+	Animation* current_animation;
+	bool do_double_anim = false;
+	if (Player == App->player) current_animation = &App->player->idle;
+	else current_animation = &App->player2->idle;
 	if (notfinished == true) {
-		current_animation = &App->player->punchair; current_animation->Reset();
-		current_animation = &App->player->kickair; current_animation->Reset();
-		current_animation=&App->player->idle;
+		if (Player == App->player) {
+			current_animation = &App->player->punchair; current_animation->Reset();
+			current_animation = &App->player->kickair; current_animation->Reset();
+			current_animation = &App->player->idle;
+		}
+		else {
+			current_animation = &App->player2->punchair; current_animation->Reset();
+			current_animation = &App->player2->kickair; current_animation->Reset();
+			current_animation = &App->player2->idle;
+		}
 		(*attack)->to_delete = true;
 	}
 	bool forward = false;
@@ -278,7 +288,20 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 	bool jump = false;
 	switch (actual) {
 	case A_IDLE:
-		current_animation = &App->player->idle;
+		if (Player == App->player) {
+			if (aftercrouch == true) {
+				current_animation = &App->player->crouchfinished;
+				if(current_animation->finished==1)aftercrouch = false;
+			}
+			else current_animation = &App->player->idle;
+		}
+		else {
+			if (aftercrouch == true) {
+				current_animation = &App->player2->crouchfinished;
+				if (current_animation->finished == 1)aftercrouch = false;
+			}
+			else current_animation = &App->player2->idle;
+		}
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 24, (position.y - 57));
@@ -291,7 +314,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		}
 		break;
 	case A_WALK_FORWARD:
-		current_animation = &App->player->forward;
+		if(Player == App->player)current_animation = &App->player->forward;
+		else current_animation = &App->player2->forward;
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
@@ -305,7 +329,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		forward = true;
 		break;
 	case A_WALK_BACKWARD:
-		current_animation = &App->player->backward;
+		if (Player == App->player)current_animation = &App->player->backward;
+		else current_animation = &App->player2->backward;
 		if (flip == false) {
 			body.SetPos(position.x + 18, (position.y - 80));
 			body2.SetPos(position.x + 20, (position.y - 57));
@@ -319,7 +344,8 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 		backward = true;
 		break;
 	case A_JUMP_NEUTRAL:
-		current_animation = &App->player->jump;
+		if(Player == App->player)current_animation = &App->player->jump;
+		else current_animation = &App->player2->jump;
 		if (flip == false) {
 			body.SetPos(position.x + 15, (position.y - 90));
 			body2.SetPos(position.x + 26, (position.y - 69));
@@ -330,10 +356,11 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			body2.SetPos(position.x + 11, (position.y - 69));
 			body3.SetPos(position.x + 10, (position.y - 55));
 		}
-		jump = true;
+		if (current_animation->current_frame <= 4 || position.y != 210) jump = true;
 		break;
 	case A_JUMP_FORWARD:
-		current_animation = &App->player->jumpforward;
+		if(Player == App->player)current_animation = &App->player->jumpforward;
+		else current_animation = &App->player2->jumpforward;
 		if (flip == false) {
 			body.SetPos(position.x + 13, (position.y - 90));
 			body2.SetPos(position.x + 23, (position.y - 69));
@@ -344,11 +371,12 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			body2.SetPos(position.x + 11, (position.y - 69));
 			body3.SetPos(position.x + 9, (position.y - 55));
 		}
-		jump = true;
-		forward = true;
+		if (current_animation->current_frame <= 4 || position.y != 210) jump = true;
+		if(jump==true)forward = true;
 		break;
 	case A_JUMP_BACKWARD:
-		current_animation = &App->player->jumpbackward;
+		if (Player == App->player)current_animation = &App->player->jumpbackward;
+		else current_animation = &App->player2->jumpbackward;
 		if (flip == false) {
 			body.SetPos(position.x + 14, (position.y - 90));
 			body2.SetPos(position.x + 23, (position.y - 69));
@@ -360,24 +388,24 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			body2.SetPos(position.x + 11, (position.y - 69));
 			body3.SetPos(position.x + 11, (position.y - 55));
 		}
-		jump = true;
-		backward = true;
+		if (current_animation->current_frame <= 4 || position.y != 210) jump = true;
+		if(jump==true)backward = true;
 		break;
 	case A_CROUCH:
-		current_animation = &App->player->crouch;
+		if (Player == App->player)current_animation = &App->player->crouch;
+		else current_animation = &App->player2->crouch;
 		if (flip == false) {
 			body.SetPos(position.x + 28, (position.y - 70));
 			body2.SetPos(position.x + 42, (position.y - 54));
-			body3.SetPos(position.x + 23
-				, (position.y - 40));
+			body3.SetPos(position.x + 23, (position.y - 40));
 		}
 		else {
 			body.SetPos(position.x + 15, (position.y - 70));
 			body2.SetPos(position.x + 8, (position.y - 54));
 			body3.SetPos(position.x + 8, (position.y - 40));
 		}
-		if (current_animation->GetFinished() == 1) {
-			current_animation = &App->player->crouchfinished;
+		if (current_animation->current_frame >= 2) {
+			current_animation->current_frame = 2;
 		}
 		break;
 	case A_PUNCH_STANDING:
@@ -1610,6 +1638,9 @@ Animation* ExecuteState(bool &sword, bool pow, bool &notfinished, int& jump_time
 			mult = -2;
 		}
 		position.y -= speed * mult;
+	}
+	if (do_double_anim == false && current_animation != &current){
+		current.Reset();
 	}
 	return current_animation;
 }

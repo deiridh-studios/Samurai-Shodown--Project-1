@@ -75,7 +75,7 @@ ModulePlayer::ModulePlayer()
 	
 
 	//crouchfinished
-	crouchfinished.PushBack({ 1386 , 274 , 67 , 137 });
+	crouchfinished.PushBack({ 1318 , 274 , 68 , 137 });
 	crouchfinished.speed = 0.2f;
 
 
@@ -92,9 +92,9 @@ ModulePlayer::ModulePlayer()
 	punch.speed = 0.4f;
 
 	// Jump
-	jump.PushBack({ 761, 0, 75, 137 });
-	jump.PushBack({ 836, 0, 68, 137 });
-	jump.PushBack({ 904, 0, 75, 137 });
+	//jump.PushBack({ 761, 0, 75, 137 });
+	//jump.PushBack({ 836, 0, 68, 137 });
+	//jump.PushBack({ 904, 0, 75, 137 });
 	jump.PushBack({ 979, 0, 61, 137 });
 	jump.PushBack({ 1040, 0, 66, 137 });
 	jump.PushBack({ 1106, 0, 63, 137 });
@@ -104,41 +104,41 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 904, 0, 75, 137 });
 	jump.PushBack({ 836, 0, 68, 137 });
 	jump.PushBack({ 761, 0, 75, 137 });
-	jump.speed = 0.1f;
+	jump.speed = 0.12f;
 
 
 	// Jump Forward
-	jumpforward.PushBack({ 761, 0, 75, 137 });
-	jumpforward.PushBack({ 836, 0, 68, 137 });
-	jumpforward.PushBack({ 904, 0, 75, 137 });
+	//jumpforward.PushBack({ 761, 0, 75, 137 });
+	//jumpforward.PushBack({ 836, 0, 68, 137 });
+	//jumpforward.PushBack({ 904, 0, 75, 137 });
 	jumpforward.PushBack({ 979, 0, 61, 137 });
 	jumpforward.PushBack({ 1040, 0, 66, 137 });
 	jumpforward.PushBack({ 1106, 0, 63, 137 });
-	jumpforward.PushBack({ 1169, 0, 61, 137 });
+	//jumpbackward.PushBack({ 1190, 0, 83, 137 });
 	jumpforward.PushBack({ 1106, 0, 63, 137 });
 	jumpforward.PushBack({ 1040, 0, 66, 137 });
 	jumpforward.PushBack({ 979, 0, 61, 137 });
 	jumpforward.PushBack({ 904, 0, 75, 137 });
 	jumpforward.PushBack({ 836, 0, 68, 137 });
 	jumpforward.PushBack({ 761, 0, 75, 137 });
-	jumpforward.speed = 0.1f;
+	jumpforward.speed = 0.12f;
 
 
 	// Jump backwards
-	jumpbackward.PushBack({ 761, 0, 75, 137 });
-	jumpbackward.PushBack({ 836, 0, 68, 137 });
-	jumpbackward.PushBack({ 904, 0, 75, 137 });
+	//jumpbackward.PushBack({ 761, 0, 75, 137 });
+	//jumpbackward.PushBack({ 836, 0, 68, 137 });
+	//jumpbackward.PushBack({ 904, 0, 75, 137 });
 	jumpbackward.PushBack({ 979, 0, 61, 137 });
 	jumpbackward.PushBack({ 1040, 0, 66, 137 });
 	jumpbackward.PushBack({ 1106, 0, 63, 137 });
-	jumpbackward.PushBack({ 1169, 0, 61, 137 });
+	//jumpbackward.PushBack({ 1190, 0, 83, 137 });
 	jumpbackward.PushBack({ 1106, 0, 63, 137 });
 	jumpbackward.PushBack({ 1040, 0, 66, 137 });
 	jumpbackward.PushBack({ 979, 0, 61, 137 });
 	jumpbackward.PushBack({ 904, 0, 75, 137 });
 	jumpbackward.PushBack({ 836, 0, 68, 137 });
 	jumpbackward.PushBack({ 761, 0, 75, 137 });
-	jumpbackward.speed = 0.1f;
+	jumpbackward.speed = 0.12f;
 
 
 
@@ -525,7 +525,9 @@ bool ModulePlayer::Start()
 	positionx2 = position.x;
 	nattacks = nattackss = 0;
 	hitted_timer = punch_timer = kick_timer = punch_timer = 0;
+	current_animation = &idle;
 	inattack = false;
+	aftercrouch = false;
 	return ret;
 }
 
@@ -550,7 +552,7 @@ update_status ModulePlayer::PreUpdate() {
 	inputstate[0] = S_NONE;
 	for (int i = 0; i < INPUTSOUTS; i++) inputstateout[i] = SO_NONE;
 	inputsouts = 0;
-	if (App->UI->startplay == true)Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual, inputstate, inputstateout, App->player);
+	if (App->UI->startplay == true)Preupdate(jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, inputsouts, position, flip, actual, inputstate, inputstateout, App->player, *current_animation);
 	else {
 		actual = A_IDLE;
 		position.y = 210;
@@ -558,6 +560,8 @@ update_status ModulePlayer::PreUpdate() {
 	for (int i = 0; i < 59; i++)inair[i+1] = inair[i];
 	if(position.y==210)inair[0] = false;
 	else if (position.y < 210)inair[0] = true;
+	if (actual == A_CROUCH)aftercrouch = true;
+	else if (actual != A_IDLE)aftercrouch = false;
 	CheckSpecialAttacks(inputstate, inair);
 	return UPDATE_CONTINUE;
 }
@@ -598,7 +602,8 @@ update_status ModulePlayer::Update()
 	position.x =((170+position.x)*App->render->zooming)-170;
 	posx = App->render->zooming;
 	if (attack!=nullptr&&attack->to_delete == false)inattack = true;
-	SDL_Rect r = ExecuteState(sword,pow, notfinished,jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, *body, *body2, *body3, &attack, position, App->player)->GetCurrentFrame();
+	current_animation = ExecuteState(sword, pow, notfinished, jump_timer, punch_timer, kick_timer, specialattack_timer, hitted_timer, actual, flip, speed, mult, stopright, stopleft, aftercrouch, *body, *body2, *body3, &attack, position, App->player, *current_animation);
+	SDL_Rect r =current_animation->GetCurrentFrame();
 	if (inattack == false && attack!=nullptr&&attack->to_delete == false) nattacks++;
 	notfinished = false;
 	inattack = false;

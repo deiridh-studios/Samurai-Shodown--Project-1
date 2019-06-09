@@ -230,6 +230,7 @@ public:
 	Animation dash;
 	Animation dashnoweapon;
 	Animation protect;
+	Animation* current_animation;
 	SDL_Rect shadowrect;
 
 
@@ -262,6 +263,7 @@ public:
 	bool sword;
 	float posx;
 	bool pow;
+	bool aftercrouch;
 	int positionx2;
 };
 
