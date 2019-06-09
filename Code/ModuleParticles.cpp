@@ -77,7 +77,7 @@ bool ModuleParticles::Start()
 	eagle.anim.PushBack({ 1515, 866, 121, 62 });
 	eagle.anim.PushBack({ 1636, 866, 142, 62 });
 	eagle.anim.speed = 0.2f;
-	eagle.speed.x = 0;
+	eagle.speed.x = 0.2f;
 	eagle.life = 2300;
 	return true;
 }

@@ -315,7 +315,7 @@ ModulePlayer::ModulePlayer()
 	firebird.PushBack({ 948, 550, 86, 137 });
 	firebird.PushBack({ 1034, 550, 57, 137 });
 	firebird.PushBack({ 1091, 550, 75, 137 });
-	//firebird.speed=o.2f
+	firebird.speed = 0.2f;
 	
 	///////////Roll attack;
 	rollattack.PushBack({ 0, 756, 71,  825 });
