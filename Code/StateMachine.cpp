@@ -1403,6 +1403,8 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		if (position.y >= 210)position.y = 210;
 		if (current_animation->GetFinished() == 1 && hitted_timer == 2 && position.y == 210)hitted_timer = 3;
 		break;
+	
+	
 	case A_APPLEATTACK:
 		if (sword = true)current_animation = &App->player->appleattack;
 		else {
@@ -1423,12 +1425,12 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 			App->audio->PlayChunk(App->player->tornadosound);
 			specialattack_timer = 2;
 			if (flip == false) {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,200 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 25,(position.y - 30),75,200 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 38,(position.y - 200),130,300 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 38,(position.y - 200),130, 300 }, COLLIDER_ENEMY_SHOT, App->player2);
 			}
 			if (flip == true) {
-				if (Player == App->player) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_PLAYER_SHOT, App->player);
-				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x + 1,(position.y - 30),75,30 }, COLLIDER_ENEMY_SHOT, App->player2);
+				if (Player == App->player) *attack = App->collision->AddCollider({ position.x -8,(position.y - 200),130,300 }, COLLIDER_PLAYER_SHOT, App->player);
+				else if (Player == App->player2) *attack = App->collision->AddCollider({ position.x -8,(position.y - 200),130, 300 }, COLLIDER_ENEMY_SHOT, App->player2);
 				position.x -= 15;
 			}
 		}
@@ -1501,68 +1503,52 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 		else {
 			current_animation = &App->player->dashnoweapon;
 		}	
-		forward = true;
-		speed *= 2;
-		if (specialattack_timer == 1) {
-			App->audio->PlayChunk(App->player->tornadosound);
-			specialattack_timer = 2;
-		}	
+		//add colliders/ non damage colliders, limit
 		if (flip == false) {
-			body.SetPos(position.x + 50, (position.y - 20));
-			body2.SetPos(position.x + 52, (position.y - 40));
-			body3.SetPos(position.x + 45, (position.y - 60));
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 20, (position.y - 57));
+			body3.SetPos(position.x + 10, (position.y - 40));
 		}
 		else {
-			body.SetPos(position.x + 50, (position.y - 20));
-			body2.SetPos(position.x + 52, (position.y - 40));
-			body3.SetPos(position.x + 45, (position.y - 60));
-		}			//COLLIDER BOX
-		/*if (dash_timer == 1) {
-			//sound missing
-		dash_timer = 2;
-
-			
-			
-			if (flip == false) {
-				
-				position.x += 64;
-			}
-			else {
-				
-				position.x -= 64;
-			}			//COLLIDER BOX
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 26, (position.y - 57));
+			body3.SetPos(position.x + 16, (position.y - 40));
 		}
-		if (current_animation->GetFinished() == 1) dash_timer = 3; {
-			dash_timer = 3;
-		}*/
+		forward = true;
+		speed *= 2;
+		if (flip == false) {
+			position.x += 50;
+		}
+		else {
+			position.x -= 50;
+		}
 		break;
 		
 		/////////////COLLISION BOXES
 		
 	case A_BACKDASH:
-		if (sword == true)current_animation = &App->player->dash; 	//ANIMATION
-		else{
+		if (sword == true) current_animation = &App->player->dash;
+		else {
 			current_animation = &App->player->dashnoweapon;
 		}
+
 		if (flip == false) {
-			body.SetPos(position.x + 50, (position.y - 20));
-			body2.SetPos(position.x + 52, (position.y - 40));
-			body3.SetPos(position.x + 45, (position.y - 60));
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 20, (position.y - 57));
+			body3.SetPos(position.x + 10, (position.y - 40));
 		}
 		else {
-			body.SetPos(position.x + 50, (position.y - 20));
-			body2.SetPos(position.x + 52, (position.y - 40));
-			body3.SetPos(position.x + 45, (position.y - 60));
+			body.SetPos(position.x + 18, (position.y - 80));
+			body2.SetPos(position.x + 26, (position.y - 57));
+			body3.SetPos(position.x + 16, (position.y - 40));
 		}
-				/////////////COLLISION BOXES
 		backward = true;
 		speed *= 2;
-		if (specialattack_timer == 1) {
-			App->audio->PlayChunk(App->player->tornadosound);
-			specialattack_timer = 2;
+		if (flip == false) {
+			position.x -= 50;
 		}
-		if (current_animation->GetFinished() == 1){
-			specialattack_timer = 3;
+		else {
+			position.x += 50;
 		}
 		break;
 	case A_START:
@@ -1579,6 +1565,14 @@ Animation* ExecuteState(bool &movementextra, bool &sword, bool pow, bool &notfin
 				current_animation = &App->player2->idle;
 				actual = A_IDLE;
 			}
+		}
+		if (flip == false) {
+
+			position.x += 64;
+		}
+		else {
+
+			position.x -= 64;
 		}
 		break;
 	}
